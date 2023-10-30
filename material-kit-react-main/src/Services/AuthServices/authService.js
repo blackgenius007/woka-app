@@ -18,7 +18,7 @@ const API_URL_DEPARTMENT = '/api/v1/auth/department'
 // Register user
 const register = async (RegistrationData,navigate) => {
   console.log('auth-service =>',RegistrationData)
-  const response = await axios.post(API_URL_R,RegistrationData)
+  const response = await axios.post(BASE_URL+API_URL_R,RegistrationData)
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
@@ -30,7 +30,7 @@ const register = async (RegistrationData,navigate) => {
 
 // Login user
 const login = async (userData) => {
-  const response = await axios.post(API_URL_L , userData)
+  const response = await axios.post(BASE_URL+API_URL_L , userData)
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
