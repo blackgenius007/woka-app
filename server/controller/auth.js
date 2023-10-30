@@ -85,7 +85,7 @@ cron.schedule('0 0 * * *', async () => {
 });
   } else {
     // Convert ownerId string to ObjectId
-    let ownerObjectId = null;
+    let ownerObjectId = null;   
     if (ownerId && mongoose.Types.ObjectId.isValid(ownerId)) {
       ownerObjectId = new mongoose.Types.ObjectId(ownerId);
           }
