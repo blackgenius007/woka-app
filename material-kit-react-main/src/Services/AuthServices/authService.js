@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 // Define your base URL here
-// const BASE_URL = 'https://workfily-api.onrender.com';
-const BASE_URL = 'https://woka-app.vercel.app ';
+ 
+const BASE_URL = 'https://woka-app.vercel.app';
 
 axios.defaults.baseURL = BASE_URL;
 
