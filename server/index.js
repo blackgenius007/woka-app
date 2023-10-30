@@ -1,9 +1,18 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-const cors = require('cors')
-const RegisterModel = require('./models/Register')
-
+const connectDB = require('./config/db')
+const { logger, logEvents } = require('./middleware/logger')  
 const app = express()
+const cors = require('cors')
+const colors = require('colors');  
+PORT = process.env.PORT || 5000 
+console.log(process.env.NODE_ENV)
+
+ 
+// connect to database
+connectDB();
+
 app.use(cors(
     {
         origin: ["https://woka-app-frontend.vercel.app"],
@@ -13,27 +22,25 @@ app.use(cors(
 ));
 app.use(express.json())
 
-mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
 
 
 app.get("/", (req, res) => {
-    res.json("Hello");
+    res.json("Hello"); 
+   
 })
-app.post('/register', (req, res) => {
-    const {name, email, password} = req.body;
-    RegisterModel.findOne({email: email})
-    .then(user => {
-        if(user) {
-            res.json("Already have an account")
-        } else {
-            RegisterModel.create({name: name, email: email, password: password})
-            .then(result => res.json(result))
-            .catch(err => res.json(err))
-        }
-    }).catch(err => res.json(err))
-})
+ 
+// Route files
+const auth = require('./routes/auth');
 
 
-app.listen(3001, () => {
-    console.log("Server is Running")
-})
+// connection
+mongoose.connection.once('open', () => {
+    // console.log('Connected to MongoDB'.cyan.underline.bold)
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}` .yellow.bold))
+  })
+  
+  mongoose.connection.on('error', err => {
+    console.log(err)
+    logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log')
+  })  
