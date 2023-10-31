@@ -6,6 +6,7 @@ const connectDB = async () => {
     } catch (err) {
         console.log(err)
     }
+    console.log(`MongoDB connected:${conn.connection.host}`.cyan.underline.bold);
 }
 
 module.exports = connectDB

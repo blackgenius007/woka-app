@@ -18,7 +18,7 @@ const API_URL_DEPARTMENT = '/api/v1/auth/department'
 // Register user
 const register = async (RegistrationData,navigate) => {
   console.log('auth-service =>',RegistrationData)
-  const response = await axios.post(API_URL_R,RegistrationData)
+  const response = await axios.post(BASE_URL+API_URL_R,RegistrationData)
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
@@ -30,7 +30,7 @@ const register = async (RegistrationData,navigate) => {
 
 // Login user
 const login = async (userData) => {
-  const response = await axios.post(API_URL_L , userData)
+  const response = await axios.post(BASE_URL+API_URL_L , userData)
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
@@ -47,14 +47,14 @@ const logout = (navigate) => {
 
 // Retrieve allUser  inmate
 const retrieveUsers = async (id) => {
-  const response = await axios.get(`${API_URL_USER_BY_ID}/${id}`);
+  const response = await axios.get(`${BASE_URL+API_URL_USER_BY_ID}/${id}`);
   return response.data;
 };
 
 const saveDepartment = async (email, department) => {
   const formData = new FormData();
   department.forEach((user) => formData.append('department', JSON.stringify(user)));
-  const response = await axios.post(`${API_URL_DEPARTMENT}/${email}`, formData);
+  const response = await axios.post(`${BASE_URL+API_URL_DEPARTMENT}/${email}`, formData);
   return response.data;
 };
 const authService = {
