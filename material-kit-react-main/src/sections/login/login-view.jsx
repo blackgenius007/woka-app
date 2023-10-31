@@ -50,14 +50,35 @@ export default function LoginView() {
     setLogin((userLogin) => ({ ...userLogin, [name]: value }));
   };
 
+  const handleSubmitLogin = async (e) => {
+    try {
+      console.log(userLogin);
+      // Dispatch the login action
+      await dispatch(login(userLogin)); // Assuming login is an asynchronous action
 
-  const handleSubmitLogin = (e) => {
-console.log(userLogin)
-    // Login API
-    dispatch(login(userLogin));
-    router.push('/dashboard');  // Redirect to home route
-    return close();
+      // Check if the login was successful
+      if (isSuccess) {
+        // Redirect to the dashboard
+        router.push('/dashboard');
+      } else {
+        // Display the error message
+        console.error('Login failed:', message);
+        // You can set the error message in your state or use a notification library to display it to the user.
+      }
+    } catch (error) {
+      console.error('An error occurred while logging in:', error);
+      // Handle any other errors that might occur during the login process.
+    }
   };
+
+
+//   const handleSubmitLogin = (e) => {
+// console.log(userLogin)
+//     // Login API
+//     dispatch(login(userLogin));
+//     router.push('/dashboard');  // Redirect to home route
+     
+//   };
 
 
   const handleClick = () => {
