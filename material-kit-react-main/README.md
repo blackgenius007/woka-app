@@ -7,6 +7,7 @@
 ![preview](public/assets/preview.jpg)
 
 ## Demo
+Edited by me : Olami
 
 - [Dashboard Page](https://minimal-kit-react.vercel.app/)
 - [Users Page](https://minimal-kit-react.vercel.app/user)
