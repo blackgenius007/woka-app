@@ -55,8 +55,13 @@ export default function LoginView() {
   const handleSubmitLogin = (e) => {
 console.log(userLogin)
     // Login API
+    
     dispatch(login(userLogin));
-    router.push('/dashboard');  // Redirect to home route
+    
+    if(user && isSuccess){
+      router.push('/dashboard');  // Redirect to home route
+    }
+   
      
   };
 

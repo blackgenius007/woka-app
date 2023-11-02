@@ -1,6 +1,7 @@
  /* eslint-disable */ 
 import React from 'react';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react'; 
+import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import DashboardLayout from 'src/layouts/dashboard';
@@ -14,7 +15,10 @@ export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const HomePage = lazy(() => import('src/components/Home/homePage')); 
   
 export default function Router() {
-  const isAuthenticated=false
+  const { user, isSuccess,isError,message} = useSelector(
+    (state) => state.auth
+  );
+ 
   return (
     <Routes>
       <Route
@@ -24,7 +28,7 @@ export default function Router() {
           // For example, you can check if the user is authenticated
           // and render the DashboardLayout or HomePage accordingly
           // Replace 'isAuthenticated' with your actual condition
-          isAuthenticated ? (
+          isSuccess ? (
             <DashboardLayout>
               <Suspense>
                 <Outlet />
