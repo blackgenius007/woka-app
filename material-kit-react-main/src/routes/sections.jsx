@@ -18,7 +18,7 @@ export default function Router() {
   const { user, isSuccess,isError,message} = useSelector(
     (state) => state.auth
   );
- 
+ console.log(isSuccess && 'user authenticated')
   return (
     <Routes>
       <Route
@@ -28,7 +28,7 @@ export default function Router() {
           // For example, you can check if the user is authenticated
           // and render the DashboardLayout or HomePage accordingly
           // Replace 'isAuthenticated' with your actual condition
-          isSuccess ? (
+          user && isSuccess ? (
             <DashboardLayout>
               <Suspense>
                 <Outlet />
