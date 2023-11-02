@@ -33,10 +33,12 @@ app.get("/", (req, res) => {
 // Route files
 const auth = require('./routes/auth');
 
+//mount routers
+app.use('/api/v1/auth', auth);
 
 // connection
 mongoose.connection.once('open', () => {
-    // console.log('Connected to MongoDB'.cyan.underline.bold)
+   
     app.listen(PORT, () => console.log(`Server running on port ${PORT}` .yellow.bold))
   })
   
