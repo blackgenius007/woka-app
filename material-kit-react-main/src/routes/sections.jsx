@@ -15,16 +15,14 @@ export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const HomePage = lazy(() => import('src/components/Home/homePage')); 
   
 export default function Router() {
-  const { user, isSuccess,isError,message} = useSelector(
-    (state) => state.auth
-  );
- console.log(isSuccess && 'user authenticated')
+  const { isSuccess } = useSelector((state) => state.auth);
+  console.log(isSuccess && 'user authenticated');
+
   return (
     <Routes>
       <Route
         path="/"
         element={
-   
           isSuccess ? (
             <DashboardLayout>
               <Suspense>
@@ -35,17 +33,18 @@ export default function Router() {
             <HomePage />
           )
         }
-      />
-      <Route path="user" element={<UserPage />} />
-      <Route path="products" element={<ProductsPage />} />
-      <Route path="blog" element={<BlogPage />} />
+      >
+        <Route index element={<IndexPage />} />
+        <Route path="user" element={<UserPage />} />
+        <Route path="products" element={<ProductsPage />} />
+        <Route path="blog" element={<BlogPage />} />
+      </Route>
       <Route path="login" element={<LoginPage />} />
       <Route path="404" element={<Page404 />} />
       <Route path="*" element={<Navigate to="/404" replace />} />
     </Routes>
   );
 }
-
 
 
 
