@@ -28,7 +28,7 @@ export default function Router() {
           // For example, you can check if the user is authenticated
           // and render the DashboardLayout or HomePage accordingly
           // Replace 'isAuthenticated' with your actual condition
-          user && isSuccess ? (
+          isSuccess ? (
             <DashboardLayout>
               <Suspense>
                 <Outlet />
