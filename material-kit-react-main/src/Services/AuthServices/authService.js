@@ -2,6 +2,10 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const axiosConfig = {
+  withCredentials: true, 
+};
+
 // Define your base URL here
  
 const BASE_URL = 'https://woka-app.vercel.app';
@@ -18,7 +22,7 @@ const API_URL_DEPARTMENT = '/api/v1/auth/department'
 // Register user
 const register = async (RegistrationData,navigate) => {
   console.log('auth-service =>',RegistrationData)
-  const response = await axios.post(BASE_URL+API_URL_R,RegistrationData)
+  const response = await axios.post(BASE_URL+API_URL_R,RegistrationData,axiosConfig )
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
@@ -30,7 +34,7 @@ const register = async (RegistrationData,navigate) => {
 
 // Login user
 const login = async (userData) => {
-  const response = await axios.post(BASE_URL+API_URL_L , userData)
+  const response = await axios.post(BASE_URL+API_URL_L , userData,axiosConfig )
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
@@ -47,7 +51,7 @@ const logout = (navigate) => {
 
 // Retrieve allUser  inmate
 const retrieveUsers = async (id) => {
-  const response = await axios.get(`${API_URL_USER_BY_ID}/${id}`);
+  const response = await axios.get(`${API_URL_USER_BY_ID}/${id}`,axiosConfig );
   return response.data;
 };
 
