@@ -5,6 +5,7 @@ const connectDB = require('./config/db')
 const { logger, logEvents } = require('./middleware/logger')  
 const app = express()
 const cors = require('cors')
+const corsOptions = require('./config/corsOptions')
 const colors = require('colors');  
 PORT = process.env.PORT || 5000 
 console.log(process.env.NODE_ENV)
