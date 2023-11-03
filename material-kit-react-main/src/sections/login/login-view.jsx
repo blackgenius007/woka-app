@@ -50,25 +50,18 @@ export default function LoginView() {
     setLogin((userLogin) => ({ ...userLogin, [name]: value }));
   };
 
- 
-
-  const handleSubmitLogin = (e) => {
-console.log(userLogin)
-    // Login API
-    
-    dispatch(login(userLogin));
-    
-    if(user && isSuccess){
-      router.push('/');  // Redirect to home route
+  const handleSubmitLogin = async () => {
+    // Dispatch the login action
+    const actionResult = await dispatch(login(userLogin));
+  
+    // Check if the login action was successful
+    if (login.fulfilled.match(actionResult)) {
+      router.push('/');
     }
-   
-     
   };
+  
 
-
-  const handleClick = () => {
-    router.push('/dashboard');
-  };
+ 
 
   const renderForm = (
     <>
