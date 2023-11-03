@@ -22,12 +22,9 @@ export default function Router() {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/dashboard"
         element={
-          // Use a condition to decide what to render
-          // For example, you can check if the user is authenticated
-          // and render the DashboardLayout or HomePage accordingly
-          // Replace 'isAuthenticated' with your actual condition
+   
           isSuccess ? (
             <DashboardLayout>
               <Suspense>
