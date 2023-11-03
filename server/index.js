@@ -5,7 +5,6 @@ const connectDB = require('./config/db')
 const { logger, logEvents } = require('./middleware/logger')  
 const app = express()
 const cors = require('cors')
-const corsOptions = require('./config/corsOptions')
 const colors = require('colors');  
 PORT = process.env.PORT || 5000 
 console.log(process.env.NODE_ENV)
@@ -14,14 +13,18 @@ console.log(process.env.NODE_ENV)
 // connect to database
 connectDB();
 
-// cors
-app.use(cors(corsOptions));
-
-// Express 
+app.use(cors(
+    {
+        origin: ["https://woka-app-frontend.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 app.use(express.json())
 
- 
-// backend welcome message
+// mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
+
+
 app.get("/", (req, res) => {
     res.json("Hello"); 
    
