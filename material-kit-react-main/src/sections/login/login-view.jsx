@@ -59,7 +59,7 @@ console.log(userLogin)
     dispatch(login(userLogin));
     
     if(user && isSuccess){
-      router.push('/dashboard');  // Redirect to home route
+      router.push('/');  // Redirect to home route
     }
    
      

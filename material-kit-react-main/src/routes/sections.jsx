@@ -22,7 +22,7 @@ export default function Router() {
   return (
     <Routes>
       <Route
-        path="/dashboard"
+        path="/"
         element={
    
           isSuccess ? (
