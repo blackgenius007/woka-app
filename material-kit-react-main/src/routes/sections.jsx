@@ -9,10 +9,12 @@ import DashboardLayout from 'src/layouts/dashboard';
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
 export const UserPage = lazy(() => import('src/pages/user'));
+export const EmployeePage = lazy(() => import('src/pages/employee'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
-export const HomePage = lazy(() => import('src/components/Home/homePage')); 
+export const HomePage = lazy(() => import('src/components/Home/homePage'));
+ 
   
 export default function Router() {
   const { isSuccess } = useSelector((state) => state.auth);
@@ -38,6 +40,7 @@ export default function Router() {
         <Route path="user" element={<UserPage />} />
         <Route path="products" element={<ProductsPage />} />
         <Route path="blog" element={<BlogPage />} />
+        <Route path="employee" element={<EmployeePage />} />
       </Route>
       <Route path="login" element={<LoginPage />} />
       <Route path="404" element={<Page404 />} />
