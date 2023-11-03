@@ -13,26 +13,14 @@ console.log(process.env.NODE_ENV)
 // connect to database
 connectDB();
 
-// Set up CORS
-const corsOptions = {
-    origin: "https://woka-app-frontend.vercel.app",
-    methods: ["POST", "GET"],
-    credentials: true,
-  };
-  
-  app.use(cors(corsOptions));
-  
-  app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", corsOptions.origin);
-    res.header("Access-Control-Allow-Methods", corsOptions.methods.join(","));
-    res.header("Access-Control-Allow-Credentials", corsOptions.credentials);
-    next();
-  });
+// cors
+app.use(cors(corsOptions));
+
+// Express 
 app.use(express.json())
 
-// mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
-
-
+ 
+// backend welcome message
 app.get("/", (req, res) => {
     res.json("Hello"); 
    
