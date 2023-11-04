@@ -123,11 +123,16 @@
        setFilterName(event.target.value);
      };
    console.log(employees)
-     const dataFiltered = applyFilter({
-       inputData: employees, // Replace with your employee data
+   let dataFiltered = [];
+
+   if (employees && employees ) {
+     dataFiltered = applyFilter({
+       inputData: employees , // Use employees.data to access your API data
        comparator: getComparator(order, orderBy), // You need to provide this function
        filterName,
      });
+   }
+   
    
      const notFound = !dataFiltered.length && !!filterName;
    
