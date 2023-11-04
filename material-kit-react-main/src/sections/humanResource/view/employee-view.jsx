@@ -7,8 +7,8 @@
    import TableContainer from '@mui/material/TableContainer';
    import Table from '@mui/material/Table';
    import Avatar from '@mui/material/Avatar';
-   import TableBody from '@mui/material/TableBody;
-   import TablePagination from '@mui/material/TablePagination;
+   import TableBody from '@mui/material/TableBody';
+   import TablePagination from '@mui/material/TablePagination';
    import Stack from '@mui/material/Stack';
    
  
