@@ -1,6 +1,6 @@
    /* eslint-disable */
    import React, { useState,useEffect } from 'react';
-   import { useDispatch, useSelector } from 'react-redux';
+   import {  useSelector } from 'react-redux';
    import Button from '@mui/material/Button';
    import Container from '@mui/material/Container';
    import Typography from '@mui/material/Typography';
@@ -77,14 +77,7 @@
             return <div>Error: {message}</div>;
           }
         
-          const filteredRows =
-            employees &&
-            employees.filter((row) => {
-              return Object.values(row).some((value) =>
-                String(value).toLowerCase().includes(searched.toLowerCase())
-              );
-            });
-   
+      
    
      const handleSort = (event, id) => {
        const isAsc = orderBy === id && order === 'asc';
