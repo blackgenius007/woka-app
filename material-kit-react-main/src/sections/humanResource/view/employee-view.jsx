@@ -13,7 +13,7 @@
    
  
    
-   import { applyFilter, getComparator } from './utils'; // You need to provide the applyFilter and getComparator functions
+   import { applyFilter, getComparator } from '../../../sections/user/utils';  
    
    import EmployeeTableRow from './EmployeeTableRow';
    import EmployeeTableHead from './EmployeeTableHead';
