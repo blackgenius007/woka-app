@@ -125,7 +125,7 @@
    console.log(employees)
    let dataFiltered = [];
 
-   if (employees && employees.data ) {
+   if (employees && employees) {
      dataFiltered = applyFilter({
        inputData: employees.data , // Use employees.data to access your API data
        comparator: getComparator(order, orderBy), // You need to provide this function
