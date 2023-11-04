@@ -1,6 +1,6 @@
    /* eslint-disable */
    import React, { useState,useEffect } from 'react';
-   import { dispatch,useSelector } from 'react-redux';
+   import { useDispatch, useSelector } from 'react-redux';   
    import Button from '@mui/material/Button';
    import Container from '@mui/material/Container';
    import Typography from '@mui/material/Typography';
@@ -20,6 +20,8 @@
    import TableNoData from './table-no-data';
    
    export default function FilterableTable() {
+    const dispatch = useDispatch();
+
      const [page, setPage] = useState(0);
      const [order, setOrder] = useState('asc');
      const [selected, setSelected] = useState([]);
