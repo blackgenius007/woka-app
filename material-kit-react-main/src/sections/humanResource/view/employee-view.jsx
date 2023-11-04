@@ -84,7 +84,7 @@
    
      const handleSelectAllClick = (event) => {
        if (event.target.checked) {
-         const newSelecteds = employees.data.map((n) => n.employeeName);
+         const newSelecteds = employees.map((n) => n.employeeName);
          setSelected(newSelecteds);
          return;
        }
@@ -122,17 +122,12 @@
        setPage(0);
        setFilterName(event.target.value);
      };
-   console.log(employees)
-   let dataFiltered = [];
-
-   if (employees && employees) {
-     dataFiltered = applyFilter({
-       inputData: employees.data , // Use employees.data to access your API data
+   
+     const dataFiltered = applyFilter({
+       inputData: employees, // Replace with your employee data
        comparator: getComparator(order, orderBy), // You need to provide this function
        filterName,
      });
-   }
-   
    
      const notFound = !dataFiltered.length && !!filterName;
    
