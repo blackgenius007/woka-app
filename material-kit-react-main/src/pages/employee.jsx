@@ -9,7 +9,7 @@
 
 import { Helmet } from 'react-helmet-async';
 
-import {AccountsView } from 'src/sections/accounts/view';
+import {EmployeeView } from 'src/sections/humanResource/view';
 
 // ----------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ export default function EmployeePage() {
         <title> Work Force | Workfily </title>
       </Helmet>
 
-      <AccountsView />
+      <EmployeeView />
     </>
   );
 }
