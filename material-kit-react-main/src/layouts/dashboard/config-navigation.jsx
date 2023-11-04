@@ -14,7 +14,7 @@ const navConfig = [
   },
   {
     title: 'human resources',
-    path: '/user',
+    path: '/employee',
     icon: icon('ic_user'),
   },
   {
