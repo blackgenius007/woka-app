@@ -124,7 +124,7 @@
      };
    
      const dataFiltered = applyFilter({
-       inputData: employees, // Replace with your employee data
+       inputData: employees.data, // Replace with your employee data
        comparator: getComparator(order, orderBy), // You need to provide this function
        filterName,
      });
