@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Dropdown from 'react-dropdown';
-
 import { ButtonBase } from '@mui/material';
 import TablePagination from '@mui/material/TablePagination';
 import {
@@ -21,8 +20,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Draggable from 'react-draggable';
-import Image from 'react-bootstrap/Image';
+ 
 import { PersonOutline } from '@mui/icons-material';
 import { Typography, Chip, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
