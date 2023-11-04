@@ -41,12 +41,12 @@
         (state) => state.employees
       );
        
-        const { role, email, ownerEmail } = useSelector(
-            (state) => state.auth.user.data
-          );
+        // const { role, email, ownerEmail } = useSelector(
+        //     (state) => state.auth.user.data
+        //   );
         
           const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
-          console.log(userEmail);
+        
          
         
         
