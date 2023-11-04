@@ -161,24 +161,28 @@
                ]}
              />
              <TableBody>
-               {dataFiltered
-                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                 .map((row) => (
-                   <EmployeeTableRow
-                     key={row._id}
-                     employeeName={row.employeeName}
-                     designation={row.designation.designation}
-                     department={row.department}
-                     employeeCode={row.employeeCode}
-                     sex={row.sex}
-                     bankName={row.bankName}
-                     accountNumber={row.accountNumber}
-                     selected={selected.indexOf(row.employeeName) !== -1}
-                     handleClick={(event) => handleClick(event, row.employeeName)}
-                   />
-                 ))}
-               {notFound && <TableNoData query={filterName} />}
-             </TableBody>
+  {dataFiltered
+    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    .map((row) => {
+      console.log('Employee Data:', row); // Log the entire employee data
+      console.log('Is Employee Selected:', selected.indexOf(row.employeeName) !== -1); // Log whether this employee is selected
+      return (
+        <EmployeeTableRow
+          key={row._id}
+          employeeName={row.employeeName}
+          designation={row.designation.designation}
+          department={row.department}
+          employeeCode={row.employeeCode}
+          sex={row.sex}
+          bankName={row.bankName}
+          accountNumber={row.accountNumber}
+          selected={selected.indexOf(row.employeeName) !== -1}
+          handleClick={(event) => handleClick(event, row.employeeName)}
+        />
+      );
+    })}
+  {notFound && <TableNoData query={filterName} />}
+</TableBody>
            </Table>
          </TableContainer>
    
