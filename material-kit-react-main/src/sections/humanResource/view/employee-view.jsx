@@ -37,7 +37,7 @@
      const [preview, setPreview] = useState(false);
      const [avatar, setAvatar] = useState(false);
 
-     const { employees, isLoading, isError, message } = useSelector(
+     const { employees, isLoading } = useSelector(
         (state) => state.employees
       );
         const { user } = useSelector((state) => state.auth);
