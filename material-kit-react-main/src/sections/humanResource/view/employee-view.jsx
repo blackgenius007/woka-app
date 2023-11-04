@@ -1,3 +1,4 @@
+   /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
@@ -33,7 +34,7 @@ import Delete from '@mui/icons-material/Delete';
 import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import { Popup } from 'semantic-ui-react';
-import face from '../../../../assets/face-0.jpg';
+// import face from '../../../../assets/face-0.jpg';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -608,7 +609,8 @@ const handleLinkClick = (event, id,grossIncome) => {
                   {preview ? (
                     <img src={url} width="80px" height="80px" alt="" />
                   ) : (
-                    <img src={face} width="80px" height="80px" alt="" />
+                    ''
+                    // <img src={face} width="80px" height="80px" alt="" />
                   )}
                   <input
                     type="file"
