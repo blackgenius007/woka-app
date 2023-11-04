@@ -1,6 +1,12 @@
    /* eslint-disable */
    import React, { useState,useEffect } from 'react';
-   import { useDispatch, useSelector } from 'react-redux';   
+   import { useDispatch, useSelector } from 'react-redux';
+   import {
+    retrieveAllEmployees,
+    retrieveEmployeeById,
+    updateEmployeeById,
+    deleteEmployeeById,
+  } from '../../../Services/HR-Services/employeeSlice';   
    import Button from '@mui/material/Button';
    import Container from '@mui/material/Container';
    import Typography from '@mui/material/Typography';
