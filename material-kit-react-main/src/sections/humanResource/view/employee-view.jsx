@@ -15,9 +15,9 @@
    
    import { applyFilter, getComparator } from '../../../sections/user/utils';  
    
-   import EmployeeTableRow from './EmployeeTableRow';
-   import EmployeeTableHead from './EmployeeTableHead';
-   import TableNoData from './TableNoData';
+   import EmployeeTableRow from './employee-table-row';
+   import EmployeeTableHead from './employee-table-head';
+   import TableNoData from './table-no-data';
    
    export default function FilterableTable() {
      const [page, setPage] = useState(0);
