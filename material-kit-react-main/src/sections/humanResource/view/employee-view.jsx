@@ -84,7 +84,7 @@
    
      const handleSelectAllClick = (event) => {
        if (event.target.checked) {
-         const newSelecteds = employees.map((n) => n.employeeName);
+         const newSelecteds = employees.data.map((n) => n.employeeName);
          setSelected(newSelecteds);
          return;
        }
