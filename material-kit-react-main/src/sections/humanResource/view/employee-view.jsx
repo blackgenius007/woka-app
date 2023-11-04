@@ -122,7 +122,7 @@
        setPage(0);
        setFilterName(event.target.value);
      };
-   
+   console.log(employees.data)
      const dataFiltered = applyFilter({
        inputData: employees.data, // Replace with your employee data
        comparator: getComparator(order, orderBy), // You need to provide this function
