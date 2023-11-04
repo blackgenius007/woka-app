@@ -40,7 +40,50 @@
      const { employees, isLoading } = useSelector(
         (state) => state.employees
       );
-        const { user } = useSelector((state) => state.auth);
+       
+        const { role, email, ownerEmail } = useSelector(
+            (state) => state.auth.user.data
+          );
+        
+          const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
+          console.log(userEmail);
+        
+          const calculateAge=(dateOfBirth)=>{
+            const today = new Date();
+            const birthDate = new Date(dateOfBirth);
+          
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDifference = today.getMonth() - birthDate.getMonth();
+          
+            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+              age--;
+            }
+          
+            return age;
+          }
+        
+        
+          // retrieve all employee from API
+          useEffect(() => {
+            // Dispatch retrieveAllEmployee action
+            dispatch(retrieveAllEmployees(userEmail));
+          }, [dispatch, userEmail]);
+        
+          if (isLoading) {
+            return <div>Loading...</div>;
+          }
+        
+          if (isError) {
+            return <div>Error: {message}</div>;
+          }
+        
+          const filteredRows =
+            employees &&
+            employees.filter((row) => {
+              return Object.values(row).some((value) =>
+                String(value).toLowerCase().includes(searched.toLowerCase())
+              );
+            });
    
    
      const handleSort = (event, id) => {
