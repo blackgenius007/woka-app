@@ -204,8 +204,8 @@
      const { ownerEmail } = useSelector((state) => state.auth.user.data);
    
      // user role
-     // const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
-     // console.log(userEmail);
+     const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
+     console.log(userEmail);
    
      // Photo onChanged function
      const handleClick = (event) => {
