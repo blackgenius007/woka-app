@@ -148,7 +148,7 @@ import {
          </Stack>
    
          <Card>
-           <UserTableToolbar
+           <EmployeeTableToolbar
              numSelected={selected.length}
              filterName={filterName}
              onFilterName={handleFilterByName}
@@ -157,7 +157,7 @@ import {
            <Scrollbar>
              <TableContainer sx={{ overflow: 'unset' }}>
                <Table sx={{ minWidth: 800 }}>
-                 <UserTableHead
+                 <EmployeeTableHead 
                    order={order}
                    orderBy={orderBy}
                    rowCount={employees.length}
