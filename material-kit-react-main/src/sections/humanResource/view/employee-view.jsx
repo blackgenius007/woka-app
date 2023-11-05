@@ -39,7 +39,7 @@ import {
    
    // ----------------------------------------------------------------------
    
-   export default function UserPage() {
+   export default function EmployeePage() {
     const dispatch = useDispatch();
      const [page, setPage] = useState(0);
    
@@ -177,7 +177,7 @@ import {
                    {dataFiltered
                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                      .map((row) => (
-                       <UserTableRow
+                       <EmployeeTableRow
                          key={row.id}
                          name={row.name}
                          role={row.role}
