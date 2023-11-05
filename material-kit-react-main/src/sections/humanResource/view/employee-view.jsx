@@ -146,7 +146,8 @@
      const { employees, isLoading, isError, message } = useSelector(
         (state) => state.employees
       );
-        const { user } = useSelector((state) => state.auth);
+ 
+
     console.log(employees);
     
      const tableRef = useRef(null);
@@ -201,7 +202,7 @@
      
    
      //user details
-     const { ownerEmail } = useSelector((state) => state.auth.user.data);
+     const { ownerEmail,role } = useSelector((state) => state.auth.user.data);
    
      // user role
      const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
