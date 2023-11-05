@@ -165,11 +165,14 @@ import {
                    onRequestSort={handleSort}
                    onSelectAllClick={handleSelectAllClick}
                    headLabel={[
-                     { id: 'name', label: 'Name' },
-                     { id: 'company', label: 'Company' },
-                     { id: 'role', label: 'Role' },
-                     { id: 'isVerified', label: 'Verified', align: 'center' },
-                     { id: 'status', label: 'Status' },
+                     { id: 'employeeName', label: 'Name' },
+                     { id: 'designation', label: 'Designation' },
+                     { id: 'department', label: 'Department' },
+                     { id: 'employeeCode', label: 'Employee code', align: 'center' },
+                     { id: 'sex', label: 'Sex' },
+                     { id: 'bankName', label: 'Bank name' },
+                     { id: 'accountNumber', label: 'Account number' },
+                   
                      { id: '' },
                    ]}
                  />
@@ -179,14 +182,16 @@ import {
                      .map((row) => (
                        <EmployeeTableRow
                          key={row.id}
-                         name={row.name}
-                         role={row.role}
-                         status={row.status}
-                         company={row.company}
-                         avatarUrl={row.avatarUrl}
-                         isVerified={row.isVerified}
-                         selected={selected.indexOf(row.name) !== -1}
-                         handleClick={(event) => handleClick(event, row.name)}
+                         employeeName={row.employeeName}
+                         designation={row.designation.designation}
+                         department={row.department}
+                         employeeCode={row.employeeCode}
+                         imagePath={row.imagePath}
+                         sex={row.sex}
+                         bankName={row.bankName}
+                         accountNumber={row.accountNumber}
+                         selected={selected.indexOf(row.employeeName) !== -1}
+                         handleClick={(event) => handleClick(event, row.employeeName)}
                        />
                      ))}
    
