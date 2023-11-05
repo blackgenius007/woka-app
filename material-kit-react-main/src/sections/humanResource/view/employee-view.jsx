@@ -1,51 +1,59 @@
    /* eslint-disable */
-   import React, { useState,useEffect } from 'react';
-   import { useDispatch, useSelector } from 'react-redux';
-   import {
+import React, { useState,useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
     retrieveAllEmployees,
     retrieveEmployeeById,
     updateEmployeeById,
     deleteEmployeeById,
   } from '../../../Services/HR-Services/employeeSlice';   
+ 
+ 
+   import Avatar from '@mui/material/Avatar';
+ 
+   import Card from '@mui/material/Card';
+   import Stack from '@mui/material/Stack';
+   import Table from '@mui/material/Table';
    import Button from '@mui/material/Button';
    import Container from '@mui/material/Container';
+   import TableBody from '@mui/material/TableBody';
    import Typography from '@mui/material/Typography';
    import TableContainer from '@mui/material/TableContainer';
-   import Table from '@mui/material/Table';
-   import Avatar from '@mui/material/Avatar';
-   import TableBody from '@mui/material/TableBody';
    import TablePagination from '@mui/material/TablePagination';
-   import Stack from '@mui/material/Stack';
    
+//    import { users } from 'src/_mock/user';
+   
+   import Iconify from 'src/components/iconify';
+   import Scrollbar from 'src/components/scrollbar';
+    
+   
+  import EmployeeTableRow from './employee-table-row';
+  import EmployeeTableHead from './employee-table-head';
+  import TableNoData from './table-no-data';
+   
+    
  
+   import TableEmptyRows from './table-empty-rows';
+   import EmployeeTableToolbar from './employee-table-toolbar';
+   import { emptyRows, applyFilter, getComparator } from '../../user/utils';
    
-   import { applyFilter, getComparator } from '../../../sections/user/utils';  
+   // ----------------------------------------------------------------------
    
-   import EmployeeTableRow from './employee-table-row';
-   import EmployeeTableHead from './employee-table-head';
-   import TableNoData from './table-no-data';
-   
-   export default function FilterableTable() {
+   export default function UserPage() {
     const dispatch = useDispatch();
-
      const [page, setPage] = useState(0);
+   
      const [order, setOrder] = useState('asc');
+   
      const [selected, setSelected] = useState([]);
-     const [orderBy, setOrderBy] = useState('employeeName');
+   
+     const [orderBy, setOrderBy] = useState('name');
+   
      const [filterName, setFilterName] = useState('');
+   
      const [rowsPerPage, setRowsPerPage] = useState(5);
-     const [openDialog, setOpenDialog] = useState(false);
-     const [openEditDialog, setOpenEditDialog] = useState(false);
-     const [selectedEmployee, setSelectedEmployee] = useState(null);
-     const [isUploadVisible, setUploadVisible] = useState(false);
-     const hiddenFileInput = React.useRef(null);
-     const [resume, setResume] = useState({});
-     const [url, setUrl] = useState({});
-     const [uploadedFile, setUploadedFile] = useState({});
-     const [preview, setPreview] = useState(false);
-     const [avatar, setAvatar] = useState(false);
 
-     const { employees, isLoading,isError } = useSelector(
+          const { employees, isLoading,isError } = useSelector(
         (state) => state.employees
       );
        
@@ -54,8 +62,7 @@
           );
         
           const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
-        
-         
+                
         
         
           // retrieve all employee from API
@@ -72,7 +79,6 @@
             return <div>Error: {message}</div>;
           }
         
-      
    
      const handleSort = (event, id) => {
        const isAsc = orderBy === id && order === 'asc';
@@ -84,7 +90,7 @@
    
      const handleSelectAllClick = (event) => {
        if (event.target.checked) {
-         const newSelecteds = employees.map((n) => n.employeeName);
+         const newSelecteds = employees.map((n) => n.name);
          setSelected(newSelecteds);
          return;
        }
@@ -124,8 +130,8 @@
      };
    
      const dataFiltered = applyFilter({
-       inputData: employees, // Replace with your employee data
-       comparator: getComparator(order, orderBy), // You need to provide this function
+       inputData: employees,
+       comparator: getComparator(order, orderBy),
        filterName,
      });
    
@@ -134,70 +140,300 @@
      return (
        <Container>
          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-           <Typography variant="h4">Employees</Typography>
-           <Button variant="contained" color="primary">
+           <Typography variant="h4">Employee </Typography>
+   
+           <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
              New Employee
            </Button>
          </Stack>
    
-         <TableContainer sx={{ overflow: 'unset' }}>
-           <Table sx={{ minWidth: 800 }}>
-             <EmployeeTableHead
-               order={order}
-               orderBy={orderBy}
-               rowCount={employees.length}
-               numSelected={selected.length}
-               onRequestSort={handleSort}
-               onSelectAllClick={handleSelectAllClick}
-               headLabel={[
-                 { id: 'employeeName', label: 'Name' },
-                 { id: 'designation', label: 'Designation' },
-                 { id: 'department', label: 'Department' },
-                 { id: 'employeeCode', label: 'Employee Code' },
-                 { id: 'sex', label: 'Sex' },
-                 { id: 'bankName', label: 'Bank Name' },
-                 { id: 'accountNumber', label: 'Account Number' },
-                 { id: '', label: 'Action' },
-               ]}
-             />
-             <TableBody>
-  {dataFiltered
-    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-    .map((row) => {
-      console.log('Employee Data:', row); // Log the entire employee data
-      console.log('Is Employee Selected:', selected.indexOf(row.employeeName) !== -1); // Log whether this employee is selected
-      return (
-        <EmployeeTableRow
-          key={row._id}
-          employeeName={row.employeeName}
-          designation={row.designation.designation}
-          department={row.department}
-          employeeCode={row.employeeCode}
-          sex={row.sex}
-          bankName={row.bankName}
-          accountNumber={row.accountNumber}
-          selected={selected.indexOf(row.employeeName) !== -1}
-          handleClick={(event) => handleClick(event, row.employeeName)}
-        />
-      );
-    })}
-  {notFound && <TableNoData query={filterName} />}
-</TableBody>
-           </Table>
-         </TableContainer>
+         <Card>
+           <UserTableToolbar
+             numSelected={selected.length}
+             filterName={filterName}
+             onFilterName={handleFilterByName}
+           />
    
-         <TablePagination
-           page={page}
-           component="div"
-           count={employees.length}
-           rowsPerPage={rowsPerPage}
-           onPageChange={handleChangePage}
-           rowsPerPageOptions={[5, 10, 25]}
-           onRowsPerPageChange={handleChangeRowsPerPage}
-         />
+           <Scrollbar>
+             <TableContainer sx={{ overflow: 'unset' }}>
+               <Table sx={{ minWidth: 800 }}>
+                 <UserTableHead
+                   order={order}
+                   orderBy={orderBy}
+                   rowCount={employees.length}
+                   numSelected={selected.length}
+                   onRequestSort={handleSort}
+                   onSelectAllClick={handleSelectAllClick}
+                   headLabel={[
+                     { id: 'name', label: 'Name' },
+                     { id: 'company', label: 'Company' },
+                     { id: 'role', label: 'Role' },
+                     { id: 'isVerified', label: 'Verified', align: 'center' },
+                     { id: 'status', label: 'Status' },
+                     { id: '' },
+                   ]}
+                 />
+                 <TableBody>
+                   {dataFiltered
+                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                     .map((row) => (
+                       <UserTableRow
+                         key={row.id}
+                         name={row.name}
+                         role={row.role}
+                         status={row.status}
+                         company={row.company}
+                         avatarUrl={row.avatarUrl}
+                         isVerified={row.isVerified}
+                         selected={selected.indexOf(row.name) !== -1}
+                         handleClick={(event) => handleClick(event, row.name)}
+                       />
+                     ))}
+   
+                   <TableEmptyRows
+                     height={77}
+                     emptyRows={emptyRows(page, rowsPerPage, employees.length)}
+                   />
+   
+                   {notFound && <TableNoData query={filterName} />}
+                 </TableBody>
+               </Table>
+             </TableContainer>
+           </Scrollbar>
+   
+           <TablePagination
+             page={page}
+             component="div"
+             count={employees.length}
+             rowsPerPage={rowsPerPage}
+             onPageChange={handleChangePage}
+             rowsPerPageOptions={[5, 10, 25]}
+             onRowsPerPageChange={handleChangeRowsPerPage}
+           />
+         </Card>
        </Container>
      );
    }
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    import React, { useState,useEffect } from 'react';
+//    import { useDispatch, useSelector } from 'react-redux';
+//    import {
+//     retrieveAllEmployees,
+//     retrieveEmployeeById,
+//     updateEmployeeById,
+//     deleteEmployeeById,
+//   } from '../../../Services/HR-Services/employeeSlice';   
+//    import Button from '@mui/material/Button';
+//    import Container from '@mui/material/Container';
+//    import Typography from '@mui/material/Typography';
+//    import TableContainer from '@mui/material/TableContainer';
+//    import Table from '@mui/material/Table';
+//    import Avatar from '@mui/material/Avatar';
+//    import TableBody from '@mui/material/TableBody';
+//    import TablePagination from '@mui/material/TablePagination';
+//    import Stack from '@mui/material/Stack';
+   
+ 
+   
+//    import { applyFilter, getComparator } from '../../../sections/user/utils';  
+   
+//    import EmployeeTableRow from './employee-table-row';
+//    import EmployeeTableHead from './employee-table-head';
+//    import TableNoData from './table-no-data';
+   
+//    export default function FilterableTable() {
+//     const dispatch = useDispatch();
+
+//      const [page, setPage] = useState(0);
+//      const [order, setOrder] = useState('asc');
+//      const [selected, setSelected] = useState([]);
+//      const [orderBy, setOrderBy] = useState('employeeName');
+//      const [filterName, setFilterName] = useState('');
+//      const [rowsPerPage, setRowsPerPage] = useState(5);
+//      const [openDialog, setOpenDialog] = useState(false);
+//      const [openEditDialog, setOpenEditDialog] = useState(false);
+//      const [selectedEmployee, setSelectedEmployee] = useState(null);
+//      const [isUploadVisible, setUploadVisible] = useState(false);
+//      const hiddenFileInput = React.useRef(null);
+//      const [resume, setResume] = useState({});
+//      const [url, setUrl] = useState({});
+//      const [uploadedFile, setUploadedFile] = useState({});
+//      const [preview, setPreview] = useState(false);
+//      const [avatar, setAvatar] = useState(false);
+
+//      const { employees, isLoading,isError } = useSelector(
+//         (state) => state.employees
+//       );
+       
+//         const { role, email, ownerEmail } = useSelector(
+//             (state) => state.auth.user.data
+//           );
+        
+//           const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
+        
+         
+        
+        
+//           // retrieve all employee from API
+//           useEffect(() => {
+//             // Dispatch retrieveAllEmployee action
+//             dispatch(retrieveAllEmployees(userEmail));
+//           }, [dispatch, userEmail]);
+        
+//           if (isLoading) {
+//             return <div>Loading...</div>;
+//           }
+        
+//           if (isError) {
+//             return <div>Error: {message}</div>;
+//           }
+        
+      
+   
+//      const handleSort = (event, id) => {
+//        const isAsc = orderBy === id && order === 'asc';
+//        if (id !== '') {
+//          setOrder(isAsc ? 'desc' : 'asc');
+//          setOrderBy(id);
+//        }
+//      };
+   
+//      const handleSelectAllClick = (event) => {
+//        if (event.target.checked) {
+//          const newSelecteds = employees.map((n) => n.employeeName);
+//          setSelected(newSelecteds);
+//          return;
+//        }
+//        setSelected([]);
+//      };
+   
+//      const handleClick = (event, name) => {
+//        const selectedIndex = selected.indexOf(name);
+//        let newSelected = [];
+//        if (selectedIndex === -1) {
+//          newSelected = newSelected.concat(selected, name);
+//        } else if (selectedIndex === 0) {
+//          newSelected = newSelected.concat(selected.slice(1));
+//        } else if (selectedIndex === selected.length - 1) {
+//          newSelected = newSelected.concat(selected.slice(0, -1));
+//        } else if (selectedIndex > 0) {
+//          newSelected = newSelected.concat(
+//            selected.slice(0, selectedIndex),
+//            selected.slice(selectedIndex + 1)
+//          );
+//        }
+//        setSelected(newSelected);
+//      };
+   
+//      const handleChangePage = (event, newPage) => {
+//        setPage(newPage);
+//      };
+   
+//      const handleChangeRowsPerPage = (event) => {
+//        setPage(0);
+//        setRowsPerPage(parseInt(event.target.value, 10));
+//      };
+   
+//      const handleFilterByName = (event) => {
+//        setPage(0);
+//        setFilterName(event.target.value);
+//      };
+   
+//      const dataFiltered = applyFilter({
+//        inputData: employees, // Replace with your employee data
+//        comparator: getComparator(order, orderBy), // You need to provide this function
+//        filterName,
+//      });
+   
+//      const notFound = !dataFiltered.length && !!filterName;
+   
+//      return (
+//        <Container>
+//          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+//            <Typography variant="h4">Employees</Typography>
+//            <Button variant="contained" color="primary">
+//              New Employee
+//            </Button>
+//          </Stack>
+   
+//          <TableContainer sx={{ overflow: 'unset' }}>
+//            <Table sx={{ minWidth: 800 }}>
+//              <EmployeeTableHead
+//                order={order}
+//                orderBy={orderBy}
+//                rowCount={employees.length}
+//                numSelected={selected.length}
+//                onRequestSort={handleSort}
+//                onSelectAllClick={handleSelectAllClick}
+//                headLabel={[
+//                  { id: 'employeeName', label: 'Name' },
+//                  { id: 'designation', label: 'Designation' },
+//                  { id: 'department', label: 'Department' },
+//                  { id: 'employeeCode', label: 'Employee Code' },
+//                  { id: 'sex', label: 'Sex' },
+//                  { id: 'bankName', label: 'Bank Name' },
+//                  { id: 'accountNumber', label: 'Account Number' },
+//                  { id: '', label: 'Action' },
+//                ]}
+//              />
+//              <TableBody>
+//   {dataFiltered
+//     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+//     .map((row) => {
+//       console.log('Employee Data:', row); // Log the entire employee data
+//       console.log('Is Employee Selected:', selected.indexOf(row.employeeName) !== -1); // Log whether this employee is selected
+//       return (
+//         <EmployeeTableRow
+//           key={row._id}
+//           employeeName={row.employeeName}
+//           designation={row.designation.designation}
+//           department={row.department}
+//           employeeCode={row.employeeCode}
+//           sex={row.sex}
+//           bankName={row.bankName}
+//           accountNumber={row.accountNumber}
+//           selected={selected.indexOf(row.employeeName) !== -1}
+//           handleClick={(event) => handleClick(event, row.employeeName)}
+//         />
+//       );
+//     })}
+//   {notFound && <TableNoData query={filterName} />}
+// </TableBody>
+//            </Table>
+//          </TableContainer>
+   
+//          <TablePagination
+//            page={page}
+//            component="div"
+//            count={employees.length}
+//            rowsPerPage={rowsPerPage}
+//            onPageChange={handleChangePage}
+//            rowsPerPageOptions={[5, 10, 25]}
+//            onRowsPerPageChange={handleChangeRowsPerPage}
+//          />
+//        </Container>
+//      );
+//    }
    
 
 
