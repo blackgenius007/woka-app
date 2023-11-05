@@ -651,7 +651,7 @@
          <h1 style={{ color: '#6082B6' }}>Inmate Database</h1>
          <FilterableTable drawer={toggleSidebar} />
          {/* Right Sidebar */}
-         <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
+         {/* <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
        </div>
      );
    }
