@@ -260,12 +260,11 @@
      const toggleUpload = () => {
        setUploadVisible((prevState) => !prevState);
      };
-   
-     // retrieve all inmates from API
-     useEffect(() => {
-       // Dispatch retrieveAllInmates action
-       dispatch(retrieveAllInmates(ownerEmail));
-     }, [dispatch, ownerEmail]);
+    // retrieve all employee from API
+  useEffect(() => {
+    // Dispatch retrieveAllEmployee action
+    dispatch(retrieveAllEmployees(userEmail));
+  }, [dispatch, userEmail]);
    
      if (isLoading) {
        return <div>Loading...</div>;
