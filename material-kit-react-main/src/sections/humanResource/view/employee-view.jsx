@@ -389,46 +389,7 @@
            />
          </div>
          <br />
-         <label>
-           <Popup
-             trigger={
-               <Button variant="info" color="primary">
-                 <IconContext.Provider value={{ color: 'grey', size: '25px' }}>
-                   <GiDeliveryDrone />
-                 </IconContext.Provider>
-               </Button>
-             }
-             position="top left"
-           >
-            Lunch Surveillance drone
-           </Popup>
-   
-           <IconButton>
-             <Popup
-               trigger={
-                 <Link>
-                    <SlPieChart/>
-                 </Link>
-               }
-               position="top center"
-             >
-               Charts
-             </Popup>
-           </IconButton>
-   
-           <Button
-             variant="contained"
-             onClick={drawer}
-             style={{ backgroundColor: '#E97451' }}
-           >
-             Case Files
-           </Button>
-           {/* Button to toggle the sidebar */}
-           <Button variant="contained" onClick={drawer}>
-             How it works
-           </Button>
-           {/* Render totalRemunerationForAll in a separate table row */}
-         </label>
+     
          <div style={futuristicStyles.tableContainer}>
            <table style={futuristicStyles.table}>
              <thead style={futuristicStyles.tableHead}>
