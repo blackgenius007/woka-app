@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Grid, TextField,Form,Button, Typography } from '@mui/material';
-import { registerEmployee } from '../../Services/HR-Services/employeeSlice';
+import { registerEmployee } from '../../../Services/HR-Services/employeeSlice';
 // import employeePic from '../../../../assets/employee.png';
 import Dropdown from 'react-dropdown';
 import axios from 'axios';
