@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +9,7 @@ import Dropdown from 'react-dropdown';
 import axios from 'axios';
 import 'react-dropdown/style.css';
 
-function NewEmployeeForm() {
+function NewEmployeeFormPage() {
   const { user } = useSelector((state) => state.auth);
   const departmentAdded = user && user.departmentAdded;
   const [selectOptions, setSelectOptions] = useState([]);
@@ -382,4 +383,4 @@ setName(e.label)
   );
 }
 
-export default NewEmployeeForm; 
+export default NewEmployeeFormPage; 
