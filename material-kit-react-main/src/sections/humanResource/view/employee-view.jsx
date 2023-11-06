@@ -612,20 +612,23 @@
      };
    
      return (
-       <div style={containerStyle}>
-             <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+          <Container>
+                       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Employee</Typography>
 
         <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
           New Employee
         </Button>
       </Stack>
-
-      
+      <Scrollbar>
+      <TableContainer sx={{ overflow: 'unset' }}>
          <FilterableTable drawer={toggleSidebar} />
-         {/* Right Sidebar */}
-         {/* <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
-       </div>
+         </TableContainer>
+        </Scrollbar>
+          </Container>
+    
+
+     
      );
    }
    
