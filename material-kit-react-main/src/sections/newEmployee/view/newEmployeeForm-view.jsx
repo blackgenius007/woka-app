@@ -158,7 +158,7 @@ setName(e.label)
         {/* Left column */}
         <Grid item xs={12} md={6}>
           <Link to="/setup" style={{ textDecoration: 'none' }}>
-            <Button startIcon={<ArrowBack />} color="secondary" sx={{ mb: 2 }}>
+            <Button   color="secondary" sx={{ mb: 2 }}>
               Back
             </Button>
           </Link>
