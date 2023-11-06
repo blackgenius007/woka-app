@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Grid, TextField,Form,Button, Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
+import Iconify from 'src/components/iconify';
 import { registerEmployee } from '../../../Services/HR-Services/employeeSlice';
 // import employeePic from '../../../../assets/employee.png';
 import Dropdown from 'react-dropdown';
@@ -174,11 +175,11 @@ Setup Payment structure
       <Grid container spacing={2}>
         {/* Left column */}
         <Grid item xs={12} md={6}>
-          <Link to="/setup" style={{ textDecoration: 'none' }}>
+          {/* <Link to="/setup" style={{ textDecoration: 'none' }}>
             <Button   color="secondary" sx={{ mb: 2 }}>
               Back
             </Button>
-          </Link>
+          </Link> */}
        
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
