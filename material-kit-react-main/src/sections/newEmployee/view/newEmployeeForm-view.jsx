@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Grid, TextField,Form,Button, Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import { registerEmployee } from '../../../Services/HR-Services/employeeSlice';
 // import employeePic from '../../../../assets/employee.png';
 import Dropdown from 'react-dropdown';
@@ -154,6 +155,22 @@ setName(e.label)
 
       return (
     <Container>
+                    <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Typography variant="h4">New Employee Form</Typography>
+
+        <Link to="/new-employee">
+        <Button
+  variant="contained"
+  style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
+  startIcon={<Iconify icon="eva:plus-fill" />}
+>
+
+Setup Payment structure       
+
+</Button>
+</Link>
+
+      </Stack>
       <Grid container spacing={2}>
         {/* Left column */}
         <Grid item xs={12} md={6}>
@@ -162,9 +179,7 @@ setName(e.label)
               Back
             </Button>
           </Link>
-          <Typography variant="h5" align="center" sx={{ mb: 2 }}>
-            New Employee Form
-          </Typography>
+       
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
