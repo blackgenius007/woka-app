@@ -638,18 +638,17 @@
                        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Employee</Typography>
 
-      
+        <Link to="/create-new">
         <Button
   variant="contained"
   style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
   startIcon={<Iconify icon="eva:plus-fill" />}
 >
-<Link to="/create-new" style={linkStyle}>
-New Employee
-                     </Link>
-   
+
+New Employee            
 
 </Button>
+</Link>
 
       </Stack>
       <Scrollbar>
