@@ -5,12 +5,12 @@
    import { useDispatch, useSelector } from 'react-redux';
    import TextField from '@mui/material/TextField';
    import { ButtonBase } from '@mui/material';
-   import Popover from '@mui/material/Popover';
    import Container from '@mui/material/Container';
    import TableContainer from '@mui/material/TableContainer';
    import Card from '@mui/material/Card';
+   import IconButton from '@mui/material/IconButton';
+   import Popover from '@mui/material/Popover';
    import Stack from '@mui/material/Stack';
-   import MenuItem from '@mui/material/MenuItem';
    import Iconify from 'src/components/iconify';
    import Scrollbar from 'src/components/scrollbar';
    import moment from 'moment';
@@ -179,17 +179,16 @@
      const [preview, setPreview] = useState(false);
      const [avatar, setAvatar] = useState(false);
      const [dateOffset, setDateOffset] = useState(7);
-     const [open, setOpen] = useState(false);
-     const [openEdit, setOpenEdit] = useState(null);
+     const [open, setOpen] = useState(null);
 
+     
      const handleOpenMenu = (event) => {
-       setOpenEdit(event.currentTarget);
-     };
-   
-     const handleCloseMenu = () => {
-       setOpenEdit(null);
-     };
-
+      setOpen(event.currentTarget);
+    };
+  
+    const handleCloseMenu = () => {
+      setOpen(null);
+    };
        // Pagination state
      const [page, setPage] = useState(0);
      const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -412,13 +411,14 @@
            <table style={futuristicStyles.table}>
              <thead style={futuristicStyles.tableHead}>
                <tr>
-                 <th style={futuristicStyles.tableHeadCell}>Photo</th>
                  <th style={futuristicStyles.tableHeadCell}>Employee</th>
-                 <th style={futuristicStyles.tableHeadCell}>Offence category</th>
-                 <th style={futuristicStyles.tableHeadCell}>Booking Date</th>
-                 <th style={futuristicStyles.tableHeadCell}>Booking Officer</th>              
-                 <th style={futuristicStyles.tableHeadCell}>Arrest location</th>
-                 <th style={futuristicStyles.tableHeadCell}>Status</th>
+                 <th style={futuristicStyles.tableHeadCell}>Name</th>
+                 <th style={futuristicStyles.tableHeadCell}>Sex</th>
+                 <th style={futuristicStyles.tableHeadCell}>Designation</th>
+                 <th style={futuristicStyles.tableHeadCell}>Department</th>
+                 <th style={futuristicStyles.tableHeadCell}>Unique code</th>           
+                 <th style={futuristicStyles.tableHeadCell}>Bank Name</th>
+                 <th style={futuristicStyles.tableHeadCell}>Account Number</th>
                  <th style={futuristicStyles.tableHeadCell}>Action</th>   
                </tr>
              </thead>
@@ -446,40 +446,25 @@
                      </td>
    
                      <td style={futuristicStyles.tableBodyCell}>
-                       {formatDate(row.bookingDate)}
+                       {formatDate(row.designation)}
                      </td>
                      <td style={futuristicStyles.tableBodyCell}>
-                       {row.booking_officer}
+                       {row.department}
                      </td>
    
                      <td style={futuristicStyles.tableBodyCell}>
-                       {row.arrest_location}
+                       {row.employeeCode}
                      </td>
                      <td style={futuristicStyles.tableBodyCell}>
-                       {row.status}
+                       {row.bankName}
                      </td>
                      <td style={futuristicStyles.tableBodyCell}>
-                
-      <Popover
-        open={!!open}
-        anchorEl={open}
-        onClose={handleCloseMenu}
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: { width: 140 },
-        }}
-      >
-        <MenuItem onClick={handleCloseMenu}>
-          <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
-          Edit
-        </MenuItem>
-
-        <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
-          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
-          Delete
-        </MenuItem>
-      </Popover>
+                       {row.accountNumber}
+                     </td>
+                     <td style={futuristicStyles.tableBodyCell}>
+                     <IconButton onClick={handleOpenMenu}>
+            <Iconify icon="eva:more-vertical-fill" />
+          </IconButton>
                    </td>
                    </tr>
    
@@ -611,6 +596,26 @@
              Next
            </button>
          </div>
+         <Popover
+        open={!!open}
+        anchorEl={open}
+        onClose={handleCloseMenu}
+        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        PaperProps={{
+          sx: { width: 140 },
+        }}
+      >
+        <MenuItem onClick={handleCloseMenu}>
+          <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
+          Edit
+        </MenuItem>
+
+        <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
+          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
+          Delete
+        </MenuItem>
+      </Popover>
        </>
      );
    };
