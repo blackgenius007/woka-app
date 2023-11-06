@@ -5,6 +5,7 @@
    import { useDispatch, useSelector } from 'react-redux';
    import TextField from '@mui/material/TextField';
    import { ButtonBase } from '@mui/material';
+   import Popover from '@mui/material/Popover';
    import Container from '@mui/material/Container';
    import TableContainer from '@mui/material/TableContainer';
    import Card from '@mui/material/Card';
@@ -178,6 +179,16 @@
      const [avatar, setAvatar] = useState(false);
      const [dateOffset, setDateOffset] = useState(7);
      const [open, setOpen] = useState(false);
+     const [openEdit, setOpenEdit] = useState(null);
+
+     const handleOpenMenu = (event) => {
+       setOpenEdit(event.currentTarget);
+     };
+   
+     const handleCloseMenu = () => {
+       setOpenEdit(null);
+     };
+
        // Pagination state
      const [page, setPage] = useState(0);
      const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -447,24 +458,27 @@
                        {row.status}
                      </td>
                      <td style={futuristicStyles.tableBodyCell}>
-                     <span
-                       style={{
-                         ...futuristicStyles.actionIcons,
-                         color: '#00aaff',
-                       }}
-                       onClick={() => handleUpdate(row._id)}
-                     >
-                       <Edit />
-                     </span>
-                     <span
-                       style={{
-                         ...futuristicStyles.actionIcons,
-                         color: '#ff0000',
-                       }}
-                       onClick={() => handleDelete(row._id)}
-                     >
-                       <Delete />
-                     </span>
+                
+      <Popover
+        open={!!open}
+        anchorEl={open}
+        onClose={handleCloseMenu}
+        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        PaperProps={{
+          sx: { width: 140 },
+        }}
+      >
+        <MenuItem onClick={handleCloseMenu}>
+          <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
+          Edit
+        </MenuItem>
+
+        <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
+          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
+          Delete
+        </MenuItem>
+      </Popover>
                    </td>
                    </tr>
    
