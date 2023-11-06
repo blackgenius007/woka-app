@@ -78,7 +78,7 @@ const employeeData={
   useEffect(() => {
     const fetchDesignation = async () => {
       try {
-        const res = await axios.get(`/api/v1/employee/designation/${user.data.email}`, {
+        const res = await axios.get(`https://woka-app.vercel.app/api/v1/employee/designation/${user.data.email}`, {
           params: {
             _limit: 100,
           },
