@@ -42,7 +42,7 @@ export default function Router() {
         <Route path="products" element={<ProductsPage />} />
         <Route path="blog" element={<BlogPage />} />
         <Route path="employee" element={<EmployeePage />} />
-        <Route path="new-employee" element={<EmployeePage />} />
+        <Route path="new-employee" element={<NewEmployeePage />} />
       </Route>
       <Route path="login" element={<LoginPage />} />
       <Route path="404" element={<Page404 />} />
