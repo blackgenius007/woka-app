@@ -9,7 +9,7 @@ import Dropdown from 'react-dropdown';
 import axios from 'axios';
 import 'react-dropdown/style.css';
 
-function NewEmployeeFormPage() {
+function NewEmployeeFormView() {
   const { user } = useSelector((state) => state.auth);
   const departmentAdded = user && user.departmentAdded;
   const [selectOptions, setSelectOptions] = useState([]);
@@ -383,4 +383,4 @@ setName(e.label)
   );
 }
 
-export default NewEmployeeFormPage; 
+export default NewEmployeeFormView; 

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import { NewEmployeeView } from 'src/sections/user/view';
+import { NewEmployeeFormView} from 'src/sections/newEmployee/view';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ export default function NewEmployeePage() {
         <title> New Employee Form | Workfily </title>
       </Helmet>
 
-      <NewEmployeeView/>
+      < NewEmployeeFormView/>
     </>
   );
 }
