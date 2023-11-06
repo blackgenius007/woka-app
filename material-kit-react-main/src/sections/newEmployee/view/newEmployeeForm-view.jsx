@@ -371,7 +371,7 @@ setName(e.label)
             }}
           >
             <img
-              src='https://w7.pngwing.com/pngs/768/190/png-transparent-evaluate-performance-employee-illustration-thumbnail.png'
+              src='https://img.freepik.com/free-vector/modern-business-team-working-open-office-space_74855-5541.jpg?w=1060&t=st=1699292229~exp=1699292829~hmac=178883d604b9327858122c666d6b07d95449a1a77fc20330d1fb0801eb7cd2fe'
               style={{ maxWidth: '65%', height: 'auto', margin: '0 auto' }}
               alt=""
             />
