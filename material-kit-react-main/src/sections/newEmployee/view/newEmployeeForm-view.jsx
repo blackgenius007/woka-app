@@ -370,11 +370,11 @@ setName(e.label)
               height: '100%',
             }}
           >
-            {/* <img
-              src={employeePic}
+            <img
+              src='https://w7.pngwing.com/pngs/768/190/png-transparent-evaluate-performance-employee-illustration-thumbnail.png'
               style={{ maxWidth: '65%', height: 'auto', margin: '0 auto' }}
               alt=""
-            /> */}
+            />
           </div>
         </Grid>
       </Grid>
