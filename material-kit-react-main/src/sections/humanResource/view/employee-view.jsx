@@ -638,9 +638,14 @@
                        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Employee</Typography>
 
-        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
-          New Employee
-        </Button>
+        <Button
+  variant="contained"
+  style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
+  startIcon={<Iconify icon="eva:plus-fill" />}
+>
+  New Employee
+</Button>
+
       </Stack>
       <Scrollbar>
       <TableContainer sx={{ overflow: 'unset' }}>
