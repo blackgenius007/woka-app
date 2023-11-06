@@ -446,7 +446,7 @@
                      </td>
    
                      <td style={futuristicStyles.tableBodyCell}>
-                       {formatDate(row.designation)}
+                       {formatDate(row.designation.designation)}
                      </td>
                      <td style={futuristicStyles.tableBodyCell}>
                        {row.department}
