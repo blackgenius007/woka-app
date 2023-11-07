@@ -10,7 +10,7 @@ import { registerEmployee } from '../../../Services/HR-Services/employeeSlice';
 import Dropdown from 'react-dropdown';
 import axios from 'axios';
 import 'react-dropdown/style.css';
-import RightSidebar from './RightSidebar';
+import SetupDialog from './setupDialog';
 
 function NewEmployeeFormView() {
   const { user } = useSelector((state) => state.auth);
@@ -22,7 +22,16 @@ function NewEmployeeFormView() {
   const [paySlip_id, setPayslip_id] = useState([]);
   const [designation, setDesignation] = useState('');
   const [department, setDepartment] = useState('');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   console.log(user);
 
@@ -157,9 +166,7 @@ setName(e.label)
   };
 
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };   
+ 
 
       return (
     <Container>
@@ -168,7 +175,7 @@ setName(e.label)
 
         <Link to="/new-employee">
         <Button
-        onClick={toggleSidebar}
+        onClick={handleClickOpen}
   variant="contained"
   style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
   startIcon={<Iconify icon="eva:plus-fill" />}
@@ -402,7 +409,7 @@ Setup Payment structure
           </div>
         </Grid>
       </Grid>
-      <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
+      <SetupDialog  open={open} close={handleClose } />
     </Container>
   );
 }
