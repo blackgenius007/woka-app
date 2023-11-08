@@ -13,21 +13,20 @@ import {
   DialogContentText,
   DialogTitle,
   Paper,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
-} from '@mui/material';
-import Draggable from 'react-draggable';
-import accounting from 'accounting-js';
-import { Col, Row, Table } from 'react-bootstrap';
-
-
-
-import {
+  TableContainer,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
   Typography,
   Button,
   TextField,
+ 
 } from '@mui/material';
+import Draggable from 'react-draggable';
+import accounting from 'accounting-js';
+ 
+ 
 
 function PaperComponent(props) {
   return (
@@ -268,80 +267,73 @@ CREATE NEW DESIGNATION
               gross income
             </DialogContentText>
             <br />
-            <Row>
-              <Col xs="12">
-                <Table size="sm">
-                  <tbody>
-                    <tr>
-                      <td>Basic Pay</td>
-                      <td>15%</td>
-                      <td>
-                        <b>{toMoney(basicSalary)}</b>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Housing Allowance</td>
-                      <td>7.5%</td>
-                      <td>
-                        <b>{toMoney(housingAlnc)}</b>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Transport Allowance</td>
-                      <td>7.5%</td>
-                      <td>
-                        <b>{toMoney(transportAlnc)}</b>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Entertainment</td>
-                      <td>10%</td>
-                      <td>
-                        <b>{toMoney(EntertainmentAlnc)}</b>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Utility Allowance</td>
-                      <td>60%</td>
-                      <td>
-                        <b>{toMoney(UtilityAlnc)}</b>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Gross Income</td>
-                      <td>Total</td>
-                      <td>
-                        <b>{toMoney(grossIncome)}</b>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Income/hr</td>
-                      <td>Total</td>
-                      <td>
-                        <b>{toMoney(workHrRate)}</b>
-                      </td>
-                    </tr>
-                    <br />
-                    {medical ? (
-                      <tr>
-                        <td>Medical Allowance</td>
-                        <td>-</td>
-                        <td>
-                          <b>{toMoney(medical)}</b>
-                        </td>
-                      </tr>
-                    ) : (
-                      ''
-                    )}
-                  </tbody>
-                  <DialogContentText>
-                    If you accept breakdown,click on send or cancel to adjust
-                    your gross income
-                  </DialogContentText>
-                </Table>
-              </Col>
-            </Row>
+            <TableContainer>
+  <Table size="small">
+    <TableBody>
+      <TableRow>
+        <TableCell>Basic Pay</TableCell>
+        <TableCell>15%</TableCell>
+        <TableCell>
+          <b>{toMoney(basicSalary)}</b>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Housing Allowance</TableCell>
+        <TableCell>7.5%</TableCell>
+        <TableCell>
+          <b>{toMoney(housingAlnc)}</b>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Transport Allowance</TableCell>
+        <TableCell>7.5%</TableCell>
+        <TableCell>
+          <b>{toMoney(transportAlnc)}</b>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Entertainment</TableCell>
+        <TableCell>10%</TableCell>
+        <TableCell>
+          <b>{toMoney(EntertainmentAlnc)}</b>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Utility Allowance</TableCell>
+        <TableCell>60%</TableCell>
+        <TableCell>
+          <b>{toMoney(UtilityAlnc)}</b>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Gross Income</TableCell>
+        <TableCell>Total</TableCell>
+        <TableCell>
+          <b>{toMoney(grossIncome)}</b>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Income/hr</TableCell>
+        <TableCell>Total</TableCell>
+        <TableCell>
+          <b>{toMoney(workHrRate)}</b>
+        </TableCell>
+      </TableRow>
+      {medical ? (
+        <TableRow>
+          <TableCell>Medical Allowance</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>
+            <b>{toMoney(medical)}</b>
+          </TableCell>
+        </TableRow>
+      ) : null}
+    </TableBody>
+  </Table>
+  <Typography>
+    If you accept the breakdown, click on send or cancel to adjust your gross income
+  </Typography>
+</TableContainer>
           </DialogContent>
           <DialogActions>
             <Button
