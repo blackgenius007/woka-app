@@ -392,51 +392,45 @@ CREATE NEW DESIGNATION
               gross income
             </DialogContentText>
             <br />
-            <Row>
-              <Col xs="12">
-                <Table size="sm">
-                  <tbody>
-                    <tr>
-                      <td>Hourly Pay</td>
-                      <td>100%</td>
-                      <td>
-                        <b>{fNumber(payroll.perhrIncome)}</b>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Monthly Pay</td>
-                      <td>Approx.</td>
-                      <td>
-                        <b>{fNumber(payroll.perhrIncome * 8 * 20)}</b>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Yearly pay</td>
-                      <td>Approx.</td>
-                      <td>
-                        <b>{fNumber(payroll.perhrIncome * 8 * 365)}</b>
-                      </td>
-                    </tr>
-                    <br />
-                    {medical ? (
-                      <tr>
-                        <td>Medical Allowance</td>
-                        <td>-</td>
-                        <td>
-                          <b>{fNumber(medical)}</b>
-                        </td>
-                      </tr>
-                    ) : (
-                      ''
-                    )}
-                  </tbody>
-                  <DialogContentText>
-                    If you accept breakdown,click on send or cancel to adjust
-                    your gross income
-                  </DialogContentText>
-                </Table>
-              </Col>
-            </Row>
+            <TableContainer component={Paper}>
+      <Table size="small">
+        <TableBody>
+          <TableRow>
+            <TableCell>Hourly Pay</TableCell>
+            <TableCell>100%</TableCell>
+            <TableCell>
+              <b>{fNumber(payroll.perhrIncome)}</b>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Monthly Pay</TableCell>
+            <TableCell>Approx.</TableCell>
+            <TableCell>
+              <b>{fNumber(payroll.perhrIncome * 8 * 20)}</b>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Yearly Pay</TableCell>
+            <TableCell>Approx.</TableCell>
+            <TableCell>
+              <b>{fNumber(payroll.perhrIncome * 8 * 365)}</b>
+            </TableCell>
+          </TableRow>
+          {medical ? (
+            <TableRow>
+              <TableCell>Medical Allowance</TableCell>
+              <TableCell>-</TableCell>
+              <TableCell>
+                <b>{fNumber(medical)}</b>
+              </TableCell>
+            </TableRow>
+          ) : null}
+        </TableBody>
+      </Table>
+      <DialogContentText>
+        If you accept the breakdown, click on send or cancel to adjust your gross income
+      </DialogContentText>
+    </TableContainer>
           </DialogContent>
           <DialogActions>
             <Button
