@@ -11,8 +11,10 @@ import Dropdown from 'react-dropdown';
 import axios from 'axios';
 import 'react-dropdown/style.css';
 import SetupDialog from './setupDialog';
+import { useRouter } from 'src/routes/hooks';
 
 function NewEmployeeFormView() {
+  const router = useRouter();
   const { user } = useSelector((state) => state.auth);
   const departmentAdded = user && user.departmentAdded;
   const [selectOptions, setSelectOptions] = useState([]);
@@ -163,6 +165,9 @@ const employeeData={
     setDesignation(e.value);
 setName(e.label)
     // setDesignation(e.label);
+  };
+  const handleBack = ( ) => {
+    router.push('/new-employee');
   };
 
 
