@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveDepartment } from '../../Services/AuthServices/authSlice';
+import { saveDepartment } from '../../../Services/AuthServices/authSlice';
  
  
 
