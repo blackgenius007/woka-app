@@ -26,32 +26,26 @@ export default function setupDialog({open,close}) {
   return (
     <React.Fragment>
       
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={close}
-        TransitionComponent={Transition}
-      >
-        <AppBar sx={{ position: 'relative' }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={close}
-              aria-label="close"
-            >
-              <CloseIcon />
-            </IconButton>
-            
-          </Toolbar>
-        </AppBar>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <PayrollSettings/>
- 
-        <Department/>
-
-      </Stack>
-      </Dialog>
+      <Dialog fullScreen open={open} onClose={close} TransitionComponent={Transition}>
+      <AppBar sx={{ position: 'relative' }}>
+        <Toolbar>
+          <IconButton edge="start" color="inherit" onClick={close} aria-label="close">
+            <CloseIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <DialogTitle>Setup</DialogTitle>
+      <DialogContent>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <PayrollSettings />
+          </Grid>
+          <Grid item xs={6}>
+            <Department />
+          </Grid>
+        </Grid>
+      </DialogContent>
+    </Dialog>
     </React.Fragment>
   );
 }
