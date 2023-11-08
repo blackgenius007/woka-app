@@ -371,17 +371,31 @@ Setup Payment structure
                   required
                 />
               </Grid>
-              <Grid item xs={12} sx={{ textAlign: 'center' }}>
-                <Button
-              type="submit"
-                  variant="contained"
-                  color="secondary"
-                  size="large"
-                 
-                >
-                  Submit
-                </Button>
-              </Grid>
+              <Grid container spacing={2}>
+      <Grid item xs={6}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={handleBack}
+          fullWidth // Ensures the button spans the entire column width
+        >
+          Back
+        </Button>
+      </Grid>
+      <Grid item xs={6}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          size="large"
+          onClick={handleSubmit}
+          fullWidth // Ensures the button spans the entire column width
+        >
+          Submit
+        </Button>
+      </Grid>
+    </Grid>
             </Grid>
           </form>
         </Grid>
