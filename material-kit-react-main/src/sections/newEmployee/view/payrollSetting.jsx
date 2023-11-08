@@ -24,8 +24,8 @@ import {
  
 } from '@mui/material';
 import Draggable from 'react-draggable';
-import accounting from 'accounting-js';
- 
+// import accounting from 'accounting-js';
+import { fNumber } from 'src/utils/format-number';
  
 
 function PaperComponent(props) {
@@ -151,12 +151,12 @@ console.log(details)
 };
 
  
-  const toMoney = (value) => {
-    return accounting.formatMoney(accounting.unformat(value), {
-      symbol: '',
-      precision: 2,
-    });
-  };
+//   const toMoney = (value) => {
+//     return accounting.formatMoney(accounting.unformat(value), {
+//       symbol: '',
+//       precision: 2,
+//     });
+//   };
 
   return (  
     <>
@@ -274,49 +274,49 @@ CREATE NEW DESIGNATION
         <TableCell>Basic Pay</TableCell>
         <TableCell>15%</TableCell>
         <TableCell>
-          <b>{toMoney(basicSalary)}</b>
+          <b>{fNumber(basicSalary)}</b>
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell>Housing Allowance</TableCell>
         <TableCell>7.5%</TableCell>
         <TableCell>
-          <b>{toMoney(housingAlnc)}</b>
+          <b>{fNumber(housingAlnc)}</b>
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell>Transport Allowance</TableCell>
         <TableCell>7.5%</TableCell>
         <TableCell>
-          <b>{toMoney(transportAlnc)}</b>
+          <b>{fNumber(transportAlnc)}</b>
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell>Entertainment</TableCell>
         <TableCell>10%</TableCell>
         <TableCell>
-          <b>{toMoney(EntertainmentAlnc)}</b>
+          <b>{fNumber(EntertainmentAlnc)}</b>
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell>Utility Allowance</TableCell>
         <TableCell>60%</TableCell>
         <TableCell>
-          <b>{toMoney(UtilityAlnc)}</b>
+          <b>{fNumber(UtilityAlnc)}</b>
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell>Gross Income</TableCell>
         <TableCell>Total</TableCell>
         <TableCell>
-          <b>{toMoney(grossIncome)}</b>
+          <b>{fNumber(grossIncome)}</b>
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell>Income/hr</TableCell>
         <TableCell>Total</TableCell>
         <TableCell>
-          <b>{toMoney(workHrRate)}</b>
+          <b>{fNumber(workHrRate)}</b>
         </TableCell>
       </TableRow>
       {medical ? (
@@ -324,7 +324,7 @@ CREATE NEW DESIGNATION
           <TableCell>Medical Allowance</TableCell>
           <TableCell>-</TableCell>
           <TableCell>
-            <b>{toMoney(medical)}</b>
+            <b>{fNumber(medical)}</b>
           </TableCell>
         </TableRow>
       ) : null}
@@ -400,21 +400,21 @@ CREATE NEW DESIGNATION
                       <td>Hourly Pay</td>
                       <td>100%</td>
                       <td>
-                        <b>{toMoney(payroll.perhrIncome)}</b>
+                        <b>{fNumber(payroll.perhrIncome)}</b>
                       </td>
                     </tr>
                     <tr>
                       <td>Monthly Pay</td>
                       <td>Approx.</td>
                       <td>
-                        <b>{toMoney(payroll.perhrIncome * 8 * 20)}</b>
+                        <b>{fNumber(payroll.perhrIncome * 8 * 20)}</b>
                       </td>
                     </tr>
                     <tr>
                       <td>Yearly pay</td>
                       <td>Approx.</td>
                       <td>
-                        <b>{toMoney(payroll.perhrIncome * 8 * 365)}</b>
+                        <b>{fNumber(payroll.perhrIncome * 8 * 365)}</b>
                       </td>
                     </tr>
                     <br />
@@ -423,7 +423,7 @@ CREATE NEW DESIGNATION
                         <td>Medical Allowance</td>
                         <td>-</td>
                         <td>
-                          <b>{toMoney(medical)}</b>
+                          <b>{fNumber(medical)}</b>
                         </td>
                       </tr>
                     ) : (
