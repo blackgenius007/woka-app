@@ -42,15 +42,15 @@ export default function setupDialog({open,close}) {
             >
               <CloseIcon />
             </IconButton>
-            <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+            
+          </Toolbar>
+        </AppBar>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <PayrollSettings/>
  
         <Department/>
 
       </Stack>
-          </Toolbar>
-        </AppBar>
-         
       </Dialog>
     </React.Fragment>
   );
