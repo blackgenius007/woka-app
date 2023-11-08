@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveDepartment } from '../../Services/AuthServices/authSlice';
-import { Button } from '@mui/material';
-import 'semantic-ui-css/semantic.min.css';
+ 
+ 
 
 const AddDepartment = ({ logoutUser, auth }) => {
   const [state, setState] = useState({
