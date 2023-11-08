@@ -37,7 +37,7 @@ export default function setupDialog({open,close}) {
             <IconButton
               edge="start"
               color="inherit"
-              onClick={handleClose}
+              onClick={close}
               aria-label="close"
             >
               <CloseIcon />
