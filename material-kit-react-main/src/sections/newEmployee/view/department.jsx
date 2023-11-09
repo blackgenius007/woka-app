@@ -1,9 +1,6 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveDepartment } from '../../../Services/AuthServices/authSlice';
- 
- 
 
 const AddDepartment = ({ logoutUser, auth }) => {
   const [state, setState] = useState({
@@ -21,10 +18,8 @@ const AddDepartment = ({ logoutUser, auth }) => {
 
     const departmentData = state.departments.filter((department) => department !== '');
 
-    // Create a new FormData object
     const formData = new FormData();
 
-    // Append the department data to the FormData object
     departmentData.forEach((department) => {
       formData.append('department', JSON.stringify(department));
     });
@@ -63,13 +58,12 @@ const AddDepartment = ({ logoutUser, auth }) => {
 
   const createUI = () => {
     return state.departments.map((department, i) => (
-      <div key={i}>
+      <div key={i} style={{ marginBottom: '10px' }}>
         <input
           style={{
-            width: '70%',
+            width: '100%',
             padding: '10px 10px',
             margin: '8px 0',
-            display: 'inline-block',
             border: '1px solid #ccc',
             borderRadius: '4px',
             boxSizing: 'border-box',
@@ -85,15 +79,15 @@ const AddDepartment = ({ logoutUser, auth }) => {
             backgroundColor: '#6495ED',
             border: 'none',
             color: 'white',
-            padding: '10px 10px',
+            padding: '10px 15px',
             textAlign: 'center',
             textDecoration: 'none',
-            display: 'inline-block',
             fontSize: '16px',
             borderRadius: '4px',
+            cursor: 'pointer',
           }}
           type="button"
-          value="remove"
+          value="Remove"
           onClick={() => removeClick(i)}
         />
       </div>
@@ -101,48 +95,42 @@ const AddDepartment = ({ logoutUser, auth }) => {
   };
 
   return (
-    <>
-      CREATE NEW DEPARTMENT
-      <br />
-      <br />
-      <div style={{ marginLeft: '90px' }}>
-        <form onSubmit={handleSubmit}>
-          {createUI()}
-          <input
-            type="button"
-            style={{
-              backgroundColor: '#0fc0fc',
-              border: 'none',
-              color: '#fff',
-              padding: '9px 9px',
-              textAlign: 'center',
-              textDecoration: 'none',
-              display: 'inline-block',
-              fontSize: '14px',
-              borderRadius: '4px',
-            }}
-            value="Add more department"
-            onClick={addClick}
-          />
-          <input
-            style={{
-              backgroundColor: '#0fc0fc',
-              marginLeft: '10px',
-              border: 'none',
-              color: '#fff',
-              padding: '9px 9px',
-              textAlign: 'center',
-              textDecoration: 'none',
-              display: 'inline-block',
-              fontSize: '14px',
-              borderRadius: '4px',
-            }}
-            type="submit"
-            value="create"
-          />
-        </form>
-      </div>
-    </>
+    <div>
+      <h3>CREATE NEW DEPARTMENT</h3>
+      <form onSubmit={handleSubmit}>
+        {createUI()}
+        <input
+          type="button"
+          style={{
+            backgroundColor: '#0fc0fc',
+            border: 'none',
+            color: '#fff',
+            padding: '9px 15px',
+            textDecoration: 'none',
+            fontSize: '14px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+          value="Add more department"
+          onClick={addClick}
+        />
+        <input
+          style={{
+            backgroundColor: '#0fc0fc',
+            border: 'none',
+            color: '#fff',
+            padding: '9px 15px',
+            textDecoration: 'none',
+            fontSize: '14px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            marginLeft: '10px',
+          }}
+          type="submit"
+          value="Create"
+        />
+      </form>
+    </div>
   );
 };
 
