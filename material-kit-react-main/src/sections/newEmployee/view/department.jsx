@@ -102,47 +102,53 @@ const AddDepartment = ({ logoutUser, auth }) => {
 
   return (
     <>
-      CREATE NEW DEPARTMENT
-      <br />
-      <br />
-      <div style={{ marginLeft: '90px' }}>
-        <form onSubmit={handleSubmit}>
-          {createUI()}
-          <input
-            type="button"
-            style={{
-              backgroundColor: '#0fc0fc',
-              border: 'none',
-              color: '#fff',
-              padding: '9px 9px',
-              textAlign: 'center',
-              textDecoration: 'none',
-              display: 'inline-block',
-              fontSize: '14px',
-              borderRadius: '4px',
-            }}
-            value="Add more department"
-            onClick={addClick}
-          />
-          <input
-            style={{
-              backgroundColor: '#0fc0fc',
-              marginLeft: '10px',
-              border: 'none',
-              color: '#fff',
-              padding: '9px 9px',
-              textAlign: 'center',
-              textDecoration: 'none',
-              display: 'inline-block',
-              fontSize: '14px',
-              borderRadius: '4px',
-            }}
-            type="submit"
-            value="create"
-          />
-        </form>
+    <h3>CREATE NEW DEPARTMENT</h3>
+    
+    <form onSubmit={handleSubmit}>
+      {createUI()}
+      
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <button
+          type="button"
+          style={{
+            backgroundColor: '#0fc0fc',
+            border: 'none',
+            color: '#fff',
+            padding: '9px 15px',
+            margin: '5px 0',
+            textAlign: 'center',
+            textDecoration: 'none',
+            display: 'inline-block',
+            fontSize: '14px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+          onClick={addClick}
+        >
+          Add more department
+        </button>
+        
+        <button
+          type="submit"
+          style={{
+            backgroundColor: '#0fc0fc',
+            border: 'none',
+            color: '#fff',
+            padding: '9px 15px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            display: 'inline-block',
+            fontSize: '14px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+        >
+          Create
+        </button>
       </div>
-    </>
+    </form>
+  </>
+  
   );
 };
 
