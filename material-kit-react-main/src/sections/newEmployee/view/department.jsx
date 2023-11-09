@@ -102,7 +102,7 @@ const AddDepartment = ({ logoutUser, auth }) => {
 
   return (
     <>
-    <h3>CREATE NEW DEPARTMENT</h3>
+   CREATE NEW DEPARTMENT 
     
     <form onSubmit={handleSubmit}>
       {createUI()}
