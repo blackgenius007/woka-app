@@ -377,6 +377,7 @@ Setup Payment structure
                 />
               </Grid>
               <Grid container spacing={2}>
+                <br/>
       <Grid item xs={6}>
         <Button
           variant="contained"
