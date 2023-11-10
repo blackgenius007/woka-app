@@ -492,7 +492,7 @@
            src={selectedInmate.imagePath}
            sx={{ width: 100, height: 100, marginRight: 2 }}
          />
-         <Box>
+         {/* <Box>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
            Age: {calculateAge(selectedInmate.date_of_birth)}
            </Typography>
@@ -514,7 +514,7 @@
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
              Inmate Nos: {selectedInmate.inmate_number}   
            </Typography>
-         </Box>
+         </Box> */}
        </Box>
        <Typography variant="body2" gutterBottom style={{ color: 'grey' }}>
          {selectedInmate.description}
