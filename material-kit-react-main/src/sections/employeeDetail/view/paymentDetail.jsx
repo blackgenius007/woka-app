@@ -12,7 +12,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Paper from '@mui/material/Paper';
 import Draggable from 'react-draggable';
-import EmployeeTax from '../../Tax/employeePayroll';
+import PaymentBreakdown from './paymentBreakdown';
 
 
 function PaperComponent(props) {
@@ -59,7 +59,7 @@ export default function PaymentDetail({
           <DialogContentText>
         
           </DialogContentText>
-          <EmployeeTax  
+          <PaymentBreakdown
           location ={country}
          
           />
