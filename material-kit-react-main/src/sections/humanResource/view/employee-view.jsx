@@ -520,7 +520,7 @@
 ) : (
   ''
 )}
-               <Button onClick={toggleUpload}>Upload Inmate Photo</Button>
+               <Button onClick={toggleUpload}>Upload Photo</Button>
               </ButtonGroup> 
             </DialogActions>
      {isUploadVisible && (
