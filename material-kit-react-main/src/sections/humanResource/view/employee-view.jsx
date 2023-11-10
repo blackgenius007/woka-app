@@ -339,7 +339,12 @@
       setOpenDialog(true);
       setSelectedEmployee(employee);
     };
-  
+    
+    const handleCloseDialog = () => {
+      // Close the dialog
+      setOpenDialog(false);
+      setSelectedEmployee(null);
+    };
       
      const calculateAge=(dateOfBirth)=>{
        const today = new Date();
