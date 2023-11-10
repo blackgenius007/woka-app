@@ -3,7 +3,7 @@
 
    import React, { useState, useEffect, useRef } from 'react';
    import { useDispatch, useSelector } from 'react-redux';
-   import TextField from '@mui/material/TextField';u
+   import TextField from '@mui/material/TextField';
    import { ButtonBase } from '@mui/material';
    import Container from '@mui/material/Container';
    import TableContainer from '@mui/material/TableContainer';
@@ -170,7 +170,7 @@
      const [searched, setSearched] = useState('');
      const [openDialog, setOpenDialog] = useState(false);
      const [openEditDialog, setOpenEditDialog] = useState(false);
-     const [selectedEmployee, setSelectedEmployee] = useState(null);
+     const [selectedInmate, setSelectedInmate] = useState(null);
      const [isUploadVisible, setUploadVisible] = useState(false);
    
      const [images, setImages] = useState({});
@@ -334,22 +334,6 @@
        setOpen(false);
      };
    
-     const handleOpenDialog = (employee) => {
-      // Open the dialog and pass the employee id
-      setOpenDialog(true);
-      setSelectedEmployee(employee);
-    };
-    const handleCloseDialog = () => {
-      // Close the dialog
-      setOpenDialog(false);
-      setSelectedEmployee(null);
-    };
-    const handleLinkClick = (event, id,grossIncome) => {
-
-      event.stopPropagation(); // Prevent event propagation to parent elements
-      navigate(`/employee-detail/${id}`);
-    };
-
      // function handles update
     //  const handleUpdate = (inmateId) => {
     //    navigate(`/inmates-update/${inmateId}`);
@@ -361,7 +345,11 @@
    
     //    // function opens Dialog
     //  };
- 
+    //  const handleOpenDialog = (inmate) => {
+    //    // Open the dialog and pass the inmate data
+    //    setOpenDialog(true);
+    //    setSelectedInmate(inmate);
+    //  };
    
     //  const handleEditClick = () => {
     //    setOpenEditDialog(true);
@@ -439,9 +427,12 @@
                  return (
                    <tr key={row.id} style={futuristicStyles.tableBodyRow}>
                      <td style={futuristicStyles.tableBodyRow}>
-                     <ButtonBase onClick={() => handleOpenDialog(row)}>
+                       <Link
+                         to={`/employee-detail/${row.imagePath}`}
+                         style={{ textDecoration: 'none', color: 'white' }}
+                       >
                         <Avatar alt="Remy Sharp" src={row.imagePath} />
-                       </ButtonBase>{' '}
+                       </Link>{' '}
                      </td>
                   
                      <td style={futuristicStyles.tableBodyCell}>
@@ -485,65 +476,53 @@
          <br />
    
          {
-     selectedEmployee && <div>
+     selectedInmate && <div>
       <BootstrapDialog
      onClose={handleCloseDialog}
      aria-labelledby="customized-dialog-title"
      open={openDialog}
    >
      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleCloseDialog}>
-       {selectedEmployee.employeeName}
+       {selectedInmate.inmate_name}
      </BootstrapDialogTitle>
      <DialogContent dividers>
        <Box display="flex" alignItems="center" marginBottom={2}>
          <Avatar
-           alt={selectedEmployee.employeeName}
-           src={selectedEmployee.imagePath}
+           alt={selectedInmate.inmate_name}
+           src={selectedInmate.imagePath}
            sx={{ width: 100, height: 100, marginRight: 2 }}
          />
          <Box>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-           Age: {calculateAge(selectedEmployee.dateOfBirth)}
+           Age: {calculateAge(selectedInmate.date_of_birth)}
            </Typography>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             Status: {selectedEmployee.complainStatus}
+             Ethnicity: {selectedInmate.ethnicity}
            </Typography>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-            Employment date: {selectedEmployee.joinDate}
+             Height: {selectedInmate.height}
            </Typography>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             Employee number: {selectedEmployee.employeeCode}
+             Weight: {selectedInmate.weight}
            </Typography>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             Gender: {selectedEmployee.sex}
+             Gender: {selectedInmate.gender}
            </Typography>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             mobile: {selectedEmployee.mobileNumber}
+             SSN: {selectedInmate.social_security}
            </Typography>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             Email: {selectedEmployee.email}   
+             Inmate Nos: {selectedInmate.inmate_number}   
            </Typography>
          </Box>
        </Box>
        <Typography variant="body2" gutterBottom style={{ color: 'grey' }}>
-         {selectedEmployee.description}
+         {selectedInmate.description}
        </Typography>
      </DialogContent>
      <DialogActions>
-             <ButtonGroup>
-             {user.data.role === 'owner' || user.data.role === 'admin' ? (
-  <Button
-  
-    onClick={(event) => handleLinkClick(event, selectedEmployee._id,selectedEmployee.designation.grossIncome)}
-  >
-    Admin
-  </Button>
-) : (
-  ''
-)}
-               <Button onClick={toggleUpload}>Upload Inmate Photo</Button>
-              </ButtonGroup> 
-            </DialogActions>
+       <Button onClick={toggleUpload}>Upload Inmate Photo</Button>
+     </DialogActions>
      {isUploadVisible && (
        <Box display="flex" flexDirection="column" alignItems="center" mt={2}>
          
