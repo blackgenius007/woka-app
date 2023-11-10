@@ -170,7 +170,7 @@
      const [searched, setSearched] = useState('');
      const [openDialog, setOpenDialog] = useState(false);
      const [openEditDialog, setOpenEditDialog] = useState(false);
-     const [selectedInmate, setSelectedInmate] = useState(null);
+     const [selectedEmployee, setSelectedEmployee] = useState(null);
      const [isUploadVisible, setUploadVisible] = useState(false);
    
      const [images, setImages] = useState({});
@@ -333,36 +333,7 @@
      const handleClose = () => {
        setOpen(false);
      };
-   
-     // function handles update
-    //  const handleUpdate = (inmateId) => {
-    //    navigate(`/inmates-update/${inmateId}`);
-    //  };
-   
-    //  // function handles delete
-    //  const handleDelete = (id) => {
-    //    dispatch(deleteInmateById(id));
-   
-    //    // function opens Dialog
-    //  };
-    //  const handleOpenDialog = (inmate) => {
-    //    // Open the dialog and pass the inmate data
-    //    setOpenDialog(true);
-    //    setSelectedInmate(inmate);
-    //  };
-   
-    //  const handleEditClick = () => {
-    //    setOpenEditDialog(true);
-    //  };
-    //  const closeEditClick = () => {
-    //    setOpenEditDialog(false);
-    //  };
-   
-    //  const handleCloseDialog = () => {
-    //    // Close the dialog
-    //    setOpenDialog(false);
-    //    setSelectedInmate(null);
-    //  };
+      
      const calculateAge=(dateOfBirth)=>{
        const today = new Date();
        const birthDate = new Date(dateOfBirth);
@@ -476,27 +447,27 @@
          <br />
    
          {
-     selectedInmate && <div>
+     selectedEmployee && <div>
       <BootstrapDialog
      onClose={handleCloseDialog}
      aria-labelledby="customized-dialog-title"
      open={openDialog}
    >
      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleCloseDialog}>
-       {selectedInmate.inmate_name}
+       {selectedEmployee.inmate_name}
      </BootstrapDialogTitle>
      <DialogContent dividers>
        <Box display="flex" alignItems="center" marginBottom={2}>
          <Avatar
-           alt={selectedInmate.inmate_name}
-           src={selectedInmate.imagePath}
+           alt={selectedEmployee.employeeName}
+           src={selectedEmployee.imagePath}
            sx={{ width: 100, height: 100, marginRight: 2 }}
          />
-         {/* <Box>
+         <Box>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-           Age: {calculateAge(selectedInmate.date_of_birth)}
+           Age: {calculateAge(selectedEmployee.dateOfBirth)}
            </Typography>
-           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
+           {/* <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
              Ethnicity: {selectedInmate.ethnicity}
            </Typography>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
@@ -513,11 +484,11 @@
            </Typography>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
              Inmate Nos: {selectedInmate.inmate_number}   
-           </Typography>
-         </Box> */}
+           </Typography> */}
+         </Box> 
        </Box>
        <Typography variant="body2" gutterBottom style={{ color: 'grey' }}>
-         {selectedInmate.description}
+         {selectedEmployee.description}
        </Typography>
      </DialogContent>
      <DialogActions>
