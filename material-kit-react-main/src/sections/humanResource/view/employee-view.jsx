@@ -339,7 +339,7 @@
       setOpenDialog(true);
       setSelectedEmployee(employee);
     };
-    
+
     const handleCloseDialog = () => {
       // Close the dialog
       setOpenDialog(false);
@@ -466,7 +466,7 @@
      open={openDialog}
    >
      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleCloseDialog}>
-       {selectedEmployee.inmate_name}
+       {selectedEmployee.employeeName}
      </BootstrapDialogTitle>
      <DialogContent dividers>
        <Box display="flex" alignItems="center" marginBottom={2}>
@@ -479,24 +479,27 @@
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
            Age: {calculateAge(selectedEmployee.dateOfBirth)}
            </Typography>
+           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
+             Status: {selectedEmployee.complainStatus}
+           </Typography>
+           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
+             Employment date: {selectedEmployee.joinDate}
+           </Typography>
+           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
+             Employee Number: {selectedEmployee.employeeCode}
+           </Typography>
+           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
+             Gender: {selectedEmployee.sex}
+           </Typography>
            {/* <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             Ethnicity: {selectedInmate.ethnicity}
-           </Typography>
-           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             Height: {selectedInmate.height}
-           </Typography>
-           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             Weight: {selectedInmate.weight}
-           </Typography>
-           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             Gender: {selectedInmate.gender}
-           </Typography>
-           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
              SSN: {selectedInmate.social_security}
+           </Typography> */}
+           <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
+             Contact : {selectedEmployee.mobileNumber}   
            </Typography>
            <Typography variant="body1" gutterBottom style={{ color: 'grey' }}>
-             Inmate Nos: {selectedInmate.inmate_number}   
-           </Typography> */}
+             Email: {selectedEmployee.email}   
+           </Typography>
          </Box> 
        </Box>
        <Typography variant="body2" gutterBottom style={{ color: 'grey' }}>
@@ -504,8 +507,20 @@
        </Typography>
      </DialogContent>
      <DialogActions>
-       <Button onClick={toggleUpload}>Upload Inmate Photo</Button>
-     </DialogActions>
+             <ButtonGroup>
+             {user.data.role === 'owner' || user.data.role === 'admin' ? (
+  <Button
+  
+    // onClick={(event) => handleLinkClick(event, selectedEmployee._id,selectedEmployee.designation.grossIncome)}
+  >
+    Admin
+  </Button>
+) : (
+  ''
+)}
+               <Button onClick={toggleUpload}>Upload Inmate Photo</Button>
+              </ButtonGroup> 
+            </DialogActions>
      {isUploadVisible && (
        <Box display="flex" flexDirection="column" alignItems="center" mt={2}>
          
