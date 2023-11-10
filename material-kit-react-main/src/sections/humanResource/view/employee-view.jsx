@@ -333,6 +333,13 @@
      const handleClose = () => {
        setOpen(false);
      };
+
+     const handleOpenDialog = (employee) => {
+      // Open the dialog and pass the inmate data
+      setOpenDialog(true);
+      setSelectedEmployee(employee);
+    };
+  
       
      const calculateAge=(dateOfBirth)=>{
        const today = new Date();
