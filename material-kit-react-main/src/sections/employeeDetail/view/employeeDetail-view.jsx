@@ -46,7 +46,7 @@ const EmployeeProfileCard = () => {
   const attendanceData = [
     {
       date: '2023-07-01',
-      attendance: 98,
+      attendance: 100,
       sickDays: 6,
       absentDays: 1,
       vacationDays: 0,
