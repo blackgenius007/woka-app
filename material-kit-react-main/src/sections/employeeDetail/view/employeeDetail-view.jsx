@@ -100,7 +100,7 @@ console.log(employeeName, department, createdAt)
         <Box display="flex" justifyContent="center" mb={3}>
 
         <div>
-{imagePath ? ( <Image
+{imagePath ? ( <img
                   style={{ maxHeight: '200px' }}
                   src={imagePath}
                   rounded
