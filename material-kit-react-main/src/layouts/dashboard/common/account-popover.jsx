@@ -1,4 +1,8 @@
+ /* eslint-disable */ 
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import  {logout}  from 'src/Services/AuthServices/authSlice';
+
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -31,8 +35,19 @@ const MENU_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(null);
 
+  const handleLogout = async () => {
+    // Dispatch the login action
+    dispatch(logout());
+ 
+  };
+  
+
+ 
+
+  
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
@@ -105,7 +120,7 @@ export default function AccountPopover() {
         <MenuItem
           disableRipple
           disableTouchRipple
-          onClick={handleClose}
+          onClick={handleLogout}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
         >
           Logout
