@@ -513,7 +513,7 @@
              {user.data.role === 'owner' || user.data.role === 'admin' ? (
   <Button
   
-    // onClick={(event) => handleLinkClick(event, selectedEmployee._id,selectedEmployee.designation.grossIncome)}
+    onClick={(event) => handleLinkClick(event, selectedEmployee._id,selectedEmployee.designation.grossIncome)}
   >
     Admin
   </Button>
