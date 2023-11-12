@@ -11,6 +11,10 @@ function Navbar({ links }) {
 
   const stickeyTrigger = window.innerHeight / 2.75;
 
+  const  MenuOpen =()=>{
+    setMenuOpen(!menuOpen)
+  }
+
   return (
     <div
       className={`nav${scrollY > stickeyTrigger ? " nav-stickey" : ""}${
@@ -29,7 +33,7 @@ function Navbar({ links }) {
             ))}
         </nav>
 
-        <div className="nav-menu__icon" onClick={() => setMenuOpen(!menuOpen)}>
+        <div className="nav-menu__icon" onClick={MenuOpen}>
           <div />
           <div />
         </div>
