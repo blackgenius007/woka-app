@@ -1,7 +1,7 @@
  /* eslint-disable */ 
 import React from 'react';
 import HeroSection from './heroSection';
-import Navbar from "./";
+import Navbar from "./Navbar";
 import HeroBanner from "./HeroBanner";
 import Features  from "./features";
 import Services from "./Services";
