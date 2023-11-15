@@ -18,7 +18,7 @@ function home() {
       <HeroBanner />
         <Features />
         <Services />
-        <Screenshots />
+        {/* <Screenshots /> */}
         <Pricing />
         {/* <Download /> */}
         <Footer />
