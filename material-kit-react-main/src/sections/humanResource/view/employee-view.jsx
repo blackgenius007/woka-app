@@ -513,7 +513,7 @@
      <DialogActions>
              <ButtonGroup>
              {user.data.role === 'owner' || user.data.role === 'admin' ? (
-              <Link to={`/employee-detail/${selectedEmployee.id}`}>
+              <Link to={`/employee-detail/${selectedEmployee._id}`}>
                <Button
   
   // onClick={(event) => handleLinkClick(event, selectedEmployee._id,selectedEmployee.designation.grossIncome)}
