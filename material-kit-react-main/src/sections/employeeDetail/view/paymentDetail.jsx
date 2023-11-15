@@ -38,7 +38,7 @@ export default function PaymentDetail({
   id,
   close,
 }) {
-
+console.log('payment detail=',grossIncome)
   const { user } = useSelector((state) => state.auth);
 
   return (
