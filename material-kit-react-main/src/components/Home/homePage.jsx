@@ -13,15 +13,15 @@ import Footer from "./Footer/footer";
 function home() {
   return (
     <div>
-      {/* <HeroSection /> */}
-      <Navbar />
+      <HeroSection />
+      {/* <Navbar />
       <HeroBanner />
         <Features />
         <Services />
         {/* <Screenshots /> */}
-        <Pricing />
+        {/* <Pricing /> */}
         {/* <Download /> */}
-        <Footer />
+          
     </div>
   );
 }
