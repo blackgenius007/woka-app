@@ -1,7 +1,7 @@
  /* eslint-disable */
 import React, { useState } from "react";
 import { useScrollYPosition } from "react-use-scroll-position";
-import "../assets/navbar.css";
+import "./Navbar.css";
 
 
 
