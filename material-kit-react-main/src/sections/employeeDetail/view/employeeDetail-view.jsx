@@ -92,6 +92,7 @@ if (!employeeData || !employeeData.employee) {
   const { employeeName, department, createdAt,imagePath,designation } = employeeData.employee;
   const { grossIncome, country } = designation;
 console.log(employeeName, department, createdAt,designation)
+console.log(grossIncome, country)
   return (
     <>
     <Card>
