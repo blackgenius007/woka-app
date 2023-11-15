@@ -17,12 +17,13 @@ function Navbar({ links }) {
 
   return (
     <div
-      className={`nav${scrollY > stickeyTrigger ? " nav-stickey" : ""}${
+      className={`nav${scrollY > stickeyTrigger ? " nav-sticky" : ""}${
         menuOpen ? " nav-open" : ""
-      }`}>
+      }`}
+    >
       <div className="nav-content">
         <div className="nav-logo">Anapp</div>
-
+  
         <nav className="nav-links__container">
           {links &&
             links.map((link, i) => (
@@ -32,8 +33,8 @@ function Navbar({ links }) {
               </a>
             ))}
         </nav>
-
-        <div className="nav-menu__icon" onClick={MenuOpen}>
+  
+        <div className="nav-menu__icon" onClick={menuOpen}>
           <div />
           <div />
         </div>
