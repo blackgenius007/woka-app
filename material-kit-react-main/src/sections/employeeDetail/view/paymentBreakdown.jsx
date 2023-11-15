@@ -4,7 +4,7 @@ import TaxCalculator from './taxCalculator';
 
 
 const PaymentBreakdown = (location,grossIncome) => {
-
+console.log('payment=>',grossIncome)
 // const country = 'Nigeria';
 // const grossIncome =1200000; // Example gross income provided by the user
 const Benefits=0;
