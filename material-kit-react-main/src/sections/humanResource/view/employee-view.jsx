@@ -214,7 +214,9 @@
        updateFilteredRows();
      }, [searched, employees]);
     
-    
+     const handleLinkClick =()=>{
+      alert('')
+     }
    
    
    
@@ -511,12 +513,15 @@
      <DialogActions>
              <ButtonGroup>
              {user.data.role === 'owner' || user.data.role === 'admin' ? (
-  <Button
+              <Link to={`/employee-detail/${selectedEmployee.id}`}>
+               <Button
   
-    onClick={(event) => handleLinkClick(event, selectedEmployee._id,selectedEmployee.designation.grossIncome)}
-  >
-    Admin
-  </Button>
+  // onClick={(event) => handleLinkClick(event, selectedEmployee._id,selectedEmployee.designation.grossIncome)}
+>
+  Admin
+</Button>
+              </Link>
+ 
 ) : (
   ''
 )}
