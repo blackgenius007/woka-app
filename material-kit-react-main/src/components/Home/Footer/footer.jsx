@@ -1,7 +1,7 @@
  /* eslint-disable */
 
 import React from "react";
-import "/assets/footer.css";
+import "./Footer.css";
 
 function Footer() {
   return (

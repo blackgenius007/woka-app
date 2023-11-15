@@ -6,7 +6,7 @@ import HeroBanner from "./HeroBanner";
 import Features  from "./features";
 import Services from "./Services";
 import Pricing from "./Pricing";
-import Footer from "./footer";
+import Footer from "./Footer/footer";
 // import Download from "./components/Download";
  
 
