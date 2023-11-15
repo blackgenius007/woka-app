@@ -516,7 +516,7 @@
               <Link to={`/employee-detail/${selectedEmployee._id}`}>
                <Button
   
-  // onClick={(event) => handleLinkClick(event, selectedEmployee._id,selectedEmployee.designation.grossIncome)}
+ 
 >
   Admin
 </Button>

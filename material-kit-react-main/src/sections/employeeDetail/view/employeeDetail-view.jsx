@@ -89,8 +89,9 @@ if (!employeeData || !employeeData.employee) {
   return <div>Loading...</div>;
 }
               
-  const { employeeName, department, createdAt,country, imagePath } = employeeData.employee;
-console.log(employeeName, department, createdAt)
+  const { employeeName, department, createdAt,imagePath,designation } = employeeData.employee;
+  const { grossIncome, country } = designation;
+console.log(employeeName, department, createdAt,designation)
   return (
     <>
     <Card>
@@ -164,9 +165,10 @@ console.log(employeeName, department, createdAt)
       </CardContent>
     </Card>
     <PaymentDetail
-    //  id={id}
+      id={id}
      name={name}
      country={location}
+     grossIncome={grossIncome}
        open={openPayment}
            close={closehandlePayment}
     

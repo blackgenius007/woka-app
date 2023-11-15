@@ -33,6 +33,7 @@ function PaperComponent(props) {
 export default function PaymentDetail({ 
   open,
   country,
+  grossIncome,
   name,
   id,
   close,
@@ -61,7 +62,8 @@ export default function PaymentDetail({
           </DialogContentText>
           <PaymentBreakdown
           location ={country}
-         
+          id={id}
+          grossIncome={grossIncome}
           />
           
         </DialogContent>

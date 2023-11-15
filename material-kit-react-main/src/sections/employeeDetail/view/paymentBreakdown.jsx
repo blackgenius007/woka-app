@@ -3,10 +3,10 @@ import React from 'react';
 import TaxCalculator from './taxCalculator';
 
 
-const PaymentBreakdown = (location) => {
+const PaymentBreakdown = (location,grossIncome) => {
 
 // const country = 'Nigeria';
-const grossIncome =1200000; // Example gross income provided by the user
+// const grossIncome =1200000; // Example gross income provided by the user
 const Benefits=0;
 const Loan = 0
 
