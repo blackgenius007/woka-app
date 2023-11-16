@@ -4,6 +4,9 @@ import TaxCalculator from './taxCalculator';
 
 
 const PaymentBreakdown = ({location,grossIncome}) => {
+   // Calculate basic salary (15% of gross income)
+ const basicSalary = 0.15 * grossIncome;
+
 console.log('payment=>',grossIncome,location)
 // const country = 'Nigeria';
 // const grossIncome =1200000; // Example gross income provided by the user
@@ -109,6 +112,7 @@ if (location === 'Nigeria') {
         taxExemptItems={taxExemptItems}
         benefit={Benefits}
         loan={Loan}
+        basicSalary={basicSalary}
       
       />
     </div>

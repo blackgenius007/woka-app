@@ -12,12 +12,19 @@ import {
 } from '@mui/material';
 import { fNumber } from 'src/utils/format-number';
 
-const TaxCalculator = ({consolidatedSalary,cra,benefit,loan}) => {
+const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary}) => {
   const [consolidatedSalaryState, setConsolidatedSalary] = useState(0);
   const [annualTaxPayable, setAnnualTaxPayable] = useState(0);
   const [monthlyTaxPayable, setMonthlyTaxPayable] = useState(0);
   const [annualSalary, setAnnualSalary] = useState(0);
+  const [pension, setPension] = useState(0);
   const [monthlySalary, setMonthlySalary] = useState(0);
+
+
+  // Calculate pension contributions (8% from employee + 10% from employer)
+  const employeePensionContribution = 0.08 * basicSalary;
+  const employerPensionContribution = 0.10 * basicSalary;
+  const pensionContribution =  employerPensionContribution + employeePensionContribution
 
   useEffect(() => {
     // Hard-coded values for demonstration
@@ -50,6 +57,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan}) => {
     setMonthlyTaxPayable(calculatedMonthlyTaxPayable);
     setAnnualSalary(calculatedAnnualSalary);
     setMonthlySalary(calculatedMonthlySalary);
+    setPension();
   }, [consolidatedSalary, consolidatedSalaryState,cra]);
 
 
@@ -66,6 +74,8 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan}) => {
     }
     return total;
   };
+
+
 
   return (
     <>
@@ -105,6 +115,10 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan}) => {
                   {/* <TableCell>{toMoney(monthlyTaxPayable)}</TableCell> */}
                   <TableCell>{fNumber(monthlyTaxPayable)}</TableCell>
                 </TableRow>
+                <TableRow>
+                    <TableCell>Pension</TableCell>
+                    <TableCell>{fNumber(pensionContribution)}</TableCell>
+                  </TableRow>
                 {loan && (
                   <TableRow>
                     <TableCell>Loan</TableCell>
