@@ -3,7 +3,7 @@ import React from 'react';
 import TaxCalculator from './taxCalculator';
 
 
-const PaymentBreakdown = (location,grossIncome) => {
+const PaymentBreakdown = ({location,grossIncome}) => {
 console.log('payment=>',grossIncome,location)
 // const country = 'Nigeria';
 // const grossIncome =1200000; // Example gross income provided by the user
