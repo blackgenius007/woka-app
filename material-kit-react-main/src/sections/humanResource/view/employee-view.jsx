@@ -433,7 +433,7 @@
                      </td>
    
                      <td style={futuristicStyles.tableBodyCell}>
-                       { row.designation.designation }
+                       { row.designation && row.designation.designation }
                      </td>
                      <td style={futuristicStyles.tableBodyCell}>
                        {row.department}
