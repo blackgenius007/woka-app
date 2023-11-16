@@ -58,6 +58,7 @@ function PayrollSettings(props) {
   const [message, setMessage] = useState('');
   const { designation, medical,perhrIncome, grossIncome } =
     payroll;
+  
   const details = {
     businessSector,
     designation,

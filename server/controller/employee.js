@@ -1375,7 +1375,7 @@ exports.allowanceReset = asyncHandler(async (req, res, next) => {
 //@acess    Private
 exports.createPayroll = asyncHandler(async (req, res, next) => {
   console.log(req.body);
-  const { designation, medical, perhrIncome, grossIncome, _id, ownerId } =
+  const { designation, medical, perhrIncome, grossIncome, _id, ownerId,country } =
     req.body;
 
   try {
@@ -1387,6 +1387,7 @@ exports.createPayroll = asyncHandler(async (req, res, next) => {
       medical !== undefined &&
       perhrIncome !== undefined &&
       grossIncome !== undefined &&
+      country !== undefined &&
       _id !== undefined
     ) {
       // If designation, medical, perhrIncome, grossIncome, and _id are present,
@@ -1405,6 +1406,7 @@ exports.createPayroll = asyncHandler(async (req, res, next) => {
       medical !== undefined &&
       perhrIncome !== undefined &&
       grossIncome !== undefined &&
+      country !== undefined &&
       ownerId !== undefined
     ) {
       // If designation, medical, perhrIncome, grossIncome, and ownerId are present,
@@ -1430,6 +1432,7 @@ exports.createPayroll = asyncHandler(async (req, res, next) => {
       medicalAllowance: medical,
       grossIncome: grossIncome,
       perhrIncome: perhrIncome,
+      country:country,
       ownerId: ownerObjectId,
     });
 
