@@ -138,7 +138,7 @@ console.log(details)
     requestPayload = { _id, ...payrollData };
   }
 
-  axios.post('/api/v1/employee/newDesignation', requestPayload)
+  axios.post('https://woka-app.vercel.app/api/v1/employee/newDesignation', requestPayload)
     .then((response) => {
       console.log('Submitted successfully!', response.data);
       alert('Submitted successfully!');
