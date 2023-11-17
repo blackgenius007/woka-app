@@ -15,33 +15,20 @@ const Loan = 0
 
 
 
-            
-const getConsolidatedSalary = (income) => {
-  let basicSalaryPercentage = 0.5;
-  let housingAllowancePercentage = 0.2;
-  let transportAllowancePercentage = 0.1;
+const getConsolidatedSalary = (income, location) => {
+  // Set default percentages for 'Nigeria'
+  let basicSalaryPercentage = 0.15;
+  let housingAllowancePercentage = 0.075;
+  let transportAllowancePercentage = 0.075;
 
   // Modify the percentages based on the country
-  if (location === 'Nigeria') {
-
-    // const basicSalaryPercentage = 0.15;
-    // const housingAllowancePercentage = 0.075;
-    // const transportAllowancePercentage = 0.075;
-
-    basicSalaryPercentage = 0.4;
-    housingAllowancePercentage = 0.3;
-    transportAllowancePercentage = 0.2;
-  } else if (location === 'Ghana') {
+  if (location === 'Ghana') {
     basicSalaryPercentage = 0.6;
     housingAllowancePercentage = 0.15;
     transportAllowancePercentage = 0.25;
-  } else {
-    // Set default percentages for other countries
-    basicSalaryPercentage = 0.5;
-    housingAllowancePercentage = 0.2;
-    transportAllowancePercentage = 0.1;
   }
 
+  // Rest of the code remains the same
   const basicSalary = income * basicSalaryPercentage;
   const housingAllowance = income * housingAllowancePercentage;
   const transportAllowance = income * transportAllowancePercentage;
@@ -49,6 +36,7 @@ const getConsolidatedSalary = (income) => {
 
   return consolidatedSalary;
 };
+
 
 const calculateCRA = (consolidatedSalary) => {
   const cra = Math.max(0.01 * consolidatedSalary, 200000) + 0.2 * consolidatedSalary;
