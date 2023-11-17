@@ -56,7 +56,8 @@ const calculateCRA = (consolidatedSalary) => {
 };
 
 const consolidatedSalary = getConsolidatedSalary(grossIncome);
-const cra = calculateCRA(consolidatedSalary);
+// const cra = calculateCRA(consolidatedSalary);
+const cra =  200000+20/100*grossIncome;
 
 // Tax exemption values and tax bands specific to each country
 let taxExemptItems = {};
