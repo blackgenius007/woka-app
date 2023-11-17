@@ -24,7 +24,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary}) => {
   // Calculate pension contributions (8% from employee + 10% from employer)
   const employeePensionContribution = 0.08 * basicSalary;
   const employerPensionContribution = 0.10 * basicSalary;
-  const pensionContribution =  employerPensionContribution + employeePensionContribution
+  const pensionContribution =  employerPensionContribution + employeePensionContribution/12
 
   useEffect(() => {
     // Hard-coded values for demonstration

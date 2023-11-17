@@ -115,7 +115,7 @@ const EmployeeSchema = new mongoose.Schema(
     },
     loan : {
       type: Number,
-      required: true,
+      required: false,
       default: 0,
     },
     minimumRepay : {
