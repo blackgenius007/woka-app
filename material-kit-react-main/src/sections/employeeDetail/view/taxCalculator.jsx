@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { fNumber } from 'src/utils/format-number';
 
-const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeableIncome,pensionFund}) => {
+const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeableIncome,pensionFund,grossIncome}) => {
   const [consolidatedSalaryState, setConsolidatedSalary] = useState(0);
   const [annualTaxPayable, setAnnualTaxPayable] = useState(0);
   const [monthlyTaxPayable, setMonthlyTaxPayable] = useState(0);
@@ -48,7 +48,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
 
     const calculatedAnnualTaxPayable = taxPayable;
     const calculatedMonthlyTaxPayable = calculatedAnnualTaxPayable / 12;
-    const calculatedAnnualSalary = consolidatedSalary - calculatedAnnualTaxPayable;
+    const calculatedAnnualSalary = g - calculatedAnnualTaxPayable;
     const calculatedMonthlySalary = calculatedAnnualSalary / 12;
 
     // Update state with calculated values
@@ -91,8 +91,8 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell>Consolidated Salary</TableCell>
-                  <TableCell>{fNumber (consolidatedSalaryState)}</TableCell>
+                  <TableCell>Nontaxable Salary</TableCell>
+                  <TableCell>{fNumber (grossIncome)}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>CRA (Consolidated Relief Allowance)</TableCell>

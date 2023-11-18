@@ -97,6 +97,7 @@ const getTaxableIncome = chargeableIncome(grossIncome)
         taxBands={taxBands}
         taxExemptItems={taxExemptItems}
         benefit={Benefits}
+        grossIncome={grossIncome}
         loan={Loan}
         pensionFund={pensionFund}
         basicSalary={basicSalary}
