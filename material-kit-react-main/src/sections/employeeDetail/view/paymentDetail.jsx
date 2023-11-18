@@ -35,6 +35,7 @@ export default function PaymentDetail({
   country,
   grossIncome,
   name,
+  healthCare,
   id,
   close,
 }) {
@@ -64,6 +65,7 @@ console.log('payment detail=',grossIncome)
           location ={country}
           id={id}
           grossIncome={grossIncome}
+          healthCare={healthCare}
           />
           
         </DialogContent>

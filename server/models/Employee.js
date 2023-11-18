@@ -169,6 +169,10 @@ const EmployeeSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    healthCare: {
+      type: String,
+      required: false,
+    },
     complainStatus: {
       type: String,
       required: false,

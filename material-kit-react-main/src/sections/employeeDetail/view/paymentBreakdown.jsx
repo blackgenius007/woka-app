@@ -3,7 +3,7 @@ import React from 'react';
 import TaxCalculator from './taxCalculator';
 
 
-const PaymentBreakdown = ({location,grossIncome}) => {
+const PaymentBreakdown = ({location,grossIncome,healthCare}) => {
    // Calculate basic salary (15% of gross income)
  const basicSalary = 0.15 * grossIncome;
 
@@ -14,38 +14,32 @@ const Benefits=0;
 const Loan = 0
 
 
+const getPensionFund = (grossIncome) => {
+  const basicSalaryPercentage = 0.15;
+  const transportAllowancePercentage = 0.075;
+  const housingAllowancePercentage = 0.075;
 
-const getConsolidatedSalary = (income, location) => {
-  // Set default percentages for 'Nigeria'
-  let basicSalaryPercentage = 0.15;
-  let housingAllowancePercentage = 0.075;
-  let transportAllowancePercentage = 0.075;
+  const basicSalary = grossIncome * basicSalaryPercentage;
+  const transportAllowance = grossIncome * transportAllowancePercentage;
+  const housingAllowance = grossIncome * housingAllowancePercentage;
 
-  // Modify the percentages based on the country
-  if (location === 'Ghana') {
-    basicSalaryPercentage = 0.6;
-    housingAllowancePercentage = 0.15;
-    transportAllowancePercentage = 0.25;
-  }
+  const sumOfValues = basicSalary + transportAllowance + housingAllowance;
+  const pension = (sumOfValues * 8) / 100;
 
-  // Rest of the code remains the same
-  const basicSalary = income * basicSalaryPercentage;
-  const housingAllowance = income * housingAllowancePercentage;
-  const transportAllowance = income * transportAllowancePercentage;
-  const consolidatedSalary = basicSalary + housingAllowance + transportAllowance;
-
-  return consolidatedSalary;
+  return pension;
 };
+ 
 
-
-const calculateCRA = (consolidatedSalary) => {
-  const cra = Math.max(0.01 * consolidatedSalary, 200000) + 0.2 * consolidatedSalary;
-  return cra;
-};
-
-const consolidatedSalary = getConsolidatedSalary(grossIncome);
-// const cra = calculateCRA(consolidatedSalary);
+const consolidatedSalary = getConsolidatedSalary(grossIncome,healthCare);
+ 
 const cra =  200000+20/100*grossIncome;
+
+const chargeableIncome = (grossIncome,cra,) => {
+ 
+ const taxable=grossIncome-pensionFund-healthCare-cra
+
+  return taxable;
+};
 
 // Tax exemption values and tax bands specific to each country
 let taxExemptItems = {};
@@ -92,6 +86,9 @@ if (location === 'Nigeria') {
   ];
 }
 
+const pensionFund  = getPensionFund(grossIncome)
+const getTaxableIncome = chargeableIncome(grossIncome)
+
   return (
     <div>
       <TaxCalculator
@@ -101,8 +98,9 @@ if (location === 'Nigeria') {
         taxExemptItems={taxExemptItems}
         benefit={Benefits}
         loan={Loan}
+        pensionFund={pensionFund}
         basicSalary={basicSalary}
-      
+        chargeableIncome={getTaxableIncome}
       />
     </div>
   );

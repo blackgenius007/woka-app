@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { fNumber } from 'src/utils/format-number';
 
-const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary}) => {
+const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeableIncome,pensionFund}) => {
   const [consolidatedSalaryState, setConsolidatedSalary] = useState(0);
   const [annualTaxPayable, setAnnualTaxPayable] = useState(0);
   const [monthlyTaxPayable, setMonthlyTaxPayable] = useState(0);
@@ -27,8 +27,8 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary}) => {
   const pensionContribution =  employerPensionContribution + employeePensionContribution/12
 
   useEffect(() => {
-    // Hard-coded values for demonstration
-    const chargeableIncome = consolidatedSalaryState - cra;
+    // // Hard-coded values for demonstration
+    // const chargeableIncome = consolidatedSalaryState - cra;
 
     let taxPayable = 0;
 
@@ -117,7 +117,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary}) => {
                 </TableRow>
                 <TableRow>
                     <TableCell>Pension</TableCell>
-                    <TableCell>{fNumber(pensionContribution)}</TableCell>
+                    <TableCell>{fNumber(pensionFund/12)}</TableCell>
                   </TableRow>
                 {loan && (
                   <TableRow>

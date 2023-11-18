@@ -18,8 +18,11 @@ const EmployeeProfileCard = () => {
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [openPayment, setOpenPayment] = useState(false);
-   const [name, setName]= useState();
+  const [name, setName]= useState();
   const [location, setLocation]= useState();
+  const [paycare, sePaycare]= useState();
+ 
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,9 +76,10 @@ const EmployeeProfileCard = () => {
   const handleEditPersonal = () => {
     // Handle edit personal details event
   };
- const  handlePayment = (name,country) => {
+ const  handlePayment = (name,country,healthCare) => {
   setName(name)
   setLocation(country)
+  payCare(healthCare)
          setOpenPayment(true)
 
   }
@@ -89,7 +93,7 @@ if (!employeeData || !employeeData.employee) {
   return <div>Loading...</div>;
 }
               
-  const { employeeName, department, createdAt,imagePath,designation } = employeeData.employee;
+  const { employeeName, department, createdAt,imagePath,designation,healthCare } = employeeData.employee;
   const { grossIncome, country } = designation;
 console.log(employeeName, department, createdAt,designation)
 console.log(grossIncome, country)
@@ -131,7 +135,7 @@ console.log(grossIncome, country)
             </Button>
           </Grid>
           <Grid item>
-            <Button  onClick={()=>handlePayment(employeeName,country) }  variant="outlined" color="primary">
+            <Button  onClick={()=>handlePayment(employeeName,country,healthCare) }  variant="outlined" color="primary">
               Renumeration
             </Button>
           </Grid>
@@ -170,6 +174,7 @@ console.log(grossIncome, country)
      name={name}
      country={location}
      grossIncome={grossIncome}
+     healthCare={paycare}
        open={openPayment}
            close={closehandlePayment}
     
