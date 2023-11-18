@@ -92,7 +92,7 @@ const getTaxableIncome = chargeableIncome(grossIncome)
   return (
     <div>
       <TaxCalculator
-        consolidatedSalary={consolidatedSalary}
+        // consolidatedSalary={consolidatedSalary}
         cra={cra}
         taxBands={taxBands}
         taxExemptItems={taxExemptItems}
