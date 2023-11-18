@@ -30,7 +30,7 @@ const getPensionFund = (grossIncome) => {
 };
  
 
-const consolidatedSalary = getConsolidatedSalary(grossIncome,healthCare);
+// const consolidatedSalary = getConsolidatedSalary(grossIncome,healthCare);
  
 const cra =  200000+20/100*grossIncome;
 
