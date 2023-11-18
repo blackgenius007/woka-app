@@ -18,11 +18,8 @@ const EmployeeProfileCard = () => {
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [openPayment, setOpenPayment] = useState(false);
-  const [name, setName]= useState();
+   const [name, setName]= useState();
   const [location, setLocation]= useState();
-  const [paycare, setPaycare]= useState();
- 
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,7 +76,7 @@ const EmployeeProfileCard = () => {
  const  handlePayment = (name,country,healthCare) => {
   setName(name)
   setLocation(country)
-  setPaycare(healthCare)
+  sethHealthCare(healthCare)
          setOpenPayment(true)
 
   }
