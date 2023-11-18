@@ -20,7 +20,7 @@ const EmployeeProfileCard = () => {
   const [openPayment, setOpenPayment] = useState(false);
   const [name, setName]= useState();
   const [location, setLocation]= useState();
-  const [paycare, sePaycare]= useState();
+  const [paycare, sePaycare]= useState(null);
  
   
 
