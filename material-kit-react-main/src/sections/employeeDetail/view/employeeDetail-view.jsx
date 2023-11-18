@@ -20,7 +20,7 @@ const EmployeeProfileCard = () => {
   const [openPayment, setOpenPayment] = useState(false);
   const [name, setName]= useState();
   const [location, setLocation]= useState();
-  const [paycare, setPaycare]= useState(null);
+  const [paycare, sePaycare]= useState();
  
   
 
@@ -79,7 +79,7 @@ const EmployeeProfileCard = () => {
  const  handlePayment = (name,country,healthCare) => {
   setName(name)
   setLocation(country)
-  setPaycare(healthCare)
+  payCare(healthCare)
          setOpenPayment(true)
 
   }
@@ -174,7 +174,7 @@ console.log(grossIncome, country)
      name={name}
      country={location}
      grossIncome={grossIncome}
-     healthCare={paycare}
+     healthCare={healthCare}
        open={openPayment}
            close={closehandlePayment}
     
