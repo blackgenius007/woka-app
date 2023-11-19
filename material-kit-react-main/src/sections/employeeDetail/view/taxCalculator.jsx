@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { fNumber } from 'src/utils/format-number';
 
-const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeableIncome,pensionFund,grossIncome}) => {
+const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeableIncome,pensionFund,grossIncome,healthCare}) => {
   const [consolidatedSalaryState, setConsolidatedSalary] = useState(0);
   const [annualTaxPayable, setAnnualTaxPayable] = useState(0);
   const [monthlyTaxPayable, setMonthlyTaxPayable] = useState(0);
@@ -24,8 +24,9 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
  
 
   useEffect(() => {
-    // // Hard-coded values for demonstration
-    // const chargeableIncome = consolidatedSalaryState - cra;
+     
+    const chargeableIncome = grossIncome-pensionFund-healthCare-cra
+    console.log(chargeableIncome)
 
     let taxPayable = 0;
 

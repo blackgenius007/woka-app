@@ -8,6 +8,7 @@ const PaymentBreakdown = ({location,grossIncome,healthCare}) => {
  const basicSalary = 0.15 * grossIncome;
 
 console.log('payment=>',grossIncome,location)
+console.log('healthCare=>', healthCare)
 // const country = 'Nigeria';
 // const grossIncome =1200000; // Example gross income provided by the user
 const Benefits=0;
@@ -34,12 +35,12 @@ const getPensionFund = (grossIncome) => {
  
 const cra =  200000+20/100*grossIncome;
 
-const chargeableIncome = (grossIncome,cra,) => {
+// const chargeableIncome = (grossIncome,cra) => {
  
- const taxable=grossIncome-pensionFund-healthCare-cra
+//  const taxable=grossIncome-pensionFund-healthCare-cra
 
-  return taxable;
-};
+//   return taxable;
+// };
 
 // Tax exemption values and tax bands specific to each country
 let taxExemptItems = {};
@@ -88,6 +89,7 @@ if (location === 'Nigeria') {
 
 const pensionFund  = getPensionFund(grossIncome)
 const getTaxableIncome = chargeableIncome(grossIncome)
+console.log()
 
   return (
     <div>
@@ -101,7 +103,8 @@ const getTaxableIncome = chargeableIncome(grossIncome)
         loan={Loan}
         pensionFund={pensionFund}
         basicSalary={basicSalary}
-        chargeableIncome={getTaxableIncome}
+        healthCare={healthCare}
+        
       />
     </div>
   );
