@@ -94,7 +94,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
                 </TableRow>
                 <TableRow>
                   <TableCell>Taxable Salary</TableCell>
-                  <TableCell>{fNumber (chargeableIncome)}</TableCell>
+                  <TableCell>{fNumber (grossIncome-pensionFund-healthCare-cra)}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>CRA (Consolidated Relief Allowance)</TableCell>
