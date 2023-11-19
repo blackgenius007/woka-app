@@ -76,7 +76,7 @@ const EmployeeProfileCard = () => {
   const handleEditPersonal = () => {
     // Handle edit personal details event
   };
- const  handlePayment = (name,country,healthCare) => {
+ const  handlePayment = (name,country,healthCare,iou,loan,benefitInKind) => {
   setName(name)
   setLocation(country)
   setPaycare(healthCare)
@@ -93,7 +93,7 @@ if (!employeeData || !employeeData.employee) {
   return <div>Loading...</div>;
 }
               
-  const { employeeName, department, createdAt,imagePath,designation,healthCare } = employeeData.employee;
+  const { employeeName, department, createdAt,imagePath,designation,healthCare,loan,iou,benefitInKind, } = employeeData.employee;
   const { grossIncome, country } = designation;
 console.log(employeeName, department, createdAt,designation)
 console.log(grossIncome, country)
@@ -135,7 +135,7 @@ console.log(grossIncome, country)
             </Button>
           </Grid>
           <Grid item>
-            <Button  onClick={()=>handlePayment(employeeName,country,healthCare) }  variant="outlined" color="primary">
+            <Button  onClick={()=>handlePayment(employeeName,country,healthCare,loan,iou,benefitInKind) }  variant="outlined" color="primary">
               Renumeration
             </Button>
           </Grid>
@@ -175,6 +175,9 @@ console.log(grossIncome, country)
      country={location}
      grossIncome={grossIncome}
      healthCare={healthCare}
+     loan={loan}
+     iou={iou}
+     benefit={benefitInKind}
        open={openPayment}
            close={closehandlePayment}
     

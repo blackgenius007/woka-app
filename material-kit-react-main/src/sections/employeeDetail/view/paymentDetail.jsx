@@ -37,6 +37,9 @@ export default function PaymentDetail({
   name,
   healthCare,
   id,
+  iou,
+  loan,
+  benefit,
   close,
 }) {
 console.log('payment detail=',grossIncome)
@@ -64,6 +67,9 @@ console.log('payment detail=',grossIncome)
           <PaymentBreakdown
           location ={country}
           id={id}
+          loan={loan}
+          iou={iou}
+          benefit={benefit}
           grossIncome={grossIncome}
           healthCare={healthCare}
           />

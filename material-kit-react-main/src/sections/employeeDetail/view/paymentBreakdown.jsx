@@ -3,7 +3,7 @@ import React from 'react';
 import TaxCalculator from './taxCalculator';
 
 
-const PaymentBreakdown = ({location,grossIncome,healthCare}) => {
+const PaymentBreakdown = ({location,grossIncome,healthCare,loan,benefit,iou}) => {
    // Calculate basic salary (15% of gross income)
  const basicSalary = 0.15 * grossIncome;
 
@@ -11,8 +11,7 @@ console.log('payment=>',grossIncome,location)
 console.log('healthCare=>', healthCare)
 // const country = 'Nigeria';
 // const grossIncome =1200000; // Example gross income provided by the user
-const Benefits=0;
-const Loan = 0
+ 
 
 
 const getPensionFund = (grossIncome) => {
@@ -35,14 +34,7 @@ const getPensionFund = (grossIncome) => {
  
 const cra =  200000+20/100*grossIncome;
 
-// const chargeableIncome = (grossIncome,cra) => {
  
-//  const taxable=grossIncome-pensionFund-healthCare-cra
-
-//   return taxable;
-// };
-
-// Tax exemption values and tax bands specific to each country
 let taxExemptItems = {};
 let taxBands = [];
 
@@ -98,9 +90,9 @@ console.log()
         cra={cra}
         taxBands={taxBands}
         taxExemptItems={taxExemptItems}
-        benefit={Benefits}
+        benefit={benefit}
         grossIncome={grossIncome}
-        loan={Loan}
+        loan={loan}
         pensionFund={pensionFund}
         basicSalary={basicSalary}
         healthCare={healthCare}
