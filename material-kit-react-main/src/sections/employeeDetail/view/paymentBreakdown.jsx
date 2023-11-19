@@ -88,7 +88,7 @@ if (location === 'Nigeria') {
 }
 
 const pensionFund  = getPensionFund(grossIncome)
-const getTaxableIncome = chargeableIncome(grossIncome)
+ 
 console.log()
 
   return (
