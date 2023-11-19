@@ -64,15 +64,27 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
 
   const getTotalMonthlySalary = () => {
     let total = monthlySalary;
-    if (benefit) {
-      total += benefit;
-    }
+  
+    // Subtract loan if it exists
     if (loan) {
-      total -= loan;
+      console.log("Original total:", total);
+      console.log("Subtracting loan:", loan);
+      total = Math.max(total - loan, 0); // Ensure total doesn't go negative
+      console.log("Result after loan subtraction:", total);
     }
+  
+    // Add benefit if it exists
+    if (benefit) {
+      console.log("Adding benefit:", benefit);
+      total += benefit;
+      console.log("Result after adding benefit:", total);
+    }
+  
+    console.log("Final total:", total);
+  
     return total;
   };
-
+  
 
 
   return (
@@ -135,7 +147,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
                     <TableCell>Total Monthly Salary</TableCell>
                     <TableCell>{fNumber(getTotalMonthlySalary())}</TableCell>
                   </TableRow>
-                ) : '' }
+                ) : null}
                 <TableRow>
                     <TableCell>Pension</TableCell>
                     <TableCell>{fNumber(pensionFund/12)}</TableCell>
