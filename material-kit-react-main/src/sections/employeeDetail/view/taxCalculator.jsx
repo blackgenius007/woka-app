@@ -21,10 +21,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
   const [monthlySalary, setMonthlySalary] = useState(0);
 
 
-  // Calculate pension contributions (8% from employee + 10% from employer)
-  const employeePensionContribution = 0.08 * basicSalary;
-  const employerPensionContribution = 0.10 * basicSalary;
-  // const pensionContribution =  employerPensionContribution + employeePensionContribution/12
+ 
 
   useEffect(() => {
     // // Hard-coded values for demonstration
@@ -93,6 +90,10 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
                 <TableRow>
                   <TableCell>Nontaxable Salary</TableCell>
                   <TableCell>{fNumber (grossIncome)}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Taxable Salary</TableCell>
+                  <TableCell>{fNumber (chargeableIncome)}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>CRA (Consolidated Relief Allowance)</TableCell>
