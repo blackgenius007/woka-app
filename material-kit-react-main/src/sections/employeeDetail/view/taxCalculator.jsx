@@ -99,15 +99,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
                 <TableRow>
                   <TableCell>CRA (Consolidated Relief Allowance)</TableCell>
                   <TableCell>{fNumber(cra)}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Annual Salary</TableCell>
-                  <TableCell>{fNumber(annualSalary)}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Monthly Salary</TableCell>
-                  <TableCell>{fNumber(monthlySalary)}</TableCell>
-                </TableRow>
+                </TableRow>                
                 <TableRow>
                   <TableCell>Tax Payable per Annum</TableCell>
                   <TableCell>{fNumber(annualTaxPayable)}</TableCell>
@@ -117,10 +109,15 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
                   {/* <TableCell>{toMoney(monthlyTaxPayable)}</TableCell> */}
                   <TableCell>{fNumber(monthlyTaxPayable)}</TableCell>
                 </TableRow>
+                
+                  <TableRow>
+                  <TableCell>Annual Salary</TableCell>
+                  <TableCell>{fNumber(annualSalary)}</TableCell>
+                </TableRow>
                 <TableRow>
-                    <TableCell>Pension</TableCell>
-                    <TableCell>{fNumber(pensionFund/12)}</TableCell>
-                  </TableRow>
+                  <TableCell>Monthly Salary</TableCell>
+                  <TableCell>{fNumber(monthlySalary)}</TableCell>
+                </TableRow>
                 {loan && (
                   <TableRow>
                     <TableCell>Loan</TableCell>
@@ -139,6 +136,10 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
                     <TableCell>{fNumber(getTotalMonthlySalary())}</TableCell>
                   </TableRow>
                 ) : null}
+                <TableRow>
+                    <TableCell>Pension</TableCell>
+                    <TableCell>{fNumber(pensionFund/12)}</TableCell>
+                  </TableRow>
               </TableBody>
             </Table>
           </TableContainer>

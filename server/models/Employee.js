@@ -172,6 +172,7 @@ const EmployeeSchema = new mongoose.Schema(
     healthCare: {
       type: String,
       required: false,
+      default:0
     },
     complainStatus: {
       type: String,
