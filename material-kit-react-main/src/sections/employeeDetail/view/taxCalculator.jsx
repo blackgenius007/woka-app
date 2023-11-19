@@ -135,7 +135,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
                     <TableCell>Total Monthly Salary</TableCell>
                     <TableCell>{fNumber(getTotalMonthlySalary())}</TableCell>
                   </TableRow>
-                ) : null}
+                ) : '' }
                 <TableRow>
                     <TableCell>Pension</TableCell>
                     <TableCell>{fNumber(pensionFund/12)}</TableCell>
