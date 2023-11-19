@@ -127,7 +127,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
                 {benefit && (
                   <TableRow>
                     <TableCell>Benefit</TableCell>
-                    <TableCell>{fNumber(benefit)}</TableCell>
+                    <TableCell>{fNumber(benefit ? benefit :'' )}</TableCell>
                   </TableRow>
                 )}
                 {benefit || loan ? (
