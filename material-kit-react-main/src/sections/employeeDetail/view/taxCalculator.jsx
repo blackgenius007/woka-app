@@ -130,24 +130,22 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
                   <TableCell>Monthly Salary</TableCell>
                   <TableCell>{fNumber(monthlySalary)}</TableCell>
                 </TableRow>
-                {loan && (
-                  <TableRow>
-                    <TableCell>Loan</TableCell>
-                    <TableCell>{fNumber(loan)}</TableCell>
-                  </TableRow>
-                )}
-                {benefit && (
-                  <TableRow>
-                    <TableCell>Benefit</TableCell>
-                    <TableCell>{fNumber(benefit ? benefit :'' )}</TableCell>
-                  </TableRow>
-                )}
-                {benefit || loan ? (
-                  <TableRow>
-                    <TableCell>Total Monthly Salary</TableCell>
-                    <TableCell>{fNumber(getTotalMonthlySalary())}</TableCell>
-                  </TableRow>
-                ) : null}
+                {/* Additional rows with zero check */}
+              {loan !== 0 && (
+                <TableRow>
+                  <TableCell>Loan</TableCell>
+                  <TableCell>{fNumber(loan)}</TableCell>
+                </TableRow>
+              )}
+
+              {/* Check for zero before rendering Total Monthly Salary row */}
+              {(benefit !== 0 || loan !== 0) && (
+                <TableRow>
+                  <TableCell>Total Monthly Salary</TableCell>
+                  <TableCell>{fNumber(getTotalMonthlySalary())}</TableCell>
+                </TableRow>
+              )}
+                
                 <TableRow>
                     <TableCell>Pension</TableCell>
                     <TableCell>{fNumber(pensionFund/12)}</TableCell>
