@@ -48,7 +48,7 @@ const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeab
 
     const calculatedAnnualTaxPayable = taxPayable;
     const calculatedMonthlyTaxPayable = calculatedAnnualTaxPayable / 12;
-    // const calculatedAnnualSalary = g - calculatedAnnualTaxPayable;
+    const calculatedAnnualSalary = grossIncome - calculatedAnnualTaxPayable;
     const calculatedMonthlySalary = calculatedAnnualSalary / 12;
 
     // Update state with calculated values
