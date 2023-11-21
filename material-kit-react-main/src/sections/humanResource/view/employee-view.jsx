@@ -60,85 +60,69 @@
      },
    }));
    
-  // Add futuristic styles here...
-const futuristicStyles = {
-  tableContainer: {
-    background: '#222',
-    borderRadius: '10px',
-    padding: '1rem',
-  },
-  table: {
-    color: '#fff',
-    width: '100%',
-    textAlign: 'left',
-    borderCollapse: 'separate',
-    borderSpacing: '0',
-  },
-  tableHead: {
-    background: '#333',
-  },
-  tableHeadCell: {
-    padding: '0.5rem',
-    textAlign: 'center',
-  },
-  tableBodyRow: {
-    borderBottom: '1px solid #444',
-    display: 'block', // Display rows as blocks
-    marginBottom: '1rem', // Add margin between rows
-    borderRadius: '10px',
-    overflow: 'hidden',
-  },
-  tableBodyCell: {
-    border: '1px solid #444',
-    padding: '0.5rem',
-    textAlign: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    borderRadius: '50%',
-    width: '50px',
-    height: '50px',
-  },
-  link: {
-    background: 'none',
-    border: 'none',
-    color: '#00aaff',
-    cursor: 'pointer',
-    textDecoration: 'none',
-    fontSize: '14px',
-    fontFamily: 'inherit',
-    padding: 0,
-    margin: 0,
-  },
-  actionIcons: {
-    fontSize: '1.1rem',
-    color: '#fff',
-    marginRight: '0.5rem',
-    cursor: 'pointer',
-    transition: 'color 0.3s ease-in-out',
-  },
-};
-
-// Add a media query for small screens (mobile)
-const smallScreenStyles = {
-  tableBodyRow: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  tableBodyCell: {
-    width: '100%',
-  },
-};
-
-// Combine styles based on screen size
-const combinedStyles = {
-  ...futuristicStyles,
-  '@media (max-width: 600px)': smallScreenStyles,
-};
-
+   const futuristicStyles = {
+    tableContainer: {
+      background: '#222',
+      borderRadius: '10px',
+      padding: '1rem',
+    },
+    table: {
+      color: '#fff',
+      textAlign: 'left',
+      borderCollapse: 'collapse',
+      width: '100%', // Set the width to 100% by default
+    },
+    tableHead: {
+      background: '#333',
+    },
+    tableHeadCell: {
+      padding: '0.5rem',
+      textAlign: 'center',
+    },
+    tableBodyRow: {
+      borderBottom: '1px solid #444',
+      // Add margin-bottom to separate rows on small screens
+      '@media (max-width: 768px)': {
+        marginBottom: '1rem',
+      },
+    },
+    tableBodyCell: {
+      padding: '0.5rem',
+      textAlign: 'center',
+      border: '1px solid #444',
+      '@media (max-width: 768px)': {
+        display: 'block',
+        textAlign: 'left',
+        border: 'none',
+        borderBottom: '1px solid #444',
+        padding: '0.5rem',
+      },
+    },
+    avatar: {
+      borderRadius: '50%',
+      width: '50px',
+      height: '50px',
+    },
+    link: {
+      background: 'none',
+      border: 'none',
+      color: '#00aaff',
+      cursor: 'pointer',
+      textDecoration: 'none',
+      fontSize: '14px',
+      fontFamily: 'inherit',
+      padding: 0,
+      margin: 0,
+    },
+    actionIcons: {
+      fontSize: '1.1rem',
+      color: '#fff',
+      marginRight: '0.5rem',
+      cursor: 'pointer',
+      transition: 'color 0.3s ease-in-out',
+    },
+  };
+  
    
    function BootstrapDialogTitle(props) {
      const { children, onClose, ...other } = props;
