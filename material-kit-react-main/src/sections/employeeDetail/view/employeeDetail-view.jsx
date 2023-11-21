@@ -21,15 +21,16 @@ const EmployeeProfileCard = () => {
   const [openPayment, setOpenPayment] = useState(false);
   const [openPersonal, setOpenPersonal] = useState(false);
   const [name, setName]= useState();
+  const [personalName, setPersonalName]= useState();
   const [location, setLocation]= useState();
   const [paycare, setPaycare]= useState();
-  const [number, setNumber]= useState();
+  const [account, setBankNumber]= useState();
   const [code, setCode]= useState();
   const [origin, setOrigin]= useState();
-  const [bank, setBank]= useState();
-  const [address, setAddress]= useState();
-  const [ dateOfBirth, setDateOfBirth]= useState();
-  const [sex, setSex]= useState();
+  const [bank, setBank ]= useState();
+  const [personaladdress, setAddress]= useState();
+  const [ BirthDate, setDateOfBirth]= useState();
+  const [gender, setGender]= useState();
   const [nextName, setNextName]= useState();
   const [nextAddress, setNextAddress]= useState();
   const [nextNumber, setNextNumber]= useState();
@@ -85,21 +86,22 @@ const EmployeeProfileCard = () => {
     // Handle edit recommendation event
   };
 
-  const handleEditPersonal = () => {
+  const handleEditPersonal = ( employeeName,employeeCode,address,dateOfBirth,sex,nextOfKinRelationship,accountNumber,bankName,nextOfKinName,nextOfKinAddress,nextOfKinPhoneNumber) => {
  
-    setName(name) 
-    setNumber(number) 
-    setCode(code) 
-    setOrigin(origin) 
-    setBank(bank) 
+    setPersonalName(employeeName)
+    setCode(employeeCode)
     setAddress(address) 
-    setDateOfBirth(dateOfBirth) 
-    setSex(sex)
-    setNextName(nextName)
-    setNextAddress(nextAddress)
-    setNextNumber(nextNumber)
-    setRelation(Relation)
-    setOpenPersonal(true)
+    setDateOfBirth(dateOfBirth)
+    setGender(sex)
+    setNextName(nextOfKinName)
+   setNextAddress(nextOfKinAddress)
+   setNextNumber(nextOfKinPhoneNumber)
+   setBank(bankName)
+   setBankNumber(accountNumber)
+   setRelation(nextOfKinRelationship)
+    
+
+    
   };
  const  handlePayment = (name,country,healthCare,iou,loan,benefitInKind) => {
   setName(name)
@@ -112,7 +114,7 @@ const EmployeeProfileCard = () => {
     setOpenPayment(false)
 }
 const  closehandlePersonal = () => {
-  openPersonal(false)
+  setOpenPersonal(false)
 }
 
 
@@ -121,7 +123,7 @@ if (!employeeData || !employeeData.employee) {
   return <div>Loading...</div>;
 }
               
-  const { employeeName, department, createdAt,imagePath,designation,healthCare,loan,iou,benefitInKind,employeeCode,nextOfKinRelationship,accountNumber,bankName,nextOfKinName,nextOfKinAddress,nextOfKinPhoneNumber } = employeeData.employee;
+  const { employeeName, department, createdAt,imagePath,designation,healthCare,loan,iou,benefitInKind,employeeCode,address,dateOfBirth,sex,nextOfKinRelationship,accountNumber,bankName,nextOfKinName,nextOfKinAddress,nextOfKinPhoneNumber } = employeeData.employee;
   const { grossIncome, country } = designation;
 console.log(employeeName, department, createdAt,designation)
 console.log(grossIncome, country)
@@ -158,8 +160,7 @@ console.log(grossIncome, country)
             </Button>
           </Grid>
           <Grid item>
-            <Button onClick={()=>handleEditPersonal( employeeName,employeeCode,employeeCode,bankName,nextOfKinName,nextOfKinAddress,address,dateOfBirth,sex,nextOfKinName,
-nextOfKinPhoneNumber,accountNumber, nextOfKinRelationship) } variant="outlined" color="primary">
+            <Button onClick={()=>handleEditPersonal( employeeName,employeeCode,address,dateOfBirth,sex,nextOfKinRelationship,accountNumber,bankName,nextOfKinName,nextOfKinAddress,nextOfKinPhoneNumber) } variant="outlined" color="primary">
               Personal
             </Button>
           </Grid>
@@ -211,20 +212,21 @@ nextOfKinPhoneNumber,accountNumber, nextOfKinRelationship) } variant="outlined" 
            close={closehandlePayment}
     
         />
+         
         <PersonalDetail
-         open={openPersonal}
-         close={closehandlePersonal}
-         name={employeeName }
-         code={employeeCode}
-         origin={address}
-         number={accountNumber}
-         bankName ={bankName}
-         dateOfBirth={dateOfBirth}
-         sex={sex}
-         nextOfKinName={nextOfKinName}
-         nextOfKinAddress={nextOfKinAddress}
-         nextNumber={nextOfKinPhoneNumber}
-        relation={nextOfKinRelationship} 
+        
+        name={personalName}
+        uniqueNumber={code}
+        address={personaladdress}
+        dateOfBirth={BirthDate}
+        sex={gender}
+        nextName={nextName}
+        nextAddress={nextAddress}
+        Relation={Relation}
+        bank={bank}
+        account={account}
+        open={openPersonal}
+        close={closehandlePersonal}
         
         />
     </>

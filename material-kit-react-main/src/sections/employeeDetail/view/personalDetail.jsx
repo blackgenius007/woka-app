@@ -44,7 +44,7 @@
   close,
   id,
   name,
-  number,
+  account,
   code,
   origin,
   bank,
@@ -92,11 +92,48 @@
                   <TableCell>{name}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Location</TableCell>
-                  <TableCell>{origin}</TableCell>
+                  <TableCell>Date of birth</TableCell>
+                  <TableCell>{dateOfBirth}</TableCell>
                 </TableRow>
-                
-              
+                <TableRow>
+                  <TableCell>Gender</TableCell>
+                  <TableCell>{sex}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Address</TableCell>
+                  <TableCell>{address}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Employee Unique Number</TableCell>
+                  <TableCell>{code}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Bank Name</TableCell>
+                  <TableCell>{bank}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Account Number</TableCell>
+                  <TableCell>{account}</TableCell>
+                </TableRow>
+                <TableRow>
+        <TableCell colSpan={2} style={{ background: '#f0f0f0' }}>Next Of Kin Details</TableCell>
+      </TableRow>
+                <TableRow>
+                  <TableCell>Full Name</TableCell>
+                  <TableCell>{nextName}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Relationship</TableCell>
+                  <TableCell>{Relation}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Address</TableCell>
+                  <TableCell>{nextAddress}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Contact Number</TableCell>
+                  <TableCell>{nextNumber}</TableCell>
+                </TableRow>
                 </TableBody>
             </Table>
           </TableContainer>
