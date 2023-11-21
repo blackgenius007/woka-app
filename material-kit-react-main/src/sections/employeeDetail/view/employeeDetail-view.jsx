@@ -19,7 +19,7 @@ const EmployeeProfileCard = () => {
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [openPayment, setOpenPayment] = useState(false);
-  const [openPersonal, setOpenPersonal] = useState(true);
+  const [openPersonal, setOpenPersonal] = useState(false);
   const [name, setName]= useState();
   const [location, setLocation]= useState();
   const [paycare, setPaycare]= useState();
@@ -86,7 +86,7 @@ const EmployeeProfileCard = () => {
   };
 
   const handleEditPersonal = (name,number,code,origin,bank,address,dateOfBirth,sex,nextName,nextAddress,nextNumber,Relation) => {
-    setOpenPersonal()
+ 
     setName(name) 
     setNumber(number) 
     setCode(code) 
@@ -99,6 +99,7 @@ const EmployeeProfileCard = () => {
     setNextAddress(nextAddress)
     setNextNumber(nextNumber)
     setRelation(Relation)
+    setOpenPersonal(true)
   };
  const  handlePayment = (name,country,healthCare,iou,loan,benefitInKind) => {
   setName(name)
@@ -109,6 +110,9 @@ const EmployeeProfileCard = () => {
   }
   const  closehandlePayment = () => {
     setOpenPayment(false)
+}
+const  closehandlePersonal = () => {
+  openPersonal(false)
 }
 
 
