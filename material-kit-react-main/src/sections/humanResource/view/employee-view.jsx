@@ -114,24 +114,8 @@ const futuristicStyles = {
   },
 };
 
-// Small screen styles
-const smallScreenStyles = {
-  tableBodyRow: {
-    display: 'block',
-    marginBottom: '1rem',
-    borderRadius: '10px',
-    overflow: 'hidden',
-  },
-  tableBodyCell: {
-    border: '1px solid #444',
-    padding: '0.5rem',
-    textAlign: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-  },
-};
+ 
+ 
 
 // Combine styles based on screen size
 const combinedStyles = {
