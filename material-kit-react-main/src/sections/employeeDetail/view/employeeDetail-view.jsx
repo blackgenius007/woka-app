@@ -99,7 +99,7 @@ const EmployeeProfileCard = () => {
    setBank(bankName)
    setBankNumber(accountNumber)
    setRelation(nextOfKinRelationship)
-    
+   setOpenPersonal(true)
 
     
   };
