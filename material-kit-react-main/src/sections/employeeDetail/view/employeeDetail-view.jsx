@@ -121,7 +121,7 @@ if (!employeeData || !employeeData.employee) {
   return <div>Loading...</div>;
 }
               
-  const { employeeName, department, createdAt,imagePath,designation,healthCare,loan,iou,benefitInKind } = employeeData.employee;
+  const { employeeName, department, createdAt,imagePath,designation,healthCare,loan,iou,benefitInKind,employeeCode,nextOfKinRelationship,accountNumber,bankName,nextOfKinName,nextOfKinAddress,nextOfKinPhoneNumber } = employeeData.employee;
   const { grossIncome, country } = designation;
 console.log(employeeName, department, createdAt,designation)
 console.log(grossIncome, country)
@@ -224,7 +224,7 @@ nextOfKinPhoneNumber,accountNumber, nextOfKinRelationship) } variant="outlined" 
          nextOfKinName={nextOfKinName}
          nextOfKinAddress={nextOfKinAddress}
          nextNumber={nextOfKinPhoneNumber}
-        relation={Relation} 
+        relation={nextOfKinRelationship} 
         
         />
     </>
