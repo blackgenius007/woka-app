@@ -4,7 +4,7 @@
    import React, { useState, useEffect, useRef } from 'react';
    import { useDispatch, useSelector } from 'react-redux';
    import TextField from '@mui/material/TextField';
-   import { ButtonBase } from '@mui/material';
+   import { ButtonBase,Hidden } from '@mui/material';
    import Container from '@mui/material/Container';
    import TableContainer from '@mui/material/TableContainer';
    import Card from '@mui/material/Card'; 
@@ -435,17 +435,20 @@ const combinedStyles = {
         <th style={combinedStyles.tableHeadCell}>Name</th>
         <th style={combinedStyles.tableHeadCell}>Sex</th>
         <th style={combinedStyles.tableHeadCell}>Designation</th>
+        <Hidden xsDown>
         <th style={combinedStyles.tableHeadCell}>Department</th>
         <th style={combinedStyles.tableHeadCell}>Unique code</th>
         <th style={combinedStyles.tableHeadCell}>Bank Name</th>
         <th style={combinedStyles.tableHeadCell}>Account Number</th>
         <th style={combinedStyles.tableHeadCell}>Action</th>
+        </Hidden> 
       </tr>
     </thead>
     <tbody>
       {paginatedRows.map((row) => {
         return (
           <tr key={row.id} style={combinedStyles.tableBodyRow}>
+            
             <td style={combinedStyles.tableBodyRow}>
               <Link
                 to={`/employee-detail/${row.imagePath}`}
@@ -466,16 +469,19 @@ const combinedStyles = {
             <td style={combinedStyles.tableBodyCell}>
               {row.designation && row.designation.designation}
             </td>
+            <Hidden xsDown>
             <td style={combinedStyles.tableBodyCell}>{row.department}</td>
 
             <td style={combinedStyles.tableBodyCell}>{row.employeeCode}</td>
             <td style={combinedStyles.tableBodyCell}>{row.bankName}</td>
             <td style={combinedStyles.tableBodyCell}>{row.accountNumber}</td>
             <td style={combinedStyles.tableBodyCell}>
+            
               <IconButton onClick={handleOpenMenu}>
                 <Iconify icon="eva:more-vertical-fill" />
               </IconButton>
             </td>
+            </Hidden>
           </tr>
         );
       })}
