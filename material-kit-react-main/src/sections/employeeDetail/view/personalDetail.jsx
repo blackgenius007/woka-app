@@ -1,5 +1,4 @@
-  /* eslint-disable */
-
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
@@ -10,11 +9,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Paper from '@mui/material/Paper';
 import Draggable from 'react-draggable';
- 
 
 function PaperComponent(props) {
-  const classes = useStyles();
-
   return (
     <Draggable
       handle="#draggable-dialog-title"
@@ -24,17 +20,6 @@ function PaperComponent(props) {
     </Draggable>
   );
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: '100ch',
-    backgroundColor: theme.palette.background.paper,
-  },
-  inline: {
-    display: 'inline',
-  },
-}));
 
 export default function PersonalDetail({
   open,
@@ -55,13 +40,11 @@ export default function PersonalDetail({
   nextAddress,
   nextNumber,
   Relation
-
 }) {
-  // alert(id)
   const { user } = useSelector((state) => state.auth);
-const coded = [code].map((codes)=>{
-  return codes
-})
+  const coded = [code].map((codes) => {
+    return codes;
+  });
 
   return (
     <div>
@@ -69,7 +52,7 @@ const coded = [code].map((codes)=>{
         open={open}
         onClose={close}
         PaperComponent={PaperComponent}
-        // style={{color:'#ffcc00'}}
+        style={{color:'#ffcc00'}}
         aria-labelledby="draggable-dialog-title"
       >
         <DialogTitle
@@ -80,28 +63,28 @@ const coded = [code].map((codes)=>{
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-          <div  style={{outline:'none'}}>
-      <ul>
-        <li><strong>Name</strong> - {name}</li>
-        <li><strong>Employee Number</strong> - {coded}</li>
-        <li><strong>Birth Date</strong> - {dateOfBirth}</li>
-        <li><strong>Sex</strong> - {sex}</li>
-        <li><strong>Phone</strong> - {number}</li>
-        <li><strong>Address</strong> - {address}</li>
-        <li><strong>Hometown</strong> - {origin}</li>
-        <li><strong>
-          <p>Next of kin Details</p></strong><p>Name - {nextName}</p>
-          <p>Relationship - {Relation}</p>
-          <p>Address - {nextAddress}</p>
-          <p>mobile - {nextNumber}</p>
-                 
-           </li>
-        <li><strong>Bank Details</strong> - {bank}</li>
-      </ul>
-    </div>
+            <div style={{ outline: 'none' }}>
+              <ul>
+                <li><strong>Name</strong> - {name}</li>
+                <li><strong>Employee Number</strong> - {coded}</li>
+                <li><strong>Birth Date</strong> - {dateOfBirth}</li>
+                <li><strong>Sex</strong> - {sex}</li>
+                <li><strong>Phone</strong> - {number}</li>
+                <li><strong>Address</strong> - {address}</li>
+                <li><strong>Hometown</strong> - {origin}</li>
+                <li>
+                  <strong>
+                    <p>Next of kin Details</p>
+                  </strong>
+                  <p>Name - {nextName}</p>
+                  <p>Relationship - {Relation}</p>
+                  <p>Address - {nextAddress}</p>
+                  <p>mobile - {nextNumber}</p>
+                </li>
+                <li><strong>Bank Details</strong> - {bank}</li>
+              </ul>
+            </div>
           </DialogContentText>
-         
-          
         </DialogContent>
         <DialogActions>
           <IconButton onClick={close} >
@@ -122,8 +105,6 @@ const coded = [code].map((codes)=>{
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </IconButton>
-
-          
         </DialogActions>
       </Dialog>
     </div>
