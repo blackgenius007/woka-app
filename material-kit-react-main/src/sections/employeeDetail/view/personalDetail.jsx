@@ -41,10 +41,7 @@
  
  export default function PersonalDetail({ 
    open,
- 
   close,
-  score,
-  verify,
   id,
   name,
   number,

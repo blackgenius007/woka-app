@@ -85,7 +85,7 @@ const EmployeeProfileCard = () => {
     // Handle edit recommendation event
   };
 
-  const handleEditPersonal = (name,number,code,origin,bank,address,dateOfBirth,sex,nextName,nextAddress,nextNumber,Relation) => {
+  const handleEditPersonal = () => {
  
     setName(name) 
     setNumber(number) 
@@ -121,7 +121,7 @@ if (!employeeData || !employeeData.employee) {
   return <div>Loading...</div>;
 }
               
-  const { employeeName, department, createdAt,imagePath,designation,healthCare,loan,iou,benefitInKind, } = employeeData.employee;
+  const { employeeName, department, createdAt,imagePath,designation,healthCare,loan,iou,benefitInKind } = employeeData.employee;
   const { grossIncome, country } = designation;
 console.log(employeeName, department, createdAt,designation)
 console.log(grossIncome, country)
@@ -158,7 +158,8 @@ console.log(grossIncome, country)
             </Button>
           </Grid>
           <Grid item>
-            <Button onClick={()=>handleEditPersonal( name,number,code,origin,bank,address,dateOfBirth,sex,nextName,nextAddress,nextNumber,Relation) } variant="outlined" color="primary">
+            <Button onClick={()=>handleEditPersonal( employeeName,employeeCode,employeeCode,bankName,nextOfKinName,nextOfKinAddress,address,dateOfBirth,sex,nextOfKinName,
+nextOfKinPhoneNumber,accountNumber, nextOfKinRelationship) } variant="outlined" color="primary">
               Personal
             </Button>
           </Grid>
@@ -213,17 +214,16 @@ console.log(grossIncome, country)
         <PersonalDetail
          open={openPersonal}
          close={closehandlePersonal}
-         name={name}
-         number={number}
-         code={code}
-         origin={origin}
-         bank ={bank}
-         address={address}
+         name={employeeName }
+         code={employeeCode}
+         origin={address}
+         number={accountNumber}
+         bankName ={bankName}
          dateOfBirth={dateOfBirth}
          sex={sex}
-         nextName={nextName}
-         nextAddress={nextAddress}
-         nextNumber={nextNumber}
+         nextOfKinName={nextOfKinName}
+         nextOfKinAddress={nextOfKinAddress}
+         nextNumber={nextOfKinPhoneNumber}
         relation={Relation} 
         
         />
