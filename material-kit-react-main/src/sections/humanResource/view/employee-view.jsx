@@ -403,21 +403,23 @@ const combinedStyles = {
          <br />
          <div style={combinedStyles.tableContainer}>
   <table style={combinedStyles.table}>
+  <Hidden xsDown>
     <thead style={combinedStyles.tableHead}>
       <tr>
         <th style={combinedStyles.tableHeadCell}>Employee</th>
         <th style={combinedStyles.tableHeadCell}>Name</th>
         <th style={combinedStyles.tableHeadCell}>Sex</th>
         <th style={combinedStyles.tableHeadCell}>Designation</th>
-        <Hidden xsDown>
+        
         <th style={combinedStyles.tableHeadCell}>Department</th>
         <th style={combinedStyles.tableHeadCell}>Unique code</th>
         <th style={combinedStyles.tableHeadCell}>Bank Name</th>
         <th style={combinedStyles.tableHeadCell}>Account Number</th>
         <th style={combinedStyles.tableHeadCell}>Action</th>
-        </Hidden> 
+       
       </tr>
     </thead>
+    </Hidden> 
     <tbody>
       {paginatedRows.map((row) => {
         return (
