@@ -136,17 +136,7 @@ const smallScreenStyles = {
 // Combine styles based on screen size
 const combinedStyles = {
   ...futuristicStyles,
-  '@media (max-width: 600px)': smallScreenStyles,
   
-  '@media (max-width: 600px)': {
-    tableBodyCell: {
-      display: 'none',
-    },
-    // Show only the first three columns
-    '& :nth-child(-n+3)': {
-      display: 'table-cell',
-    },
-  },
 };
 
   
