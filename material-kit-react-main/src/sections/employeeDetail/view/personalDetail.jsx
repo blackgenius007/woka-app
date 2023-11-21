@@ -21,7 +21,7 @@
  import DialogTitle from '@mui/material/DialogTitle';
  import Paper from '@mui/material/Paper';
  import Draggable from 'react-draggable';
- import PaymentBreakdown from './paymentBreakdown';
+ 
  
  
  function PaperComponent(props) {
@@ -59,7 +59,7 @@
   nextNumber,
   Relation
  }) {
- console.log('payment detail=',grossIncome)
+ 
    const { user } = useSelector((state) => state.auth);
  
    return (
