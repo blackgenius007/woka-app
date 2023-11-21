@@ -10,7 +10,6 @@ import face from '/assets/images/avatars/avatar_25.jpg';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PaymentDetail from './paymentDetail';
-import PersonalDetail from './personalDetail';
 
 const EmployeeProfileCard = () => {
 
@@ -19,21 +18,9 @@ const EmployeeProfileCard = () => {
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [openPayment, setOpenPayment] = useState(false);
-  const [openPersonal, setOpenPersonal] = useState(false);
   const [name, setName]= useState();
   const [location, setLocation]= useState();
   const [paycare, setPaycare]= useState();
-  const [number, setNumber]= useState();
-  const [code, setCode]= useState();
-  const [origin, setOrigin]= useState();
-  const [bank, setBank]= useState();
-  const [address, setAddress]= useState();
-  const [ dateOfBirth, setDateOfBirth]= useState();
-  const [sex, setSex]= useState();
-  const [nextName, setNextName]= useState();
-  const [nextAddress, setNextAddress]= useState();
-  const [nextNumber, setNextNumber]= useState();
-  const [Relation, setRelation]= useState();
  
   
 
@@ -100,29 +87,6 @@ const EmployeeProfileCard = () => {
     setOpenPayment(false)
 }
 
-const  handlePersonal = ( name,number,code,origin,bank,address,dateOfBirth,sex,nextName,nextAddress,nextNumber,Relation) => {
-  setName(name) 
-  setNumber(number) 
-  setCode(code) 
-  setOrigin(origin) 
-  setBank(bank) 
-  setAddress(address) 
-  setDateOfBirth(dateOfBirth) 
-  setSex(sex)
-  setNextName(nextName)
-  setNextAddress(nextAddress)
-  setNextNumber(nextNumber)
-  setRelation(Relation)
-
-  }
-  const  closehandlePersonal = () => {
-    setOpenPayment(false)
-}
-
-
-  setPaycare(healthCare)
-
-
 
 if (!employeeData || !employeeData.employee) {
   // If employeeData or employeeData.employee is not yet available, show a loading message or handle the case appropriately
@@ -161,12 +125,12 @@ console.log(grossIncome, country)
         {/* Buttons */}
         <Grid container spacing={2} justify="center" alignItems="center">
           <Grid item>
-            <Button  variant="outlined" color="primary">
+            <Button variant="outlined" color="primary">
               Add Photo
             </Button>
-          </Grid>  
+          </Grid>
           <Grid item>
-            <Button  onClick={()=>handlePersonal( name,number,code,origin,bank,address,dateOfBirth,sex,nextName,nextAddress,nextNumber,Relation) }variant="outlined" color="primary">
+            <Button variant="outlined" color="primary">
               Personal
             </Button>
           </Grid>
@@ -218,23 +182,7 @@ console.log(grossIncome, country)
            close={closehandlePayment}
     
         />
-   {/* <PersonalDetail
-   open={openPersonal}
-   close={closehandlePersonal}
-   name={name}
-   number={number}
-   code={code}
-   origin={origin}
-   bank ={bank}
-   address={address}
-   dateOfBirth={dateOfBirth}
-   sex={sex}
-   nextName={nextName}
-   nextAddress={nextAddress}
-   nextNumber={nextNumber}
-  relation={Relation} 
         
-        /> */}
     </>
   );
 }
