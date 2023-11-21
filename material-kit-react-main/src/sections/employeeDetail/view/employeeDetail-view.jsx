@@ -19,6 +19,7 @@ const EmployeeProfileCard = () => {
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [openPayment, setOpenPayment] = useState(false);
+  const [openPersonal, setOpenPersonal] = useState(true);
   const [name, setName]= useState();
   const [location, setLocation]= useState();
   const [paycare, setPaycare]= useState();
@@ -84,8 +85,20 @@ const EmployeeProfileCard = () => {
     // Handle edit recommendation event
   };
 
-  const handleEditPersonal = () => {
-    // Handle edit personal details event
+  const handleEditPersonal = (name,number,code,origin,bank,address,dateOfBirth,sex,nextName,nextAddress,nextNumber,Relation) => {
+    setOpenPersonal()
+    setName(name) 
+    setNumber(number) 
+    setCode(code) 
+    setOrigin(origin) 
+    setBank(bank) 
+    setAddress(address) 
+    setDateOfBirth(dateOfBirth) 
+    setSex(sex)
+    setNextName(nextName)
+    setNextAddress(nextAddress)
+    setNextNumber(nextNumber)
+    setRelation(Relation)
   };
  const  handlePayment = (name,country,healthCare,iou,loan,benefitInKind) => {
   setName(name)
@@ -141,7 +154,7 @@ console.log(grossIncome, country)
             </Button>
           </Grid>
           <Grid item>
-            <Button variant="outlined" color="primary">
+            <Button onClick={()=>handleEditPersonal( name,number,code,origin,bank,address,dateOfBirth,sex,nextName,nextAddress,nextNumber,Relation) } variant="outlined" color="primary">
               Personal
             </Button>
           </Grid>
@@ -194,8 +207,8 @@ console.log(grossIncome, country)
     
         />
         <PersonalDetail
-        //  open={openPersonal}
-        //  close={closehandlePersonal}
+         open={openPersonal}
+         close={closehandlePersonal}
          name={name}
          number={number}
          code={code}
