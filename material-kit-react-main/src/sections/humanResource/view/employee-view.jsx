@@ -417,73 +417,62 @@ const combinedStyles = {
            />
          </div>
          <br />
-     
-         <div style={futuristicStyles.tableContainer}>
-           <table style={futuristicStyles.table}>
-             <thead style={futuristicStyles.tableHead}>
-               <tr>
-                 <th style={futuristicStyles.tableHeadCell}>Employee</th>
-                 <th style={futuristicStyles.tableHeadCell}>Name</th>
-                 <th style={futuristicStyles.tableHeadCell}>Sex</th>
-                 <th style={futuristicStyles.tableHeadCell}>Designation</th>
-                 <th style={futuristicStyles.tableHeadCell}>Department</th>
-                 <th style={futuristicStyles.tableHeadCell}>Unique code</th>           
-                 <th style={futuristicStyles.tableHeadCell}>Bank Name</th>
-                 <th style={futuristicStyles.tableHeadCell}>Account Number</th>
-                 <th style={futuristicStyles.tableHeadCell}>Action</th>   
-               </tr>
-             </thead>
-             <tbody>
-               {paginatedRows.map((row) => {
-                 return (
-                   <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-                     <td style={futuristicStyles.tableBodyRow}>
-                       <Link
-                         to={`/employee-detail/${row.imagePath}`}
-                         style={{ textDecoration: 'none', color: 'white' }}
-                       >
-                        <Avatar alt="Remy Sharp" src={row.imagePath} />
-                       </Link>{' '}
-                     </td>
-                  
-                     <td style={futuristicStyles.tableBodyCell}>
-                                <ButtonBase onClick={() => handleOpenDialog(row)}>
-            {row.employeeName}
-                       </ButtonBase>
-                     </td>
-   
-                     <td style={futuristicStyles.tableBodyCell}>
-                       {row.sex}
-                     </td>
-   
-                     <td style={futuristicStyles.tableBodyCell}>
-                       { row.designation && row.designation.designation }
-                     </td>
-                     <td style={futuristicStyles.tableBodyCell}>
-                       {row.department}
-                     </td>
-   
-                     <td style={futuristicStyles.tableBodyCell}>
-                       {row.employeeCode}
-                     </td>
-                     <td style={futuristicStyles.tableBodyCell}>
-                       {row.bankName}
-                     </td>
-                     <td style={futuristicStyles.tableBodyCell}>
-                       {row.accountNumber}
-                     </td>
-                     <td style={futuristicStyles.tableBodyCell}>
-                     <IconButton onClick={handleOpenMenu}>
-            <Iconify icon="eva:more-vertical-fill" />
-          </IconButton>
-                   </td>
-                   </tr>
-   
-                 );
-               })}
-             </tbody>
-           </table>
-         </div>
+         <div style={combinedStyles.tableContainer}>
+  <table style={combinedStyles.table}>
+    <thead style={combinedStyles.tableHead}>
+      <tr>
+        <th style={combinedStyles.tableHeadCell}>Employee</th>
+        <th style={combinedStyles.tableHeadCell}>Name</th>
+        <th style={combinedStyles.tableHeadCell}>Sex</th>
+        <th style={combinedStyles.tableHeadCell}>Designation</th>
+        <th style={combinedStyles.tableHeadCell}>Department</th>
+        <th style={combinedStyles.tableHeadCell}>Unique code</th>
+        <th style={combinedStyles.tableHeadCell}>Bank Name</th>
+        <th style={combinedStyles.tableHeadCell}>Account Number</th>
+        <th style={combinedStyles.tableHeadCell}>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {paginatedRows.map((row) => {
+        return (
+          <tr key={row.id} style={combinedStyles.tableBodyRow}>
+            <td style={combinedStyles.tableBodyRow}>
+              <Link
+                to={`/employee-detail/${row.imagePath}`}
+                style={{ textDecoration: 'none', color: 'white' }}
+              >
+                <Avatar alt="Remy Sharp" src={row.imagePath} />
+              </Link>{' '}
+            </td>
+
+            <td style={combinedStyles.tableBodyCell}>
+              <ButtonBase onClick={() => handleOpenDialog(row)}>
+                {row.employeeName}
+              </ButtonBase>
+            </td>
+
+            <td style={combinedStyles.tableBodyCell}>{row.sex}</td>
+
+            <td style={combinedStyles.tableBodyCell}>
+              {row.designation && row.designation.designation}
+            </td>
+            <td style={combinedStyles.tableBodyCell}>{row.department}</td>
+
+            <td style={combinedStyles.tableBodyCell}>{row.employeeCode}</td>
+            <td style={combinedStyles.tableBodyCell}>{row.bankName}</td>
+            <td style={combinedStyles.tableBodyCell}>{row.accountNumber}</td>
+            <td style={combinedStyles.tableBodyCell}>
+              <IconButton onClick={handleOpenMenu}>
+                <Iconify icon="eva:more-vertical-fill" />
+              </IconButton>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>;
+
          <br />
    
          {
