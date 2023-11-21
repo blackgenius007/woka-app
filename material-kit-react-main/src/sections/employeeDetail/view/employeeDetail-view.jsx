@@ -10,6 +10,7 @@ import face from '/assets/images/avatars/avatar_25.jpg';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PaymentDetail from './paymentDetail';
+import PersonalDetail from './personalDetail';
 
 const EmployeeProfileCard = () => {
 
@@ -21,7 +22,17 @@ const EmployeeProfileCard = () => {
   const [name, setName]= useState();
   const [location, setLocation]= useState();
   const [paycare, setPaycare]= useState();
- 
+  const [number, setNumber]= useState();
+  const [code, setCode]= useState();
+  const [origin, setOrigin]= useState();
+  const [bank, setBank]= useState();
+  const [address, setAddress]= useState();
+  const [ dateOfBirth, setDateOfBirth]= useState();
+  const [sex, setSex]= useState();
+  const [nextName, setNextName]= useState();
+  const [nextAddress, setNextAddress]= useState();
+  const [nextNumber, setNextNumber]= useState();
+  const [Relation, setRelation]= useState();
   
 
   useEffect(() => {
@@ -182,7 +193,23 @@ console.log(grossIncome, country)
            close={closehandlePayment}
     
         />
+        <PersonalDetail
+        //  open={openPersonal}
+        //  close={closehandlePersonal}
+         name={name}
+         number={number}
+         code={code}
+         origin={origin}
+         bank ={bank}
+         address={address}
+         dateOfBirth={dateOfBirth}
+         sex={sex}
+         nextName={nextName}
+         nextAddress={nextAddress}
+         nextNumber={nextNumber}
+        relation={Relation} 
         
+        />
     </>
   );
 }
