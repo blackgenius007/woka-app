@@ -218,7 +218,7 @@ console.log(grossIncome, country)
            close={closehandlePayment}
     
         />
-   <PersonalDetail
+   {/* <PersonalDetail
    open={openPersonal}
    close={closehandlePersonal}
    name={name}
@@ -234,7 +234,7 @@ console.log(grossIncome, country)
    nextNumber={nextNumber}
   relation={Relation} 
         
-        />
+        /> */}
     </>
   );
 }
