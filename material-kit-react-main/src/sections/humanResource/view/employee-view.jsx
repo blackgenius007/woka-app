@@ -442,8 +442,7 @@ const combinedStyles = {
          onChange={handleDepartmentChange}
          value={null}
          placeholder="Select a Department"
-        
-      />
+         style={{ width: '100px' }}  
 
 {/* Button */}
 <Button onClick={(e)=>handleDepartmentView(e)} variant="contained" color="primary">
