@@ -188,6 +188,7 @@ const combinedStyles = {
      const [selectDept, setSelectDept] = useState([]);
      const [isUploadVisible, setUploadVisible] = useState(false);
      const [options, setOptions] = useState([]);
+     const [department, setDepartment] = useState('');
      const [images, setImages] = useState({});
      const [url, setUrl] = useState({});
      const [uploadedFile, setUploadedFile] = useState({});
