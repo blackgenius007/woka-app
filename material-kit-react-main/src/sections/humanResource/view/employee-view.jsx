@@ -410,7 +410,22 @@ const combinedStyles = {
 <Button variant="contained" color="primary">
  Open
 </Button>
-<Tooltip title="Manage Employee Attendance">
+<Tooltip
+      title="Manage Employee Attendance"
+      arrow
+      enterTouchDelay={0}
+      leaveTouchDelay={1500}
+      sx={{
+        fontWeight: 'bold', // Make it bolder
+        backgroundColor: '#2196F3', // Background color
+        color: '#fff', // Text color
+        animation: 'fade-in 0.3s ease-out', // Add fade-in animation
+        '@keyframes fade-in': {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+      }}
+    >
   <Icon icon="arcticons:simple-time-tracker" width="50" height="50" hFlip={true} />
   </Tooltip>
 
