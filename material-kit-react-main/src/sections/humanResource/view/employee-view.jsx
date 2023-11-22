@@ -409,7 +409,7 @@ const combinedStyles = {
 <Button variant="contained" color="primary">
  Open
 </Button>
-<Icon icon="arcticons:simple-time-tracker" hFlip={true} />
+<Icon icon="arcticons:simple-time-tracker" width="50" height="50" hFlip={true} />
          </div>
          <br />
          <div style={combinedStyles.tableContainer}>
