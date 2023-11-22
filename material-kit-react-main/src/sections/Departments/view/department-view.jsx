@@ -23,6 +23,7 @@
  
  
     import {retrieveAllEmployees,
+        selectEmployeesByDepartment,
     retrieveEmployeeById,
     updateEmployeeById,
     deleteEmployeeById,
@@ -162,8 +163,13 @@ const combinedStyles = {
      const navigate = useNavigate();
      const dispatch = useDispatch();
      const hiddenFileInput = React.useRef(null);
+
+           // Department filtering selector function from employeeSlice
+  const employees = useSelector((state) =>
+  selectEmployeesByDepartment(state, unit)
+);
    
-     const { employees, isLoading, isError, message } = useSelector(
+     const {  isLoading, isError, message } = useSelector(
         (state) => state.employees
       );
  
