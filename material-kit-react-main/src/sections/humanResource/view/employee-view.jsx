@@ -401,7 +401,7 @@ const combinedStyles = {
              }}
            />
            {/* react-dropdown */}
-      <Dropdown options={options} onChange={handleDropdownChange} value={selectedOption} placeholder="Select a department" />
+      <Dropdown  onChange={handleDropdownChange} value={selectedOption} placeholder="Select a department" />
 
 {/* Button */}
 <Button variant="contained" color="primary">
