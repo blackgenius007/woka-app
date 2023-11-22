@@ -42,6 +42,7 @@
    import { Typography, Chip, Grid } from '@mui/material';
    import { styled } from '@mui/material/styles';
    import IconButton from '@mui/material/IconButton';
+   import { Popup } from 'semantic-ui-react';
    import { InputAdornment } from '@mui/material';
    import CloseIcon from '@mui/icons-material/Close';
  
@@ -409,7 +410,15 @@ const combinedStyles = {
 <Button variant="contained" color="primary">
  Open
 </Button>
-<Icon icon="arcticons:simple-time-tracker" width="50" height="50" hFlip={true} />
+<Popup
+trigger={
+  <Icon icon="arcticons:simple-time-tracker" width="50" height="50" hFlip={true} />
+}
+position="bottom center"
+>
+Manage Employee Attendance
+</Popup>
+
          </div>
          <br />
          <div style={combinedStyles.tableContainer}>
