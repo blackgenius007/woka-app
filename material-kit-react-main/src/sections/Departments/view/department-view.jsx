@@ -709,7 +709,7 @@ const combinedStyles = {
      );
    };
    
-   export default function MainPage() {
+   export default function MainPage({ department }) {
      const containerStyle = {
        display: 'flex',
        flexDirection: 'column',
