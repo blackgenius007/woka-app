@@ -16,6 +16,7 @@ export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const HomePage = lazy(() => import('src/components/Home/homePage'));
+export const DepartmentPage = lazy(() => import('src/pages/department'));
  
   
 export default function Router() {
