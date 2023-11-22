@@ -411,17 +411,19 @@ const combinedStyles = {
  Open
 </Button>
 <Tooltip
-      title="Delete"
+      title="Manage Employee Attendance"
       arrow
       enterTouchDelay={0}
       leaveTouchDelay={1500}
+      placement="top-end" // Display on top right
       sx={{
+        fontSize: '36px', // Increase font size x3
         fontWeight: 'bold', // Make it bolder
         backgroundColor: '#fff', // White background
         color: '#8B4513', // Brown text color
         border: '1px solid #8B4513', // Brown border
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Shadow
-        padding: '12px', // Add padding for larger size
+        padding: '24px', // Add padding for larger size
         animation: 'fade-in 0.3s ease-out', // Add fade-in animation
         '@keyframes fade-in': {
           from: { opacity: 0 },
