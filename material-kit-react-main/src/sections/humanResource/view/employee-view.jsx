@@ -542,7 +542,7 @@ const combinedStyles = {
       })}
     </tbody>
   </table>
-</div>;
+</div> 
 
          <br />
    
