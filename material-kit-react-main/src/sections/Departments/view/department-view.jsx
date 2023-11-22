@@ -751,7 +751,7 @@ New Employee
       </Stack>
       <Scrollbar>
       <TableContainer sx={{ overflow: 'unset' }}>
-      <FilterableTable unit={department} drawer={toggleSidebar} />
+      <FilterableTable   drawer={toggleSidebar} />
          </TableContainer>
         </Scrollbar>
           </Container>
