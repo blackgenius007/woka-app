@@ -10,13 +10,14 @@ export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
 export const UserPage = lazy(() => import('src/pages/user'));
 export const EmployeePage = lazy(() => import('src/pages/employee'));
+export const DepartmentPage = lazy(() => import('src/pages/department'));
 export const EmployeeDetailPage = lazy(() => import('src/pages/employeeDetail'));
 export const NewEmployeePage = lazy(() => import('src/pages/newEmployeeForm'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const HomePage = lazy(() => import('src/components/Home/homePage'));
-export const DepartmentPage = lazy(() => import('src/pages/department'));
+
  
   
 export default function Router() {
@@ -46,6 +47,7 @@ export default function Router() {
         <Route path="employee" element={<EmployeePage />} />
         <Route path="new-employee" element={<NewEmployeePage />} />
         <Route path="employee-detail/:id" element={< EmployeeDetailPage />} />
+        <Route path="/department-view/:department" element={< DepartmentPage/>} />
       </Route>
       <Route path="login" element={<LoginPage />} />
       <Route path="404" element={<Page404 />} />
