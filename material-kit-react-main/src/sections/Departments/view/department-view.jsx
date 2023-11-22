@@ -23,6 +23,7 @@
  
  
     import {retrieveAllEmployees,
+        selectEmployeesByDepartment,
     retrieveEmployeeById,
     updateEmployeeById,
     deleteEmployeeById,
@@ -178,7 +179,7 @@ const combinedStyles = {
      const [avatar, setAvatar] = useState(false);
      const [dateOffset, setDateOffset] = useState(7);
      const [open, setOpen] = useState(null);
-     
+
             // Pagination state
             const [page, setPage] = useState(0);
             const [rowsPerPage, setRowsPerPage] = useState(10);
