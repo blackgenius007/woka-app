@@ -718,6 +718,7 @@ const combinedStyles = {
    };
    
    export default function MainPage() {
+    const { unit } = useParams();
      const containerStyle = {
        display: 'flex',
        flexDirection: 'column',
