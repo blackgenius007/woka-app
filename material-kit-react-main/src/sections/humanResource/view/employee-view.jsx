@@ -186,7 +186,7 @@ const combinedStyles = {
      const [openEditDialog, setOpenEditDialog] = useState(false);
      const [selectedEmployee, setSelectedEmployee] = useState(null);
      const [isUploadVisible, setUploadVisible] = useState(false);
-   
+     const [options, setOptions] = useState([]);
      const [images, setImages] = useState({});
      const [url, setUrl] = useState({});
      const [uploadedFile, setUploadedFile] = useState({});
@@ -221,11 +221,42 @@ const combinedStyles = {
          });
          setFilteredRows(filtered);
        };
+
+       const fetchDepartmentData = async () => {
+        try {
+          // Map the department data to an array of options
+          const departmentOptions = user.data.departmentAdded.map(
+            (department, i) => ({
+              value: i,
+              label: department.replace(/\\/g, '').replace(/"/g, '').trim(),
+            })
+          );
+  
+          setOptions(departmentOptions);
+        } catch (error) {
+          console.error('Error fetching department data:', error);
+        }
+      };
+
+      //call department option function
+      fetchDepartmentData();
    
-       // Call the function whenever search term or inmates data changes
+       // Call the function whenever search term or employee data changes
        updateFilteredRows();
      }, [searched, employees]);
+
+     const defaultOption = selectDept['Select Department'];
+     const defaultOption2 = selectOptions['Select Designation'];
+     const handleDepartmentChange = (e) => {
+       setDepartment(e.label);
+       console.log(e.label);
+     };
     
+     // redirect to department view
+     const handleDepartmentView=()=>{
+      navigate(`/department-view/${department}`);
+    }
+
      const handleLinkClick =()=>{
       alert('')
      }
@@ -404,10 +435,16 @@ const combinedStyles = {
              }}
            />
            {/* react-dropdown */}
-      <Dropdown    placeholder="Select a department" />
+      <Dropdown 
+         options={options}
+         onChange={handleDepartmentChange}
+         value={null}
+         placeholder="Select a Department"
+        
+      />
 
 {/* Button */}
-<Button variant="contained" color="primary">
+<Button onClick={(e)=>handleDepartmentView(e)} variant="contained" color="primary">
  Open
 </Button>
 <Tooltip
