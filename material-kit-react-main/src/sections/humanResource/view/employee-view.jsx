@@ -185,6 +185,7 @@ const combinedStyles = {
      const [openDialog, setOpenDialog] = useState(false);
      const [openEditDialog, setOpenEditDialog] = useState(false);
      const [selectedEmployee, setSelectedEmployee] = useState(null);
+     const [selectDept, setSelectDept] = useState([]);
      const [isUploadVisible, setUploadVisible] = useState(false);
      const [options, setOptions] = useState([]);
      const [images, setImages] = useState({});
@@ -245,8 +246,8 @@ const combinedStyles = {
        updateFilteredRows();
      }, [searched, employees]);
 
-     const defaultOption = selectDept['Select Department'];
-     const defaultOption2 = selectOptions['Select Designation'];
+    //  const defaultOption = selectDept['Select Department'];
+     
      const handleDepartmentChange = (e) => {
        setDepartment(e.label);
        console.log(e.label);
