@@ -13,6 +13,7 @@
    import Stack from '@mui/material/Stack';
    import Iconify from 'src/components/iconify';
    import Scrollbar from 'src/components/scrollbar';
+   import Dropdown from 'react-dropdown';
    import moment from 'moment';
 //    import face from '../../assets/img/face-0.jpg';
     
@@ -399,6 +400,13 @@ const combinedStyles = {
                ),
              }}
            />
+           {/* react-dropdown */}
+      <Dropdown options={options} onChange={handleDropdownChange} value={selectedOption} placeholder="Select a department" />
+
+{/* Button */}
+<Button variant="contained" color="primary">
+  Your Button
+</Button>
          </div>
          <br />
          <div style={combinedStyles.tableContainer}>
@@ -419,7 +427,7 @@ const combinedStyles = {
        
       </tr>
     </thead>
-    </Hidden> 
+     </Hidden> 
     <tbody>
       {paginatedRows.map((row) => {
         return (

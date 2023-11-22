@@ -1,6 +1,5 @@
 /* scrollbar */
 @import 'simplebar-react/dist/simplebar.min.css';
-/* Responsive styles */
 @media (max-width: 700px) {
     /* Hide header cells */
     thead th {
