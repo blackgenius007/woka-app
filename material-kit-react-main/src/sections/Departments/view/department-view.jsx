@@ -159,7 +159,7 @@ const combinedStyles = {
      onClose: PropTypes.func.isRequired,
    };
    
-   const FilterableTable = ({ drawer }) => {
+   const FilterableTable = ({ unit,drawer }) => {
      const navigate = useNavigate();
      const dispatch = useDispatch();
      const hiddenFileInput = React.useRef(null);
@@ -742,7 +742,7 @@ New Employee
       </Stack>
       <Scrollbar>
       <TableContainer sx={{ overflow: 'unset' }}>
-         <FilterableTable drawer={toggleSidebar} />
+      <FilterableTable unit={department} drawer={toggleSidebar} />
          </TableContainer>
         </Scrollbar>
           </Container>
