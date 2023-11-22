@@ -3,6 +3,7 @@
 
    import React, { useState, useEffect, useRef } from 'react';
    import { useDispatch, useSelector } from 'react-redux';
+   import { useParams  } from 'react-router-dom';
    import TextField from '@mui/material/TextField';
    import { ButtonBase,Hidden } from '@mui/material';
    import Container from '@mui/material/Container';
@@ -159,9 +160,10 @@ const combinedStyles = {
      onClose: PropTypes.func.isRequired,
    };
    
-   const FilterableTable = ({ unit }) => {
+   const FilterableTable = ( ) => {
      const navigate = useNavigate();
      const dispatch = useDispatch();
+     const { unit } = useParams();
      const hiddenFileInput = React.useRef(null);
 
            // Department filtering selector function from employeeSlice
@@ -194,7 +196,7 @@ const combinedStyles = {
      const [selectDept, setSelectDept] = useState([]);
      const [isUploadVisible, setUploadVisible] = useState(false);
      const [options, setOptions] = useState([]);
-     const [department, setDepartment] = useState('');
+    //  const [department, setDepartment] = useState('');
      const [images, setImages] = useState({});
      const [url, setUrl] = useState({});
      const [uploadedFile, setUploadedFile] = useState({});

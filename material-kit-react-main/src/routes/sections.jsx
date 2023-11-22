@@ -47,7 +47,7 @@ export default function Router() {
         <Route path="employee" element={<EmployeePage />} />
         <Route path="new-employee" element={<NewEmployeePage />} />
         <Route path="employee-detail/:id" element={< EmployeeDetailPage />} />
-        <Route path="/department-view/:department" element={< DepartmentPage/>} />
+        <Route path="/department-view/:unit" element={< DepartmentPage/>} />
       </Route>
       <Route path="login" element={<LoginPage />} />
       <Route path="404" element={<Page404 />} />
