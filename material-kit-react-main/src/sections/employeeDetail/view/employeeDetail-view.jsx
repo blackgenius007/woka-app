@@ -11,6 +11,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PaymentDetail from './paymentDetail';
 import PersonalDetail from './personalDetail';
+import Ledger from './ledger';
 
 const EmployeeProfileCard = () => {
 
@@ -129,6 +130,9 @@ console.log(employeeName, department, createdAt,designation)
 console.log(grossIncome, country)
   return (
     <>
+<Grid container spacing={3}>
+    {/* Left Column */}
+    <Grid item xs={12} md={6}>
     <Card>
       <CardContent>
         {/* Avatar */}
@@ -229,6 +233,20 @@ console.log(grossIncome, country)
         close={closehandlePersonal}
         
         />
+    </Grid>
+
+    {/* Right Column */}
+    <Grid item xs={12} md={6}>
+     <Ledger/>
+    </Grid>
+  </Grid>
+
+
+
+
+
+
+   
     </>
   );
 }
