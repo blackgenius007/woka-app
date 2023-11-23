@@ -442,7 +442,7 @@ const combinedStyles = {
     <Dropdown 
       options={options}
       onChange={handleDepartmentChange}
-      value={null}
+      value={unit}
       placeholder="Select a Department"
       style={{ minWidth: '200px' }} // Set a minimum width
       contentRenderer={({ props, state }) => (
@@ -461,7 +461,7 @@ const combinedStyles = {
   <Dropdown 
     options={options}
     onChange={handleDepartmentChange}
-    value={unit}
+    value={null}
     placeholder="Select a Department"
     style={{ minWidth: '200px' }} // Set a minimum width
     contentRenderer={({ props, state }) => (
