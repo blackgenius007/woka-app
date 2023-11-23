@@ -21,10 +21,10 @@ import CreateIcon from '@mui/icons-material/Create';
 // import TextArea from '../HR/Files/textArea';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState } from 'draft-js';
-import AddFundsDialog from './AddFundsDialog ';
-import WithdrawFundsDialog from './WithdrawFundsDialog';
-import LoanIcon from '@mui/icons-material/LocalAtm';
-import loan from '../../../assets/svg/loan.svg';
+// import AddFundsDialog from './AddFundsDialog ';
+// import WithdrawFundsDialog from './WithdrawFundsDialog';
+// import LoanIcon from '@mui/icons-material/LocalAtm';
+// import loan from '../../../assets/svg/loan.svg';
 import {
   Dialog,
   DialogTitle,
