@@ -49,6 +49,7 @@ const Ledger = () => {
   const [collapseOpen, setCollapseOpen] = useState(false);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [messages, setMessages] = useState([]);
+  const [iouEntries, setiouEntries] = useState([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [complains, setComplains] = useState('Unpaid salary');
   const [queries, setQueries] = useState('Lateness to work 6/18/23');
