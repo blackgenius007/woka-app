@@ -38,8 +38,9 @@ import {
   TextField,
 } from '@mui/material';
 
-const Ledger = () => {
-  const { id } = useParams();
+const Ledger = ({healthCare,grossIncome,employeeId,country}) => {
+ 
+ 
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -86,21 +87,19 @@ const Ledger = () => {
 
   useEffect(() => {
     // Function to trigger financial data calculation
-    const calculateFinancialData = (employeeId, grossIncome, country) => {
-      console.log(
-        'front-calculateFinancialData:',
-        employeeId,
-        grossIncome,
-        country
-      );
-      dispatch(calculateTaxAsync({ employeeId, grossIncome, country }));
+    const calculateFinancialData = () => {
+      console.log('Calculating financial data for employee:', employeeId);
+
+      // Dispatch the action to calculate tax asynchronously
+      dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
     };
-  
-    // Call the function with appropriate arguments
-    calculateFinancialData(employeeId, grossIncome, country);
-  
+
+    // Call the function to calculate financial data
+    calculateFinancialData();
+
     // Specify the dependencies for useEffect
-  }, [employeeId, grossIncome, country, dispatch]);
+  }, [employeeId, grossIncome, country, healthCare, dispatch]);
+
   
 // Retrieve financial data from financialSlice
 const financialData = useSelector((state) => state.financial);

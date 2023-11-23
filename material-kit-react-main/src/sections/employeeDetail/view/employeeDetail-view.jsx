@@ -237,7 +237,12 @@ console.log(grossIncome, country)
 
     {/* Right Column */}
     <Grid item xs={12} md={6}>
-     <Ledger/>
+     <Ledger
+     healthCare={healthCare}
+     grossIncome={grossIncome}
+     country={country}
+     employeeId={id}
+     />
     </Grid>
   </Grid>
 
