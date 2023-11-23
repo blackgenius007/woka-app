@@ -457,18 +457,21 @@ const combinedStyles = {
       Open
     </Button>
   </>
-) : <Dropdown 
-options={options}
-onChange={handleDepartmentChange}
-value={unit}
-placeholder="Select a Department"
-style={{ minWidth: '200px' }} // Set a minimum width
-contentRenderer={({ props, state }) => (
-  <div style={{ minWidth: '200px' }}>
-    {state.values.length ? state.values.map((v) => <div key={v.value}>{v.label}</div>) : props.searchable ? props.noResultsText : props.placeholder}
-  </div>
+) : (
+  <Dropdown 
+    options={options}
+    onChange={handleDepartmentChange}
+    value={unit}
+    placeholder="Select a Department"
+    style={{ minWidth: '200px' }} // Set a minimum width
+    contentRenderer={({ props, state }) => (
+      <div style={{ minWidth: '200px' }}>
+        {state.values.length ? state.values.map((v) => <div key={v.value}>{v.label}</div>) : props.searchable ? props.noResultsText : props.placeholder}
+      </div>
+    )}
+  />
 )}
-/>}
+
 
 <Tooltip
       title="Manage Employee Attendance"
