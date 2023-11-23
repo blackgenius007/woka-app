@@ -51,13 +51,36 @@ const getConsolidatedSalary = (income,country) => {
 };
 
 
-const calculateCRA = (consolidatedSalary) => {
-  const cra = Math.max(0.01 * consolidatedSalary, 200000) + 0.2 * consolidatedSalary;
+const calculateCRA = (grossIncome) => {
+  const cra =  200000+20/100*grossIncome;
   return cra;
 };
 
+
+const getPensionFund = (grossIncome) => {
+  const basicSalaryPercentage = 0.15;
+  const transportAllowancePercentage = 0.075;
+  const housingAllowancePercentage = 0.075;
+
+  const basicSalary = grossIncome * basicSalaryPercentage;
+  const transportAllowance = grossIncome * transportAllowancePercentage;
+  const housingAllowance = grossIncome * housingAllowancePercentage;
+
+  const sumOfValues = basicSalary + transportAllowance + housingAllowance;
+  const pension = (sumOfValues * 8) / 100;
+
+  return pension;
+};
+
+
+
+
+
+
+
 // Helper function to calculate tax payable
-const calculateTaxPayable = (chargeableIncome, taxBands) => {
+const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare) => {
+  const chargeableIncome = grossIncome-pensionFund-healthCare-cra
   let taxPayable = 0;
 
   for (let i = 0; i < taxBands.length; i++) {
@@ -78,10 +101,11 @@ const calculateTaxPayable = (chargeableIncome, taxBands) => {
 // Create asynchronous action for calculating tax
 export const calculateTaxAsync = createAsyncThunk(
   'financial/calculateTax',
-  async ({employeeId, grossIncome, country }, thunkAPI) => {
+  async ({employeeId, grossIncome, country,healthCare }, thunkAPI) => {
     console.log('from calculator:',employeeId, grossIncome, country )
     const consolidatedSalary = getConsolidatedSalary(grossIncome, country);
-    const cra = calculateCRA(consolidatedSalary);
+    const cra = calculateCRA(grossIncome);
+    const pensionFund  = getPensionFund(grossIncome)
 
     let taxBands = [];
     if (country === 'Nigeria') {
@@ -105,10 +129,11 @@ export const calculateTaxAsync = createAsyncThunk(
       ];
     }
 
-    const chargeableIncome = consolidatedSalary - cra;
     
-    const taxPayable = calculateTaxPayable(chargeableIncome, taxBands);
+    
+    const taxPayable = calculateTaxPayable(grossIncome,taxBands,pensionFund,cra,healthCare);
 
+ 
     const annualTaxPayable = taxPayable;
     const monthlyTaxPayable = annualTaxPayable / 12;
     const annualSalary = consolidatedSalary - annualTaxPayable;
@@ -121,6 +146,7 @@ export const calculateTaxAsync = createAsyncThunk(
       annualSalary,
       monthlySalary,
       cra,
+      pensionFund
       // ... other calculated values
     };
 

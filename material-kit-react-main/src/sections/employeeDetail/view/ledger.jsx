@@ -4,9 +4,12 @@ import React, { useState, useEffect, useMemo } from 'react';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import { fNumber } from 'src/utils/format-number';
 import {
-  addLoan,
-  updateLoan,
-  loanPayOff,
+    calculateTaxAsync,
+    addAllowance,
+    allowanceReset,
+    addOvertime,
+    addIOU,
+    overtimeReset,
 } from '../../../Services/AccountServices/financialSlice';
 import Collapsible from 'react-collapsible';
 import Grid from '@mui/material/Grid';
@@ -37,6 +40,7 @@ import {
 
 const Ledger = () => {
   const { id } = useParams();
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
   const [description, setDescription] = useState('');
@@ -50,6 +54,8 @@ const Ledger = () => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [messages, setMessages] = useState([]);
   const [iouEntries, setiouEntries] = useState([]);
+  const [iouDescription, setIOUDescription] = React.useState('');
+  const [iouAmount, setIOUAmount] = React.useState(0);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [complains, setComplains] = useState('Unpaid salary');
   const [queries, setQueries] = useState('Lateness to work 6/18/23');
@@ -59,8 +65,8 @@ const Ledger = () => {
     return storedTodos ? JSON.parse(storedTodos) : [];
   });
   const [newTodo, setNewTodo] = useState('');
-
   const [confirmationOpen, setConfirmationOpen] = useState(false);
+  
   // const [amount, setAmount] = useState({});
   const [currentLoan, setCurrentLoan] = useState(0);
   const [message, setMessage] = useState('');
@@ -78,6 +84,28 @@ const Ledger = () => {
     setText(e.target.value);
   };
 
+  useEffect(() => {
+    // Function to trigger financial data calculation
+    const calculateFinancialData = (employeeId, grossIncome, country) => {
+      console.log(
+        'front-calculateFinancialData:',
+        employeeId,
+        grossIncome,
+        country
+      );
+      dispatch(calculateTaxAsync({ employeeId, grossIncome, country }));
+    };
+  
+    // Call the function with appropriate arguments
+    calculateFinancialData(employeeId, grossIncome, country);
+  
+    // Specify the dependencies for useEffect
+  }, [employeeId, grossIncome, country, dispatch]);
+  
+// Retrieve financial data from financialSlice
+const financialData = useSelector((state) => state.financial);
+console.log('financial-data :',financialData);
+  
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
@@ -355,157 +383,7 @@ const Ledger = () => {
         </div>
       </div>
       <span>{message}</span>
-      <Collapsible
-        trigger={
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            size="large"
-            color="secondary"
-            // disabled={isLoading}
-            // onClick={handleFinalSubmit}
-          >
-            Petty Cash
-          </Button>
-        }
-      >
-        <div
-          style={{
-            fontFamily: 'Arial, sans-serif',
-            color: '#fff',
-            background: '#1a1a1a',
-            padding: '10px',
-            borderRadius: '8px',
-            boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
-          }}
-        >
-          {/* Your Employee Details section remains here */}
-
-          {/* Modified Ledger Component */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <label htmlFor="description" style={{ marginBottom: '5px' }}>
-              Description:
-            </label>
-            <input
-              type="text"
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              style={{
-                padding: '3px',
-                fontSize: '12px',
-                width: '100%',
-                maxWidth: '150px',
-                marginBottom: '5px',
-              }}
-            />
-            <label htmlFor="amount" style={{ marginBottom: '5px' }}>
-              Amount:
-            </label>
-            <input
-              type="number"
-              id="amount"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              style={{
-                padding: '3px',
-                fontSize: '12px',
-                width: '100%',
-                maxWidth: '80px',
-                marginBottom: '5px',
-              }}
-            />
-            <button
-              onClick={addEntry}
-              style={{
-                background: '#00aaff',
-                color: '#fff',
-                padding: '3px 8px',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                fontSize: '12px',
-                marginBottom: '5px',
-              }}
-            >
-              Add Entry
-            </button>
-            <button
-              onClick={addBalance}
-              style={{
-                background: '#00aaff',
-                color: '#fff',
-                padding: '3px 8px',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                fontSize: '12px',
-                marginBottom: '5px',
-              }}
-            >
-              Add to Balance
-            </button>
-          </div>
-          <ul style={{ margin: '10px 0', padding: '0', listStyle: 'none' }}>
-            {entries.map((entry, index) => (
-              <li
-                key={index}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  margin: '5px 0',
-                  padding: '5px',
-                  backgroundColor: '#222',
-                  borderRadius: '5px',
-                }}
-              >
-                <span
-                  style={{
-                    flex: '1',
-                    fontSize: '12px',
-                    fontFamily: 'Your-Handwriting-Font, cursive',
-                    textAlign: 'center',
-                  }}
-                >
-                  {entry.description}
-                </span>
-                <span
-                  style={{
-                    flex: '0 0 60px',
-                    textAlign: 'right',
-                    fontSize: '12px',
-                    fontFamily: 'Your-Handwriting-Font, cursive',
-                  }}
-                >
-                  {entry.amount}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <div>
-            <p style={{ margin: '3px 0', fontSize: '12px' }}>
-              Opening Balance: {fNumber (openingBalance)}
-            </p>
-            <p style={{ margin: '3px 0', fontSize: '12px' }}>
-              Closing Balance: {fNumber(closingBalance)}
-            </p>
-            <p style={{ margin: '3px 0', fontSize: '12px' }}>
-              Total Cost of Entries:{' '}
-              {fNumber(
-                entries.reduce((total, entry) => total + entry.amount, 0)
-              )}
-            </p>
-          </div>
-        </div>
-      </Collapsible>
+    
       {/* New Collapsible for IOUs */}
       <Collapsible
         trigger={
@@ -516,7 +394,7 @@ const Ledger = () => {
             size="large"
             color="secondary"
           >
-            IOUs
+            Record IOUs
           </Button>
         }
       >
