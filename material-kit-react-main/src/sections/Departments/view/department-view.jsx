@@ -445,23 +445,40 @@ const combinedStyles = {
              }}
            />
            {/* react-dropdown */}
-      <Dropdown 
-           options={options}
-           onChange={handleDepartmentChange}
-           value={null}
-           placeholder="Select a Department"
-           style={{ minWidth: '200px' }} // Set a minimum width
-           contentRenderer={({ props, state }) => (
-             <div style={{ minWidth: '200px' }}>
-               {state.values.length ? state.values.map((v) => <div key={v.value}>{v.label}</div>) : props.searchable ? props.noResultsText : props.placeholder}
-             </div>
-           )}
-      />
+           {unit ? (
+  <>
+    <Dropdown 
+      options={options}
+      onChange={handleDepartmentChange}
+      value={unit}
+      placeholder="Select a Department"
+      style={{ minWidth: '200px' }} // Set a minimum width
+      contentRenderer={({ props, state }) => (
+        <div style={{ minWidth: '200px' }}>
+          {state.values.length ? state.values.map((v) => <div key={v.value}>{v.label}</div>) : props.searchable ? props.noResultsText : props.placeholder}
+        </div>
+      )}
+    />
 
-{/* Button */}
-<Button onClick={(e)=>handleDepartmentView(e)} variant="contained" color="primary">
- Open
-</Button>
+    {/* Button */}
+    <Button onClick={(e) => handleDepartmentView(e)} variant="contained" color="primary">
+      Open
+    </Button>
+  </>
+) : (
+  <Dropdown 
+    options={options}
+    onChange={handleDepartmentChange}
+    value={null}
+    placeholder="Select a Department"
+    style={{ minWidth: '200px' }} // Set a minimum width
+    contentRenderer={({ props, state }) => (
+      <div style={{ minWidth: '200px' }}>
+        {state.values.length ? state.values.map((v) => <div key={v.value}>{v.label}</div>) : props.searchable ? props.noResultsText : props.placeholder}
+      </div>
+    )}
+  />
+)}
 <Tooltip
       title="Manage Employee Attendance"
       arrow
