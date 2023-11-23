@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import { fNumber } from 'src/utils/format-number';
 import {
   addLoan,
   updateLoan,
@@ -490,14 +491,14 @@ const Ledger = () => {
           </ul>
           <div>
             <p style={{ margin: '3px 0', fontSize: '12px' }}>
-              Opening Balance:{toMoney(openingBalance)}
+              Opening Balance: {fNumber (openingBalance)}
             </p>
             <p style={{ margin: '3px 0', fontSize: '12px' }}>
-              Closing Balance: {toMoney(closingBalance)}
+              Closing Balance: {fNumber(closingBalance)}
             </p>
             <p style={{ margin: '3px 0', fontSize: '12px' }}>
               Total Cost of Entries:{' '}
-              {toMoney(
+              {fNumber(
                 entries.reduce((total, entry) => total + entry.amount, 0)
               )}
             </p>
@@ -636,10 +637,10 @@ const Ledger = () => {
         <DialogContent>
           <DialogContentText>
             <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-              Loan Amount: <strong>{toMoney(loan.loanAmount)}</strong>
+              Loan Amount: <strong>{fNumber(loan.loanAmount)}</strong>
             </div>
             <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-              Minimum Repay: <strong>{toMoney(loan.minimumRepay)}</strong>
+              Minimum Repay: <strong>{fNumber(loan.minimumRepay)}</strong>
             </div>
             <div style={{ marginBottom: '10px', fontSize: '14px' }}>
               Repay Date: <strong>{repayDate}</strong>
