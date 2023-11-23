@@ -428,7 +428,7 @@ const combinedStyles = {
          >
               {/* Button */}
     <Button onClick={(e) => handleDepartmentView(e)} variant="contained" color="secondary">
-    <Icon icon="material-symbols-light:arrow-back-ios-rounded" width="50" height="50" rotate={2} hFlip={true} />
+    <Icon icon="material-symbols-light:arrow-back-ios-rounded" width="25" height="25" rotate={2} hFlip={true} />
     </Button>
   
            <TextField
