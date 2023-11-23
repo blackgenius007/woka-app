@@ -185,7 +185,6 @@ const combinedStyles = {
      const [openDialog, setOpenDialog] = useState(false);
      const [openEditDialog, setOpenEditDialog] = useState(false);
      const [selectedEmployee, setSelectedEmployee] = useState(null);
-     const [selectedValue, setSelectedValue] = useState(null);
      const [selectDept, setSelectDept] = useState([]);
      const [isUploadVisible, setUploadVisible] = useState(false);
      const [options, setOptions] = useState([]);
@@ -252,8 +251,6 @@ const combinedStyles = {
      
      const handleDepartmentChange = (e) => {
        setDepartment(e.label);
-       setSelectedValue(selected);
-       console.log(selected);
        console.log(e.label);
      };
     
@@ -440,24 +437,23 @@ const combinedStyles = {
              }}
            />
            {/* react-dropdown */}
-           <Dropdown
-        options={options}
-        onChange={handleDepartmentChange}
-        value={selectedValue}
-        placeholder="Select a Department"
-        style={{ minWidth: '200px' }}
-        contentRenderer={({ props, state }) => (
-          <div style={{ minWidth: '200px' }}>
-            {state.values.length ? state.values.map((v) => <div key={v.value}>{v.label}</div>) : props.searchable ? props.noResultsText : props.placeholder}
-          </div>
-        )}
+      <Dropdown 
+           options={options}
+           onChange={handleDepartmentChange}
+           value={null}
+           placeholder="Select a Department"
+           style={{ minWidth: '200px' }} // Set a minimum width
+           contentRenderer={({ props, state }) => (
+             <div style={{ minWidth: '200px' }}>
+               {state.values.length ? state.values.map((v) => <div key={v.value}>{v.label}</div>) : props.searchable ? props.noResultsText : props.placeholder}
+             </div>
+           )}
       />
-      {selectedValue && (
-        <button onClick={handleClickButton}>
-          {/* Button content */}
-          My Button
-        </button>
-      )}
+
+{/* Button */}
+<Button onClick={(e)=>handleDepartmentView(e)} variant="contained" color="primary">
+ Open
+</Button>
 <Tooltip
       title="Manage Employee Attendance"
       arrow
