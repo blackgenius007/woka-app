@@ -18,7 +18,7 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import CreateIcon from '@mui/icons-material/Create';
 // import UploadFiles from '../HR/Files/uploadFile';
 // import FileViewer from '../HR/Files/fileViewer';
-import TextArea from '../HR/Files/textArea';
+// import TextArea from '../HR/Files/textArea';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState } from 'draft-js';
 import AddFundsDialog from './AddFundsDialog ';
@@ -589,7 +589,7 @@ const Ledger = () => {
       <Collapsible open={collapseOpen}>
       <div>
       <h2> Comments</h2>
-      <textarea
+      {/* <textarea
         value={text}
         onChange={handleTextChange}
         style={{
@@ -603,7 +603,7 @@ const Ledger = () => {
           resize: 'vertical',
         }}
         placeholder="Type your elaborate text here..."
-      />
+      /> */}
       <p style={{ textAlign: 'right' }}>
         Character Count: {text.length}
       </p>
