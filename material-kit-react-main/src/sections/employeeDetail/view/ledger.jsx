@@ -114,7 +114,7 @@ const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
 
  
   
-  console.log('financial-data :', financialData && financialData.annualTaxPayable );
+  console.log('financial-data :', financialData && financialData.monthlySalary );
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
