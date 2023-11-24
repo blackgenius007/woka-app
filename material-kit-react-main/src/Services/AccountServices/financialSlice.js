@@ -103,8 +103,9 @@ const calculateTaxPayable = (grossIncome, taxBands, pensionFund, cra, healthCare
         taxPayable =
           0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
       }
+      return taxPayable;
     };
-    return taxPayable;
+
   } else if (country === 'Ghana') {
     calculateGhanaTax();
     // Add more countries as needed
