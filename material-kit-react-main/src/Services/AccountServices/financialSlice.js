@@ -81,7 +81,7 @@ const getPensionFund = (grossIncome) => {
 
 
 // Helper function to calculate tax payable
-const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare) => {
+const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare,country) => {
 if(country==='Nigeria'){
   const chargeableIncome = grossIncome-pensionFund-healthCare-cra
  
@@ -142,7 +142,7 @@ export const calculateTaxAsync = createAsyncThunk(
 
     
     
-    const taxPayable = calculateTaxPayable(grossIncome,taxBands,pensionFund,cra,healthCare);
+    const taxPayable = calculateTaxPayable(grossIncome,taxBands,pensionFund,cra,healthCare,country);
 
  
     const annualTaxPayable = taxPayable;
