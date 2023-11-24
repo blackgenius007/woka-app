@@ -106,9 +106,9 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
   // Retrieve financial data from financialSlice
   // const financialData = useSelector((state) => state.financial[employeeId]);
-  const financialData = useSelector((state) => state.financial['employeeId']) || {};
+  const monthlySalary = useSelector(state => state.financial.monthlySalary);
 
-  console.log('financial-data :', financialData);
+  console.log('financial-data-salary :', monthlySalary);
 
   // Save todos to local storage whenever it changes
   useEffect(() => {

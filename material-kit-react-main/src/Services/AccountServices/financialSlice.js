@@ -13,6 +13,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
+  employeeFinancials:{},
   message: '',
 
   // ... other financial data
@@ -275,7 +276,18 @@ const financialSlice = createSlice({
   name: 'financial',
   initialState,
   reducers: {
-    // Define other reducers if needed
+    // Add a reducer to handle updating the state with the calculated values
+    updateFinancialData: (state, action) => {
+      const { employeeId } = action.payload;
+return {
+  ...state,
+  [employeeId]: {
+    ...(state[employeeId] || {}),  // Use existing data if it exists
+    ...action.payload,
+  },
+};
+    },
+    // ... other reducers if needed
   },
   extraReducers: (builder) => {
     builder
