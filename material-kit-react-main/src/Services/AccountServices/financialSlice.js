@@ -87,32 +87,32 @@ const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare) =>
   
   let taxPayable = 0;
 
-  if (chargeableIncome < 300000) {
-    taxPayable = 0.07 * chargeableIncome;
-  } else if (chargeableIncome < 600000) {
-    taxPayable = 0.07 * 300000 + 0.11 * (chargeableIncome - 300000);
-  } else if (chargeableIncome < 1100000) {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * (chargeableIncome - 600000);
-  } else if (chargeableIncome < 1600000) {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * (chargeableIncome - 1100000);
-  } else if (chargeableIncome < 3200000) {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * (chargeableIncome - 1600000);
-  } else {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
-  }
-
-
-  // for (let i = 0; i < taxBands.length; i++) {
-  //   const { threshold, rate } = taxBands[i];
-  
-  //   if (chargeableIncome <= threshold) {
-  //     taxPayable += chargeableIncome * rate;
-  //     break;
-  //   } else {
-  //     const taxableAmount = Math.min(chargeableIncome, threshold) - (i > 0 ? taxBands[i - 1].threshold : 0);
-  //     taxPayable += taxableAmount * rate;
-  //   }
+  // if (chargeableIncome < 300000) {
+  //   taxPayable = 0.07 * chargeableIncome;
+  // } else if (chargeableIncome < 600000) {
+  //   taxPayable = 0.07 * 300000 + 0.11 * (chargeableIncome - 300000);
+  // } else if (chargeableIncome < 1100000) {
+  //   taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * (chargeableIncome - 600000);
+  // } else if (chargeableIncome < 1600000) {
+  //   taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * (chargeableIncome - 1100000);
+  // } else if (chargeableIncome < 3200000) {
+  //   taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * (chargeableIncome - 1600000);
+  // } else {
+  //   taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
   // }
+
+
+  for (let i = 0; i < taxBands.length; i++) {
+    const { threshold, rate } = taxBands[i];
+  
+    if (chargeableIncome <= threshold) {
+      taxPayable += chargeableIncome * rate;
+      break;
+    } else {
+      const taxableAmount = Math.min(chargeableIncome, threshold) - (i > 0 ? taxBands[i - 1].threshold : 0);
+      taxPayable += taxableAmount * rate;
+    }
+  }
 
   return taxPayable;
 };
