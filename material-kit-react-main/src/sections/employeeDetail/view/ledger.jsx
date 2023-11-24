@@ -107,7 +107,15 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   // Retrieve financial data from financialSlice
   // const financialData = useSelector((state) => state.financial[employeeId]);
   // Retrieve the financial data from Redux state
-  const financialData = useSelector((state) => state.financial[employeeId]);
+  const financialData = useSelector((state) => {
+    console.log('State:', state); // Log the entire state
+    return state.financial && state.financial[employeeId];
+  });
+  
+  console.log('financial-data-salary:', financialData);
+  if (!financialData) {
+    return <p>Loading...</p>;
+  }
  
   const annualTaxPayable = financialData['annualTaxPayable'];
   const monthlyTaxPayable = financialData['monthlyTaxPayable'];
