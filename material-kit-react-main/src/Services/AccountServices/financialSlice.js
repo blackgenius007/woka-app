@@ -52,12 +52,14 @@ const getConsolidatedSalary = (income,country) => {
 
 
 const calculateCRA = (grossIncome) => {
+  console.log('Calculate CRA =>',grossIncome)
   const cra =  200000+20/100*grossIncome;
   return cra;
 };
 
 
 const getPensionFund = (grossIncome) => {
+  console.log('Calculate pension =>',grossIncome)
   const basicSalaryPercentage = 0.15;
   const transportAllowancePercentage = 0.075;
   const housingAllowancePercentage = 0.075;
@@ -81,19 +83,36 @@ const getPensionFund = (grossIncome) => {
 // Helper function to calculate tax payable
 const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare) => {
   const chargeableIncome = grossIncome-pensionFund-healthCare-cra
+  // let taxPayable = 0;
+  
   let taxPayable = 0;
 
-  for (let i = 0; i < taxBands.length; i++) {
-    const { threshold, rate } = taxBands[i];
-  
-    if (chargeableIncome <= threshold) {
-      taxPayable += chargeableIncome * rate;
-      break;
-    } else {
-      const taxableAmount = Math.min(chargeableIncome, threshold) - (i > 0 ? taxBands[i - 1].threshold : 0);
-      taxPayable += taxableAmount * rate;
-    }
+  if (chargeableIncome < 300000) {
+    taxPayable = 0.07 * chargeableIncome;
+  } else if (chargeableIncome < 600000) {
+    taxPayable = 0.07 * 300000 + 0.11 * (chargeableIncome - 300000);
+  } else if (chargeableIncome < 1100000) {
+    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * (chargeableIncome - 600000);
+  } else if (chargeableIncome < 1600000) {
+    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * (chargeableIncome - 1100000);
+  } else if (chargeableIncome < 3200000) {
+    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * (chargeableIncome - 1600000);
+  } else {
+    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
   }
+
+
+  // for (let i = 0; i < taxBands.length; i++) {
+  //   const { threshold, rate } = taxBands[i];
+  
+  //   if (chargeableIncome <= threshold) {
+  //     taxPayable += chargeableIncome * rate;
+  //     break;
+  //   } else {
+  //     const taxableAmount = Math.min(chargeableIncome, threshold) - (i > 0 ? taxBands[i - 1].threshold : 0);
+  //     taxPayable += taxableAmount * rate;
+  //   }
+  // }
 
   return taxPayable;
 };
@@ -102,7 +121,7 @@ const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare) =>
 export const calculateTaxAsync = createAsyncThunk(
   'financial/calculateTax',
   async ({employeeId, grossIncome, country,healthCare }, thunkAPI) => {
-    console.log('from calculator:',employeeId, grossIncome, country )
+    console.log('from calculator:',employeeId, grossIncome, country,healthCare  )
     const consolidatedSalary = getConsolidatedSalary(grossIncome, country);
     const cra = calculateCRA(grossIncome);
     const pensionFund  = getPensionFund(grossIncome)
@@ -138,6 +157,7 @@ export const calculateTaxAsync = createAsyncThunk(
     const monthlyTaxPayable = annualTaxPayable / 12;
     const annualSalary = consolidatedSalary - annualTaxPayable;
     const monthlySalary = annualSalary / 12;
+    const pension = pensionFund/12
 
     const calculatedValues = {
       consolidatedSalary,
@@ -146,7 +166,7 @@ export const calculateTaxAsync = createAsyncThunk(
       annualSalary,
       monthlySalary,
       cra,
-      pensionFund
+      pension 
       // ... other calculated values
     };
 
