@@ -82,9 +82,9 @@ const getPensionFund = (grossIncome) => {
 
 // Helper function to calculate tax payable
 const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare) => {
+if(country==='Nigeria'){
   const chargeableIncome = grossIncome-pensionFund-healthCare-cra
-  // let taxPayable = 0;
-  
+ 
   let taxPayable = 0;
 
   if (chargeableIncome < 300000) {
@@ -102,6 +102,11 @@ const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare) =>
   }
  
   return taxPayable;
+}else if(country==='Ghana'){
+
+}
+
+  
 };
 
 // Create asynchronous action for calculating tax
