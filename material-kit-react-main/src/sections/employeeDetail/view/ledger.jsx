@@ -101,7 +101,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     };
 
     fetchData();
-  }, [dispatch, id]);
+  }, [dispatch,employeeId, grossIncome, country, healthCare]);
 
   // useEffect(() => {
   //   // Function to trigger financial data calculation
