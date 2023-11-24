@@ -100,19 +100,17 @@ const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare) =>
   // } else {
   //   taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
   // }
-
- // Iterate through tax bands and calculate tax based on the conditions
- for (const band of taxBands) {
-  const { threshold, rate } = band;
-
-  if (chargeableIncome < threshold) {
-    taxPayable += rate * chargeableIncome;
-    break; // Exit loop if the condition is met
-  } else {
-    taxPayable += rate * (threshold - (band.prevThreshold || 0));
-  }
-}
  
+
+  for (const band of taxBands) {
+    if (chargeableIncome <= band.threshold) {
+      taxPayable += band.rate * chargeableIncome;
+      break; // Exit the loop since we found the applicable band
+    } else {
+      taxPayable += band.rate * (band.threshold - (band.prevThreshold || 0));
+      band.prevThreshold = band.threshold; // Remember the previous threshold
+    }
+  }
 
   return taxPayable;
 };
