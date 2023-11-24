@@ -279,14 +279,25 @@ const financialSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(calculateTaxAsync.fulfilled, (state, action) => {
-        // Update or add financial data for a specific employee
-        const { employeeId } = action.meta.arg;
-        return {
-          ...state,
-          [employeeId]: action.payload,
-        };
-      })
+    .addCase(calculateTaxAsync.fulfilled, (state, action) => {
+      // Update or add financial data for a specific employee
+      const { employeeId } = action.meta.arg;
+      return {
+        ...state,
+        [employeeId]: {
+          ...state[employeeId],
+          ...action.payload,
+        },
+      };
+    })
+      // .addCase(calculateTaxAsync.fulfilled, (state, action) => {
+      //   // Update or add financial data for a specific employee
+      //   const { employeeId } = action.meta.arg;
+      //   return {
+      //     ...state,
+      //     [employeeId]: action.payload,
+      //   };
+      // })
       .addCase(calculateTaxAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;

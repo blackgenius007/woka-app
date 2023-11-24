@@ -106,7 +106,7 @@ const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
 
   // Retrieve financial data from financialSlice
   //  const financialData = useSelector((state) => state.financial);
-  const financialData = useSelector((state) => state.financial.employees[employeeId]);
+  const financialData = useSelector((state) => state.financial[employeeId]);
 
  
  
