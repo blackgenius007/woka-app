@@ -379,86 +379,112 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
       {/* New Collapsible for IOUs */}
       <Collapsible
-      trigger={
-        <Button type="submit" fullWidth variant="contained" size="large" color="secondary">
-          Record IOUs
-        </Button>
-      }
-    >
-      <div
-        style={{
-          fontFamily: 'Arial, sans-serif',
-          color: '#fff',
-          background: '#1a1a1a',
-          padding: '10px',
-          borderRadius: '8px',
-          boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
-        }}
+        trigger={
+          <Button type="submit" fullWidth variant="contained" size="large" color="secondary">
+            Record IOUs
+          </Button>
+        }
       >
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {/* Other input fields */}
-          <label htmlFor="iouAmount" style={{ marginBottom: '5px' }}>
-            Amount:
-          </label>
-          {/* Display 30% of the monthly salary instead of the input */}
-          <span style={{ fontSize: '12px', marginBottom: '5px' }}>{fNumber(0.3 * financialData.monthlySalary)}</span>
-          <button
-            onClick={handleAddIOUEntry}
-            style={{
-              background: '#00aaff',
-              color: '#fff',
-              padding: '3px 8px',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              fontSize: '12px',
-              marginBottom: '5px',
-            }}
-          >
-            Add IOU Entry
-          </button>
-        </div>
-        {/* Display IOU entries */}
-        <ul style={{ margin: '10px 0', padding: '0', listStyle: 'none' }}>
-          {iouEntries.map((iou, index) => (
-            <li
-              key={index}
+        <div
+          style={{
+            fontFamily: 'Arial, sans-serif',
+            color: '#fff',
+            background: '#1a1a1a',
+            padding: '10px',
+            borderRadius: '8px',
+            boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
+          }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <label htmlFor="iouDescription" style={{ marginBottom: '5px' }}>
+              Description:
+            </label>
+            <input
+              type="text"
+              id="iouDescription"
+              //   value={iouDescription}
+              //   onChange={(e) => setIOUDescription(e.target.value)}
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                margin: '5px 0',
-                padding: '5px',
-                backgroundColor: '#222',
+                padding: '3px',
+                fontSize: '12px',
+                width: '100%',
+                maxWidth: '150px',
+                marginBottom: '5px',
+                border: '1px solid #ccc',
+              }}
+            />
+            <label htmlFor="iouAmount" style={{ marginBottom: '5px' }}>
+              Amount:
+            </label>
+            <input
+              type="number"
+              id="iouAmount"
+              //   value={iouAmount}
+              //   onChange={(e) => setIOUAmount(e.target.value)}
+              style={{
+                padding: '3px',
+                fontSize: '12px',
+                width: '100%',
+                maxWidth: '80px',
+                marginBottom: '5px',
+                border: '1px solid #ccc',
+              }}
+            />
+            <button
+              //   onClick={addIOUEntry}
+              style={{
+                background: '#00aaff',
+                color: '#fff',
+                padding: '3px 8px',
+                border: 'none',
                 borderRadius: '5px',
+                cursor: 'pointer',
+                fontSize: '12px',
+                marginBottom: '5px',
               }}
             >
-              {/* Display IOU entry details */}
-              <span
+              Add IOU Entry
+            </button>
+          </div>
+          <ul style={{ margin: '10px 0', padding: '0', listStyle: 'none' }}>
+            {iouEntries.map((iou, index) => (
+              <li
+                key={index}
                 style={{
-                  flex: '1',
-                  fontSize: '12px',
-                  fontFamily: 'Your-Handwriting-Font, cursive',
-                  textAlign: 'center',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  margin: '5px 0',
+                  padding: '5px',
+                  backgroundColor: '#222',
+                  borderRadius: '5px',
                 }}
               >
-                {iou.description}
-              </span>
-              <span
-                style={{
-                  flex: '0 0 60px',
-                  textAlign: 'right',
-                  fontSize: '12px',
-                  fontFamily: 'Your-Handwriting-Font, cursive',
-                }}
-              >
-                {iou.amount}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Collapsible>
+                <span
+                  style={{
+                    flex: '1',
+                    fontSize: '12px',
+                    fontFamily: 'Your-Handwriting-Font, cursive',
+                    textAlign: 'center',
+                  }}
+                >
+                  {iou.description}
+                </span>
+                <span
+                  style={{
+                    flex: '0 0 60px',
+                    textAlign: 'right',
+                    fontSize: '12px',
+                    fontFamily: 'Your-Handwriting-Font, cursive',
+                  }}
+                >
+                  {iou.amount}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Collapsible>
       <div
         style={{
           fontFamily: 'Arial, sans-serif',
