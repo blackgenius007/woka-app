@@ -1,21 +1,21 @@
-   /* eslint-disable */
+/* eslint-disable */
 
 import React, { useState, useEffect, useMemo } from 'react';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import { fNumber } from 'src/utils/format-number';
 import {
-    calculateTaxAsync,
-    addAllowance,
-    allowanceReset,
-    addOvertime,
-    addIOU,
-    overtimeReset,
+  calculateTaxAsync,
+  addAllowance,
+  allowanceReset,
+  addOvertime,
+  addIOU,
+  overtimeReset,
 } from '../../../Services/AccountServices/financialSlice';
 import Collapsible from 'react-collapsible';
 import Grid from '@mui/material/Grid';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
 import PublishIcon from '@mui/icons-material/Publish';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
@@ -38,9 +38,7 @@ import {
   TextField,
 } from '@mui/material';
 
-const Ledger = ({healthCare,grossIncome,employeeId,country}) => {
- 
- 
+const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -50,7 +48,7 @@ const Ledger = ({healthCare,grossIncome,employeeId,country}) => {
   const [closingBalance, setClosingBalance] = useState(0);
   const [OpenFiles, setOpenFiles] = useState(false);
   const [OpenUpload, setOpenUpload] = useState(false);
- 
+
   const [collapseOpen, setCollapseOpen] = useState(false);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [messages, setMessages] = useState([]);
@@ -67,7 +65,7 @@ const Ledger = ({healthCare,grossIncome,employeeId,country}) => {
   });
   const [newTodo, setNewTodo] = useState('');
   const [confirmationOpen, setConfirmationOpen] = useState(false);
-  
+
   // const [amount, setAmount] = useState({});
   const [currentLoan, setCurrentLoan] = useState(0);
   const [message, setMessage] = useState('');
@@ -88,7 +86,13 @@ const Ledger = ({healthCare,grossIncome,employeeId,country}) => {
   useEffect(() => {
     // Function to trigger financial data calculation
     const calculateFinancialData = () => {
-      console.log('Calculating financial data for employee:', employeeId,grossIncome, country, healthCare);
+      console.log(
+        'Calculating financial data for employee:',
+        employeeId,
+        grossIncome,
+        country,
+        healthCare
+      );
 
       // Dispatch the action to calculate tax asynchronously
       dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
@@ -100,11 +104,10 @@ const Ledger = ({healthCare,grossIncome,employeeId,country}) => {
     // Specify the dependencies for useEffect
   }, [employeeId, grossIncome, country, healthCare, dispatch]);
 
-  
-// Retrieve financial data from financialSlice
-const financialData = useSelector((state) => state.financial);
-console.log('financial-data :',financialData);
-  
+  // Retrieve financial data from financialSlice
+  const financialData = useSelector((state) => state.financial);
+  console.log('financial-data :', financialData.monthlySalary
+);
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
@@ -191,9 +194,7 @@ console.log('financial-data :',financialData);
       const response = await dispatch(updateLoan({ loanDetail }));
       console.log('response=>', response);
       if (response.meta.requestStatus === 'fulfilled') {
-        setMessage(
-          'The loan expiry date has been successfully adjusted forward by one month.'
-        );
+        setMessage('The loan expiry date has been successfully adjusted forward by one month.');
       } else {
         throw new Error('Adding loan failed: Response was not successful');
       }
@@ -291,10 +292,9 @@ console.log('financial-data :',financialData);
 
   const handleSend = () => {
     // Handle sending the text content, e.g., sending it as a message
-    console.log("Sending text:", text);
+    console.log('Sending text:', text);
   };
-  
- 
+
   return (
     <>
       <div
@@ -308,21 +308,15 @@ console.log('financial-data :',financialData);
       >
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <MonetizationOnIcon
-              style={{ fontSize: '32px', marginRight: '10px' }}
-            />
+            <MonetizationOnIcon style={{ fontSize: '32px', marginRight: '10px' }} />
             <div>
-              <p style={{ fontSize: '24px', marginBottom: '2px' }}>
-                Employee interest free loans{' '}
-              </p>
+              <p style={{ fontSize: '24px', marginBottom: '2px' }}>Employee interest free loans </p>
               <p style={{ fontSize: '10px', color: '#888' }}>
                 Enter loan amount and monthly repayment
               </p>
             </div>
           </div>
-          <div
-            style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}
-          >
+          <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
             <input
               type="number"
               placeholder="Loan Amount"
@@ -382,17 +376,11 @@ console.log('financial-data :',financialData);
         </div>
       </div>
       <span>{message}</span>
-    
+
       {/* New Collapsible for IOUs */}
       <Collapsible
         trigger={
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            size="large"
-            color="secondary"
-          >
+          <Button type="submit" fullWidth variant="contained" size="large" color="secondary">
             Record IOUs
           </Button>
         }
@@ -414,8 +402,8 @@ console.log('financial-data :',financialData);
             <input
               type="text"
               id="iouDescription"
-            //   value={iouDescription}
-            //   onChange={(e) => setIOUDescription(e.target.value)}
+              //   value={iouDescription}
+              //   onChange={(e) => setIOUDescription(e.target.value)}
               style={{
                 padding: '3px',
                 fontSize: '12px',
@@ -431,8 +419,8 @@ console.log('financial-data :',financialData);
             <input
               type="number"
               id="iouAmount"
-            //   value={iouAmount}
-            //   onChange={(e) => setIOUAmount(e.target.value)}
+              //   value={iouAmount}
+              //   onChange={(e) => setIOUAmount(e.target.value)}
               style={{
                 padding: '3px',
                 fontSize: '12px',
@@ -443,7 +431,7 @@ console.log('financial-data :',financialData);
               }}
             />
             <button
-            //   onClick={addIOUEntry}
+              //   onClick={addIOUEntry}
               style={{
                 background: '#00aaff',
                 color: '#fff',
@@ -580,9 +568,9 @@ console.log('financial-data :',financialData);
         </div>
       </div>
       <Collapsible open={collapseOpen}>
-      <div>
-      <h2> Comments</h2>
-      {/* <textarea
+        <div>
+          <h2> Comments</h2>
+          {/* <textarea
         value={text}
         onChange={handleTextChange}
         style={{
@@ -597,35 +585,27 @@ console.log('financial-data :',financialData);
         }}
         placeholder="Type your elaborate text here..."
       /> */}
-      <p style={{ textAlign: 'right' }}>
-        Character Count: {text.length}
-      </p>
-      <button
-        onClick={handleSend}
-        style={{
-          background: '#00aaff',
-          color: '#fff',
-          padding: '8px 15px',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontSize: '14px',
-        }}
-      >
-        Send
-      </button>
-    </div>       
-
+          <p style={{ textAlign: 'right' }}>Character Count: {text.length}</p>
+          <button
+            onClick={handleSend}
+            style={{
+              background: '#00aaff',
+              color: '#fff',
+              padding: '8px 15px',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              fontSize: '14px',
+            }}
+          >
+            Send
+          </button>
+        </div>
       </Collapsible>
 
       {/* Verification Dialog */}
-      <Dialog
-        open={confirmationOpen}
-        onClose={() => setConfirmationOpen(false)}
-      >
-        <DialogTitle>
-          Are you sure you want to submit the following loan details?
-        </DialogTitle>
+      <Dialog open={confirmationOpen} onClose={() => setConfirmationOpen(false)}>
+        <DialogTitle>Are you sure you want to submit the following loan details?</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <div style={{ marginBottom: '10px', fontSize: '14px' }}>
@@ -661,8 +641,6 @@ console.log('financial-data :',financialData);
       </Dialog>
       {/* <FileViewer open={OpenFiles} close={handleFileClose} id={id} />
       <UploadFiles close={handleUploadClose} open={OpenUpload} id={id} /> */}
- 
-     
     </>
   );
 };

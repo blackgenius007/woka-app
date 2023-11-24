@@ -1,33 +1,32 @@
- /* eslint-disable */
+/* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import financialService from './financialServices' 
+import financialService from './financialServices';
 
 // Define initial state for financial data
 const initialState = {
   consolidatedSalary: 0,
   annualTaxPayable: 0,
   monthlyTaxPayable: 0,
-  annualSalary:0,
-  monthlySalary:0,
-  totalMonthlySalary:0,
+  annualSalary: 0,
+  monthlySalary: 0,
+  totalMonthlySalary: 0,
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
- 
+
   // ... other financial data
 };
 
 // Helper functions for calculations
 // ... (getConsolidatedSalary and calculateCRA functions)
-const getConsolidatedSalary = (income,country) => {
+const getConsolidatedSalary = (income, country) => {
   let basicSalaryPercentage = 0;
   let housingAllowancePercentage = 0;
   let transportAllowancePercentage = 0;
 
   // Modify the percentages based on the country
-  if (country=== 'Nigeria') {
-
+  if (country === 'Nigeria') {
     basicSalaryPercentage = 0.4;
     housingAllowancePercentage = 0.3;
     transportAllowancePercentage = 0.2;
@@ -50,16 +49,14 @@ const getConsolidatedSalary = (income,country) => {
   return consolidatedSalary;
 };
 
-
 const calculateCRA = (grossIncome) => {
-  console.log('Calculate CRA =>',grossIncome)
-  const cra =  200000+20/100*grossIncome;
+  console.log('Calculate CRA =>', grossIncome);
+  const cra = 200000 + (20 / 100) * grossIncome;
   return cra;
 };
 
-
 const getPensionFund = (grossIncome) => {
-  console.log('Calculate pension =>',grossIncome)
+  console.log('Calculate pension =>', grossIncome);
   const basicSalaryPercentage = 0.15;
   const transportAllowancePercentage = 0.075;
   const housingAllowancePercentage = 0.075;
@@ -74,49 +71,52 @@ const getPensionFund = (grossIncome) => {
   return pension;
 };
 
-
-
-
-
-
-
 // Helper function to calculate tax payable
-const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare,country) => {
-if(country==='Nigeria'){
-  const chargeableIncome = grossIncome-pensionFund-healthCare-cra
- 
-  let taxPayable = 0;
+const calculateTaxPayable = (grossIncome, taxBands, pensionFund, cra, healthCare, country) => {
+  if (country === 'Nigeria') {
+    const chargeableIncome = grossIncome - pensionFund - healthCare - cra;
 
-  if (chargeableIncome < 300000) {
-    taxPayable = 0.07 * chargeableIncome;
-  } else if (chargeableIncome < 600000) {
-    taxPayable = 0.07 * 300000 + 0.11 * (chargeableIncome - 300000);
-  } else if (chargeableIncome < 1100000) {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * (chargeableIncome - 600000);
-  } else if (chargeableIncome < 1600000) {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * (chargeableIncome - 1100000);
-  } else if (chargeableIncome < 3200000) {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * (chargeableIncome - 1600000);
-  } else {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
+    let taxPayable = 0;
+
+    if (chargeableIncome < 300000) {
+      taxPayable = 0.07 * chargeableIncome;
+    } else if (chargeableIncome < 600000) {
+      taxPayable = 0.07 * 300000 + 0.11 * (chargeableIncome - 300000);
+    } else if (chargeableIncome < 1100000) {
+      taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * (chargeableIncome - 600000);
+    } else if (chargeableIncome < 1600000) {
+      taxPayable =
+        0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * (chargeableIncome - 1100000);
+    } else if (chargeableIncome < 3200000) {
+      taxPayable =
+        0.07 * 300000 +
+        0.11 * 300000 +
+        0.15 * 500000 +
+        0.19 * 500000 +
+        0.21 * (chargeableIncome - 1600000);
+    } else {
+      taxPayable =
+        0.07 * 300000 +
+        0.11 * 300000 +
+        0.15 * 500000 +
+        0.19 * 500000 +
+        0.21 * 1600000 +
+        0.24 * (chargeableIncome - 3200000);
+    }
+
+    return taxPayable;
+  } else if (country === 'Ghana') {
   }
- 
-  return taxPayable;
-}else if(country==='Ghana'){
-
-}
-
-  
 };
 
 // Create asynchronous action for calculating tax
 export const calculateTaxAsync = createAsyncThunk(
   'financial/calculateTax',
-  async ({employeeId, grossIncome, country,healthCare }, thunkAPI) => {
-    console.log('from calculator:',employeeId, grossIncome, country,healthCare  )
+  async ({ employeeId, grossIncome, country, healthCare }, thunkAPI) => {
+    console.log('from calculator:', employeeId, grossIncome, country, healthCare);
     const consolidatedSalary = getConsolidatedSalary(grossIncome, country);
     const cra = calculateCRA(grossIncome);
-    const pensionFund  = getPensionFund(grossIncome)
+    const pensionFund = getPensionFund(grossIncome);
 
     let taxBands = [];
     if (country === 'Nigeria') {
@@ -140,17 +140,28 @@ export const calculateTaxAsync = createAsyncThunk(
       ];
     }
 
-    
-    
-    const taxPayable = calculateTaxPayable(grossIncome,taxBands,pensionFund,cra,healthCare,country);
+    const taxPayable = calculateTaxPayable(
+      grossIncome,
+      taxBands,
+      pensionFund,
+      cra,
+      healthCare,
+      country
+    );
 
- 
     const annualTaxPayable = taxPayable;
     const monthlyTaxPayable = annualTaxPayable / 12;
     const annualSalary = grossIncome - annualTaxPayable;
     const monthlySalary = annualSalary / 12;
-    const pension = pensionFund/12
-console.log('financial result from slice:',annualTaxPayable,monthlyTaxPayable,annualSalary,monthlySalary,pension)
+    const pension = pensionFund / 12;
+    console.log(
+      'financial result from slice:',
+      annualTaxPayable,
+      monthlyTaxPayable,
+      annualSalary,
+      monthlySalary,
+      pension
+    );
     const calculatedValues = {
       consolidatedSalary,
       annualTaxPayable,
@@ -158,10 +169,9 @@ console.log('financial result from slice:',annualTaxPayable,monthlyTaxPayable,an
       annualSalary,
       monthlySalary,
       cra,
-      pension 
+      pension,
       // ... other calculated values
     };
-
 
     return calculatedValues;
   }
@@ -169,9 +179,9 @@ console.log('financial result from slice:',annualTaxPayable,monthlyTaxPayable,an
 
 export const addAllowance = createAsyncThunk(
   'financial/addAllowance ',
-  async ({ id,value}, thunkAPI) => {
+  async ({ id, value }, thunkAPI) => {
     try {
-      const response = await financialService.addAllowance( id, value);
+      const response = await financialService.addAllowance(id, value);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -179,29 +189,25 @@ export const addAllowance = createAsyncThunk(
   }
 );
 
-export const addIOU = createAsyncThunk(
-  'financial/addIOU ',
-  async ({ id,value}, thunkAPI) => {
-    try {
-      const response = await financialService.addIOU( id, value);
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
+export const addIOU = createAsyncThunk('financial/addIOU ', async ({ id, value }, thunkAPI) => {
+  try {
+    const response = await financialService.addIOU(id, value);
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data);
   }
-);
-
+});
 
 export const allowanceReset = createAsyncThunk(
   'financial/allowanceReset',
   async ({ email, overtime }, thunkAPI) => {
     try {
-      const response = await financialService.allowanceReset( email, overtime );
+      const response = await financialService.allowanceReset(email, overtime);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
-  }          
+  }
 );
 
 export const addOvertime = createAsyncThunk(
@@ -214,11 +220,11 @@ export const addOvertime = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-);   
+);
 
-export const overtimeReset= createAsyncThunk(
+export const overtimeReset = createAsyncThunk(
   'financial/overtimeReset',
-  async ({ email,overtime}, thunkAPI) => {
+  async ({ email, overtime }, thunkAPI) => {
     try {
       const response = await financialService.overtimeReset(email, overtime);
       return response;
@@ -227,25 +233,21 @@ export const overtimeReset= createAsyncThunk(
     }
   }
 );
-    
 
-export const addLoan = createAsyncThunk(
-  'financial/addLoan ',
-  async ({loanDetail}, thunkAPI) => {
-    console.log('added loan:',loanDetail)
-    try {
-      const response = await financialService.addLoan(loanDetail);
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
+export const addLoan = createAsyncThunk('financial/addLoan ', async ({ loanDetail }, thunkAPI) => {
+  console.log('added loan:', loanDetail);
+  try {
+    const response = await financialService.addLoan(loanDetail);
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data);
   }
-);
+});
 
 export const updateLoan = createAsyncThunk(
   'financial/updateLoan ',
-  async ({loanDetail}, thunkAPI) => {
-    console.log('update loan:',loanDetail)
+  async ({ loanDetail }, thunkAPI) => {
+    console.log('update loan:', loanDetail);
     try {
       const response = await financialService.updateLoan(loanDetail);
       return response;
@@ -257,10 +259,10 @@ export const updateLoan = createAsyncThunk(
 
 export const loanPayOff = createAsyncThunk(
   'financial/loanPayOff ',
-  async ({today,id}, thunkAPI) => {
-    console.log('update loan:',today)
+  async ({ today, id }, thunkAPI) => {
+    console.log('update loan:', today);
     try {
-      const response = await financialService.loanPayOff(today,id);
+      const response = await financialService.loanPayOff(today, id);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -277,96 +279,85 @@ const financialSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(calculateTaxAsync.fulfilled, (state, action) => {
-      // Update or add financial data for a specific employee
-      const { employeeId } = action.meta.arg;
-      return {
-        ...state,
-        [employeeId]: action.payload,
-      };
-    })
-    .addCase(calculateTaxAsync.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-      state.message = action.payload;
-    })
-    .addCase(allowanceReset.pending, (state) => {
-      state.isLoading = true;
-    })
-    .addCase(allowanceReset.fulfilled, (state) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      // You can update any relevant state here if needed
-    })
-    .addCase(allowanceReset.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-      state.message = action.payload;
-    })
-    .addCase(addOvertime.pending, (state) => {
-      state.isLoading = true;
-      state.isSuccess = false; // Reset isSuccess when starting a new operation
-      state.isError = false;  // Reset isError when starting a new operation
-      state.message = "";     // Reset message when starting a new operation
-    })
-    .addCase(addOvertime.fulfilled, (state) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      state.message = "Overtime added successfully"; // Set a success message
-    })
-    .addCase(addOvertime.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-      state.message = action.payload; // Set the error message from the action payload
-    })
-    .addCase(addAllowance.pending, (state) => {
-      state.isLoading = true;
-      state.isSuccess = false; // Reset isSuccess when starting a new operation
-      state.isError = false;  // Reset isError when starting a new operation
-      state.message = "";     // Reset message when starting a new operation
-    })
-    .addCase(addAllowance.fulfilled, (state) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      state.message = "Allowance added successfully"; // Set a success message
-    })
-    .addCase(addAllowance.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-      state.message = action.payload; // Set the error message from the action payload
-    })
-    .addCase(addIOU.pending, (state) => {
-      state.isLoading = true;
-      state.isSuccess = false; // Reset isSuccess when starting a new operation
-      state.isError = false;  // Reset isError when starting a new operation
-      state.message = "";     // Reset message when starting a new operation
-    })
-    .addCase(addIOU.fulfilled, (state) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      state.message = "Allowance added successfully"; // Set a success message
-    })
-    .addCase(addIOU.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-      state.message = action.payload; // Set the error message from the action payload
-    })
-    
-    
+      .addCase(calculateTaxAsync.fulfilled, (state, action) => {
+        // Update or add financial data for a specific employee
+        const { employeeId } = action.meta.arg;
+        return {
+          ...state,
+          [employeeId]: action.payload,
+        };
+      })
+      .addCase(calculateTaxAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(allowanceReset.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(allowanceReset.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        // You can update any relevant state here if needed
+      })
+      .addCase(allowanceReset.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(addOvertime.pending, (state) => {
+        state.isLoading = true;
+        state.isSuccess = false; // Reset isSuccess when starting a new operation
+        state.isError = false; // Reset isError when starting a new operation
+        state.message = ''; // Reset message when starting a new operation
+      })
+      .addCase(addOvertime.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = 'Overtime added successfully'; // Set a success message
+      })
+      .addCase(addOvertime.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload; // Set the error message from the action payload
+      })
+      .addCase(addAllowance.pending, (state) => {
+        state.isLoading = true;
+        state.isSuccess = false; // Reset isSuccess when starting a new operation
+        state.isError = false; // Reset isError when starting a new operation
+        state.message = ''; // Reset message when starting a new operation
+      })
+      .addCase(addAllowance.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = 'Allowance added successfully'; // Set a success message
+      })
+      .addCase(addAllowance.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload; // Set the error message from the action payload
+      })
+      .addCase(addIOU.pending, (state) => {
+        state.isLoading = true;
+        state.isSuccess = false; // Reset isSuccess when starting a new operation
+        state.isError = false; // Reset isError when starting a new operation
+        state.message = ''; // Reset message when starting a new operation
+      })
+      .addCase(addIOU.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = 'Allowance added successfully'; // Set a success message
+      })
+      .addCase(addIOU.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload; // Set the error message from the action payload
+      });
   },
 });
 
 // Export actions and reducer
 export default financialSlice.reducer;
- 
-
-
-
-
-
-
-
-
 
 // import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -378,7 +369,7 @@ export default financialSlice.reducer;
 //   annualSalary:0,
 //   monthlySalary:0,
 //   totalMonthlySalary:0,
- 
+
 //   // ... other financial data
 // };
 
@@ -414,7 +405,6 @@ export default financialSlice.reducer;
 //   return consolidatedSalary;
 // };
 
-
 // const calculateCRA = (consolidatedSalary) => {
 //   const cra = Math.max(0.01 * consolidatedSalary, 200000) + 0.2 * consolidatedSalary;
 //   return cra;
@@ -426,7 +416,7 @@ export default financialSlice.reducer;
 
 //   for (let i = 0; i < taxBands.length; i++) {
 //     const { threshold, rate } = taxBands[i];
-  
+
 //     if (chargeableIncome <= threshold) {
 //       taxPayable += chargeableIncome * rate;
 //       break;
@@ -469,7 +459,7 @@ export default financialSlice.reducer;
 //     }
 
 //     const chargeableIncome = consolidatedSalary - cra;
-    
+
 //     const taxPayable = calculateTaxPayable(chargeableIncome, taxBands);
 
 //     const annualTaxPayable = taxPayable;
@@ -513,10 +503,6 @@ export default financialSlice.reducer;
 
 // // Export actions and reducer
 // export default financialSlice.reducer;
- 
-
-
-
 
 // import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -582,7 +568,7 @@ export default financialSlice.reducer;
 //         lifeAssurancePremium: 0,
 //         nationalPensionScheme: 0,
 //       };
-    
+
 //       taxBands = [
 //         { threshold: 300000, rate: 0.07 },
 //         { threshold: 600000, rate: 0.11 },
@@ -598,7 +584,7 @@ export default financialSlice.reducer;
 //         lifeAssurancePremium: 0, // Add Ghana-specific value if applicable
 //         nationalPensionScheme: 0, // Add Ghana-specific value if applicable
 //       };
-    
+
 //       taxBands = [
 //         // Add tax bands specific to Ghana
 //       ];
@@ -614,16 +600,12 @@ export default financialSlice.reducer;
 //     }
 
 //     const chargeableIncome = consolidatedSalary - cra;
-   
-
-
 
 //     let taxPayable = 0;
 
-
 //     // for (let i = 0; i < taxBands.length; i++) {
 //     //   const { threshold, rate } = taxBands[i];
-    
+
 //     //   if (chargeableIncome <= threshold) {
 //     //     taxPayable += chargeableIncome * rate;
 //     //     break;
@@ -659,12 +641,12 @@ export default financialSlice.reducer;
 //       annualSalary,
 //       monthlySalary,
 //       cra
-     
+
 //       // ... other calculated values
 //     };
 //     console.log(calculatedValues)
 //     return calculatedValues;
-  
+
 //   }
 // );
 
@@ -691,6 +673,3 @@ export default financialSlice.reducer;
 // // Export actions and reducer
 // export default financialSlice.reducer;
 // // export { calculateTaxAsync };
-
-
-
