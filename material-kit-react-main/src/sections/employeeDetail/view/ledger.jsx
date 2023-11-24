@@ -38,7 +38,7 @@ import {
   TextField,
 } from '@mui/material';
 
-const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
+const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -105,21 +105,16 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   }, [employeeId, grossIncome, country, healthCare, dispatch]);
 
   // Retrieve financial data from financialSlice
-  // const financialData = useSelector((state) => state.financial[employeeId]);
-  // Retrieve the financial data from Redux state
-  const financialData = useSelector((state) => {
-   
-    return state.financial && state.financial[employeeId];
-  });
+  //  const financialData = useSelector((state) => state.financial);
+  const financialData = useSelector((state) => state.financial[employeeId]);
+  // annualTaxPayable,
+  // monthlyTaxPayable,
+  // annualSalary,
+  // monthlySalary,
+
+ 
   
-  console.log('financial-data-salary:', financialData);
- 
- 
-  const annualTaxPayable = financialData['annualTaxPayable'];
-  const monthlyTaxPayable = financialData['monthlyTaxPayable'];
-  const annualSalary = financialData['annualSalary'];
-  const monthlySalary = financialData['monthlySalary'];
-  console.log('financial-data-salary :', monthlySalary);
+  console.log('financial-data :', financialData && financialData.annualTaxPayable );
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
