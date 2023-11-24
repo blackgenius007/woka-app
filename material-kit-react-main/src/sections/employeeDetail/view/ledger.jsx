@@ -69,6 +69,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   // const [amount, setAmount] = useState({});
   const [currentLoan, setCurrentLoan] = useState(0);
   const [message, setMessage] = useState('');
+  const [financialData, setFinancialData] = useState(null);
   const [values, setValues] = useState({
     ait: 0,
     investment: 0,
@@ -84,30 +85,49 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   };
 
   useEffect(() => {
-    // Function to trigger financial data calculation
-    const calculateFinancialData = () => {
-      console.log(
-        'Calculating financial data for employee:',
-        employeeId,
-        grossIncome,
-        country,
-        healthCare
-      );
+    const fetchData = async () => {
+      try {
+        
+        const response = await dispatch(calculateTaxAsync(employeeId, grossIncome, country, healthCare ));
+    
+        const employee = response.payload; // Access the employee details from the response payload
 
-      // Dispatch the action to calculate tax asynchronously
-      dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
+        setFinancialData(employee);
+
+        console.log('employee finance:',employee);
+      } catch (err) {
+        console.log('An error occurred!', err);
+      }
     };
 
+    fetchData();
+  }, [dispatch, id]);
+
+  // useEffect(() => {
+  //   // Function to trigger financial data calculation
+  //   const calculateFinancialData = () => {
+  //     console.log(
+  //       'Calculating financial data for employee:',
+  //       employeeId,
+  //       grossIncome,
+  //       country,
+  //       healthCare
+  //     );
+
+  //     // Dispatch the action to calculate tax asynchronously
+  //     dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
+  //   };
+
     // Call the function to calculate financial data
-    calculateFinancialData();
+    // calculateFinancialData();
 
     // Specify the dependencies for useEffect
-  }, [employeeId, grossIncome, country, healthCare, dispatch]);
+  // }, [employeeId, grossIncome, country, healthCare, dispatch]);
 
   // Retrieve financial data from financialSlice
   // const financialData = useSelector((state) => state.financial[employeeId]);
  // Retrieve the financial data from Redux state
-  const financialData = useSelector((state) => state.financial[employeeId]);
+  // const financialData = useSelector((state) => state.financial[employeeId]);
 
  
 
