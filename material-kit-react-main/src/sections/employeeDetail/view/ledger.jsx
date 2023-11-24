@@ -107,14 +107,11 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   // Retrieve financial data from financialSlice
   // const financialData = useSelector((state) => state.financial[employeeId]);
  // Retrieve the financial data from Redux state
- const financialData = useSelector((state) => state.financial[employeeId]);
+  const financialData = useSelector((state) => state.financial[employeeId]);
 
- if (!financialData) {
-   // Handle the case where data is not available yet
-   return <p>Loading...</p>;
- }
+ 
 
-  console.log('financial-data-salary :', financialData );
+  console.log('financial-data-salary :', monthlySalary);
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
