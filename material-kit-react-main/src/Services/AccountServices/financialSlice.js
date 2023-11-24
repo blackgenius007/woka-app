@@ -155,10 +155,10 @@ export const calculateTaxAsync = createAsyncThunk(
  
     const annualTaxPayable = taxPayable;
     const monthlyTaxPayable = annualTaxPayable / 12;
-    const annualSalary = consolidatedSalary - annualTaxPayable;
+    const annualSalary = grossIncome - annualTaxPayable;
     const monthlySalary = annualSalary / 12;
     const pension = pensionFund/12
-
+console.log('financial result from slice:',annualTaxPayable,monthlyTaxPayable,annualSalary,monthlySalary,pension)
     const calculatedValues = {
       consolidatedSalary,
       annualTaxPayable,
