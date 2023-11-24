@@ -105,8 +105,9 @@ const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
   }, [employeeId, grossIncome, country, healthCare, dispatch]);
 
   // Retrieve financial data from financialSlice
-  // const financialData = useSelector((state) => state.financial);
-  const financialData = useSelector((state) => state[employeeId]);
+   const financialData = useSelector((state) => state.financial);
+ 
+  
   console.log('financial-data :', financialData  );
 
   // Save todos to local storage whenever it changes
