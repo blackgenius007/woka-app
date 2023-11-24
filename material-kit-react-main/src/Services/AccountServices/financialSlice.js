@@ -81,26 +81,41 @@ const getPensionFund = (grossIncome) => {
 
 
 // Helper function to calculate tax payable
-const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare) => {
+const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare,country) => {
   const chargeableIncome = grossIncome-pensionFund-healthCare-cra
   // let taxPayable = 0;
   
   let taxPayable = 0;
 
-  if (chargeableIncome < 300000) {
-    taxPayable = 0.07 * chargeableIncome;
-  } else if (chargeableIncome < 600000) {
-    taxPayable = 0.07 * 300000 + 0.11 * (chargeableIncome - 300000);
-  } else if (chargeableIncome < 1100000) {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * (chargeableIncome - 600000);
-  } else if (chargeableIncome < 1600000) {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * (chargeableIncome - 1100000);
-  } else if (chargeableIncome < 3200000) {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * (chargeableIncome - 1600000);
-  } else {
-    taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
+  const calculateNigeriaTax = () => {
+    if (chargeableIncome < 300000) {
+      taxPayable = 0.07 * chargeableIncome;
+    } else if (chargeableIncome < 600000) {
+      taxPayable = 0.07 * 300000 + 0.11 * (chargeableIncome - 300000);
+    } else if (chargeableIncome < 1100000) {
+      taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * (chargeableIncome - 600000);
+    } else if (chargeableIncome < 1600000) {
+      taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * (chargeableIncome - 1100000);
+    } else if (chargeableIncome < 3200000) {
+      taxPayable =
+        0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * (chargeableIncome - 1600000);
+    } else {
+      taxPayable =
+        0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
+    }
+  };
+
+  const calculateGhanaTax = () => {
+    // Add Ghana tax calculation logic here
+  };
+
+  if (country === 'Nigeria') {
+    calculateNigeriaTax();
+  } else if (country === 'Ghana') {
+    calculateGhanaTax();
+    // Add more countries as needed
   }
- 
+
   return taxPayable;
 };
 
@@ -112,32 +127,7 @@ export const calculateTaxAsync = createAsyncThunk(
     const consolidatedSalary = getConsolidatedSalary(grossIncome, country);
     const cra = calculateCRA(grossIncome);
     const pensionFund  = getPensionFund(grossIncome)
-
-    let taxBands = [];
-    if (country === 'Nigeria') {
-      taxBands = [
-        { threshold: 300000, rate: 0.07 },
-        { threshold: 600000, rate: 0.11 },
-        { threshold: 1100000, rate: 0.15 },
-        { threshold: 1600000, rate: 0.19 },
-        { threshold: 3200000, rate: 0.21 },
-        { threshold: Infinity, rate: 0.24 },
-      ];
-    } else if (country === 'Ghana') {
-      // Add tax bands specific to Ghana
-      taxBands = [
-        // ... Ghana-specific tax bands
-      ];
-    } else {
-      // Default tax bands for other countries
-      taxBands = [
-        // ... Default tax bands for other countries
-      ];
-    }
-
-    
-    
-    const taxPayable = calculateTaxPayable(grossIncome,taxBands,pensionFund,cra,healthCare);
+    const taxPayable = calculateTaxPayable(grossIncome,taxBands,pensionFund,cra,healthCare,country);
 
  
     const annualTaxPayable = taxPayable;
