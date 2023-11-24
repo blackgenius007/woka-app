@@ -88,7 +88,7 @@ const Ledger = ({healthCare,grossIncome,employeeId,country}) => {
   useEffect(() => {
     // Function to trigger financial data calculation
     const calculateFinancialData = () => {
-      console.log('Calculating financial data for employee:', employeeId);
+      console.log('Calculating financial data for employee:', employeeId,grossIncome, country, healthCare);
 
       // Dispatch the action to calculate tax asynchronously
       dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
