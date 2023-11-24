@@ -83,38 +83,34 @@ const getPensionFund = (grossIncome) => {
 // Helper function to calculate tax payable
 const calculateTaxPayable = (grossIncome, taxBands, pensionFund, cra, healthCare, country) => {
   const chargeableIncome = grossIncome - pensionFund - healthCare - cra;
-  let taxPayable = 0;
-
-  const calculateNigeriaTax = () => {
-    if (chargeableIncome < 300000) {
-      taxPayable = 0.07 * chargeableIncome;
-    } else if (chargeableIncome < 600000) {
-      taxPayable = 0.07 * 300000 + 0.11 * (chargeableIncome - 300000);
-    } else if (chargeableIncome < 1100000) {
-      taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * (chargeableIncome - 600000);
-    } else if (chargeableIncome < 1600000) {
-      taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * (chargeableIncome - 1100000);
-    } else if (chargeableIncome < 3200000) {
-      taxPayable =
-        0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * (chargeableIncome - 1600000);
-    } else {
-      taxPayable =
-        0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
-    }
-  };
-
-  const calculateGhanaTax = () => {
-    // Add Ghana tax calculation logic here
-  };
-
+ 
   if (country === 'Nigeria') {
-    calculateNigeriaTax();
+    let taxPayable = 0;
+
+    const calculateNigeriaTax = () => {
+      if (chargeableIncome < 300000) {
+        taxPayable = 0.07 * chargeableIncome;
+      } else if (chargeableIncome < 600000) {
+        taxPayable = 0.07 * 300000 + 0.11 * (chargeableIncome - 300000);
+      } else if (chargeableIncome < 1100000) {
+        taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * (chargeableIncome - 600000);
+      } else if (chargeableIncome < 1600000) {
+        taxPayable = 0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * (chargeableIncome - 1100000);
+      } else if (chargeableIncome < 3200000) {
+        taxPayable =
+          0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * (chargeableIncome - 1600000);
+      } else {
+        taxPayable =
+          0.07 * 300000 + 0.11 * 300000 + 0.15 * 500000 + 0.19 * 500000 + 0.21 * 1600000 + 0.24 * (chargeableIncome - 3200000);
+      }
+    };
+    return taxPayable;
   } else if (country === 'Ghana') {
     calculateGhanaTax();
     // Add more countries as needed
   }
 
-  return taxPayable;
+
 };
 
 // Create asynchronous action for calculating tax
