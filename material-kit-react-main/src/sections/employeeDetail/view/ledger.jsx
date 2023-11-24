@@ -106,12 +106,14 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
   // Retrieve financial data from financialSlice
   // const financialData = useSelector((state) => state.financial[employeeId]);
- // Retrieve the financial data from Redux state
+  // Retrieve the financial data from Redux state
   const financialData = useSelector((state) => state.financial[employeeId]);
-
- 
-
-  console.log('financial-data-salary :', financialData);
+  const consolidatedSalary = financialData['consolidatedSalary'];
+  const annualTaxPayable = financialData['annualTaxPayable'];
+  const monthlyTaxPayable = financialData['monthlyTaxPayable'];
+  const annualSalary = financialData['annualSalary'];
+  const monthlySalary = financialData['monthlySalary'];
+  console.log('financial-data-salary :', monthlySalary);
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
