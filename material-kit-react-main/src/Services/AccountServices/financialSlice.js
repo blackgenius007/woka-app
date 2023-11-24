@@ -81,10 +81,8 @@ const getPensionFund = (grossIncome) => {
 
 
 // Helper function to calculate tax payable
-const calculateTaxPayable = (grossIncome,taxBands,pensionFund,cra,healthCare,country) => {
-  const chargeableIncome = grossIncome-pensionFund-healthCare-cra
-  // let taxPayable = 0;
-  
+const calculateTaxPayable = (grossIncome, taxBands, pensionFund, cra, healthCare, country) => {
+  const chargeableIncome = grossIncome - pensionFund - healthCare - cra;
   let taxPayable = 0;
 
   const calculateNigeriaTax = () => {
