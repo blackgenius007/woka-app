@@ -69,7 +69,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   // const [amount, setAmount] = useState({});
   const [currentLoan, setCurrentLoan] = useState(0);
   const [message, setMessage] = useState('');
-  const [financialData, setFinancialData] = useState(null);
+ 
   const [values, setValues] = useState({
     ait: 0,
     investment: 0,
@@ -84,25 +84,15 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     setText(e.target.value);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+  const financialData = useSelector((state) => state.financial);
+  console.log( financialData);
+
+  // Function to trigger financial data calculation
+  const calculateFinancialData = (employeeId, grossIncome, country, healthCare ) => {
+ 
+    dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));    
         
-        const response = await dispatch(calculateTaxAsync(employeeId, grossIncome, country, healthCare ));
-    
-        const employee = response.payload; // Access the employee details from the response payload
-
-        setFinancialData(employee);
-
-        console.log('employee finance:',employee);
-      } catch (err) {
-        console.log('An error occurred!', err);
-      }
-    };
-
-    fetchData();
-  }, [dispatch,employeeId, grossIncome, country, healthCare]);
-
+  };
   // useEffect(() => {
   //   // Function to trigger financial data calculation
   //   const calculateFinancialData = () => {
@@ -135,6 +125,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
+    calculateFinancialData();
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
