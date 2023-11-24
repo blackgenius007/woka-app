@@ -38,7 +38,7 @@ import {
   TextField,
 } from '@mui/material';
 
-const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
+const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -106,7 +106,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
   // Retrieve financial data from financialSlice
   const financialData = useSelector((state) => state.financial);
-  console.log('financial-data :', financialData);
+  console.log('financial-data :', financialData.employeeId);
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
