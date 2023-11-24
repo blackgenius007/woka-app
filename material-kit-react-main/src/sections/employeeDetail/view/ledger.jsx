@@ -69,7 +69,6 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   // const [amount, setAmount] = useState({});
   const [currentLoan, setCurrentLoan] = useState(0);
   const [message, setMessage] = useState('');
- 
   const [values, setValues] = useState({
     ait: 0,
     investment: 0,
@@ -84,40 +83,31 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     setText(e.target.value);
   };
 
-  const financialData = useSelector((state) => state.financial);
-  console.log( financialData);
+  useEffect(() => {
+    // Function to trigger financial data calculation
+    const calculateFinancialData = () => {
+      console.log(
+        'Calculating financial data for employee:',
+        employeeId,
+        grossIncome,
+        country,
+        healthCare
+      );
 
-  // Function to trigger financial data calculation
-  const calculateFinancialData = (employeeId, grossIncome, country, healthCare ) => {
- 
-    dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));    
-        
-  };
-  // useEffect(() => {
-  //   // Function to trigger financial data calculation
-  //   const calculateFinancialData = () => {
-  //     console.log(
-  //       'Calculating financial data for employee:',
-  //       employeeId,
-  //       grossIncome,
-  //       country,
-  //       healthCare
-  //     );
-
-  //     // Dispatch the action to calculate tax asynchronously
-  //     dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
-  //   };
+      // Dispatch the action to calculate tax asynchronously
+      dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
+    };
 
     // Call the function to calculate financial data
-    // calculateFinancialData();
+    calculateFinancialData();
 
     // Specify the dependencies for useEffect
-  // }, [employeeId, grossIncome, country, healthCare, dispatch]);
+  }, [employeeId, grossIncome, country, healthCare, dispatch]);
 
   // Retrieve financial data from financialSlice
   // const financialData = useSelector((state) => state.financial[employeeId]);
  // Retrieve the financial data from Redux state
-  // const financialData = useSelector((state) => state.financial[employeeId]);
+  const financialData = useSelector((state) => state.financial[employeeId]);
 
  
 
@@ -125,7 +115,6 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
-    calculateFinancialData();
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
