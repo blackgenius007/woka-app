@@ -387,7 +387,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
           {hasLoanAndRepayment ?(
           <>
           <Button 
-             onClick={handleLoanSubmit}
+             onClick={handleLoanSubmit(e)}
              color="primary"
              style={{
                fontSize: '14px',
