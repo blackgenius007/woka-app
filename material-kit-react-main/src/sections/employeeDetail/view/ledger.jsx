@@ -135,7 +135,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     const repayDetail = {
       loanAmount,
       minimumRepay,
-      id,
+      employeeId,
       repayDate,
     };
     if (loan) {
@@ -387,7 +387,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
           {hasLoanAndRepayment ?(
           <>
           <Button 
-             onClick={handleLoanSubmit(e)}
+             onClick={handleLoanSubmit}
              color="primary"
              style={{
                fontSize: '14px',
