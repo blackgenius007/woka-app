@@ -17,6 +17,9 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
+import Typography from '@mui/material/Typography'; 
+import Popover from '@mui/material/Popover';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import PublishIcon from '@mui/icons-material/Publish';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import CreateIcon from '@mui/icons-material/Create';
@@ -120,7 +123,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     .calendar();
 
   const handleConfirmSubmit = (e) => {
-    alert('confirmed!!!!')
+    
     e.preventDefault();
 
     const { loanAmount, minimumRepay } = loan;
@@ -139,7 +142,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
   // handle submit loan
   const handleLoanSubmit = async (e) => {
-    alert('looooan')
+    
     e.preventDefault();
 
     const { loanAmount, minimumRepay, repayDate } = loan;
@@ -323,7 +326,59 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
                 border: '1px solid #ccc',
               }}
             />
-            <Button
+             <PopupState variant="popover" popupId="demo-popup-popover">
+      {(popupState) => (
+        <div>
+          <Button onClick={handleConfirmSubmit}
+              style={{
+                backgroundColor: '#FFD300',
+                fontSize: '10px',
+                padding: '3px 6px',
+              }} variant="contained" {...bindTrigger(popupState)}>
+            Open Popover
+          </Button>
+          <Popover
+            {...bindPopover(popupState)}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+          >
+             <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+              Loan Amount: <strong>{fNumber(loan.loanAmount)}</strong>
+            </div>
+            <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+              Minimum Repay: <strong>{fNumber(loan.minimumRepay)}</strong>
+            </div>
+            <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+              Repay Date: <strong>{repayDate}</strong>
+            </div>
+            {message && (
+              <div
+                style={{
+                  marginTop: '20px',
+                  color: '#E97451',
+                  fontSize: '14px',
+                }}
+              >
+                {message}
+              </div>
+            )}
+            <Button onClick={handleCancelSubmit} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleLoanSubmit} color="primary">
+            Confirm
+          </Button>
+          </Popover>
+        </div>
+      )}
+    </PopupState>
+            {/* <Button
               onClick={handleConfirmSubmit}
               style={{
                 backgroundColor: '#FFD300',
@@ -332,7 +387,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
               }}
             >
               Submit
-            </Button>
+            </Button> */}
             <Button
               variant="contained"
               color="warning"
@@ -561,7 +616,11 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
       </Collapsible>
 
       {/* Verification Dialog */}
-      <Dialog open={confirmationOpen} onClose={() => setConfirmationOpen(false)}>
+     
+
+
+
+      {/* <Dialog open={confirmationOpen} onClose={() => setConfirmationOpen(false)}>
         <DialogTitle>Are you sure you want to submit the following loan details?</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -595,7 +654,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
             Confirm
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
       {/* <FileViewer open={OpenFiles} close={handleFileClose} id={id} />
       <UploadFiles close={handleUploadClose} open={OpenUpload} id={id} /> */}
     </>
