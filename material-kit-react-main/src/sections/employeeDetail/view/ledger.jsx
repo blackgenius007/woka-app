@@ -8,6 +8,7 @@ import {
   addAllowance,
   allowanceReset,
   addOvertime,
+  addLoan,
   addIOU,
   overtimeReset,
 } from '../../../Services/AccountServices/financialSlice';
