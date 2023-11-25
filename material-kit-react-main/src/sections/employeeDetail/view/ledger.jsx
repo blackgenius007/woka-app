@@ -127,23 +127,23 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     .add(loan.loanAmount / loan.minimumRepay, 'months')
     .calendar();
 
-  const handleConfirmSubmit = (e) => {
+  // const handleConfirmSubmit = (e) => {
     
-    e.preventDefault();
+  //   e.preventDefault();
 
-    const { loanAmount, minimumRepay } = loan;
-    const repayDetail = {
-      loanAmount,
-      minimumRepay,
-      employeeId,
-      repayDate,
-    };
-    if (loan) {
-      console.log('repayetail:', repayDetail);
+  //   const { loanAmount, minimumRepay } = loan;
+  //   const repayDetail = {
+  //     loanAmount,
+  //     minimumRepay,
+  //     employeeId,
+  //     repayDate,
+  //   };
+  //   if (loan) {
+  //     console.log('repayetail:', repayDetail);
 
-      setConfirmationOpen(true); // Open the verification dialog
-    }
-  };
+  //     setConfirmationOpen(true); // Open the verification dialog
+  //   }
+  // };
 
   // handle submit loan
   const handleLoanSubmit = async (e) => {
@@ -154,7 +154,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     const loanDetail = {
       loanAmount,
       minimumRepay,
-      id,
+      employeeId,
       repayDate,
     };
 
@@ -334,7 +334,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
              <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
         <div>
-          <Button onClick={handleConfirmSubmit}
+          <Button 
               style={{
                 backgroundColor: '#FFD300',
                 fontSize: '10px',
