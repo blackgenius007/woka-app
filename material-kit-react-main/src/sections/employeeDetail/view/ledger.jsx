@@ -335,7 +335,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
                 fontSize: '10px',
                 padding: '3px 6px',
               }} variant="contained" {...bindTrigger(popupState)}>
-            Open Popover
+           Submit
           </Button>
           <Popover
             {...bindPopover(popupState)}
@@ -347,33 +347,59 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
               vertical: 'top',
               horizontal: 'center',
             }}
+           
           >
-             <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-              Loan Amount: <strong>{fNumber(loan.loanAmount)}</strong>
-            </div>
-            <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-              Minimum Repay: <strong>{fNumber(loan.minimumRepay)}</strong>
-            </div>
-            <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-              Repay Date: <strong>{repayDate}</strong>
-            </div>
-            {message && (
-              <div
-                style={{
-                  marginTop: '20px',
-                  color: '#E97451',
-                  fontSize: '14px',
-                }}
-              >
-                {message}
+                <div
+          style={{
+            padding: '16px',
+            maxWidth: '300px',
+          }}
+        >
+            {hasLoanAndRepayment ? (
+            <>
+              <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+                Loan Amount: <strong>{fNumber(loan.loanAmount)}</strong>
               </div>
-            )}
-            <Button onClick={handleCancelSubmit} color="primary">
+              <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+                Minimum Repay: <strong>{fNumber(loan.minimumRepay)}</strong>
+              </div>
+              <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+                Repay Date: <strong>{repayDate}</strong>
+              </div>
+            </>
+          ) : (
+            <div
+              style={{
+                marginTop: '20px',
+                color: '#E97451',
+                fontSize: '14px',
+              }}
+            >
+              Please enter loan and repayment values.
+            </div>
+          )}
+            <Button 
+              onClick={handleCancelSubmit}
+              color="primary"
+              style={{
+                fontSize: '14px',
+                marginRight: '8px',
+              }}
+            
+            >
             Cancel
           </Button>
-          <Button onClick={handleLoanSubmit} color="primary">
+          <Button 
+             onClick={handleLoanSubmit}
+             color="primary"
+             style={{
+               fontSize: '14px',
+             }}
+           
+           >
             Confirm
           </Button>
+          </div>
           </Popover>
         </div>
       )}
