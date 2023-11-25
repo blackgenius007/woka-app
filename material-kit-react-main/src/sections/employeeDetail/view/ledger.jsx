@@ -120,6 +120,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     .calendar();
 
   const handleConfirmSubmit = (e) => {
+    alert('confirmed!!!!')
     e.preventDefault();
 
     const { loanAmount, minimumRepay } = loan;
@@ -138,6 +139,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
   // handle submit loan
   const handleLoanSubmit = async (e) => {
+    alert('looooan')
     e.preventDefault();
 
     const { loanAmount, minimumRepay, repayDate } = loan;
