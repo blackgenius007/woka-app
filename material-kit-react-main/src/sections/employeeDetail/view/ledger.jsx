@@ -18,7 +18,7 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
-import Typography from '@mui/material/Typography'; 
+import Typography from '@mui/material/Typography';
 import Popover from '@mui/material/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import PublishIcon from '@mui/icons-material/Publish';
@@ -88,7 +88,6 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
   const hasLoanAndRepayment = loan && loan.loanAmount && loan.minimumRepay;
 
-
   useEffect(() => {
     // Function to trigger financial data calculation
     const calculateFinancialData = () => {
@@ -128,30 +127,11 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     .add(loan.loanAmount / loan.minimumRepay, 'months')
     .calendar();
 
-  // const handleConfirmSubmit = (e) => {
-    
-  //   e.preventDefault();
-
-  //   const { loanAmount, minimumRepay } = loan;
-  //   const repayDetail = {
-  //     loanAmount,
-  //     minimumRepay,
-  //     employeeId,
-  //     repayDate,
-  //   };
-  //   if (loan) {
-  //     console.log('repayetail:', repayDetail);
-
-  //     setConfirmationOpen(true); // Open the verification dialog
-  //   }
-  // };
-
   // handle submit loan
   const handleLoanSubmit = async (e) => {
-    
     e.preventDefault();
 
-    const { loanAmount, minimumRepay, repayDate } = loan;
+    const { loanAmount, minimumRepay  } = loan;
     const loanDetail = {
       loanAmount,
       minimumRepay,
@@ -178,7 +158,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   };
 
   const handleExemption = async () => {
-    const { loanAmount, minimumRepay, repayDate } = loan;
+    const { loanAmount, minimumRepay } = loan;
 
     // Parse the current repayDate using Moment
     const currentRepayDate = moment(repayDate);
@@ -332,92 +312,91 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
                 border: '1px solid #ccc',
               }}
             />
-             <PopupState variant="popover" popupId="demo-popup-popover">
-      {(popupState) => (
-        <div>
-          <Button 
-              style={{
-                backgroundColor: '#FFD300',
-                fontSize: '10px',
-                color: 'black', // Set the font color to black
-                padding: '3px 6px',
-              }} variant="contained" {...bindTrigger(popupState)}>
-           Submit
-          </Button>
-          <Popover
-            {...bindPopover(popupState)}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-           
-          >
-                <div
-          style={{
-            padding: '16px',
-            maxWidth: '300px',
-          }}
-        >
-            {hasLoanAndRepayment ? (
-            <>
-              <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-                Loan Amount: <strong>{fNumber(loan.loanAmount)}</strong>
-              </div>
-              <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-                Minimum Repay: <strong>{fNumber(loan.minimumRepay)}</strong>
-              </div>
-              <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-                Repay Date: <strong>{repayDate}</strong>
-              </div>
-            </>
-          ) : (
-            <div
-              style={{
-                marginTop: '20px',
-                color: '#E97451',
-                fontSize: '14px',
-              }}
-            >
-              Please enter loan and repayment values.
-            </div>
-          )}
-          {hasLoanAndRepayment ?(
-          <>
-          <Button 
-             onClick={handleLoanSubmit}
-             color="primary"
-             style={{
-               fontSize: '14px',
-             }}
-           
-           >
-            Confirm
-          </Button> 
-            <Button 
-              onClick={handleCancelSubmit}
-              color="primary"
-              style={{
-                fontSize: '14px',
-                marginRight: '8px',
-              }}
-            
-            >
-            Cancel
-          </Button>
-          </>
-          ) :  ''
-
-         } 
-         
-          </div>
-          </Popover>
-        </div>
-      )}
-    </PopupState>
+            <PopupState variant="popover" popupId="demo-popup-popover">
+              {(popupState) => (
+                <div>
+                  <Button
+                    style={{
+                      backgroundColor: '#FFD300',
+                      fontSize: '10px',
+                      color: 'black', // Set the font color to black
+                      padding: '3px 6px',
+                    }}
+                    variant="contained"
+                    {...bindTrigger(popupState)}
+                  >
+                    Submit
+                  </Button>
+                  <Popover
+                    {...bindPopover(popupState)}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'center',
+                    }}
+                  >
+                    <div
+                      style={{
+                        padding: '16px',
+                        maxWidth: '300px',
+                      }}
+                    >
+                      {hasLoanAndRepayment ? (
+                        <>
+                          <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+                            Loan Amount: <strong>{fNumber(loan.loanAmount)}</strong>
+                          </div>
+                          <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+                            Minimum Repay: <strong>{fNumber(loan.minimumRepay)}</strong>
+                          </div>
+                          <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+                            Repay Date: <strong>{repayDate}</strong>
+                          </div>
+                        </>
+                      ) : (
+                        <div
+                          style={{
+                            marginTop: '20px',
+                            color: '#E97451',
+                            fontSize: '14px',
+                          }}
+                        >
+                          Please enter loan and repayment values.
+                        </div>
+                      )}
+                      {hasLoanAndRepayment ? (
+                        <>
+                          <Button
+                            onClick={handleLoanSubmit}
+                            color="primary"
+                            style={{
+                              fontSize: '14px',
+                            }}
+                          >
+                            Confirm
+                          </Button>
+                          <Button
+                            onClick={handleCancelSubmit}
+                            color="primary"
+                            style={{
+                              fontSize: '14px',
+                              marginRight: '8px',
+                            }}
+                          >
+                            Cancel
+                          </Button>
+                        </>
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                  </Popover>
+                </div>
+              )}
+            </PopupState>
             {/* <Button
               onClick={handleConfirmSubmit}
               style={{
@@ -470,9 +449,16 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
         >
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {/* Display 30% of monthly salary in bold white fonts */}
-            <div style={{ fontWeight: 'normal', fontSize: '14px', color: 'white', marginBottom: '10px' }}>
-  IOU limit (30% of Monthly Salary): {fNumber(thirtyPercentMonthlySalary)}
-</div>
+            <div
+              style={{
+                fontWeight: 'normal',
+                fontSize: '14px',
+                color: 'white',
+                marginBottom: '10px',
+              }}
+            >
+              IOU limit (30% of Monthly Salary): {fNumber(thirtyPercentMonthlySalary)}
+            </div>
 
             {/* Input for IOU amount */}
             <input
@@ -656,9 +642,6 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
       </Collapsible>
 
       {/* Verification Dialog */}
-     
-
-
 
       {/* <Dialog open={confirmationOpen} onClose={() => setConfirmationOpen(false)}>
         <DialogTitle>Are you sure you want to submit the following loan details?</DialogTitle>
