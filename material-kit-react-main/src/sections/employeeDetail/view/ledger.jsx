@@ -38,7 +38,7 @@ import {
   TextField,
 } from '@mui/material';
 
-const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
+const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -55,10 +55,7 @@ const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
   const [iouEntries, setiouEntries] = useState([]);
   const [iouDescription, setIOUDescription] = React.useState('');
   const [iouAmount, setIOUAmount] = React.useState(0);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [complains, setComplains] = useState('Unpaid salary');
-  const [queries, setQueries] = useState('Lateness to work 6/18/23');
-  const [requests, setRequests] = useState('');
+
   const [todos, setTodos] = useState(() => {
     const storedTodos = localStorage.getItem('todos');
     return storedTodos ? JSON.parse(storedTodos) : [];
@@ -105,16 +102,9 @@ const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
   }, [employeeId, grossIncome, country, healthCare, dispatch]);
 
   // Retrieve financial data from financialSlice
-  //  const financialData = useSelector((state) => state.financial);
-  const financialData = useSelector((state) => state.financial[employeeId]);
-  // annualTaxPayable,
-  // monthlyTaxPayable,
-  // annualSalary,
-  // monthlySalary,
 
- 
-  
-  console.log('financial-data :', financialData && financialData.monthlySalary );
+  const financialData = useSelector((state) => state.financial[employeeId]);
+  const thirtyPercentMonthlySalary = financialData && financialData.monthlySalary * 0.3;
 
   // Save todos to local storage whenever it changes
   useEffect(() => {
@@ -233,38 +223,17 @@ const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
     }
   };
 
-  // Petty cash functionality section
-  const addEntry = () => {
-    if (description && amount) {
-      if (closingBalance === 0) {
-        alert('Insufficient Balance. Add to balance first.');
-        return;
-      }
-      const newEntry = { description, amount: parseFloat(amount) };
-      setEntries([...entries, newEntry]);
-      setDescription('');
-      setAmount('');
-      updateBalances(-newEntry.amount);
-    }
+  //handle IOUs
+  const handleIOUChange = (event) => {
+    const inputValue = parseFloat(event.target.value);
+    setIOUAmount(inputValue);
   };
 
-  const addBalance = () => {
-    if (amount) {
-      updateBalances(parseFloat(amount));
-      setAmount('');
-    }
-  };
-
-  const updateBalances = (entryAmount) => {
-    setOpeningBalance(closingBalance);
-    setClosingBalance(closingBalance + entryAmount);
-  };
-
-  // Todo functions
-  const handleAddTodo = () => {
-    if (newTodo && newTodo.trim() !== '') {
-      setTodos((prevTodos) => [...prevTodos, newTodo]);
-      setNewTodo(''); // Clear the input field after adding the todo
+  const handleIOUSubmit = () => {
+    if (iouAmount <= thirtyPercentMonthlySalary) {
+      dispatch(updateIOU(employeeId, iouAmount));
+    } else {
+      alert('IOU amount cannot exceed 30% of monthly salary');
     }
   };
 
@@ -403,42 +372,30 @@ const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
           }}
         >
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <label htmlFor="iouDescription" style={{ marginBottom: '5px' }}>
-              Description:
-            </label>
-            <input
-              type="text"
-              id="iouDescription"
-              //   value={iouDescription}
-              //   onChange={(e) => setIOUDescription(e.target.value)}
-              style={{
-                padding: '3px',
-                fontSize: '12px',
-                width: '100%',
-                maxWidth: '150px',
-                marginBottom: '5px',
-                border: '1px solid #ccc',
-              }}
-            />
-            <label htmlFor="iouAmount" style={{ marginBottom: '5px' }}>
-              Amount:
-            </label>
+            {/* Display 30% of monthly salary in bold white fonts */}
+            <div style={{ fontWeight: 'bold', color: 'white', marginBottom: '10px' }}>
+              30% of Monthly Salary: {thirtyPercentMonthlySalary}
+            </div>
+
+            {/* Input for IOU amount */}
             <input
               type="number"
-              id="iouAmount"
-              //   value={iouAmount}
-              //   onChange={(e) => setIOUAmount(e.target.value)}
+              value={iouAmount}
+              onChange={handleIOUChange}
+              placeholder="Enter IOU amount"
               style={{
                 padding: '3px',
                 fontSize: '12px',
                 width: '100%',
                 maxWidth: '80px',
-                marginBottom: '5px',
+                marginBottom: '10px',
                 border: '1px solid #ccc',
               }}
             />
+
+            {/* Button to submit IOU */}
             <button
-              //   onClick={addIOUEntry}
+              onClick={handleIOUSubmit}
               style={{
                 background: '#00aaff',
                 color: '#fff',
@@ -447,7 +404,7 @@ const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
                 borderRadius: '5px',
                 cursor: 'pointer',
                 fontSize: '12px',
-                marginBottom: '5px',
+                marginBottom: '10px',
               }}
             >
               Add IOU Entry
@@ -467,16 +424,7 @@ const Ledger = ({ healthCare, grossIncome,employeeId,country}) => {
                   borderRadius: '5px',
                 }}
               >
-                <span
-                  style={{
-                    flex: '1',
-                    fontSize: '12px',
-                    fontFamily: 'Your-Handwriting-Font, cursive',
-                    textAlign: 'center',
-                  }}
-                >
-                  {iou.description}
-                </span>
+                {/* Display only the IOU amount */}
                 <span
                   style={{
                     flex: '0 0 60px',
