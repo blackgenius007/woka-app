@@ -373,9 +373,9 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
         >
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {/* Display 30% of monthly salary in bold white fonts */}
-            <div style={{ fontWeight: 'bold', color: 'white', marginBottom: '10px' }}>
-              30% of Monthly Salary: {thirtyPercentMonthlySalary}
-            </div>
+            <div style={{ fontWeight: 'normal', fontSize: '14px', color: 'white', marginBottom: '10px' }}>
+  IOU limit (30% of Monthly Salary): {fNumber(thirtyPercentMonthlySalary)}
+</div>
 
             {/* Input for IOU amount */}
             <input
