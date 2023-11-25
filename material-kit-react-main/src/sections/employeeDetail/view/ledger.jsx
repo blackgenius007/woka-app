@@ -83,6 +83,11 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     setText(e.target.value);
   };
 
+  // const popupState = usePopupState({ variant: 'popover', popupId: 'demo-popup-popover' });
+
+  const hasLoanAndRepayment = loan && loan.loanAmount && loan.minimumRepay;
+
+
   useEffect(() => {
     // Function to trigger financial data calculation
     const calculateFinancialData = () => {
