@@ -384,6 +384,18 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
               Please enter loan and repayment values.
             </div>
           )}
+          {hasLoanAndRepayment ?(
+          <>
+          <Button 
+             onClick={handleLoanSubmit}
+             color="primary"
+             style={{
+               fontSize: '14px',
+             }}
+           
+           >
+            Confirm
+          </Button> 
             <Button 
               onClick={handleCancelSubmit}
               color="primary"
@@ -395,16 +407,11 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
             >
             Cancel
           </Button>
-          <Button 
-             onClick={handleLoanSubmit}
-             color="primary"
-             style={{
-               fontSize: '14px',
-             }}
-           
-           >
-            Confirm
-          </Button>
+          </>
+          ) :  ''
+
+         } 
+         
           </div>
           </Popover>
         </div>
