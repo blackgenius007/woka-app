@@ -338,6 +338,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
               style={{
                 backgroundColor: '#FFD300',
                 fontSize: '10px',
+                color: 'black', // Set the font color to black
                 padding: '3px 6px',
               }} variant="contained" {...bindTrigger(popupState)}>
            Submit
