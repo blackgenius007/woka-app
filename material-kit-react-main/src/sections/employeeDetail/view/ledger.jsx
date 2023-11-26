@@ -5,9 +5,7 @@ import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import { fNumber } from 'src/utils/format-number';
 import {
   calculateTaxAsync,
-  addAllowance,
-  allowanceReset,
-  addOvertime,
+  updateLoan,
   addLoan,
   addIOU,
   overtimeReset,
