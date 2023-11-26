@@ -73,7 +73,10 @@ const UserSchema = new Schema({
     }
   
   ],
-
+iouLimit: {
+  type: String,
+  default: 30,
+},
 });
 
 //Encrypt password using bycrypt

@@ -1514,12 +1514,12 @@ exports.getSupplierDetail = asyncHandler(async (req, res, next) => {
 // @desc update order status
 //@acess Private
 exports.addLoan = asyncHandler(async (req, res, next) => {
-  const { loanAmount, minimumRepay, id, repayDate } = req.body;
-  console.log(loanAmount, minimumRepay, id, repayDate);
+  const { loanAmount, minimumRepay, employeeId, repayDate } = req.body;
+  console.log(loanAmount, minimumRepay, employeeId, repayDate);
 
   try {
     const result = await Employee.findOneAndUpdate(
-      { _id: id },
+      { _id: employeeId },
       {
         $set: {
           loan: loanAmount,
