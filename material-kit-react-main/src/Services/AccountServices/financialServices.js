@@ -1,66 +1,64 @@
-  
-   /* eslint-disable */
-  // financialService.js
+ /* eslint-disable */
 import axios from 'axios';
 
 // Define your base URL here
-// const BASE_URL = 'https://workfily-api.onrender.com';
-const BASE_URL = 'https://woka-app.vercel.app ';
+const BASE_URL = 'https://woka-app.vercel.app';
 
 axios.defaults.baseURL = BASE_URL;
 
 const API_URL_ADD = '/api/v1/employee/add-loan';
 const API_URL_UPDATE = '/api/v1/employee/update-loan';
 const API_URL_OFF = '/api/v1/employee/loan-off';
-const API_URL_OVERTIMERESET  = '/api/v1/employee/overtimeReset';
+const API_URL_OVERTIMERESET = '/api/v1/employee/overtimeReset';
 const API_URL_ADD_OVERTIME = '/api/v1/employee/overtimeAdder';
 const API_URL_ADD_ALLOWANCE = '/api/v1/employee/allowance';
 const API_URL_ADD_IOU = '/api/v1/employee/IOU';
 
- 
+// Function to construct the base URL
+const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
 
 const addLoan = async (loanDetail) => {
-    try {
-      const response = await axios.post(API_URL_ADD, loanDetail);
-      return response.data;
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  };
-  
-   
+  try {
+    const response = await axios.post(constructURL(API_URL_ADD), loanDetail);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
+
 const updateLoan = async (repayDetail) => {
-  const response = await axios.post(API_URL_UPDATE, repayDetail);
+  const response = await axios.post(constructURL(API_URL_UPDATE), repayDetail);
   return response.data;
-};      
+};
 
 const loanPayOff = async (today) => {
-  const response = await axios.post(API_URL_OFF, today);
-  return response.data;
-};               
-
-const allowanceReset = async ( email, overtime) => {
-  const response = await axios.post(`${API_URL_UPDATE}/${email}/${overtime}` );
+  const response = await axios.post(constructURL(API_URL_OFF), today);
   return response.data;
 };
 
-const addOvertime = async ( id, value) => {   
-  console.log('overtime-services==>',value,id);  
-
-  const response = await axios.post(`${API_URL_ADD_OVERTIME}/${id}/${value}` );
+const allowanceReset = async (email, overtime) => {
+  const response = await axios.post(constructURL(`${API_URL_UPDATE}/${email}/${overtime}`));
   return response.data;
 };
-const addAllowance = async ( id, value) => {   
-  console.log('overtime-services==>',value,id);  
 
-  const response = await axios.post(`${API_URL_ADD_ALLOWANCE}/${id}/${value}` );
+const addOvertime = async (id, value) => {
+  console.log('overtime-services==>', value, id);
+
+  const response = await axios.post(constructURL(`${API_URL_ADD_OVERTIME}/${id}/${value}`));
   return response.data;
-};    
-const addIOU = async ( id, value) => {   
-   const response = await axios.post(`${API_URL_ADD_IOU}/${id}/${value}` );
+};
+
+const addAllowance = async (id, value) => {
+  console.log('overtime-services==>', value, id);
+
+  const response = await axios.post(constructURL(`${API_URL_ADD_ALLOWANCE}/${id}/${value}`));
   return response.data;
-};    
-    
+};
+
+const addIOU = async (id, value) => {
+  const response = await axios.post(constructURL(`${API_URL_ADD_IOU}/${id}/${value}`));
+  return response.data;
+};
 
 const financialService = {
   updateLoan,
@@ -68,7 +66,7 @@ const financialService = {
   loanPayOff,
   addOvertime,
   addAllowance,
-  addIOU  
+  addIOU,
 };
 
 export default financialService;
