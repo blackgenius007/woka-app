@@ -78,6 +78,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
     loanAmount: '',
     minimumRepay: '',
   });
+  const [loanMessage, setLoanMessage] = useState('');
   const [text, setText] = useState('');
 
   const handleTextChange = (e) => {
@@ -143,7 +144,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
       const response = await dispatch(addLoan({ loanDetail }));
       console.log('response=>', response);
       if (response.meta.requestStatus === 'fulfilled') {
-        setMessage('Successfully submitted, disbursement can be initiated!');
+        setLoanMessage('Successfully submitted, disbursement can be initiated!');
       } else {
         throw new Error('Adding loan failed: Response was not successful');
       }
@@ -355,6 +356,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
                           <div style={{ marginBottom: '10px', fontSize: '14px' }}>
                             Repay Date: <strong>{repayDate}</strong>
                           </div>
+                          {loanMessage}
                         </>
                       ) : (
                         <div
