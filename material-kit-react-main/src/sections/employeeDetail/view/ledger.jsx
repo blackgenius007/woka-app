@@ -159,6 +159,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
   };
 
   const handleExemption = async () => {
+    alert('exeeeempt')
     const { loanAmount, minimumRepay } = loan;
 
     // Parse the current repayDate using Moment
