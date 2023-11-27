@@ -142,11 +142,13 @@ const EmployeeProfileCard = () => {
     healthCare,
     loan,
     iou,
+    minimumRepay,
     benefitInKind,
     employeeCode,
     address,
     dateOfBirth,
     sex,
+    repayDate,
     nextOfKinRelationship,
     accountNumber,
     bankName,
@@ -293,6 +295,10 @@ const EmployeeProfileCard = () => {
             grossIncome={grossIncome}
             country={country}
             employeeId={id}
+            minimumRepay={minimumRepay}
+            repayDate={repayDate}
+            currentLoan={loan}
+
           />
         </Grid>
       </Grid>
