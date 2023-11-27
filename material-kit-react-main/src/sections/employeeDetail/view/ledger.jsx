@@ -66,7 +66,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
   const [confirmationOpen, setConfirmationOpen] = useState(false);
 
   // const [amount, setAmount] = useState({});
-  const [currentLoan, setCurrentLoan] = useState(0);
+ 
   const [message, setMessage] = useState('');
   const [values, setValues] = useState({
     ait: 0,
