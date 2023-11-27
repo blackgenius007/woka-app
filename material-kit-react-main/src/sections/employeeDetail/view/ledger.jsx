@@ -182,7 +182,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
       const response = await dispatch(updateLoan({ loanDetail }));
       console.log('response=>', response);
       if (response.meta.requestStatus === 'fulfilled') {
-        setMessage('The loan expiry date has been successfully adjusted forward by one month.');
+        setMessage('The loan maturity date has been successfully adjusted forward by one month.');
       } else {
         throw new Error('Adding loan failed: Response was not successful');
       }
@@ -196,7 +196,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
     const today = moment();
 
     const loanDetail = {
-      id,
+      employeeId,
       today,
     };
 
@@ -204,7 +204,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
       const response = await dispatch(loanPayOff({ loanDetail }));
       console.log('response=>', response);
       if (response.meta.requestStatus === 'fulfilled') {
-        setMessage('Successfully paid off remaining loan!');
+        setMessage('Remaining loan has been successfully settled!');
       } else {
         throw new Error('Pay Off failed: Response was not successful');
       }
@@ -222,11 +222,28 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
 
   const handleIOUSubmit = () => {
     if (iouAmount <= thirtyPercentMonthlySalary) {
-      dispatch(updateIOU(employeeId, iouAmount));
+      dispatch(updateIOU(employeeId, iouAmount))
+        .then((response) => {
+          if (response.meta.requestStatus === 'fulfilled') {
+            // IOU has been successfully updated
+            alert('IOU has been successfully updated!');
+          } else {
+            // Handle the case where the request was not successful
+            console.error('IOU update failed:', response);
+            alert('Failed to update IOU. Please try again.');
+          }
+        })
+        .catch((error) => {
+          // Handle any unexpected errors during the update
+          console.error('Error updating IOU:', error);
+          alert('An error occurred while updating IOU. Please try again.');
+        });
     } else {
       alert('IOU amount cannot exceed 30% of monthly salary');
     }
   };
+  
+  
 
   // Open files
   const handleFileOpen = () => {
@@ -245,13 +262,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
   const handleUploadClose = () => {
     setOpenUpload(false);
   };
-
-  // Open textArea
-  // const handleTextOpen = () => {
-  //   setMessage('');
-  //   setId(user.data._id);
-  //   setTextOpen(true); // Open the dialog or component as needed
-  // };
+ 
 
   const toggleCollapse = () => {
     setCollapseOpen(!collapseOpen); // Toggle the collapse state
