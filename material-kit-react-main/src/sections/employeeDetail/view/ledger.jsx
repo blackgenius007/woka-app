@@ -490,7 +490,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
 
             {/* Button to submit IOU */}
             <button
-              onClick={handleIOUSubmit}
+                onClick={() => handleIOUSubmit()}
               style={{
                 background: '#00aaff',
                 color: '#fff',
