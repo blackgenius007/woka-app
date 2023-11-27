@@ -295,8 +295,8 @@ const EmployeeProfileCard = () => {
             grossIncome={grossIncome}
             country={country}
             employeeId={id}
-            minimumRepay={minimumRepay}
-            repayDate={repayDate}
+            currentRepay={minimumRepay}
+            currentRepayDate={repayDate}
             currentLoan={loan}
 
           />

@@ -40,7 +40,7 @@ import {
   TextField,
 } from '@mui/material';
 
-const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
+const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,currentRepayDate,currentRepay }) => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -158,18 +158,18 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country }) => {
 
   const handleExemption = async () => {
  
-    const { loanAmount, minimumRepay } = loan;
+    // currentLoan,currentRepayDate,currentRepay
 
     // Parse the current repayDate using Moment
-    const currentRepayDate = moment(repayDate);
+    const currentRepayDated = moment(currentRepayDate);
 
     // Add one month to the current repayDate
-    const adjustedRepayDate = currentRepayDate.add(1, 'months');
+    const adjustedRepayDate = currentRepayDated.add(1, 'months');
 
     // Format the adjustedRepayDate as a string in the desired format
     const adjustedRepayDateFormatted = adjustedRepayDate.format('YYYY-MM-DD');
 
-    const exemptBy = loanAmount / minimumRepay + 1;
+    const exemptBy = currentLoan / currentRepay + 1;
     const ExemptBy = moment().add(exemptBy, 'months').calendar();
 
     const loanDetail = {
