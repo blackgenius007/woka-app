@@ -221,9 +221,9 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
   };
 
   const handleIOUSubmit = () => {
-    alert('treeee')
+   
     if (iouAmount <= thirtyPercentMonthlySalary) {
-      dispatch(updateIOU(employeeId, iouAmount))
+      dispatch(updateLoan(employeeId, iouAmount))
         .then((response) => {
           if (response.meta.requestStatus === 'fulfilled') {
             // IOU has been successfully updated
