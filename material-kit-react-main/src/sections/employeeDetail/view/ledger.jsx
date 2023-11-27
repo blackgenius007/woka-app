@@ -221,6 +221,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
   };
 
   const handleIOUSubmit = () => {
+    alert('treeee')
     if (iouAmount <= thirtyPercentMonthlySalary) {
       dispatch(updateIOU(employeeId, iouAmount))
         .then((response) => {
@@ -490,7 +491,7 @@ const Ledger = ({ healthCare, grossIncome, employeeId, country,currentLoan,curre
 
             {/* Button to submit IOU */}
             <button
-                onClick={() => handleIOUSubmit()}
+              onClick={handleIOUSubmit}
               style={{
                 background: '#00aaff',
                 color: '#fff',
