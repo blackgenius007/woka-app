@@ -168,11 +168,15 @@
       const { employees, isLoading, isError, message } = useSelector(
          (state) => state.employees
        );
-  
        const {user} = useSelector(
-         (state) => state.auth
-       );
-     console.log(employees);
+        (state) => state.auth
+      );
+    console.log(employees);
+  
+         // Retrieve financial data from financialSlice
+  const financialData = useSelector((state) => state.financial);
+  console.log('financials=>', financialData);
+   
      
       const tableRef = useRef(null);
       const requestSearch = (searchedVal) => {
