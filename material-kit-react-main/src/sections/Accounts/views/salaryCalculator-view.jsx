@@ -397,8 +397,7 @@ const disableExportMode = () => {
         filteredRows.map((row) =>{
           const { _id, designation } = row;
           const { grossIncome, country } = designation;
-          const employeeFinancialData = useSelector((state) => state.financial[_id]);
-          // const employeeFinancialData = financialData[_id];
+          const employeeFinancialData = financialData[_id];
 
           // Calculate financial data if not available
           if (!employeeFinancialData) {
@@ -406,7 +405,11 @@ const disableExportMode = () => {
             return null; // Render nothing for now, will be updated on next render
           }
           console.log(employeeFinancialData);
- 
+// Calculate financial data if not available
+if (!employeeFinancialData) {
+calculateFinancialData(_id, grossIncome, country);
+return null; // Render nothing for now, will be updated on next render
+}
 console.log(employeeFinancialData);
 
 // Calculate Total Remuneration
