@@ -3037,6 +3037,11 @@ react-dropdown@^1.11.0:
   dependencies:
     classnames "^2.2.3"
 
+react-export-table-to-excel@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/react-export-table-to-excel/-/react-export-table-to-excel-1.0.6.tgz"
+  integrity sha512-2NKyor1rFFEqYDXQq5tPoVNwwdv5kT8DWc65wAmDa9Hi0441qHj0tOxegWhpW0vlCM2TypIsw+ghzIr900U4RA==
+
 react-fast-compare@^3.0.1, react-fast-compare@^3.2.0:
   version "3.2.0"
   resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-3.2.0.tgz"
