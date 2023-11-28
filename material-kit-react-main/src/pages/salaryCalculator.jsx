@@ -4,7 +4,7 @@ import {SalaryCalculatorView } from 'src/sections/Accounts/views';
 
 // ----------------------------------------------------------------------
 
-export default function SalaryCalculatePage() {
+export default function SalaryCalculatorPage() {
   return (
     <>
       <Helmet>
