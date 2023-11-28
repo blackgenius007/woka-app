@@ -24,9 +24,14 @@ const navConfig = [
   },
   {
     title: 'accounts',
-    path: '/blog',
-    icon: icon('ic_blog'),
+    path: '/salary',
+    icon: icon('ic_money'),
   },
+  // {
+  //   title: 'accounts',
+  //   path: '/blog',
+  //   icon: icon('ic_blog'),
+  // },
   {
     title: 'login',
     path: '/login',
