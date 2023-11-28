@@ -16,16 +16,16 @@ import {
   addOvertime,
   addIOU,
   overtimeReset,
-} from '../../../Services/AccountServices/financialSlice';
-import accounting from 'accounting-js';
-import { retrieveAllAttendance } from '../../../Services/HR-Services/employeeSlice';
+} from 'src/Services/AccountServices/financialSlice';
+ 
+import { retrieveAllAttendance } from 'src/Services/HR-Services/employeeSlice';
 import { Clear,FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Dialog from '@mui/material/Dialog';
-import { TiArrowBackOutline } from 'react-icons/ti';
-import { FcDataConfiguration, FcOvertime, FcRatings } from 'react-icons/fc';
+ 
+// import { FcDataConfiguration, FcOvertime, FcRatings } from 'react-icons/fc';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -41,16 +41,10 @@ import { IconContext } from 'react-icons';
 import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import { Popup } from 'semantic-ui-react';
-import face from '../../../../assets/face-0.jpg';
+ 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';         
-import {
-  BsChevronDoubleLeft,
-  BsFlagFill,
-  BsChevronLeft,
-  BsChevronRight,
-  BsChevronDoubleRight,
-} from 'react-icons/bs';
+ 
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
