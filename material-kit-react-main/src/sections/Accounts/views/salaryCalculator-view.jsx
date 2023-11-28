@@ -159,19 +159,18 @@ const SalaryCalculator = ({ drawer }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  
+  //user details
+  const { role, email, ownerEmail } = useSelector(
+    (state) => state.auth.user.data
+  );
     // Retrieve attendance data from employeeSlice
-    const { employees, isLoading, isError, message } = useSelector(
-      (state) => state.employees
-    );
+   const { employees, isLoading, isError  } = useSelector(
+        (state) => state.employees
+      );
     console.log( employees)
- 
-     //user details
-     const { ownerEmail,role } = useSelector((state) => state.auth.user.data);
-   
-     // user role
-     const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
-     console.log(userEmail);   
+  // user role
+  const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
+  console.log(userEmail);   
 
   //fetch attendance details
   useEffect(() => {
