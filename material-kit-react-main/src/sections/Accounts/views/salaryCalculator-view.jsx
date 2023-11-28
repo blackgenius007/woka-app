@@ -767,7 +767,7 @@ export default function MainPage() {
       <h1 style={{ color: '#6082B6' }}>Salary Schedule</h1>
       <SalaryCalculator drawer={toggleSidebar} />
       {/* Right Sidebar */}
-      <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
+      {/* <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
     </div>
   );
 }
