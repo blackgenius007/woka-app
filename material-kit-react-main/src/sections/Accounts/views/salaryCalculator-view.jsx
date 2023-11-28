@@ -180,14 +180,14 @@ const SalaryCalculator = ({ drawer }) => {
   console.log(attendance, financialData);
 
   // Function to trigger financial data calculation
-  const calculateFinancialData = (employeeId, grossIncome, country) => {
+  const calculateFinancialData = ( employeeId, grossIncome, country, healthCare ) => {
     console.log(
       'front-calculateFinancialData:',
       employeeId,
       grossIncome,
       country
     );
-    dispatch(calculateTaxAsync({ employeeId, grossIncome, country }));    
+    dispatch(calculateTaxAsync({ employeeId, grossIncome, country,healthCare }));    
         
   };
   // search function
@@ -396,13 +396,13 @@ const disableExportMode = () => {
       // function to calculate total payout
     
         filteredRows.map((row) =>{
-          const { _id, designation } = row;
+          const { _id, designation, employeeId, healthCare  } = row;
           const { grossIncome, country } = designation;
           const employeeFinancialData = financialData[_id];
 
           // Calculate financial data if not available
           if (!employeeFinancialData) {
-            calculateFinancialData(_id, grossIncome, country);
+            calculateFinancialData(_id, grossIncome, country,healthCare);
             return null; // Render nothing for now, will be updated on next render
           }
           console.log(employeeFinancialData);
