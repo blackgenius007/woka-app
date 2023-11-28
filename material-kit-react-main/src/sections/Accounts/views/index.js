@@ -1,1 +1,1 @@
-export { default as SalaryCalaulatorView } from './salaryCalaulator-view';
+export { default as SalaryCalculatorView } from './salaryCalculator-view';
