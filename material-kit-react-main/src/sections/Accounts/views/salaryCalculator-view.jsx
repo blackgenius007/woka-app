@@ -23,7 +23,7 @@ export default function SalaryCalculator() {
   const { employees } = useSelector(
     (state) => state.employees
   );
-  console.log(employees);
+  console.log(employees && employees);
   // user role
   const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
   console.log(userEmail);   
