@@ -14,7 +14,7 @@ import {
  
 
 export default function SalaryCalculator() {
-
+  const dispatch = useDispatch();
     //user details
   const { role, email, ownerEmail } = useSelector(
     (state) => state.auth.user.data
