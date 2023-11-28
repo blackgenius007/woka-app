@@ -5,11 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import DashboardLayout from 'src/layouts/dashboard';
+import SalaryCalculatePage from 'src/pages/salaryCalculator';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
 export const UserPage = lazy(() => import('src/pages/user'));
 export const EmployeePage = lazy(() => import('src/pages/employee'));
+export const SalaryCalculatorPage = lazy(() => import('src/pages/salaryCalculator'));
 export const DepartmentPage = lazy(() => import('src/pages/department'));
 export const EmployeeDetailPage = lazy(() => import('src/pages/employeeDetail'));
 export const NewEmployeePage = lazy(() => import('src/pages/newEmployeeForm'));
@@ -45,6 +47,7 @@ export default function Router() {
         <Route path="products" element={<ProductsPage />} />
         <Route path="blog" element={<BlogPage />} />
         <Route path="employee" element={<EmployeePage />} />
+        <Route path="salary" element={<SalaryCalculatePage />} />
         <Route path="new-employee" element={<NewEmployeePage />} />
         <Route path="employee-detail/:id" element={< EmployeeDetailPage />} />
         <Route path="/department-view/:unit" element={< DepartmentPage/>} />
