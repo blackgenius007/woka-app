@@ -20,7 +20,7 @@ import {
   overtimeReset,
 } from 'src/Services/AccountServices/financialSlice';
  
-import { retrieveAllAttendance } from 'src/Services/HR-Services/employeeSlice';
+import { retrieveAllEmployees } from 'src/Services/HR-Services/employeeSlice';
 import { Clear,FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -169,15 +169,17 @@ const SalaryCalculator = ({ drawer }) => {
 
   //fetch attendance details
   useEffect(() => {           
-       
-    dispatch(retrieveAllAttendance({ userEmail, dateOffset }));
-  }, [dispatch, userEmail, dateOffset]);
+        
+    dispatch(retrieveAllEmployees({ userEmail }));
+  }, [dispatch, userEmail ]);
 
   // Retrieve attendance data from employeeSlice
-  const { attendance } = useSelector((state) => state.employees);
+  const { employees } = useSelector(
+    (state) => state.employees
+  );
   // Retrieve financial data from financialSlice
   const financialData = useSelector((state) => state.financial);
-  console.log(attendance, financialData);
+  console.log(employees, financialData);
 
   // Function to trigger financial data calculation
   const calculateFinancialData = ( employeeId, grossIncome, country, healthCare ) => {
@@ -379,8 +381,8 @@ const disableExportMode = () => {
   };
 
   const filteredRows =
-    attendance &&
-    attendance
+    employees &&
+    employees
       .filter((row) => row.paySchedule === 'Monthly') // Filter by paySchedule === 'weekly'
       .filter((row) =>
         Object.values(row).some((value) =>
