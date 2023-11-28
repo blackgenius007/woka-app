@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import DashboardLayout from 'src/layouts/dashboard';
-import SalaryCalculatePage from 'src/pages/salaryCalculator';
+ 
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import {SalaryCalculatorView } from 'src/sections/Accounts/views';
+import {SalaryCalaulatorView } from 'src/sections/Accounts/views';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ export default function SalaryCalculatePage() {
         <title> Accounts | Workfily </title>
       </Helmet>
 
-      <SalaryCalculatorView/>
+      <SalaryCalaulatorView/>
     </>
   );
 }
