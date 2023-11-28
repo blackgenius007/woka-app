@@ -22,6 +22,7 @@ import { retrieveAllAttendance } from 'src/Services/HR-Services/employeeSlice';
 import { Clear,FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Dialog from '@mui/material/Dialog';
 import { fNumber } from 'src/utils/format-number'; 
@@ -757,11 +758,26 @@ export default function MainPage() {
   };   
 
   return (
-    <div style={containerStyle}>
-      <h1 style={{ color: '#6082B6' }}>Salary Schedule</h1>
+    <Container>
+    <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+<Typography variant="h4">Salary Calculator</Typography>
+
+<Link to="/new-employee">
+<Button
+variant="contained"
+style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
+startIcon={<Iconify icon="eva:plus-fill" />}
+>
+
+Income Analytics          
+
+</Button>
+</Link>
+
+</Stack>
+<Scrollbar>
       <SalaryCalculator drawer={toggleSidebar} />
-      {/* Right Sidebar */}
-      {/* <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
-    </div>
+      </Scrollbar>
+          </Container>
   );
 }
