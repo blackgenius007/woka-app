@@ -766,7 +766,7 @@ export default function MainPage() {
 <Button
 variant="contained"
 style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
-startIcon={<Iconify icon="eva:plus-fill" />}
+ 
 >
 
 Income Analytics          
