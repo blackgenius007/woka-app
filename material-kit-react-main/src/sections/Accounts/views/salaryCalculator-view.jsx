@@ -24,7 +24,7 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Dialog from '@mui/material/Dialog';
- 
+import { fNumber } from 'src/utils/format-number'; 
 // import { FcDataConfiguration, FcOvertime, FcRatings } from 'react-icons/fc';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -430,13 +430,7 @@ totalRemunerationForAll += netRemuneration;
 
 console.log('function for salary=>',totalRemunerationForAll)
  
-  // convert currency
-  const toMoney = (value) => {
-    return accounting.formatMoney(accounting.unformat(value), {
-      symbol: '',
-      precision: 2,
-    });
-  };
+ 
 
   // Dialogue box
   const handleClickOpen = () => {
@@ -550,7 +544,7 @@ console.log('function for salary=>',totalRemunerationForAll)
             </td>
             <td style={{ textAlign: 'center' }}>
               
-               {toMoney(totalRemunerationForAll.toFixed(2))} 
+               {fNumber(totalRemunerationForAll.toFixed(2))} 
             </td>
           </tr>
     
@@ -658,16 +652,16 @@ console.log('All:',totalRemunerationForAll)
                                   
                     <td style={futuristicStyles.tableBodyCell}>
                   
-                    {toMoney(employeeFinancialData.monthlySalary)}
+                    {fNumber(employeeFinancialData.monthlySalary)}
                   </td>  
 
                   <td style={futuristicStyles.tableBodyCell}>
-              {toMoney(row.allowance ? row.allowance : '0.00')}
+              {fNumber(row.allowance ? row.allowance : '0.00')}
             </td>
-            <td style={futuristicStyles.tableBodyCell}>{toMoney(row.overtime)}</td>
-            <td style={futuristicStyles.tableBodyCell}>{toMoney(row.IOU)}</td>
-            <td style={futuristicStyles.tableBodyCell}>{toMoney(row.loan && row.exemptionIsOn ? row.loan : '0.00')}</td>
-            <td style={futuristicStyles.tableBodyCell}>{toMoney(row.minimumRepay)}</td>
+            <td style={futuristicStyles.tableBodyCell}>{fNumber(row.overtime)}</td>
+            <td style={futuristicStyles.tableBodyCell}>{fNumber(row.IOU)}</td>
+            <td style={futuristicStyles.tableBodyCell}>{fNumber(row.loan && row.exemptionIsOn ? row.loan : '0.00')}</td>
+            <td style={futuristicStyles.tableBodyCell}>{fNumber(row.minimumRepay)}</td>
             <td style={futuristicStyles.tableBodyCell}>
               {row.loan
                 ? moment(new Date(row.repayDate)).format('MMM Do YY')
@@ -676,14 +670,14 @@ console.log('All:',totalRemunerationForAll)
             {row.department.grossIncome === null ? (
               <td style={futuristicStyles.tableBodyCell}>
                 {row.loan && moment().isBefore(moment(row.repayDate))
-                  ? toMoney(
+                  ? fNumber(
                       parseInt(
                         row.designation.perhrIncome * 8 * 20 -
                           parseInt(row.minimumRepay) +
                           parseInt(row.allowance)
                       )
                     )
-                  : toMoney(
+                  : fNumber(
                       parseInt(
                         row.department.perhrIncome * 8 * 20 +
                           parseInt(row.allowance)
@@ -693,9 +687,9 @@ console.log('All:',totalRemunerationForAll)
             ) : (
               <td style={futuristicStyles.tableBodyCell}>
                 {row.loan && moment().isBefore(moment(row.repayDate))
-                  ? toMoney(totalRemuneration - parseInt(row.minimumRepay)
+                  ? fNumber(totalRemuneration - parseInt(row.minimumRepay)
                     )
-                  : toMoney( totalRemuneration 
+                  : fNumber( totalRemuneration 
                     )}
               </td>
             )}
