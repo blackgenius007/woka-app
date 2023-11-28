@@ -511,7 +511,7 @@ console.log('function for salary=>',totalRemunerationForAll)
 
        
         <Chip
-          avatar={<FcRatings />}
+          // avatar={<FcRatings />}
           label="Set overtime rate"
           clickable
           style={{ backgroundColor: '#fff' }}
