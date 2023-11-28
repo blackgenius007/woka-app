@@ -163,6 +163,11 @@ const SalaryCalculator = ({ drawer }) => {
   const { role, email, ownerEmail } = useSelector(
     (state) => state.auth.user.data
   );
+    // Retrieve attendance data from employeeSlice
+    const { employees } = useSelector(
+      (state) => state.employees
+    );
+    console.log('initial fetched data:',employees)
   // user role
   const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
   console.log(userEmail);   
@@ -173,10 +178,7 @@ const SalaryCalculator = ({ drawer }) => {
     dispatch(retrieveAllEmployees({ userEmail }));
   }, [dispatch, userEmail ]);
 
-  // Retrieve attendance data from employeeSlice
-  const { employees } = useSelector(
-    (state) => state.employees
-  );
+
   // Retrieve financial data from financialSlice
   const financialData = useSelector((state) => state.financial);
   console.log(employees, financialData);
