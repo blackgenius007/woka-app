@@ -161,7 +161,7 @@ const SalaryCalculator = ({ drawer }) => {
 
   
     // Retrieve attendance data from employeeSlice
-    const { employees } = useSelector(
+    const { employees, isLoading, isError, message } = useSelector(
       (state) => state.employees
     );
     console.log( employees)
