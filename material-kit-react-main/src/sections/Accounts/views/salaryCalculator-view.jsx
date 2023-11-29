@@ -650,7 +650,13 @@ const SalaryCalculator = ({ drawer }) => {
                   <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
                   <td style={futuristicStyles.tableBodyCell}>-</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
-     {/* Total Remuneration for All Employees */}
+    
+                </tr>
+              );
+            })}
+
+         
+               {/* Total Remuneration for All Employees */}
   <tr>
     <td colSpan="8" style={{ textAlign: 'right' }}>
       <strong>Total:</strong>
@@ -659,18 +665,7 @@ const SalaryCalculator = ({ drawer }) => {
       {fNumber(totalRemunerationForAll.toFixed(2))}
     </td>
   </tr>
-                </tr>
-              );
-            })}
-
-            <tr>
-              <td colSpan="8" style={{ textAlign: 'right' }}>
-                <strong>Total:</strong>
-              </td>
-              <td style={{ textAlign: 'center' }}>
-                {/* {toMoney(totalRemunerationForAll.toFixed(2)/2) } */}
-              </td>
-            </tr>
+            
           </tbody>
         </table>
       </div>
