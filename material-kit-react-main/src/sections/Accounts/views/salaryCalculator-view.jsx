@@ -437,109 +437,125 @@
     
       return (
         <>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <TextField
-              value={searched}
-              onChange={(e) => requestSearch(e.target.value)}
-              label="Search database"
-              variant="outlined"
-              size="small"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    {searched && (
-                      <IconButton onClick={() => requestSearch('')}>
-                        <Clear />
-                      </IconButton>
-                    )}
-                  </InputAdornment>
-                ),
-              }}
-            />
-            {/* react-dropdown */}
-            {unit ? (
-   <>
-     <Dropdown 
-       options={options}
-       onChange={handleDepartmentChange}
-       value={unit}
-       placeholder="Select a Department"
-       style={{ minWidth: '200px' }} // Set a minimum width
-       contentRenderer={({ props, state }) => (
-         <div style={{ minWidth: '200px' }}>
-           {state.values.length ? state.values.map((v) => <div key={v.value}>{v.label}</div>) : props.searchable ? props.noResultsText : props.placeholder}
-         </div>
-       )}
-     />
+           <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <TextField
+          value={searched}
+          onChange={(e) => requestSearch(e.target.value)}
+          label="Search database"
+          variant="outlined"
+          size="small"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                {searched && (
+                  <IconButton onClick={() => requestSearch('')}>
+                    <Clear />
+                  </IconButton>
+                )}
+              </InputAdornment>
+            ),
+          }}
+        />
+      </div>
+      <br />
+      <label>
+        {/* <Popup
+          trigger={
+            <Button variant="info" color="primary" onClick={goBack}>
+              <TiArrowBackOutline />
+            </Button>
+          }
+          position="bottom center"
+        >
+          Go back to employee panel
+        </Popup> */}
+
  
-     {/* Button */}
-     <Button onClick={(e) => handleDepartmentView(e)} variant="contained" color="primary">
-       Open
-     </Button>
-   </>
- ) : (
-   <Dropdown 
-     options={options}
-     onChange={handleDepartmentChange}
-     value={null}
-     placeholder="Select a Department"
-     style={{ minWidth: '200px' }} // Set a minimum width
-     contentRenderer={({ props, state }) => (
-       <div style={{ minWidth: '200px' }}>
-         {state.values.length ? state.values.map((v) => <div key={v.value}>{v.label}</div>) : props.searchable ? props.noResultsText : props.placeholder}
-       </div>
-     )}
-   />
- )}
- 
- 
- <Tooltip
-       title="Manage Employee Attendance"
-       arrow
-       enterTouchDelay={0}
-       leaveTouchDelay={1500}
-       placement="top-end" // Display on top right
-       sx={{
-         fontSize: '36px', // Increase font size x3
-         fontWeight: 'bold', // Make it bolder
-         backgroundColor: '#fff', // White background
-         color: '#8B4513', // Brown text color
-         border: '1px solid #8B4513', // Brown border
-         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Shadow
-         padding: '24px', // Add padding for larger size
-         animation: 'fade-in 0.3s ease-out', // Add fade-in animation
-         '@keyframes fade-in': {
-           from: { opacity: 0 },
-           to: { opacity: 1 },
-         },
-       }}
-     >
-   <Icon icon="arcticons:simple-time-tracker" width="50" height="50" hFlip={true} />
-   </Tooltip>
- 
-          </div>
-          <br />
+            <Button variant="info" color="primary"  >
+          
+            <Icon icon="flat-color-icons:overtime" width="45" height="45" />
+             
+            </Button>
+       
+
+        <Button>
+        <Icon icon="arcticons:moneybuster" width="45" height="45" />
+        </Button>
+
+       
+        <Chip
+          // avatar={<FcRatings />}
+          label="Set overtime rate"
+          clickable
+          style={{ backgroundColor: '#fff' }}
+        />
+     
+        
+        {exportMode ? (        
+        <>
+          {/* Cancel button with Clear icon */}
+          <Button onClick={disableExportMode}>
+            <Clear />
+            Cancel
+          </Button>
+          {/* Excel button with SVG icon */}
+          <Button onClick={ExportSheet} style={{ backgroundColor: '#E97451', color: '#ffffff' }}>
+  <FileCopy style={{ color: '#ffffff' }} /> Export to Excel
+</Button>
+
+        </>
+      ) : (
+        <Button onClick={enableExportMode}style={{ backgroundColor: '#7393B3', color: '#ffffff' }}>
+          Convert to Exportable version
+        </Button>
+      )}
+              <Button variant="contained" onClick={drawer} style={{backgroundColor:'#E97451'}} >
+        Wages Calculator
+        </Button>
+      {/* Button to toggle the sidebar */}
+      <Button variant="contained" onClick={drawer}>
+          How it works
+        </Button>
+        {/* Render totalRemunerationForAll in a separate table row */}
+        <tr>
+            <td colSpan="8" style={{ textAlign: 'right' }}>
+              <strong>After Tax Aggregate Salary for All Monthly Employees:</strong>
+            </td>
+            <td style={{ textAlign: 'center' }}>
+              
+               {fNumber(totalRemunerationForAll.toFixed(2))} 
+            </td>
+          </tr>
+    
+      </label>
           <div style={combinedStyles.tableContainer}>
    <table style={combinedStyles.table}>
    <Hidden xsDown>
      <thead style={combinedStyles.tableHead}>
        <tr>
-         <th style={combinedStyles.tableHeadCell}>Employee</th>
-         <th style={combinedStyles.tableHeadCell}>Name</th>
-         <th style={combinedStyles.tableHeadCell}>Sex</th>
-         <th style={combinedStyles.tableHeadCell}>Designation</th>
-         
-         <th style={combinedStyles.tableHeadCell}>Department</th>
-         <th style={combinedStyles.tableHeadCell}>Unique code</th>
-         <th style={combinedStyles.tableHeadCell}>Bank Name</th>
-         <th style={combinedStyles.tableHeadCell}>Account Number</th>
-         <th style={combinedStyles.tableHeadCell}>Action</th>
+       
+       <th style={futuristicStyles.tableHeadCell}>Employee</th>
+            <th style={futuristicStyles.tableHeadCell}>Name</th>
+            <th style={futuristicStyles.tableHeadCell}>Designation</th>
+            <th style={futuristicStyles.tableHeadCell}>Salary</th>
+            <th style={futuristicStyles.tableHeadCell}>Allowance</th>
+            <th style={futuristicStyles.tableHeadCell}>Overtime</th>
+            <th style={futuristicStyles.tableHeadCell}>IOU</th>
+            <th style={futuristicStyles.tableHeadCell}>Loan</th>
+            <th style={futuristicStyles.tableHeadCell}>Loan repay</th>
+            <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
+            <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
+            <th style={futuristicStyles.tableHeadCell}>Bank name</th>
+            <th style={futuristicStyles.tableHeadCell}>Bank code</th>
+            <th style={futuristicStyles.tableHeadCell}>Account Number</th>
+
+
         
        </tr>
      </thead>
@@ -806,34 +822,29 @@ console.log('All:',totalRemunerationForAll)
         setIsSidebarOpen(!isSidebarOpen);
       };
     
-      return (
-           <Container>
-                        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-         <Typography variant="h4">Employee</Typography>
+        return (
+    <Container>
+    <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+<Typography variant="h4">Salary Calculator</Typography>
+
+<Link to="/new-employee">
+<Button
+variant="contained"
+style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
  
-         <Link to="/new-employee">
-         <Button
-   variant="contained"
-   style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
-   startIcon={<Iconify icon="eva:plus-fill" />}
- >
- 
- New Employee            
- 
- </Button>
- </Link>
- 
-       </Stack>
-       <Scrollbar>
-       <TableContainer sx={{ overflow: 'unset' }}>
-          <SalaryCalculator drawer={toggleSidebar} />
-          </TableContainer>
-         </Scrollbar>
-           </Container>
-     
- 
-      
-      );
+>
+
+Income Analytics          
+
+</Button>
+</Link>
+
+</Stack>
+<Scrollbar>
+      <SalaryCalculator drawer={toggleSidebar} />
+      </Scrollbar>
+          </Container>
+  );
     }
     
 
