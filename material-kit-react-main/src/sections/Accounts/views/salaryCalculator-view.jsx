@@ -550,7 +550,7 @@ const SalaryCalculator = ({ drawer }) => {
 
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-                  {exportMode === 1 ? (
+                  {exportMode ? (
                     ''
                   ) : (
                     <td style={combinedStyles.tableBodyRow}>
