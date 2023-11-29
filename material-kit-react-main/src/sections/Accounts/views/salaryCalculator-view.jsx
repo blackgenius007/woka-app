@@ -82,6 +82,7 @@ const futuristicStyles = {
     textAlign: 'left',
     borderCollapse: 'separate',
     borderSpacing: '0',
+    fontSize: '14px', // Adjust the font size as needed
   },
   tableHead: {
     background: '#333',
@@ -89,6 +90,8 @@ const futuristicStyles = {
   tableHeadCell: {
     padding: '0.5rem',
     textAlign: 'center',
+    fontSize: '14px', // Adjust the font size as needed
+    fontWeight: 'bold', // Adjust the font weight as needed
   },
   tableBodyRow: {
     borderBottom: '1px solid #444',
@@ -97,6 +100,8 @@ const futuristicStyles = {
     border: '1px solid #444',
     padding: '0.5rem',
     textAlign: 'center',
+    fontSize: '12px', // Adjust the font size as needed
+    fontWeight: 'normal', // Adjust the font weight as needed
   },
   avatar: {
     borderRadius: '50%',
@@ -127,6 +132,7 @@ const futuristicStyles = {
 const combinedStyles = {
   ...futuristicStyles,
 };
+
 
 function BootstrapDialogTitle(props) {
   const { children, onClose, ...other } = props;
