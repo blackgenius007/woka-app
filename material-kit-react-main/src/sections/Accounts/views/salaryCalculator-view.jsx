@@ -221,6 +221,7 @@
       const [avatar, setAvatar] = useState(false);
       const [dateOffset, setDateOffset] = useState(7);
       const [open, setOpen] = useState(null);
+      const [exportMode, setExportMode] = useState(0);
       let totalRemunerationForAll = 0;
  
  
@@ -367,6 +368,21 @@
         return <div>Error: {message}</div>;
       }
     
+      // Table export mode function
+      
+ // Function to enable export mode
+ const enableExportMode = () => {
+  setExportMode(true);
+};
+
+// Function to disable export mode
+const disableExportMode = () => {
+  setExportMode(false);
+};
+  const ExportSheet = () => {
+    setExportMode(1);
+  };
+  
     
     
       const handleSearch = (e) => {
