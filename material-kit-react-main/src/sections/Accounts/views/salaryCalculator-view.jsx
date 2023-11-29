@@ -639,12 +639,12 @@ const SalaryCalculator = ({ drawer }) => {
                   <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
                   <td style={futuristicStyles.tableBodyCell}>-</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
-                  {/* <td
+                 <td
       data-label="overtime total"
       style={{ ...futuristicStyles.tableBodyCell }}
     >
-      {toMoney(totalRemuneration)}
-    </td> */}
+      {fNumber(totalRemuneration)}
+    </td>  
                 </tr>
               );
             })}
