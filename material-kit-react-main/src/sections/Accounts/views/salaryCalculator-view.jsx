@@ -570,9 +570,15 @@ const SalaryCalculator = ({ drawer }) => {
                   {exportMode === 1 ? (
                     ''
                   ) : (
-                    <td style={futuristicStyles.tableBodyCell}>
-                      <img src={row.imagePath} alt="" style={futuristicStyles.avatar} />
-                    </td>
+                    <td style={combinedStyles.tableBodyRow}>
+                    <Link
+                      to={`/employee-detail/${row.imagePath}`}
+                      style={{ textDecoration: 'none', color: 'white' }}
+                    >
+                      <Avatar alt="Remy Sharp" src={row.imagePath} />
+                    </Link>{' '}
+                  </td>
+      
                   )}
 
                   <td style={futuristicStyles.tableBodyRow}>
