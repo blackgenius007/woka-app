@@ -527,8 +527,8 @@ const SalaryCalculator = ({ drawer }) => {
           </Hidden>
           <tbody>
             {paginatedRows.map((row) => {
-              console.log('in-map:', row);
-              const { _id, employeeName, designation, healthCare } = row;
+             
+              const { _id, employeeName, designation, healthCare,minimumRepay } = row;
               const { grossIncome, country } = designation;
               const employeeFinancialData = financialData[_id];
 
@@ -550,7 +550,8 @@ const SalaryCalculator = ({ drawer }) => {
                 monthlyRate +
                 row.overtime +
                 row.allowance -
-                row.IOU
+                row.IOU-
+                row.minimumRepay
               ).toFixed(2);
 
               // Calculate net Remuneration
@@ -558,7 +559,8 @@ const SalaryCalculator = ({ drawer }) => {
                 monthlyRate +
                 parseFloat(row.overtime) +
                 parseFloat(row.allowance) -
-                parseFloat(row.IOU);
+                parseFloat(row.IOU)-
+                parseFloat(row.minimumRepay);
               // Add the calculated remuneration to the total
               totalRemunerationForAll += netRemuneration;
               console.log('All:', totalRemunerationForAll);
@@ -700,7 +702,7 @@ export default function MainPage() {
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
           >
-            Income Analytics
+            Data Analytics
           </Button>
         </Link>
       </Stack>
