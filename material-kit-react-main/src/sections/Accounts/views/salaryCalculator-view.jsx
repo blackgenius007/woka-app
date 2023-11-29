@@ -221,6 +221,7 @@
       const [avatar, setAvatar] = useState(false);
       const [dateOffset, setDateOffset] = useState(7);
       const [open, setOpen] = useState(null);
+      let totalRemunerationForAll = 0;
  
  
       const handleOpenMenu = (event) => {
