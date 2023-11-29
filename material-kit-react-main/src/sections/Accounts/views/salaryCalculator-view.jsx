@@ -553,7 +553,7 @@
 
               // Calculate financial data if not available
               if (!employeeFinancialData) {
-                calculateFinancialData(_id, grossIncome, country);
+                calculateFinancialData(_id, grossIncome, country,healthCare);
                 return null; // Render nothing for now, will be updated on next render
               }
               console.log(employeeFinancialData);
