@@ -549,16 +549,27 @@ const SalaryCalculator = ({ drawer }) => {
                 row.minimumRepay
               ).toFixed(2);
 
-              // Calculate net Remuneration
-              const netRemuneration =
-                monthlyRate +
-                parseFloat(row.overtime) +
-                parseFloat(row.allowance) -
-                parseFloat(row.IOU)-
-                parseFloat(row.minimumRepay);
-              // Add the calculated remuneration to the total
-              totalRemunerationForAll += netRemuneration;
-              console.log('All:', totalRemunerationForAll);
+               // Calculate net Remuneration
+      const netRemuneration =
+      monthlyRate +
+      parseFloat(row.overtime) +
+      parseFloat(row.allowance) -
+      parseFloat(row.IOU) -
+      parseFloat(row.minimumRepay);
+
+    // Add the calculated remuneration to the total
+    totalRemunerationForAll += netRemuneration;
+   
+              // // Calculate net Remuneration
+              // const netRemuneration =
+              //   monthlyRate +
+              //   parseFloat(row.overtime) +
+              //   parseFloat(row.allowance) -
+              //   parseFloat(row.IOU)-
+              //   parseFloat(row.minimumRepay);
+              // // Add the calculated remuneration to the total
+              // totalRemunerationForAll += netRemuneration;
+              // console.log('All:', totalRemunerationForAll);
 
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
@@ -639,12 +650,15 @@ const SalaryCalculator = ({ drawer }) => {
                   <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
                   <td style={futuristicStyles.tableBodyCell}>-</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
-                 <td
-      data-label="overtime total"
-      style={{ ...futuristicStyles.tableBodyCell }}
-    >
-      {fNumber(totalRemunerationForAll )}
-    </td>  
+     {/* Total Remuneration for All Employees */}
+  <tr>
+    <td colSpan="8" style={{ textAlign: 'right' }}>
+      <strong>Total:</strong>
+    </td>
+    <td style={{ textAlign: 'center' }}>
+      {fNumber(totalRemunerationForAll.toFixed(2))}
+    </td>
+  </tr>
                 </tr>
               );
             })}
