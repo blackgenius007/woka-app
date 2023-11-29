@@ -176,6 +176,18 @@
          // Retrieve financial data from financialSlice
   const financialData = useSelector((state) => state.financial);
   console.log('financials=>', financialData);
+
+    // Function to trigger financial data calculation
+  const calculateFinancialData = ( employeeId, grossIncome, country, healthCare ) => {
+    console.log(
+      'front-calculateFinancialData:',
+      employeeId,
+      grossIncome,
+      country
+    );
+    dispatch(calculateTaxAsync({ employeeId, grossIncome, country,healthCare }));    
+        
+  };
    
      
       const tableRef = useRef(null);
@@ -526,6 +538,45 @@
       </Hidden> 
      <tbody>
        {paginatedRows.map((row) => {
+                      console.log('in-map:', row);
+              const { _id, employeeName, designation,healthCare } = row;
+              const { grossIncome, country } = designation;
+              const employeeFinancialData = financialData[_id];
+
+              // Calculate financial data if not available
+              if (!employeeFinancialData) {
+                calculateFinancialData(_id, grossIncome, country);
+                return null; // Render nothing for now, will be updated on next render
+              }
+              console.log(employeeFinancialData);
+ // Calculate financial data if not available
+ if (!employeeFinancialData) {
+  calculateFinancialData(_id, grossIncome, country);
+  return null; // Render nothing for now, will be updated on next render
+}
+console.log(employeeFinancialData);
+// Calculate Total Remuneration
+const monthlyRate =
+  employeeFinancialData.monthlySalary ;
+const totalRemuneration = (
+  monthlyRate   +
+  row.overtime +
+  row.allowance -
+  row.IOU
+).toFixed(2);
+   
+// Calculate net Remuneration
+const netRemuneration =
+monthlyRate +
+  parseFloat(row.overtime) +
+  parseFloat(row.allowance) -
+  parseFloat(row.IOU)         
+;
+
+// Add the calculated remuneration to the total
+totalRemunerationForAll += netRemuneration;
+console.log('All:',totalRemunerationForAll)
+
          return (
            <tr key={row.id} style={combinedStyles.tableBodyRow}>
              

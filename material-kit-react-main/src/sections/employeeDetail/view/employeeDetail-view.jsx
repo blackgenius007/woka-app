@@ -130,7 +130,7 @@ const EmployeeProfileCard = () => {
 
   if (!employeeData || !employeeData.employee) {
     // If employeeData or employeeData.employee is not yet available, show a loading message or handle the case appropriately
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; 
   }
 
   const {
