@@ -15,6 +15,7 @@
     import Stack from '@mui/material/Stack';
     import Iconify from 'src/components/iconify';
     import Scrollbar from 'src/components/scrollbar';
+    import { fNumber } from 'src/utils/format-number'; 
     import { Icon } from '@iconify/react';
     import Dropdown from 'react-dropdown';
     import 'react-dropdown/style.css';
