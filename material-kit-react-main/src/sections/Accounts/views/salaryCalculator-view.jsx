@@ -643,7 +643,7 @@ const SalaryCalculator = ({ drawer }) => {
       data-label="overtime total"
       style={{ ...futuristicStyles.tableBodyCell }}
     >
-      {fNumber(totalRemuneration)}
+      {fNumber(totalRemunerationForAll )}
     </td>  
                 </tr>
               );
