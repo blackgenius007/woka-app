@@ -414,60 +414,41 @@ const SalaryCalculator = ({ drawer }) => {
 
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <TextField
-          value={searched}
-          onChange={(e) => requestSearch(e.target.value)}
-          label="Search database"
-          variant="outlined"
-          size="small"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                {searched && (
-                  <IconButton onClick={() => requestSearch('')}>
-                    <Clear />
-                  </IconButton>
-                )}
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
+   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <TextField
+    value={searched}
+    onChange={(e) => requestSearch(e.target.value)}
+    label="Search database"
+    variant="outlined"
+    size="small"
+    InputProps={{
+      endAdornment: (
+        <InputAdornment position="end">
+          {searched && (
+            <IconButton onClick={() => requestSearch('')}>
+              <Clear />
+            </IconButton>
+          )}
+        </InputAdornment>
+      ),
+    }}
+  />
+</div>
       <br />
       <label>
-        {/* <Popup
-          trigger={
-            <Button variant="info" color="primary" onClick={goBack}>
-              <TiArrowBackOutline />
-            </Button>
-          }
-          position="bottom center"
-        >
-          Go back to employee panel
-        </Popup> */}
+  <Button variant="info" color="primary">
+    <Icon icon="flat-color-icons:overtime" width="30" height="30" />
+  </Button>
 
-        <Button variant="info" color="primary">
-          <Icon icon="flat-color-icons:overtime" width="45" height="45" />
-        </Button>
+  <Button>
+    <Icon icon="arcticons:moneybuster" width="30" height="30" />
+  </Button>
 
-        <Button>
-          <Icon icon="arcticons:moneybuster" width="45" height="45" />
-        </Button>
-
-        <Chip
-          // avatar={<FcRatings />}
-          label="Set overtime rate"
-          clickable
-          style={{ backgroundColor: '#fff' }}
-        />
-
+  <Chip
+    label="Set overtime rate"
+    clickable
+    style={{ backgroundColor: '#fff', fontSize: '12px' }}
+  />
         {exportMode ? (
           <>
             {/* Cancel button with Clear icon */}
@@ -496,12 +477,12 @@ const SalaryCalculator = ({ drawer }) => {
           How it works
         </Button>
         {/* Render totalRemunerationForAll in a separate table row */}
-        <tr>
+        {/* <tr>
           <td colSpan="8" style={{ textAlign: 'right' }}>
             <strong>After Tax Aggregate Salary for All Monthly Employees:</strong>
           </td>
           <td style={{ textAlign: 'center' }}>{fNumber(totalRemunerationForAll.toFixed(2))}</td>
-        </tr>
+        </tr> */}
       </label>
       <div style={combinedStyles.tableContainer}>
         <table style={combinedStyles.table}>
@@ -559,17 +540,7 @@ const SalaryCalculator = ({ drawer }) => {
 
     // Add the calculated remuneration to the total
     totalRemunerationForAll += netRemuneration;
-   
-              // // Calculate net Remuneration
-              // const netRemuneration =
-              //   monthlyRate +
-              //   parseFloat(row.overtime) +
-              //   parseFloat(row.allowance) -
-              //   parseFloat(row.IOU)-
-              //   parseFloat(row.minimumRepay);
-              // // Add the calculated remuneration to the total
-              // totalRemunerationForAll += netRemuneration;
-              // console.log('All:', totalRemunerationForAll);
+    
 
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
