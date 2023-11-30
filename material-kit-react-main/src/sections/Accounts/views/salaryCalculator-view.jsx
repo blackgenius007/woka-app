@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import { ButtonBase, Hidden } from '@mui/material';
 import Container from '@mui/material/Container';
+import { DownloadTableExcel } from 'react-export-table-to-excel';
 import TableContainer from '@mui/material/TableContainer';
 import Card from '@mui/material/Card';
 import Popover from '@mui/material/Popover';
@@ -181,7 +182,7 @@ const SalaryCalculator = ({ drawer }) => {
     dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
   };
 
-  const tableRef = useRef(null);
+ 
   const requestSearch = (searchedVal) => {
     setSearched(searchedVal);
   };
@@ -189,7 +190,7 @@ const SalaryCalculator = ({ drawer }) => {
   const cancelSearch = () => {
     setSearched('');
   };
-
+  const tableRef = useRef(null);
   const [searched, setSearched] = useState('');
   const [openDialog, setOpenDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
@@ -462,9 +463,15 @@ const SalaryCalculator = ({ drawer }) => {
               Cancel
             </Button>
             {/* Excel button with SVG icon */}
+            <DownloadTableExcel
+                    filename="Accounts"
+                    sheet="Salary Schedule"
+                    currentTableRef={tableRef.current}
+                >
             <Button onClick={ExportSheet} style={{ backgroundColor: '#E97451', color: '#ffffff' }}>
               <FileCopy style={{ color: '#ffffff' }} /> Export to Excel
             </Button>
+            </DownloadTableExcel>
           </>
         ) : (
           <Button
@@ -490,7 +497,7 @@ const SalaryCalculator = ({ drawer }) => {
         </tr> */}
       </label>
       <div style={combinedStyles.tableContainer}>
-        <table style={combinedStyles.table}>
+        <table ref={tableRef}  style={combinedStyles.table}>
           <Hidden xsDown>
             <thead style={combinedStyles.tableHead}>
               <tr>
