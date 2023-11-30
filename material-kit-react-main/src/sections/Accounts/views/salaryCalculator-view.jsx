@@ -348,15 +348,17 @@ const SalaryCalculator = ({ drawer }) => {
 
   // Function to enable export mode
   const enableExportMode = () => {
-    setExportMode(true);
+    setExportMode(1);
   };
 
   // Function to disable export mode
   const disableExportMode = () => {
-    setExportMode(false);
+    setExportMode(0);
   };
   const ExportSheet = () => {
-   onDownload()
+    if (exportMode === 1) {
+      onDownload();
+    }
   };
 
   const handleSearch = (e) => {
@@ -461,7 +463,7 @@ const SalaryCalculator = ({ drawer }) => {
           clickable
           style={{ backgroundColor: '#fff', fontSize: '12px' }}
         />
-        {exportMode ? (
+        {exportMode === 1 ? (
           <>
             {/* Cancel button with Clear icon */}
             <Button onClick={disableExportMode}>
@@ -513,7 +515,7 @@ const SalaryCalculator = ({ drawer }) => {
                 <th style={futuristicStyles.tableHeadCell}>Designation</th>
                 </>}
 
-                {exportMode ?'':<>
+                {exportMode === 1 ?'':<>
                 <th style={futuristicStyles.tableHeadCell}>Salary</th>
                 <th style={futuristicStyles.tableHeadCell}>Allowance</th>
                 <th style={futuristicStyles.tableHeadCell}>Overtime</th>
@@ -567,7 +569,7 @@ const SalaryCalculator = ({ drawer }) => {
 
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-                  {exportMode ? (
+                  {exportMode === 1 ? (
                     ''
                   ) : (
                     <td style={combinedStyles.tableBodyRow}>
@@ -589,7 +591,7 @@ const SalaryCalculator = ({ drawer }) => {
                       {employeeName}
                     </Link>{' '}
                   </td>
-                  {exportMode ? (
+                  {exportMode == 1 ? (
                     ''
                   ) : (
                     <td style={futuristicStyles.tableBodyCell}>
@@ -609,7 +611,7 @@ const SalaryCalculator = ({ drawer }) => {
                   <td style={futuristicStyles.tableBodyCell}>
                     {fNumber(employeeFinancialData.monthlySalary)}
                   </td>
-                  {exportMode ? (
+                  {exportMode === 1 ? (
                     ''
                   ) : (
                     <>
