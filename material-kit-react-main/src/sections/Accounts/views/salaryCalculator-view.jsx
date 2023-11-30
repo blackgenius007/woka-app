@@ -356,7 +356,7 @@ const SalaryCalculator = ({ drawer }) => {
     setExportMode(false);
   };
   const ExportSheet = () => {
-    setExportMode(true);
+   onDownload()
   };
 
   const handleSearch = (e) => {
@@ -470,12 +470,7 @@ const SalaryCalculator = ({ drawer }) => {
             </Button>
             {/* Excel button with SVG icon */}
             <Button  
-             onClick={() => {
-              ExportSheet();
-              if (exportMode) {
-                onDownload();
-              }
-            }}
+             onClick={ ExportSheet}
             
              style={{ backgroundColor: '#E97451', color: '#ffffff' }}>
               <FileCopy style={{ color: '#ffffff' }} /> Export to Excel
