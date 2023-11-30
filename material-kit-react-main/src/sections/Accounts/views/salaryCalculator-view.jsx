@@ -1,4 +1,4 @@
- /* eslint-disable */
+  /* eslint-disable */
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -186,17 +186,12 @@ const SalaryCalculator = ({ drawer }) => {
   const requestSearch = (searchedVal) => {
     setSearched(searchedVal);
   };
+
   const { onDownload } = useDownloadExcel({
     currentTableRef: tableRef.current,
     filename: 'Salary',
     sheet: 'Users',
-    exportAll: !exportMode, // Set to true if you want to export all columns
   });
-  // const { onDownload } = useDownloadExcel({
-  //   currentTableRef: tableRef.current,
-  //   filename: 'Salary',
-  //   sheet: 'Users',
-  // });
 
   const cancelSearch = () => {
     setSearched('');
@@ -353,23 +348,15 @@ const SalaryCalculator = ({ drawer }) => {
 
   // Function to enable export mode
   const enableExportMode = () => {
-    setExportMode(1);
+    setExportMode(true);
   };
 
   // Function to disable export mode
   const disableExportMode = () => {
-    setExportMode(0);
-  };
-
-  const handleExport = () => {
-    setExportMode(1); // Set export mode to include all columns
-    onDownload();
-    setExportMode(0); // Reset export mode after export
+    setExportMode(false);
   };
   const ExportSheet = () => {
-    if (exportMode === 1) {
-      onDownload();
-    }
+   onDownload()
   };
 
   const handleSearch = (e) => {
@@ -474,7 +461,7 @@ const SalaryCalculator = ({ drawer }) => {
           clickable
           style={{ backgroundColor: '#fff', fontSize: '12px' }}
         />
-        {exportMode === 1 ? (
+        {exportMode ? (
           <>
             {/* Cancel button with Clear icon */}
             <Button onClick={disableExportMode}>
@@ -517,7 +504,7 @@ const SalaryCalculator = ({ drawer }) => {
           <Hidden xsDown>
             <thead style={combinedStyles.tableHead}>
               <tr>
-                {exportMode === 1 ? '' : <>
+                {exportMode ? '' : <>
                 <th style={futuristicStyles.tableHeadCell}>Employee</th>
                 </>}
                
@@ -580,7 +567,7 @@ const SalaryCalculator = ({ drawer }) => {
 
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-                  {exportMode === 1 ? (
+                  {exportMode ? (
                     ''
                   ) : (
                     <td style={combinedStyles.tableBodyRow}>
@@ -602,7 +589,7 @@ const SalaryCalculator = ({ drawer }) => {
                       {employeeName}
                     </Link>{' '}
                   </td>
-                  {exportMode === 1 ? (
+                  {exportMode ? (
                     ''
                   ) : (
                     <td style={futuristicStyles.tableBodyCell}>
@@ -622,7 +609,7 @@ const SalaryCalculator = ({ drawer }) => {
                   <td style={futuristicStyles.tableBodyCell}>
                     {fNumber(employeeFinancialData.monthlySalary)}
                   </td>
-                  {exportMode  === 1 ? (
+                  {exportMode ? (
                     ''
                   ) : (
                     <>
@@ -724,7 +711,7 @@ export default function MainPage() {
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
           >
-           Financial Analytics
+            financial Analytics
           </Button>
         </Link>
       </Stack>
