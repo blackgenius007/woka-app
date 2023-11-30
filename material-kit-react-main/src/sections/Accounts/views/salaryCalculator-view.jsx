@@ -506,16 +506,16 @@ const SalaryCalculator = ({ drawer }) => {
           <Hidden xsDown>
             <thead style={combinedStyles.tableHead}>
               <tr>
-                {exportMode ? '' : <>
+                 
                 <th style={futuristicStyles.tableHeadCell}>Employee</th>
-                </>}
+              
                
                 <th style={futuristicStyles.tableHeadCell}>Name</th>
-                {exportMode ?'':<>
+              
                 <th style={futuristicStyles.tableHeadCell}>Designation</th>
-                </>}
+            
 
-                {exportMode === 1 ?'':<>
+           
                 <th style={futuristicStyles.tableHeadCell}>Salary</th>
                 <th style={futuristicStyles.tableHeadCell}>Allowance</th>
                 <th style={futuristicStyles.tableHeadCell}>Overtime</th>
@@ -523,7 +523,7 @@ const SalaryCalculator = ({ drawer }) => {
                 <th style={futuristicStyles.tableHeadCell}>Loan</th>
                 <th style={futuristicStyles.tableHeadCell}>Loan repay</th>
                 <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
-                </>}
+             
                 
              
                 <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
@@ -569,9 +569,7 @@ const SalaryCalculator = ({ drawer }) => {
 
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-                  {exportMode === 1 ? (
-                    ''
-                  ) : (
+              
                     <td style={combinedStyles.tableBodyRow}>
                       <Link
                         to={`/employee-detail/${row.imagePath}`}
@@ -580,7 +578,7 @@ const SalaryCalculator = ({ drawer }) => {
                         <Avatar alt="Remy Sharp" src={row.imagePath} />
                       </Link>{' '}
                     </td>
-                  )}
+                
 
                   <td style={futuristicStyles.tableBodyRow}>
                     <Link
@@ -591,9 +589,7 @@ const SalaryCalculator = ({ drawer }) => {
                       {employeeName}
                     </Link>{' '}
                   </td>
-                  {exportMode == 1 ? (
-                    ''
-                  ) : (
+                 
                     <td style={futuristicStyles.tableBodyCell}>
                       <Link
                         to={`/employee-detail/${row._id}`}
@@ -606,15 +602,12 @@ const SalaryCalculator = ({ drawer }) => {
                         {row.designation.designation}
                       </Link>
                     </td>
-                  )}
+              
 
                   <td style={futuristicStyles.tableBodyCell}>
                     {fNumber(employeeFinancialData.monthlySalary)}
                   </td>
-                  {exportMode === 1 ? (
-                    ''
-                  ) : (
-                    <>
+           
                       <td style={futuristicStyles.tableBodyCell}>
                         {fNumber(row.allowance ? row.allowance : '0.00')}
                       </td>
@@ -650,9 +643,7 @@ const SalaryCalculator = ({ drawer }) => {
                             : fNumber(totalRemuneration)}
                         </td>
                       )}
-                    </>
-                  )}
-
+                 
                   <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
                   <td style={futuristicStyles.tableBodyCell}>-</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
