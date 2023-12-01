@@ -1,4 +1,4 @@
- /* eslint-disable */
+/* eslint-disable */
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import { ButtonBase, Hidden } from '@mui/material';
 import Container from '@mui/material/Container';
 import PdfExportButton from './PdfExportButton';
+import momemt from 'moment';
 import TableContainer from '@mui/material/TableContainer';
 import Card from '@mui/material/Card';
 import Popover from '@mui/material/Popover';
@@ -187,8 +188,6 @@ const SalaryCalculator = ({ drawer }) => {
     setSearched(searchedVal);
   };
 
- 
-
   const cancelSearch = () => {
     setSearched('');
   };
@@ -209,6 +208,10 @@ const SalaryCalculator = ({ drawer }) => {
   const [dateOffset, setDateOffset] = useState(7);
   const [open, setOpen] = useState(null);
   const [exportMode, setExportMode] = useState(0);
+  const currentMonth = moment().format('MMMM YYYY');
+
+
+  // initialise total renumeration
   let totalRemunerationForAll = 0;
 
   const handleOpenMenu = (event) => {
@@ -351,7 +354,7 @@ const SalaryCalculator = ({ drawer }) => {
   const disableExportMode = () => {
     setExportMode(false);
   };
- 
+
   const handleSearch = (e) => {
     setSearched(e.target.value);
   };
@@ -462,9 +465,8 @@ const SalaryCalculator = ({ drawer }) => {
               Cancel
             </Button>
             {/* Excel button with SVG icon */}
-            
-              <FileCopy style={{ color: '#ffffff' }} /> <PdfExportButton tableRef={tableRef} filename="salary.pdf" />
-            
+            <FileCopy style={{ color: '#ffffff' }} />{' '}
+            <PdfExportButton tableRef={tableRef} filename="salary.pdf" />
           </>
         ) : (
           <Button
@@ -491,29 +493,41 @@ const SalaryCalculator = ({ drawer }) => {
       </label>
       <div style={combinedStyles.tableContainer}>
         <table ref={tableRef} style={combinedStyles.table}>
+       {exportMode ? <caption>{user.businessName} Salary Schedule for {currentMonth }  </caption> : ''} 
           <Hidden xsDown>
             <thead style={combinedStyles.tableHead}>
               <tr>
-                {exportMode ? '' : <>
-                <th style={futuristicStyles.tableHeadCell}>Employee</th>
-                </>}
-               
-                <th style={futuristicStyles.tableHeadCell}>Name</th>
-                {exportMode ?'':<>
-                <th style={futuristicStyles.tableHeadCell}>Designation</th>
-                </>}
+                {exportMode ? (
+                  ''
+                ) : (
+                  <>
+                    <th style={futuristicStyles.tableHeadCell}>Employee</th>
+                  </>
+                )}
 
-                {exportMode ?'':<>
-                <th style={futuristicStyles.tableHeadCell}>Salary</th>
-                <th style={futuristicStyles.tableHeadCell}>Allowance</th>
-                <th style={futuristicStyles.tableHeadCell}>Overtime</th>
-                <th style={futuristicStyles.tableHeadCell}>IOU</th>
-                <th style={futuristicStyles.tableHeadCell}>Loan</th>
-                <th style={futuristicStyles.tableHeadCell}>Loan repay</th>
-                <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
-                </>}
-                
-             
+                <th style={futuristicStyles.tableHeadCell}>Name</th>
+                {exportMode ? (
+                  ''
+                ) : (
+                  <>
+                    <th style={futuristicStyles.tableHeadCell}>Designation</th>
+                  </>
+                )}
+
+                {exportMode ? (
+                  ''
+                ) : (
+                  <>
+                    <th style={futuristicStyles.tableHeadCell}>Salary</th>
+                    <th style={futuristicStyles.tableHeadCell}>Allowance</th>
+                    <th style={futuristicStyles.tableHeadCell}>Overtime</th>
+                    <th style={futuristicStyles.tableHeadCell}>IOU</th>
+                    <th style={futuristicStyles.tableHeadCell}>Loan</th>
+                    <th style={futuristicStyles.tableHeadCell}>Loan repay</th>
+                    <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
+                  </>
+                )}
+
                 <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
                 <th style={futuristicStyles.tableHeadCell}>Bank name</th>
                 <th style={futuristicStyles.tableHeadCell}>Bank code</th>
@@ -674,7 +688,6 @@ const SalaryCalculator = ({ drawer }) => {
           Next
         </button>
       </div>
-      
     </>
   );
 };
@@ -712,5 +725,3 @@ export default function MainPage() {
     </Container>
   );
 }
-
- 
