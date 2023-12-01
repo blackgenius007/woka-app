@@ -18,7 +18,7 @@ const PdfExportButton = ({ tableRef, filename }) => {
     pdf.autoTable({ html: table });
 
     // Save the PDF
-    pdf.save(filename || 'table-export.pdf');
+    pdf.save(filename || 'salary.pdf');
   };
 
   return (
