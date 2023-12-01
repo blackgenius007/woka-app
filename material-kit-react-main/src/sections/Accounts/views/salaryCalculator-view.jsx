@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import { ButtonBase, Hidden } from '@mui/material';
 import Container from '@mui/material/Container';
-import { useDownloadExcel } from 'react-export-table-to-excel';
 import PdfExportButton from './PdfExportButton';
 import TableContainer from '@mui/material/TableContainer';
 import Card from '@mui/material/Card';
@@ -188,11 +187,7 @@ const SalaryCalculator = ({ drawer }) => {
     setSearched(searchedVal);
   };
 
-  const { onDownload } = useDownloadExcel({
-    currentTableRef: tableRef.current,
-    filename: 'Salary',
-    sheet: 'Users',
-  });
+ 
 
   const cancelSearch = () => {
     setSearched('');
@@ -356,10 +351,7 @@ const SalaryCalculator = ({ drawer }) => {
   const disableExportMode = () => {
     setExportMode(false);
   };
-  const ExportSheet = () => {
-   onDownload()
-  };
-
+ 
   const handleSearch = (e) => {
     setSearched(e.target.value);
   };
@@ -471,10 +463,10 @@ const SalaryCalculator = ({ drawer }) => {
             </Button>
             {/* Excel button with SVG icon */}
             <Button  
-             onClick={ ExportSheet}
+           
             
              style={{ backgroundColor: '#E97451', color: '#ffffff' }}>
-              <FileCopy style={{ color: '#ffffff' }} /> Export to Excel
+              <FileCopy style={{ color: '#ffffff' }} /> <PdfExportButton tableRef={tableRef} filename="exported-table.pdf" />
             </Button>
           </>
         ) : (
