@@ -492,8 +492,18 @@ const SalaryCalculator = ({ drawer }) => {
       <div style={combinedStyles.tableContainer}>
       <table ref={tableRef} style={combinedStyles.table}>
   <Hidden xsDown>
-    <thead style={combinedStyles.tableHead}>
-      <tr>
+  <thead style={combinedStyles.tableHead}>
+  <tr>
+    {exportMode ? (
+      <>
+        <th style={futuristicStyles.tableHeadCell}>Name</th>
+        <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
+        <th style={futuristicStyles.tableHeadCell}>Bank code</th>
+        <th style={futuristicStyles.tableHeadCell}>Bank name</th>
+        <th style={futuristicStyles.tableHeadCell}>Account Number</th>
+      </>
+    ) : (
+      <>
         <th style={futuristicStyles.tableHeadCell}>Employee</th>
         <th style={futuristicStyles.tableHeadCell}>Name</th>
         <th style={futuristicStyles.tableHeadCell}>Designation</th>
@@ -508,8 +518,11 @@ const SalaryCalculator = ({ drawer }) => {
         <th style={futuristicStyles.tableHeadCell}>Bank name</th>
         <th style={futuristicStyles.tableHeadCell}>Bank code</th>
         <th style={futuristicStyles.tableHeadCell}>Account Number</th>
-      </tr>
-    </thead>
+      </>
+    )}
+  </tr>
+</thead>
+
   </Hidden>
   <tbody>
     {paginatedRows.map((row) => {
