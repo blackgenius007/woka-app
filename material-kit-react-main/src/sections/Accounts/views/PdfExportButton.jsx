@@ -1,7 +1,8 @@
- // PdfExportButton.js
+ /* eslint-disable */
 import React from 'react';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
+import PropTypes from 'prop-types';
 
 const PdfExportButton = ({ tableRef, filename }) => {
   const handleExportPDF = () => {
@@ -20,10 +21,16 @@ const PdfExportButton = ({ tableRef, filename }) => {
   };
 
   return (
-    <button onClick={handleExportPDF}>
+    <button type='button' onClick={handleExportPDF}>
       Export to PDF
     </button>
   );
+};
+
+// Add PropTypes for tableRef and filename
+PdfExportButton.propTypes = {
+  tableRef: PropTypes.shape({ current: PropTypes.any }), 
+  filename: PropTypes.string,
 };
 
 export default PdfExportButton;
