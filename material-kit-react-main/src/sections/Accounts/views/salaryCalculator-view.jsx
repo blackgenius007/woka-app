@@ -674,7 +674,7 @@ const SalaryCalculator = ({ drawer }) => {
           Next
         </button>
       </div>
-      <PdfExportButton tableRef={tableRef} filename="exported-table.pdf" />
+      
     </>
   );
 };
