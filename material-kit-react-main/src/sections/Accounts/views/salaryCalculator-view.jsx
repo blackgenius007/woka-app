@@ -675,7 +675,7 @@ const SalaryCalculator = ({ drawer }) => {
                 <strong>Total:</strong>
               </td>
               <td style={{ textAlign: 'center' }}>
-                {exportMode ? fNumber(totalRemunerationForAll.toFixed(2)) : '-'}
+                {exportMode ? fNumber(totalRemunerationForAll.toFixed(2)) : fNumber(totalRemunerationForAll.toFixed(2))}
               </td>
             </tr>
           </tbody>
