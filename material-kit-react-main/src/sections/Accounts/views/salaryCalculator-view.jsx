@@ -208,7 +208,7 @@ const SalaryCalculator = ({ drawer }) => {
   const [dateOffset, setDateOffset] = useState(7);
   const [open, setOpen] = useState(null);
   const [exportMode, setExportMode] = useState(0);
-  const currentMonth = moment().format('MMMM YYYY');
+
 
 
   // initialise total renumeration
@@ -493,7 +493,7 @@ const SalaryCalculator = ({ drawer }) => {
       </label>
       <div style={combinedStyles.tableContainer}>
         <table ref={tableRef} style={combinedStyles.table}>
-       {exportMode ? <caption>{user.businessName} Salary Schedule for {currentMonth }  </caption> : ''} 
+       
           <Hidden xsDown>
             <thead style={combinedStyles.tableHead}>
               <tr>
