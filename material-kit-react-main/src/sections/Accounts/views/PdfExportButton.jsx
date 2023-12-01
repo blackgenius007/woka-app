@@ -21,20 +21,13 @@ const PdfExportButton = ({ tableRef, filename }) => {
   };
 
   return (
-    <button
+    <Button
     type="button"
     onClick={handleExportPDF}
-    style={{
-      color: '#ffffff',
-      backgroundColor: '#E97451',
-      border: 'none',
-      cursor: 'pointer',
-      padding: '8px', // Adjust the padding as needed
-      fontSize: '14px', // Adjust the font size as needed
-    }}
+    style={{ backgroundColor: '#E97451' }}
   >
     Export to PDF
-  </button>
+  </Button>
   
   );
 };
