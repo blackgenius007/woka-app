@@ -546,55 +546,81 @@ const SalaryCalculator = ({ drawer }) => {
 
       return (
         <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-          <td style={combinedStyles.tableBodyRow}>
-            <Link to={`/employee-detail/${row.imagePath}`} style={{ textDecoration: 'none', color: 'white' }}>
-              <Avatar alt="Remy Sharp" src={row.imagePath} />
-            </Link>
-          </td>
-          <td style={futuristicStyles.tableBodyRow}>
-            <Link to={`/employee-detail/${row._id}`} style={{ textDecoration: 'none', color: 'white' }}>
-              {employeeName}
-            </Link>
-          </td>
-          <td style={futuristicStyles.tableBodyCell}>
-            <Link
-              to={`/employee-detail/${row._id}`}
-              style={{ color: '#ffff', textDecoration: 'none', backgroundImage: 'none' }}
-            >
-              {row.designation.designation}
-            </Link>
-          </td>
-          <td style={futuristicStyles.tableBodyCell}>{fNumber(employeeFinancialData.monthlySalary)}</td>
-          <td style={futuristicStyles.tableBodyCell}>{fNumber(row.allowance ? row.allowance : '0.00')}</td>
-          <td style={futuristicStyles.tableBodyCell}>{fNumber(row.overtime)}</td>
-          <td style={futuristicStyles.tableBodyCell}>{fNumber(row.IOU)}</td>
-          <td style={futuristicStyles.tableBodyCell}>{fNumber(row.loan && row.exemptionIsOn ? row.loan : '0.00')}</td>
-          <td style={futuristicStyles.tableBodyCell}>{fNumber(row.minimumRepay)}</td>
-          <td style={futuristicStyles.tableBodyCell}>
-            {row.loan ? moment(new Date(row.repayDate)).format('MMM Do YY') : '-'}
-          </td>
-          {row.department.grossIncome === null ? (
-            <td style={futuristicStyles.tableBodyCell}>
-              {row.loan && moment().isBefore(moment(row.repayDate))
-                ? fNumber(
-                    parseInt(
-                      row.designation.perhrIncome * 8 * 20 -
-                        parseInt(row.minimumRepay) +
-                        parseInt(row.allowance)
-                    )
-                  )
-                : fNumber(parseInt(row.department.perhrIncome * 8 * 20 + parseInt(row.allowance)))}
-            </td>
+          {exportMode ? (
+            <>
+              <td style={futuristicStyles.tableBodyRow}>
+                <Link to={`/employee-detail/${row._id}`} style={{ textDecoration: 'none', color: 'white' }}>
+                  {employeeName}
+                </Link>
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {fNumber(totalRemuneration)}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>-</td>
+              <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
+              <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
+            </>
           ) : (
-            <td style={futuristicStyles.tableBodyCell}>
-              {row.loan && moment().isBefore(moment(row.repayDate))
-                ? fNumber(totalRemuneration - parseInt(row.minimumRepay))
-                : fNumber(totalRemuneration)}
-            </td>
+            <>
+              <td style={combinedStyles.tableBodyRow}>
+                <Link to={`/employee-detail/${row.imagePath}`} style={{ textDecoration: 'none', color: 'white' }}>
+                  <Avatar alt="Remy Sharp" src={row.imagePath} />
+                </Link>
+              </td>
+              <td style={futuristicStyles.tableBodyRow}>
+                <Link to={`/employee-detail/${row._id}`} style={{ textDecoration: 'none', color: 'white' }}>
+                  {employeeName}
+                </Link>
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                <Link
+                  to={`/employee-detail/${row._id}`}
+                  style={{ color: '#ffff', textDecoration: 'none', backgroundImage: 'none' }}
+                >
+                  {row.designation.designation}
+                </Link>
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {fNumber(employeeFinancialData.monthlySalary)}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {fNumber(row.allowance ? row.allowance : '0.00')}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {fNumber(row.overtime)}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {fNumber(row.IOU)}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {fNumber(row.loan && row.exemptionIsOn ? row.loan : '0.00')}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {fNumber(row.minimumRepay)}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {row.loan ? moment(new Date(row.repayDate)).format('MMM Do YY') : '-'}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {row.department.grossIncome === null ? (
+                  fNumber(
+                    row.loan && moment().isBefore(moment(row.repayDate))
+                      ? parseInt(row.designation.perhrIncome * 8 * 20 - parseInt(row.minimumRepay) + parseInt(row.allowance))
+                      : parseInt(row.department.perhrIncome * 8 * 20 + parseInt(row.allowance))
+                  )
+                ) : (
+                  fNumber(totalRemuneration)
+                )}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {row.bankName}
+              </td>
+              <td style={futuristicStyles.tableBodyCell}>-</td>
+              <td style={futuristicStyles.tableBodyCell}>
+                {row.accountNumber}
+              </td>
+            </>
           )}
-          <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
-          <td style={futuristicStyles.tableBodyCell}>-</td>
-          <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
         </tr>
       );
     })}
