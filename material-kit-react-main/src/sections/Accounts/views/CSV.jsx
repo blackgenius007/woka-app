@@ -1,4 +1,4 @@
-  /* eslint-disable */
+ /* eslint-disable */
 import { useSelector, useDispatch } from 'react-redux';
 import {
   retrieveAllEmployees,
@@ -7,9 +7,8 @@ import {
   calculateTaxAsync,
 } from 'src/Services/AccountServices/financialSlice';
 
-export const generateCSV = () => {
+export const generateCSV = async () => {
   const dispatch = useDispatch();
-
   //user details
   const { ownerEmail, role } = useSelector((state) => state.auth.user.data);
 
@@ -24,24 +23,28 @@ export const generateCSV = () => {
 
   // Function to calculate financial data
   const calculateFinancialData = (employeeId, grossIncome, country, healthCare) => {
-    dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
+    return dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
   };
 
   // Fetch employees data if not available
   if (!employees || isLoading || isError) {
-    // Dispatch an action to retrieve employee data
-    dispatch(retrieveAllEmployees(userEmail));
-    return ''; // Return an empty string for now; the CSV will be generated on the next render
+    try {
+      // Dispatch an action to retrieve employee data
+      await dispatch(retrieveAllEmployees(userEmail));
+    } catch (error) {
+      console.error('Error retrieving employee data:', error);
+      return ''; // Return an empty string on error
+    }
   }
 
   // Hardcoded headers for the selected columns
   const headers = ['Name', 'Salary', 'Bank name', 'Bank code', 'Account Number'];
 
   // Create CSV data rows
-  const csvRows = employees.map(({ id, grossIncome, country, healthCare, ...row }) => {
+  const csvRows = await Promise.all(employees.map(async ({ id, grossIncome, country, healthCare, ...row }) => {
     // Calculate financial data if not available
     if (!salaryData || !salaryData.some(salary => salary.employeeId === id)) {
-      calculateFinancialData(id, grossIncome, country, healthCare);
+      await calculateFinancialData(id, grossIncome, country, healthCare);
       return ''; // Return an empty string for now; the CSV will be generated on the next render
     }
 
@@ -64,7 +67,7 @@ export const generateCSV = () => {
     });
 
     return csvRow.join(',');
-  });
+  }));
 
   // Combine header row and data rows
   const csvContent = headers.join(',') + '\n';
