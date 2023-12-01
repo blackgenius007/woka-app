@@ -549,11 +549,21 @@ const SalaryCalculator = ({ drawer }) => {
               const monthlyRate = employeeFinancialData.monthlySalary;
               const totalRemuneration = (
                 monthlyRate +
-                row.overtime +
-                row.allowance -
-                row.IOU -
-                row.minimumRepay
+                parseFloat(row.overtime) +
+                parseFloat(row.allowance ? row.allowance : 0) -
+                parseFloat(row.IOU) -
+                parseFloat(row.minimumRepay)
               ).toFixed(2);
+
+              // // Calculate Total Remuneration
+              // const monthlyRate = employeeFinancialData.monthlySalary;
+              // const totalRemuneration = (
+              //   monthlyRate +
+              //   row.overtime +
+              //   row.allowance -
+              //   row.IOU -
+              //   row.minimumRepay
+              // ).toFixed(2);
 
               // Calculate net Remuneration
               const netRemuneration =
@@ -660,15 +670,14 @@ const SalaryCalculator = ({ drawer }) => {
             })}
 
             {/* Total Remuneration for All Employees */}
-<tr>
-  <td colSpan="8" style={{ textAlign: 'right' }}>
-    <strong>Total:</strong>
-  </td>
-  <td style={{ textAlign: 'center' }}>
-    {exportMode ? fNumber(totalRemunerationForAll.toFixed(2)) : fNumber(totalRemunerationForAll.toFixed(2)) }
-  </td>
-</tr>
-
+            <tr>
+              <td colSpan="8" style={{ textAlign: 'right' }}>
+                <strong>Total:</strong>
+              </td>
+              <td style={{ textAlign: 'center' }}>
+                {exportMode ? fNumber(totalRemunerationForAll.toFixed(2)) : '-'}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
