@@ -490,183 +490,176 @@ const SalaryCalculator = ({ drawer }) => {
         </tr> */}
       </label>
       <div style={combinedStyles.tableContainer}>
-      <table ref={tableRef} style={combinedStyles.table}>
-  <Hidden xsDown>
-    <thead style={combinedStyles.tableHead}>
-      <tr>
-        {exportMode ? (
-          ''
-        ) : (
-          <>
-            <th style={futuristicStyles.tableHeadCell}>Employee</th>
-          </>
-        )}
-        <th style={futuristicStyles.tableHeadCell}>Name</th>
-        {exportMode ? (
-          ''
-        ) : (
-          <>
-            <th style={futuristicStyles.tableHeadCell}>Designation</th>
-          </>
-        )}
-        {exportMode ? (
-          ''
-        ) : (
-          <>
-            <th style={futuristicStyles.tableHeadCell}>Salary</th>
-            <th style={futuristicStyles.tableHeadCell}>Allowance</th>
-            <th style={futuristicStyles.tableHeadCell}>Overtime</th>
-            <th style={futuristicStyles.tableHeadCell}>IOU</th>
-            <th style={futuristicStyles.tableHeadCell}>Loan</th>
-            <th style={futuristicStyles.tableHeadCell}>Loan repay</th>
-            <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
-          </>
-        )}
-        <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
-        <th style={futuristicStyles.tableHeadCell}>Bank name</th>
-        <th style={futuristicStyles.tableHeadCell}>Bank code</th>
-        <th style={futuristicStyles.tableHeadCell}>Account Number</th>
-      </tr>
-    </thead>
-  </Hidden>
-  <tbody>
-    {paginatedRows.map((row) => {
-      const { _id, employeeName, designation, healthCare, minimumRepay } = row;
-      const { grossIncome, country } = designation;
-      const employeeFinancialData = financialData[_id];
+        <table ref={tableRef} style={combinedStyles.table}>
+          <Hidden xsDown>
+            <thead style={combinedStyles.tableHead}>
+              <tr>
+                {exportMode ? (
+                  ''
+                ) : (
+                  <>
+                    <th style={futuristicStyles.tableHeadCell}>Employee</th>
+                  </>
+                )}
 
-      // Calculate financial data if not available
-      if (!employeeFinancialData) {
-        calculateFinancialData(_id, grossIncome, country, healthCare);
-        return null; // Render nothing for now, will be updated on next render
-      }
+                <th style={futuristicStyles.tableHeadCell}>Name</th>
+                {exportMode ? (
+                  ''
+                ) : (
+                  <>
+                    <th style={futuristicStyles.tableHeadCell}>Designation</th>
+                  </>
+                )}
 
-      // Calculate Total Remuneration
-      const monthlyRate = employeeFinancialData.monthlySalary;
-      const totalRemuneration = (
-        monthlyRate +
-        row.overtime +
-        row.allowance -
-        row.IOU -
-        row.minimumRepay
-      ).toFixed(2);
+                {exportMode ? (
+                  ''
+                ) : (
+                  <>
+                    <th style={futuristicStyles.tableHeadCell}>Salary</th>
+                    <th style={futuristicStyles.tableHeadCell}>Allowance</th>
+                    <th style={futuristicStyles.tableHeadCell}>Overtime</th>
+                    <th style={futuristicStyles.tableHeadCell}>IOU</th>
+                    <th style={futuristicStyles.tableHeadCell}>Loan</th>
+                    <th style={futuristicStyles.tableHeadCell}>Loan repay</th>
+                    <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
+                  </>
+                )}
 
-      // Calculate net Remuneration
-      const netRemuneration =
-        monthlyRate +
-        parseFloat(row.overtime) +
-        parseFloat(row.allowance) -
-        parseFloat(row.IOU) -
-        parseFloat(row.minimumRepay);
+                <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
+                <th style={futuristicStyles.tableHeadCell}>Bank name</th>
+                <th style={futuristicStyles.tableHeadCell}>Bank code</th>
+                <th style={futuristicStyles.tableHeadCell}>Account Number</th>
+              </tr>
+            </thead>
+          </Hidden>
+          <tbody>
+            {paginatedRows.map((row) => {
+              const { _id, employeeName, designation, healthCare, minimumRepay } = row;
+              const { grossIncome, country } = designation;
+              const employeeFinancialData = financialData[_id];
 
-      // Add the calculated remuneration to the total
-      totalRemunerationForAll += netRemuneration;
+              // Calculate financial data if not available
+              if (!employeeFinancialData) {
+                calculateFinancialData(_id, grossIncome, country, healthCare);
+                return null; // Render nothing for now, will be updated on next render
+              }
+              console.log(employeeFinancialData);
 
-      return (
-        <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-          {exportMode ? (
-            ''
-          ) : (
-            <td style={combinedStyles.tableBodyRow}>
-              <Link
-                to={`/employee-detail/${row.imagePath}`}
-                style={{ textDecoration: 'none', color: 'white' }}
-              >
-                <Avatar alt="Remy Sharp" src={row.imagePath} />
-              </Link>{' '}
-            </td>
-          )}
+              // Calculate Total Remuneration
+              const monthlyRate = employeeFinancialData.monthlySalary;
+              const totalRemuneration = (
+                monthlyRate +
+                row.overtime +
+                row.allowance -
+                row.IOU -
+                row.minimumRepay
+              ).toFixed(2);
 
-          <td style={futuristicStyles.tableBodyRow}>
-            <Link
-              to={`/employee-detail/${row._id}`}
-              style={{ textDecoration: 'none', color: 'white' }}
-            >
-              {' '}
-              {employeeName}
-            </Link>{' '}
-          </td>
-          {exportMode ? (
-            ''
-          ) : (
-            <td style={futuristicStyles.tableBodyCell}>
-              <Link
-                to={`/employee-detail/${row._id}`}
-                style={{
-                  color: '#ffff',
-                  textDecoration: 'none',
-                  backgroundImage: 'none',
-                }}
-              >
-                {row.designation.designation}
-              </Link>
-            </td>
-          )}
+              // Calculate net Remuneration
+              const netRemuneration =
+                monthlyRate +
+                parseFloat(row.overtime) +
+                parseFloat(row.allowance) -
+                parseFloat(row.IOU) -
+                parseFloat(row.minimumRepay);
 
-          <td style={futuristicStyles.tableBodyCell}>
-            {fNumber(employeeFinancialData.monthlySalary)}
-          </td>
-          {exportMode ? (
-            ''
-          ) : (
-            <>
-              <td style={futuristicStyles.tableBodyCell}>
-                {fNumber(row.allowance ? row.allowance : '0.00')}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>{fNumber(row.overtime)}</td>
-              <td style={futuristicStyles.tableBodyCell}>{fNumber(row.IOU)}</td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {fNumber(row.loan && row.exemptionIsOn ? row.loan : '0.00')}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>{fNumber(row.minimumRepay)}</td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {row.loan ? moment(new Date(row.repayDate)).format('MMM Do YY') : '-'}
-              </td>
-              {row.department.grossIncome === null ? (
-                <td style={futuristicStyles.tableBodyCell}>
-                  {row.loan && moment().isBefore(moment(row.repayDate))
-                    ? fNumber(
-                        parseInt(
-                          row.designation.perhrIncome * 8 * 20 -
-                            parseInt(row.minimumRepay) +
-                            parseInt(row.allowance)
-                        )
-                      )
-                    : fNumber(
-                        parseInt(
-                          row.department.perhrIncome * 8 * 20 + parseInt(row.allowance)
-                        )
+              // Add the calculated remuneration to the total
+              totalRemunerationForAll += netRemuneration;
+
+              return (
+                <tr key={row.id} style={futuristicStyles.tableBodyRow}>
+                  {exportMode ? (
+                    ''
+                  ) : (
+                    <td style={combinedStyles.tableBodyRow}>
+                      <Link
+                        to={`/employee-detail/${row.imagePath}`}
+                        style={{ textDecoration: 'none', color: 'white' }}
+                      >
+                        <Avatar alt="Remy Sharp" src={row.imagePath} />
+                      </Link>{' '}
+                    </td>
+                  )}
+
+                  <td style={futuristicStyles.tableBodyRow}>
+                    <Link
+                      to={`/employee-detail/${row._id}`}
+                      style={{ textDecoration: 'none', color: 'white' }}
+                    >
+                      {' '}
+                      {employeeName}
+                    </Link>{' '}
+                  </td>
+                  {exportMode ? (
+                    ''
+                  ) : (
+                    <td style={futuristicStyles.tableBodyCell}>
+                      <Link
+                        to={`/employee-detail/${row._id}`}
+                        style={{
+                          color: '#ffff',
+                          textDecoration: 'none',
+                          backgroundImage: 'none',
+                        }}
+                      >
+                        {row.designation.designation}
+                      </Link>
+                    </td>
+                  )}
+
+                  <td style={futuristicStyles.tableBodyCell}>
+                    {fNumber(employeeFinancialData.monthlySalary)}
+                  </td>
+                  {exportMode ? (
+                    ''
+                  ) : (
+                    <>
+                      <td style={futuristicStyles.tableBodyCell}>
+                        {fNumber(row.allowance ? row.allowance : '0.00')}
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>{fNumber(row.overtime)}</td>
+                      <td style={futuristicStyles.tableBodyCell}>{fNumber(row.IOU)}</td>
+                      <td style={futuristicStyles.tableBodyCell}>
+                        {fNumber(row.loan && row.exemptionIsOn ? row.loan : '0.00')}
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>{fNumber(row.minimumRepay)}</td>
+                      <td style={futuristicStyles.tableBodyCell}>
+                        {row.loan ? moment(new Date(row.repayDate)).format('MMM Do YY') : '-'}
+                      </td>
+                      {row.department.grossIncome === null ? (
+                        <td style={futuristicStyles.tableBodyCell}>
+                          {row.loan && moment().isBefore(moment(row.repayDate))
+                            ? fNumber(
+                                parseInt(
+                                  row.designation.perhrIncome * 8 * 20 -
+                                    parseInt(row.minimumRepay) +
+                                    parseInt(row.allowance)
+                                )
+                              )
+                            : fNumber(
+                                parseInt(
+                                  row.department.perhrIncome * 8 * 20 + parseInt(row.allowance)
+                                )
+                              )}
+                        </td>
+                      ) : (
+                        <td style={futuristicStyles.tableBodyCell}>
+                          {row.loan && moment().isBefore(moment(row.repayDate))
+                            ? fNumber(totalRemuneration - parseInt(row.minimumRepay))
+                            : fNumber(totalRemuneration)}
+                        </td>
                       )}
-                </td>
-              ) : (
-                <td style={futuristicStyles.tableBodyCell}>
-                  {row.loan && moment().isBefore(moment(row.repayDate))
-                    ? fNumber(totalRemuneration - parseInt(row.minimumRepay))
-                    : fNumber(totalRemuneration)}
-                </td>
-              )}
-            </>
-          )}
+                    </>
+                  )}
 
-          {/* Total Salary column */}
-          {!exportMode && (
-            <>
-              <td style={futuristicStyles.tableBodyCell}>
-                {row.loan && moment().isBefore(moment(row.repayDate))
-                  ? fNumber(totalRemuneration - parseInt(row.minimumRepay))
-                  : fNumber(totalRemuneration)}
-              </td>
-            </>
-          )}
+                  <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
+                  <td style={futuristicStyles.tableBodyCell}>-</td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
+                </tr>
+              );
+            })}
 
-          <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
-          <td style={futuristicStyles.tableBodyCell}>-</td>
-          <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
-        </tr>
-      );
-    })}
-
-    {/* Total Remuneration for All Employees */}
+            {/* Total Remuneration for All Employees */}
 <tr>
   <td colSpan="8" style={{ textAlign: 'right' }}>
     <strong>Total:</strong>
@@ -676,8 +669,8 @@ const SalaryCalculator = ({ drawer }) => {
   </td>
 </tr>
 
-  </tbody>
-</table>
+          </tbody>
+        </table>
       </div>
       <br />
       {/* Pagination controls */}
