@@ -19,7 +19,7 @@ const PdfExportButton = ({ tableRef, filename,business }) => {
     pdf.setFont('helvetica', 'normal');
 
     // Add heading to the PDF
-    pdf.text(`${business} Salary Schedule for ${currentMonth } `, 20, 20); // Adjust position and text as needed
+    pdf.text(`${business && business} Salary Schedule for ${currentMonth } `, 20, 20); // Adjust position and text as needed
 
     // Add content to the PDF using autotable
     pdf.autoTable({ html: table, startY: 30 }); // Adjust startY based on heading height
