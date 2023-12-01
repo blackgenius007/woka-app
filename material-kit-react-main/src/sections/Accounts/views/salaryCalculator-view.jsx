@@ -208,6 +208,7 @@ const SalaryCalculator = ({ drawer }) => {
   const [dateOffset, setDateOffset] = useState(7);
   const [open, setOpen] = useState(null);
   const [exportMode, setExportMode] = useState(0);
+  const businessName = user.businessName
 
 
 
@@ -466,7 +467,7 @@ const SalaryCalculator = ({ drawer }) => {
             </Button>
             {/* Excel button with SVG icon */}
             <FileCopy style={{ color: '#ffffff' }} />{' '}
-            <PdfExportButton tableRef={tableRef} filename="salary.pdf" />
+            <PdfExportButton tableRef={tableRef} filename="salary.pdf" business={businessName} />
           </>
         ) : (
           <Button

@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import Button from '@mui/material/Button';
@@ -9,8 +8,7 @@ import moment from 'moment';
 
 // {exportMode ? <caption>{user.businessName} Salary Schedule for {currentMonth }  </caption> : ''} 
 
-const PdfExportButton = ({ tableRef, filename }) => {
-  const { user } = useSelector((state) => state.auth);
+const PdfExportButton = ({ tableRef, filename,business }) => {
   const currentMonth = moment().format('MMMM YYYY');
   const handleExportPDF = () => {
     const pdf = new jsPDF();
@@ -21,7 +19,7 @@ const PdfExportButton = ({ tableRef, filename }) => {
     pdf.setFont('helvetica', 'normal');
 
     // Add heading to the PDF
-    pdf.text(`${user.businessName} Salary Schedule for ${currentMonth } `, 20, 20); // Adjust position and text as needed
+    pdf.text(`${business} Salary Schedule for ${currentMonth } `, 20, 20); // Adjust position and text as needed
 
     // Add content to the PDF using autotable
     pdf.autoTable({ html: table, startY: 30 }); // Adjust startY based on heading height
