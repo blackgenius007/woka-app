@@ -1,10 +1,9 @@
-  /* eslint-disable */
+ /* eslint-disable */
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import { ButtonBase, Hidden } from '@mui/material';
-import { generateCSV } from './CSV';
 import Container from '@mui/material/Container';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import TableContainer from '@mui/material/TableContainer';
@@ -175,30 +174,13 @@ const SalaryCalculator = ({ drawer }) => {
 
   // Retrieve financial data from financialSlice
   const financialData = useSelector((state) => state.financial);
-  
+  console.log('financials=>', financialData);
+
   // Function to trigger financial data calculation
   const calculateFinancialData = (employeeId, grossIncome, country, healthCare) => {
     console.log('front-calculateFinancialData:', employeeId, grossIncome, country);
     dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
   };
-
-  // function to handle csv download
-const handleExportCSV = async () => {
-  try {
-    
-    // Assuming generateCSV is an asynchronous function
-    const csvString = await generateCSV();
-
-    if (csvString) {
-      console.log('csv string:', csvString);
-      // Perform other actions if needed
-    } else {
-      console.log('No string:');
-    }
-  } catch (error) {
-    console.error('Error generating CSV:', error);
-  }
-};
 
   const tableRef = useRef(null);
   const requestSearch = (searchedVal) => {
@@ -366,17 +348,15 @@ const handleExportCSV = async () => {
 
   // Function to enable export mode
   const enableExportMode = () => {
-    setExportMode(1);
+    setExportMode(true);
   };
 
   // Function to disable export mode
   const disableExportMode = () => {
-    setExportMode(0);
+    setExportMode(false);
   };
   const ExportSheet = () => {
-    if (exportMode === 1) {
-      onDownload();
-    }
+   onDownload()
   };
 
   const handleSearch = (e) => {
@@ -444,8 +424,6 @@ const handleExportCSV = async () => {
     return age;
   };
 
-  
-
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -483,7 +461,7 @@ const handleExportCSV = async () => {
           clickable
           style={{ backgroundColor: '#fff', fontSize: '12px' }}
         />
-        {exportMode === 1 ? (
+        {exportMode ? (
           <>
             {/* Cancel button with Clear icon */}
             <Button onClick={disableExportMode}>
@@ -492,7 +470,7 @@ const handleExportCSV = async () => {
             </Button>
             {/* Excel button with SVG icon */}
             <Button  
-            onClick={handleExportCSV}
+             onClick={ ExportSheet}
             
              style={{ backgroundColor: '#E97451', color: '#ffffff' }}>
               <FileCopy style={{ color: '#ffffff' }} /> Export to Excel
@@ -526,16 +504,16 @@ const handleExportCSV = async () => {
           <Hidden xsDown>
             <thead style={combinedStyles.tableHead}>
               <tr>
-                 
-                {/* <th style={futuristicStyles.tableHeadCell}>Employee</th>
-               */}
+                {exportMode ? '' : <>
+                <th style={futuristicStyles.tableHeadCell}>Employee</th>
+                </>}
                
                 <th style={futuristicStyles.tableHeadCell}>Name</th>
-              
+                {exportMode ?'':<>
                 <th style={futuristicStyles.tableHeadCell}>Designation</th>
-            
+                </>}
 
-           
+                {exportMode ?'':<>
                 <th style={futuristicStyles.tableHeadCell}>Salary</th>
                 <th style={futuristicStyles.tableHeadCell}>Allowance</th>
                 <th style={futuristicStyles.tableHeadCell}>Overtime</th>
@@ -543,7 +521,7 @@ const handleExportCSV = async () => {
                 <th style={futuristicStyles.tableHeadCell}>Loan</th>
                 <th style={futuristicStyles.tableHeadCell}>Loan repay</th>
                 <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
-             
+                </>}
                 
              
                 <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
@@ -589,15 +567,18 @@ const handleExportCSV = async () => {
 
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-               <td style={combinedStyles.tableBodyRow}>
+                  {exportMode ? (
+                    ''
+                  ) : (
+                    <td style={combinedStyles.tableBodyRow}>
                       <Link
                         to={`/employee-detail/${row.imagePath}`}
                         style={{ textDecoration: 'none', color: 'white' }}
                       >
                         <Avatar alt="Remy Sharp" src={row.imagePath} />
                       </Link>{' '}
-                    </td>  
-                
+                    </td>
+                  )}
 
                   <td style={futuristicStyles.tableBodyRow}>
                     <Link
@@ -608,7 +589,9 @@ const handleExportCSV = async () => {
                       {employeeName}
                     </Link>{' '}
                   </td>
-                 
+                  {exportMode ? (
+                    ''
+                  ) : (
                     <td style={futuristicStyles.tableBodyCell}>
                       <Link
                         to={`/employee-detail/${row._id}`}
@@ -621,12 +604,15 @@ const handleExportCSV = async () => {
                         {row.designation.designation}
                       </Link>
                     </td>
-              
+                  )}
 
                   <td style={futuristicStyles.tableBodyCell}>
                     {fNumber(employeeFinancialData.monthlySalary)}
                   </td>
-           
+                  {exportMode ? (
+                    ''
+                  ) : (
+                    <>
                       <td style={futuristicStyles.tableBodyCell}>
                         {fNumber(row.allowance ? row.allowance : '0.00')}
                       </td>
@@ -662,7 +648,9 @@ const handleExportCSV = async () => {
                             : fNumber(totalRemuneration)}
                         </td>
                       )}
-                 
+                    </>
+                  )}
+
                   <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
                   <td style={futuristicStyles.tableBodyCell}>-</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
@@ -723,7 +711,7 @@ export default function MainPage() {
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
           >
-            Financial Analytics
+            Data Analytics
           </Button>
         </Link>
       </Stack>
@@ -733,4 +721,5 @@ export default function MainPage() {
     </Container>
   );
 }
+
  
