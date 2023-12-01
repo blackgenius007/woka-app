@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import { ButtonBase, Hidden } from '@mui/material';
 import Container from '@mui/material/Container';
 import { useDownloadExcel } from 'react-export-table-to-excel';
+import PdfExportButton from './PdfExportButton';
 import TableContainer from '@mui/material/TableContainer';
 import Card from '@mui/material/Card';
 import Popover from '@mui/material/Popover';
@@ -684,6 +685,7 @@ const SalaryCalculator = ({ drawer }) => {
           Next
         </button>
       </div>
+      <PdfExportButton tableRef={tableRef} filename="exported-table.pdf" />
     </>
   );
 };
