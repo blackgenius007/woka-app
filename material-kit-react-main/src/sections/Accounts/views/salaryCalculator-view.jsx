@@ -569,15 +569,14 @@ const SalaryCalculator = ({ drawer }) => {
 
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-              
-                    {/* <td style={combinedStyles.tableBodyRow}>
+               <td style={combinedStyles.tableBodyRow}>
                       <Link
                         to={`/employee-detail/${row.imagePath}`}
                         style={{ textDecoration: 'none', color: 'white' }}
                       >
                         <Avatar alt="Remy Sharp" src={row.imagePath} />
                       </Link>{' '}
-                    </td> */}
+                    </td>  
                 
 
                   <td style={futuristicStyles.tableBodyRow}>
