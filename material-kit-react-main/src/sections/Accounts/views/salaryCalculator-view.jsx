@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import { ButtonBase, Hidden } from '@mui/material';
+import { generateCSV } from './CSV';
 import Container from '@mui/material/Container';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import TableContainer from '@mui/material/TableContainer';
@@ -174,14 +175,19 @@ const SalaryCalculator = ({ drawer }) => {
 
   // Retrieve financial data from financialSlice
   const financialData = useSelector((state) => state.financial);
-  console.log('financials=>', financialData);
-
+  
   // Function to trigger financial data calculation
   const calculateFinancialData = (employeeId, grossIncome, country, healthCare) => {
     console.log('front-calculateFinancialData:', employeeId, grossIncome, country);
     dispatch(calculateTaxAsync({ employeeId, grossIncome, country, healthCare }));
   };
 
+  // function to handle csv download
+  const handleExportCSV = () => {
+    const csvString = generateCSV();
+    console.log(csvString);
+    // Perform other actions if needed
+  };
   const tableRef = useRef(null);
   const requestSearch = (searchedVal) => {
     setSearched(searchedVal);
@@ -426,6 +432,8 @@ const SalaryCalculator = ({ drawer }) => {
     return age;
   };
 
+  
+
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -472,7 +480,7 @@ const SalaryCalculator = ({ drawer }) => {
             </Button>
             {/* Excel button with SVG icon */}
             <Button  
-             onClick={ ExportSheet}
+            onClick={handleExportCSV}
             
              style={{ backgroundColor: '#E97451', color: '#ffffff' }}>
               <FileCopy style={{ color: '#ffffff' }} /> Export to Excel
@@ -703,7 +711,7 @@ export default function MainPage() {
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
           >
-            financial Analytics
+            Financial Analytics
           </Button>
         </Link>
       </Stack>
