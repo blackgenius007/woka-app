@@ -183,18 +183,23 @@ const SalaryCalculator = ({ drawer }) => {
   };
 
   // function to handle csv download
-  const handleExportCSV = () => {
-    alert('csv connect..')
-    const csvString = generateCSV();
-    if(csvString ){
-      console.log('csv string:',csvString);
-    }else{
-      console.log('No string:' );
+const handleExportCSV = async () => {
+  try {
+    
+    // Assuming generateCSV is an asynchronous function
+    const csvString = await generateCSV();
 
+    if (csvString) {
+      console.log('csv string:', csvString);
+      // Perform other actions if needed
+    } else {
+      console.log('No string:');
     }
-    console.log('csv string:',csvString);
-    // Perform other actions if needed
-  };
+  } catch (error) {
+    console.error('Error generating CSV:', error);
+  }
+};
+
   const tableRef = useRef(null);
   const requestSearch = (searchedVal) => {
     setSearched(searchedVal);
