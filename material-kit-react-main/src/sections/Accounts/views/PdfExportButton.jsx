@@ -2,6 +2,7 @@
 import React from 'react';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
+import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
 const PdfExportButton = ({ tableRef, filename }) => {
