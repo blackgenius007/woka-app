@@ -10,36 +10,37 @@ const PdfExportButton = ({ tableRef, filename }) => {
   const handleExportPDF = () => {
     const pdf = new jsPDF();
     const table = tableRef.current;
-
+  
     // Set font size and style for the PDF
     pdf.setFontSize(12);
     pdf.setFont('helvetica', 'normal');
-
+  
     // Position variables for manual content placement
     let yPosition = 20; // Adjust the starting Y position
-
+  
     // Add content to the PDF manually
-    pdf.text(`Salary Schedule for ${currentMonth } `, 14, yPosition);
+    console.log('Adding content to PDF...');
+    pdf.text('Your Custom Heading', 14, yPosition);
     yPosition += 10; // Adjust Y position for the next element
-
+  
     // Iterate over each row in the HTML table
     table.querySelectorAll('tr').forEach((row) => {
       // Iterate over each cell in the row
       row.querySelectorAll('td, th').forEach((cell, index) => {
         // Adjust X position based on the cell index
         const xPosition = index * 40; // Adjust this based on your layout
-
+  
         // Add the cell content to the PDF
         pdf.text(cell.innerText, 14 + xPosition, yPosition);
       });
-
+  
       yPosition += 10; // Adjust Y position for the next row
     });
-
+  
     // Save the PDF
+    console.log('Saving the PDF...');
     pdf.save(filename || 'salary.pdf');
   };
-
   return (
     <Button
       type="button"
