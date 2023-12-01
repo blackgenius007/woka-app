@@ -30,7 +30,7 @@ const PdfExportButton = ({ tableRef, filename }) => {
       border: 'none',
       cursor: 'pointer',
       padding: '8px', // Adjust the padding as needed
-      fontSize: '12px', // Adjust the font size as needed
+      fontSize: '14px', // Adjust the font size as needed
     }}
   >
     Export to PDF

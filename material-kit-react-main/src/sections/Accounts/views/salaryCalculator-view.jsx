@@ -462,12 +462,9 @@ const SalaryCalculator = ({ drawer }) => {
               Cancel
             </Button>
             {/* Excel button with SVG icon */}
-            <Button  
-           
             
-             style={{ backgroundColor: '#E97451', color: '#ffffff' }}>
               <FileCopy style={{ color: '#ffffff' }} /> <PdfExportButton tableRef={tableRef} filename="exported-table.pdf" />
-            </Button>
+            
           </>
         ) : (
           <Button
