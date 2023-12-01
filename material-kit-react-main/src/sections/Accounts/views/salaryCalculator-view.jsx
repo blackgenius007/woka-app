@@ -184,6 +184,7 @@ const SalaryCalculator = ({ drawer }) => {
 
   // function to handle csv download
   const handleExportCSV = () => {
+    alert('csv connect..')
     const csvString = generateCSV();
     if(csvString ){
       console.log('csv string:',csvString);
