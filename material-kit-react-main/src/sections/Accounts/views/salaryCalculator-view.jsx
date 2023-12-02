@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { DownloadTableExcel } from 'react-export-table-to-excel';
 import TextField from '@mui/material/TextField';
 import { ButtonBase, Hidden } from '@mui/material';
 import Container from '@mui/material/Container';
@@ -464,9 +465,18 @@ const SalaryCalculator = ({ drawer }) => {
             </Button>
             {/* Excel button with SVG icon */}
             <FileCopy style={{ color: '#ffffff' }} />{' '}
-           <label><PdfExportButton tableRef={tableRef} filename="salary.pdf" /></label> <label> <Button  >
+           <label><PdfExportButton tableRef={tableRef} filename="salary.pdf" /></label> 
+           <label>
+           <DownloadTableExcel
+                    filename="users table"
+                    sheet="users"
+                    currentTableRef={tableRef.current}
+                > 
+            <Button onClick={ExportSheet} >
            <Icon icon="vscode-icons:file-type-excel2" width="45" height="45" />
-            </Button></label>
+            </Button>
+            </DownloadTableExcel>
+            </label>
           </>
         ) : (
           <Button
