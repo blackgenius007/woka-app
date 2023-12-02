@@ -491,7 +491,7 @@ const SalaryCalculator = ({ drawer }) => {
       </label>
       <div style={combinedStyles.tableContainer}>
       <table ref={tableRef} style={combinedStyles.table}>
-  <Hidden xsDown>
+  {/* <Hidden xsDown> */}
   <thead style={combinedStyles.tableHead}>
   <tr>
     {exportMode ? (
@@ -523,7 +523,7 @@ const SalaryCalculator = ({ drawer }) => {
   </tr>
 </thead>
 
-  </Hidden>
+  {/* </Hidden> */}
   <tbody>
     {paginatedRows.map((row) => {
       const { _id, employeeName, designation, healthCare, minimumRepay } = row;
@@ -637,20 +637,14 @@ const SalaryCalculator = ({ drawer }) => {
         </tr>
       );
     })}
+ 
     {/* Total Remuneration for All Employees */}
-{exportMode?(
     <tr>
       <td colSpan="8" style={{ textAlign: 'right' }}>
         <strong>Total:</strong>
       </td>
       <td style={{ textAlign: 'center' }}>{fNumber(totalRemunerationForAll.toFixed(2))}</td>
-    </tr>):( <tr>
-      <td colSpan="8" style={{ textAlign: 'right' }}>
-        <strong>Total:</strong>
-      </td>
-      <td style={{ textAlign: 'center' }}>{fNumber(totalRemunerationForAll.toFixed(2))}</td>
-    </tr>)}
-    
+    </tr>
   </tbody>
 </table>
       </div>
