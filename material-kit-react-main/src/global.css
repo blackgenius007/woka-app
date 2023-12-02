@@ -1,33 +1,32 @@
 /* scrollbar */
 @import 'simplebar-react/dist/simplebar.min.css';
+ /* For small screens */
 @media (max-width: 700px) {
-    /* Hide header cells */
-    thead th {
-      display: none;
-    }
-  
-    /* Display cells as block elements */
-    tbody tr,
-    tbody td {
-      display: block;
-      width: 100%; /* Make cells fill the width of the container */
-    }
-  
-    /* Add spacing between cells */
-    tbody td {
-      margin-bottom: 0.5rem;
-    }
-  
-    /* Show data labels before each cell content */
-    tbody td::before {
-      content: attr(data-label);
-      font-weight: bold;
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-  
-    /* Remove border-bottom for the last cell in each row */
-    tbody td:last-child {
-      border-bottom: none;
-    }
+  /* Hide header cells */
+  thead th {
+    display: none;
   }
+
+  /* Display cells as block elements */
+  tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd; /* Add a border between rows */
+  }
+
+  /* Display cells as block elements */
+  tbody td {
+    width: 48%; /* Adjust the width based on your preference */
+    margin-bottom: 0.5rem;
+  }
+
+  /* Show data labels before each cell content */
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+}

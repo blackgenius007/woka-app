@@ -1,4 +1,4 @@
-/* eslint-disable */
+ /* eslint-disable */
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -70,6 +70,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
+
 
 // Futuristic styles
 const futuristicStyles = {
