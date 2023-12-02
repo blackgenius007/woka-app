@@ -472,7 +472,7 @@ const SalaryCalculator = ({ drawer }) => {
                     sheet="users"
                     currentTableRef={tableRef.current}
                 > 
-            <Button onClick={ExportSheet} >
+            <Button>
            <Icon icon="vscode-icons:file-type-excel2" width="45" height="45" />
             </Button>
             </DownloadTableExcel>
