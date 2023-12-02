@@ -465,7 +465,7 @@ const SalaryCalculator = ({ drawer }) => {
             {/* Excel button with SVG icon */}
             <FileCopy style={{ color: '#ffffff' }} />{' '}
            <label><PdfExportButton tableRef={tableRef} filename="salary.pdf" /></label> <label> <Button  >
-              Export to Excel
+           <Icon icon="vscode-icons:file-type-excel2" width="45" height="45" />
             </Button></label>
           </>
         ) : (
