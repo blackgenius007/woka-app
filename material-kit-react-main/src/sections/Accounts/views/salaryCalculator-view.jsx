@@ -71,7 +71,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-
 // Futuristic styles
 const futuristicStyles = {
   tableContainer: {
@@ -465,7 +464,9 @@ const SalaryCalculator = ({ drawer }) => {
             </Button>
             {/* Excel button with SVG icon */}
             <FileCopy style={{ color: '#ffffff' }} />{' '}
-            <PdfExportButton tableRef={tableRef} filename="salary.pdf" />
+           <label><PdfExportButton tableRef={tableRef} filename="salary.pdf" /></label> <label> <Button  >
+              Export to Excel
+            </Button></label>
           </>
         ) : (
           <Button
