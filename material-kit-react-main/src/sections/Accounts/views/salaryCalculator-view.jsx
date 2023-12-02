@@ -637,14 +637,20 @@ const SalaryCalculator = ({ drawer }) => {
         </tr>
       );
     })}
-
     {/* Total Remuneration for All Employees */}
+{exportMode?(
     <tr>
       <td colSpan="8" style={{ textAlign: 'right' }}>
         <strong>Total:</strong>
       </td>
       <td style={{ textAlign: 'center' }}>{fNumber(totalRemunerationForAll.toFixed(2))}</td>
-    </tr>
+    </tr>):( <tr>
+      <td colSpan="8" style={{ textAlign: 'right' }}>
+        <strong>Total:</strong>
+      </td>
+      <td style={{ textAlign: 'center' }}>{fNumber(totalRemunerationForAll.toFixed(2))}</td>
+    </tr>)}
+    
   </tbody>
 </table>
       </div>
