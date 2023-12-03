@@ -468,7 +468,7 @@ const SalaryCalculator = ({ drawer }) => {
            <label><PdfExportButton tableRef={tableRef} filename="salary.pdf" /></label> 
            <label>
            <DownloadTableExcel
-                    filename="Salary.xls"
+                    filename="Salary.csv"
                     sheet="users"
                     currentTableRef={tableRef.current}
                 > 
