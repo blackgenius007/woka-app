@@ -2,8 +2,6 @@
 import React from 'react';
 import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
-import Iconify from '@iconify/react';
-import { Icon } from '@iconify/react';
 import Button from '@mui/material/Button';
 
 const ExportToExcelButton = ({ tableRef }) => {
@@ -26,7 +24,7 @@ const ExportToExcelButton = ({ tableRef }) => {
 
   return (
     <Button onClick={handleExportToExcel}>
-      <Iconify icon="vscode-icons:file-type-excel2" width="45" height="45" />
+     Export to Excel
     </Button>
   );
 };
