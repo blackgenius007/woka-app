@@ -3,6 +3,7 @@ import React from 'react';
 import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
 import Iconify from '@iconify/react';
+import { Icon } from '@iconify/react';
 import Button from '@mui/material/Button';
 
 const ExportToExcelButton = ({ tableRef }) => {
