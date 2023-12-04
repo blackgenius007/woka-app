@@ -61,7 +61,8 @@
     "semantic-ui-react": "^2.1.4",
     "simplebar-react": "^3.2.4",
     "styled-components": "^6.1.0",
-    "sweetalert2": "^11.10.1"
+    "sweetalert2": "^11.10.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@vitejs/plugin-react-swc": "^3.4.0",
