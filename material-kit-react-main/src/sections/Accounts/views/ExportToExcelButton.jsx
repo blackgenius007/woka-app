@@ -1,9 +1,8 @@
  /* eslint-disable */
 import React from 'react';
 import { saveAs } from 'file-saver';
-import XLSX from 'xlsx';
-import Iconify from 'src/components/iconify';
-import { Icon } from '@iconify/react';
+import * as XLSX from 'xlsx';
+import Iconify from '@iconify/react';
 import Button from '@mui/material/Button';
 
 const ExportToExcelButton = ({ tableRef }) => {
@@ -26,7 +25,7 @@ const ExportToExcelButton = ({ tableRef }) => {
 
   return (
     <Button onClick={handleExportToExcel}>
-    <Icon icon="vscode-icons:file-type-excel2" width="45" height="45" />
+      <Iconify icon="vscode-icons:file-type-excel2" width="45" height="45" />
     </Button>
   );
 };
