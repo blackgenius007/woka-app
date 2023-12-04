@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ExportToExcelButton from './ExportToExcelButton';
+import { utils, writeFile } from 'xlsx'
 import TextField from '@mui/material/TextField';
 import { CSVLink } from 'react-csv';
 import { ButtonBase, Hidden } from '@mui/material';
@@ -274,6 +274,8 @@ const SalaryCalculator = ({ drawer }) => {
     alert('');
   };
 
+
+
   //user details
   const { ownerEmail, role } = useSelector((state) => state.auth.user.data);
 
@@ -420,6 +422,13 @@ const SalaryCalculator = ({ drawer }) => {
     return age;
   };
 
+  // Export to excel
+  const exportData = () => {
+    let wb = utils.book_new(),
+      ws = utils.json_to_sheet(paginatedRows);
+    utils.book_append_sheet(wb, ws, "items")
+    writeFile(wb, "items.xlsx")
+  }
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -468,10 +477,10 @@ const SalaryCalculator = ({ drawer }) => {
             <FileCopy style={{ color: '#ffffff' }} />{' '}
            <label><PdfExportButton tableRef={tableRef} filename="salary.pdf" /></label> 
            <label>
-           <ExportToExcelButton tableRef={tableRef} />
-            {/* <Button>
+     
+            <Button onClick={exportData}>
            <Icon icon="vscode-icons:file-type-excel2" width="45" height="45" />
-            </Button> */}
+            </Button>
             
             </label>
           </>
