@@ -437,7 +437,7 @@ const SalaryCalculator = ({ drawer }) => {
     });
   
     // Define the header row - replace this with your actual header names
-    const headerRow = [ 'Name', 'Salary','Total Salary', 'Bank name', 'Bank code', 'Account Number'];
+    const headerRow = [ 'Name','Total Salary', 'Bank name', 'Bank code', 'Account Number'];
   
     // Create a new workbook and sheet
     let wb = utils.book_new(),
