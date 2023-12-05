@@ -24,7 +24,7 @@ const ExportToExcelButton = ({ tableRef }) => {
 
   return (
     <Button onClick={handleExportToExcel}>
-     Export to Excel
+     Export to excel
     </Button>
   );
 };

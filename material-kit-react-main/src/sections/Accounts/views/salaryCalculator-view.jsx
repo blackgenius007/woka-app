@@ -1,8 +1,8 @@
- /* eslint-disable */
+/* eslint-disable */
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { utils, writeFile } from 'xlsx'
+import { utils, writeFile } from 'xlsx';
 import TextField from '@mui/material/TextField';
 import { CSVLink } from 'react-csv';
 import { ButtonBase, Hidden } from '@mui/material';
@@ -274,8 +274,6 @@ const SalaryCalculator = ({ drawer }) => {
     alert('');
   };
 
-
-
   //user details
   const { ownerEmail, role } = useSelector((state) => state.auth.user.data);
 
@@ -426,28 +424,27 @@ const SalaryCalculator = ({ drawer }) => {
   const exportData = () => {
     // Access the table element using the ref
     const table = tableRef.current;
-  
+
     // Get the visible rows from the table
     const visibleRows = Array.from(table.getElementsByTagName('tbody')[0].children);
-  
+
     // Extract data from visible rows
-    const dataToExport = visibleRows.map(row => {
-      const cells = Array.from(row.cells).map(cell => cell.textContent);
+    const dataToExport = visibleRows.map((row) => {
+      const cells = Array.from(row.cells).map((cell) => cell.textContent);
       return cells;
     });
-  
+
     // Define the header row - replace this with your actual header names
-    const headerRow = [ 'Name','Total Salary', 'Bank name', 'Bank code', 'Account Number'];
-  
+    const headerRow = ['Name', 'Total Salary', 'Bank code', 'Bank name', 'Account Number'];
+
     // Create a new workbook and sheet
     let wb = utils.book_new(),
-        ws = utils.aoa_to_sheet([headerRow].concat(dataToExport)); // Assuming headerRow contains the header names
-  
-    utils.book_append_sheet(wb, ws, "items");
-    writeFile(wb, "items.xlsx");
+      ws = utils.aoa_to_sheet([headerRow].concat(dataToExport)); // Assuming headerRow contains the header names
+
+    utils.book_append_sheet(wb, ws, 'items');
+    writeFile(wb, 'items.xlsx');
   };
-  
-  
+
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -494,13 +491,13 @@ const SalaryCalculator = ({ drawer }) => {
             </Button>
             {/* Excel button with SVG icon */}
             <FileCopy style={{ color: '#ffffff' }} />{' '}
-           <label><PdfExportButton tableRef={tableRef} filename="salary.pdf" /></label> 
-           <label>
-     
-            <Button onClick={exportData}>
-           <Icon icon="vscode-icons:file-type-excel2" width="45" height="45" />
-            </Button>
-            
+            <label>
+              <PdfExportButton tableRef={tableRef} filename="salary.pdf" />
+            </label>
+            <label>
+              <Button onClick={exportData}>
+                <Icon icon="vscode-icons:file-type-excel2" width="45" height="45" />
+              </Button>
             </label>
           </>
         ) : (
@@ -527,163 +524,168 @@ const SalaryCalculator = ({ drawer }) => {
         </tr> */}
       </label>
       <div style={combinedStyles.tableContainer}>
-      <table ref={tableRef} style={combinedStyles.table}>
-  {/* <Hidden xsDown> */}
-  <thead style={combinedStyles.tableHead}>
-  <tr>
-    {exportMode ? (
-      <>
-        <th style={futuristicStyles.tableHeadCell}>Name</th>
-        <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
-        <th style={futuristicStyles.tableHeadCell}>Bank code</th>
-        <th style={futuristicStyles.tableHeadCell}>Bank name</th>
-        <th style={futuristicStyles.tableHeadCell}>Account Number</th>
-      </>
-    ) : (
-      <>
-        <th style={futuristicStyles.tableHeadCell}>Employee</th>
-        <th style={futuristicStyles.tableHeadCell}>Name</th>
-        <th style={futuristicStyles.tableHeadCell}>Designation</th>
-        <th style={futuristicStyles.tableHeadCell}>Salary</th>
-        <th style={futuristicStyles.tableHeadCell}>Allowance</th>
-        <th style={futuristicStyles.tableHeadCell}>Overtime</th>
-        <th style={futuristicStyles.tableHeadCell}>IOU</th>
-        <th style={futuristicStyles.tableHeadCell}>Loan</th>
-        <th style={futuristicStyles.tableHeadCell}>Loan repay</th>
-        <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
-        <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
-        <th style={futuristicStyles.tableHeadCell}>Bank name</th>
-        <th style={futuristicStyles.tableHeadCell}>Bank code</th>
-        <th style={futuristicStyles.tableHeadCell}>Account Number</th>
-      </>
-    )}
-  </tr>
-</thead>
+        <table ref={tableRef} style={combinedStyles.table}>
+          {/* <Hidden xsDown> */}
+          <thead style={combinedStyles.tableHead}>
+            <tr>
+              {exportMode ? (
+                <>
+                  <th style={futuristicStyles.tableHeadCell}>Name</th>
+                  <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
+                  <th style={futuristicStyles.tableHeadCell}>Bank code</th>
+                  <th style={futuristicStyles.tableHeadCell}>Bank name</th>
+                  <th style={futuristicStyles.tableHeadCell}>Account Number</th>
+                </>
+              ) : (
+                <>
+                  <th style={futuristicStyles.tableHeadCell}>Employee</th>
+                  <th style={futuristicStyles.tableHeadCell}>Name</th>
+                  <th style={futuristicStyles.tableHeadCell}>Designation</th>
+                  <th style={futuristicStyles.tableHeadCell}>Salary</th>
+                  <th style={futuristicStyles.tableHeadCell}>Allowance</th>
+                  <th style={futuristicStyles.tableHeadCell}>Overtime</th>
+                  <th style={futuristicStyles.tableHeadCell}>IOU</th>
+                  <th style={futuristicStyles.tableHeadCell}>Loan</th>
+                  <th style={futuristicStyles.tableHeadCell}>Loan repay</th>
+                  <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
+                  <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
+                  <th style={futuristicStyles.tableHeadCell}>Bank name</th>
+                  <th style={futuristicStyles.tableHeadCell}>Bank code</th>
+                  <th style={futuristicStyles.tableHeadCell}>Account Number</th>
+                </>
+              )}
+            </tr>
+          </thead>
 
-  {/* </Hidden> */}
-  <tbody>
-    {paginatedRows.map((row) => {
-      const { _id, employeeName, designation, healthCare, minimumRepay } = row;
-      const { grossIncome, country } = designation;
-      const employeeFinancialData = financialData[_id];
+          {/* </Hidden> */}
+          <tbody>
+            {paginatedRows.map((row) => {
+              const { _id, employeeName, designation, healthCare, minimumRepay } = row;
+              const { grossIncome, country } = designation;
+              const employeeFinancialData = financialData[_id];
 
-      // Calculate financial data if not available
-      if (!employeeFinancialData) {
-        calculateFinancialData(_id, grossIncome, country, healthCare);
-        return null; // Render nothing for now, will be updated on the next render
-      }
+              // Calculate financial data if not available
+              if (!employeeFinancialData) {
+                calculateFinancialData(_id, grossIncome, country, healthCare);
+                return null; // Render nothing for now, will be updated on the next render
+              }
 
-      // Calculate Total Remuneration
-      const monthlyRate = employeeFinancialData.monthlySalary;
-      const totalRemuneration = (
-        monthlyRate +
-        parseFloat(row.overtime) +
-        parseFloat(row.allowance ? row.allowance : 0) -
-        parseFloat(row.IOU) -
-        parseFloat(row.minimumRepay)
-      ).toFixed(2);
+              // Calculate Total Remuneration
+              const monthlyRate = employeeFinancialData.monthlySalary;
+              const totalRemuneration = (
+                monthlyRate +
+                parseFloat(row.overtime) +
+                parseFloat(row.allowance ? row.allowance : 0) -
+                parseFloat(row.IOU) -
+                parseFloat(row.minimumRepay)
+              ).toFixed(2);
 
-      // Calculate net Remuneration
-      const netRemuneration =
-        monthlyRate +
-        parseFloat(row.overtime) +
-        parseFloat(row.allowance) -
-        parseFloat(row.IOU) -
-        parseFloat(row.minimumRepay);
+              // Calculate net Remuneration
+              const netRemuneration =
+                monthlyRate +
+                parseFloat(row.overtime) +
+                parseFloat(row.allowance) -
+                parseFloat(row.IOU) -
+                parseFloat(row.minimumRepay);
 
-      // Add the calculated remuneration to the total
-      totalRemunerationForAll += netRemuneration;
+              // Add the calculated remuneration to the total
+              totalRemunerationForAll += netRemuneration;
 
-      return (
-        <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-          {exportMode ? (
-            <>
-              <td style={futuristicStyles.tableBodyRow}>
-                <Link to={`/employee-detail/${row._id}`} style={{ textDecoration: 'none', color: 'white' }}>
-                  {employeeName}
-                </Link>
+              return (
+                <tr key={row.id} style={futuristicStyles.tableBodyRow}>
+                  {exportMode ? (
+                    <>
+                      <td style={futuristicStyles.tableBodyRow}>
+                        <Link
+                          to={`/employee-detail/${row._id}`}
+                          style={{ textDecoration: 'none', color: 'white' }}
+                        >
+                          {employeeName}
+                        </Link>
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>{fNumber(totalRemuneration)}</td>
+                      <td style={futuristicStyles.tableBodyCell}>-</td>
+                      <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
+                      <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
+                    </>
+                  ) : (
+                    <>
+                      <td style={combinedStyles.tableBodyRow}>
+                        <Link
+                          to={`/employee-detail/${row.imagePath}`}
+                          style={{ textDecoration: 'none', color: 'white' }}
+                        >
+                          <Avatar alt="Remy Sharp" src={row.imagePath} />
+                        </Link>
+                      </td>
+                      <td style={futuristicStyles.tableBodyRow}>
+                        <Link
+                          to={`/employee-detail/${row._id}`}
+                          style={{ textDecoration: 'none', color: 'white' }}
+                        >
+                          {employeeName}
+                        </Link>
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>
+                        <Link
+                          to={`/employee-detail/${row._id}`}
+                          style={{
+                            color: '#ffff',
+                            textDecoration: 'none',
+                            backgroundImage: 'none',
+                          }}
+                        >
+                          {row.designation.designation}
+                        </Link>
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>
+                        {fNumber(employeeFinancialData.monthlySalary)}
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>
+                        {fNumber(row.allowance ? row.allowance : '0.00')}
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>{fNumber(row.overtime)}</td>
+                      <td style={futuristicStyles.tableBodyCell}>{fNumber(row.IOU)}</td>
+                      <td style={futuristicStyles.tableBodyCell}>
+                        {fNumber(row.loan && row.exemptionIsOn ? row.loan : '0.00')}
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>{fNumber(row.minimumRepay)}</td>
+                      <td style={futuristicStyles.tableBodyCell}>
+                        {row.loan ? moment(new Date(row.repayDate)).format('MMM Do YY') : '-'}
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>
+                        {row.department.grossIncome === null
+                          ? fNumber(
+                              row.loan && moment().isBefore(moment(row.repayDate))
+                                ? parseInt(
+                                    row.designation.perhrIncome * 8 * 20 -
+                                      parseInt(row.minimumRepay) +
+                                      parseInt(row.allowance)
+                                  )
+                                : parseInt(
+                                    row.department.perhrIncome * 8 * 20 + parseInt(row.allowance)
+                                  )
+                            )
+                          : fNumber(totalRemuneration)}
+                      </td>
+                      <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
+                      <td style={futuristicStyles.tableBodyCell}>-</td>
+                      <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
+                    </>
+                  )}
+                </tr>
+              );
+            })}
+
+            {/* Total Remuneration for All Employees */}
+            <tr>
+              <td colSpan="8" style={{ textAlign: 'right' }}>
+                <strong>Total:</strong>
               </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {fNumber(totalRemuneration)}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>-</td>
-              <td style={futuristicStyles.tableBodyCell}>{row.bankName}</td>
-              <td style={futuristicStyles.tableBodyCell}>{row.accountNumber}</td>
-            </>
-          ) : (
-            <>
-              <td style={combinedStyles.tableBodyRow}>
-                <Link to={`/employee-detail/${row.imagePath}`} style={{ textDecoration: 'none', color: 'white' }}>
-                  <Avatar alt="Remy Sharp" src={row.imagePath} />
-                </Link>
-              </td>
-              <td style={futuristicStyles.tableBodyRow}>
-                <Link to={`/employee-detail/${row._id}`} style={{ textDecoration: 'none', color: 'white' }}>
-                  {employeeName}
-                </Link>
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                <Link
-                  to={`/employee-detail/${row._id}`}
-                  style={{ color: '#ffff', textDecoration: 'none', backgroundImage: 'none' }}
-                >
-                  {row.designation.designation}
-                </Link>
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {fNumber(employeeFinancialData.monthlySalary)}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {fNumber(row.allowance ? row.allowance : '0.00')}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {fNumber(row.overtime)}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {fNumber(row.IOU)}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {fNumber(row.loan && row.exemptionIsOn ? row.loan : '0.00')}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {fNumber(row.minimumRepay)}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {row.loan ? moment(new Date(row.repayDate)).format('MMM Do YY') : '-'}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {row.department.grossIncome === null ? (
-                  fNumber(
-                    row.loan && moment().isBefore(moment(row.repayDate))
-                      ? parseInt(row.designation.perhrIncome * 8 * 20 - parseInt(row.minimumRepay) + parseInt(row.allowance))
-                      : parseInt(row.department.perhrIncome * 8 * 20 + parseInt(row.allowance))
-                  )
-                ) : (
-                  fNumber(totalRemuneration)
-                )}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {row.bankName}
-              </td>
-              <td style={futuristicStyles.tableBodyCell}>-</td>
-              <td style={futuristicStyles.tableBodyCell}>
-                {row.accountNumber}
-              </td>
-            </>
-          )}
-        </tr>
-      );
-    })}
- 
-    {/* Total Remuneration for All Employees */}
-    <tr>
-      <td colSpan="8" style={{ textAlign: 'right' }}>
-        <strong>Total:</strong>
-      </td>
-      <td style={{ textAlign: 'center' }}>{fNumber(totalRemunerationForAll.toFixed(2))}</td>
-    </tr>
-  </tbody>
-</table>
+              <td style={{ textAlign: 'center' }}>{fNumber(totalRemunerationForAll.toFixed(2))}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <br />
       {/* Pagination controls */}
