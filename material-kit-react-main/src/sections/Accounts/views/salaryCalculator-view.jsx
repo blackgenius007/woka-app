@@ -436,6 +436,9 @@ const SalaryCalculator = ({ drawer }) => {
       return cells;
     });
   
+    // Define the header row - replace this with your actual header names
+    const headerRow = [ 'Name', 'Salary','Total Salary', 'Bank name', 'Bank code', 'Account Number'];
+  
     // Create a new workbook and sheet
     let wb = utils.book_new(),
         ws = utils.aoa_to_sheet([headerRow].concat(dataToExport)); // Assuming headerRow contains the header names
@@ -443,6 +446,7 @@ const SalaryCalculator = ({ drawer }) => {
     utils.book_append_sheet(wb, ws, "items");
     writeFile(wb, "items.xlsx");
   };
+  
   
   return (
     <>
