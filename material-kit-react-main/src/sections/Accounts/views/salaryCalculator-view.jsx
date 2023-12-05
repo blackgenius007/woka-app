@@ -523,7 +523,7 @@ const SalaryCalculator = ({ drawer }) => {
         </tr> */}
       </label>
       <div style={combinedStyles.tableContainer}>
-      <table tableRef={tableRef} style={combinedStyles.table}>
+      <table ref={tableRef} style={combinedStyles.table}>
   {/* <Hidden xsDown> */}
   <thead style={combinedStyles.tableHead}>
   <tr>
