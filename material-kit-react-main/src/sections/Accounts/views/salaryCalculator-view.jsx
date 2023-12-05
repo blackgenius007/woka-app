@@ -424,11 +424,26 @@ const SalaryCalculator = ({ drawer }) => {
 
   // Export to excel
   const exportData = () => {
+    // Access the table element using the ref
+    const table = tableRef.current;
+  
+    // Get the visible rows from the table
+    const visibleRows = Array.from(table.getElementsByTagName('tbody')[0].children);
+  
+    // Extract data from visible rows
+    const dataToExport = visibleRows.map(row => {
+      const cells = Array.from(row.cells).map(cell => cell.textContent);
+      return cells;
+    });
+  
+    // Create a new workbook and sheet
     let wb = utils.book_new(),
-      ws = utils.json_to_sheet(paginatedRows);
-    utils.book_append_sheet(wb, ws, "items")
-    writeFile(wb, "items.xlsx")
-  }
+        ws = utils.aoa_to_sheet([headerRow].concat(dataToExport)); // Assuming headerRow contains the header names
+  
+    utils.book_append_sheet(wb, ws, "items");
+    writeFile(wb, "items.xlsx");
+  };
+  
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -508,7 +523,7 @@ const SalaryCalculator = ({ drawer }) => {
         </tr> */}
       </label>
       <div style={combinedStyles.tableContainer}>
-      <table ref={tableRef} style={combinedStyles.table}>
+      <table tableRef={tableRef} style={combinedStyles.table}>
   {/* <Hidden xsDown> */}
   <thead style={combinedStyles.tableHead}>
   <tr>
