@@ -730,7 +730,7 @@ export default function MainPage() {
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
           >
-            Financial Analytic 
+            Financial Analytics 
           </Button>
         </Link>
       </Stack>

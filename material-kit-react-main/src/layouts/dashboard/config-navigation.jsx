@@ -28,7 +28,7 @@ const navConfig = [
   {
     title: 'accounts',
     path: '/salary',
-    icon: icon('ic_money'),
+    icon: icon('ic_analytics'),
   },
   // {
   //   title: 'accounts',
