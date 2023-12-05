@@ -723,14 +723,14 @@ export default function MainPage() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Salary Calculator</Typography>
+        <Typography variant="h4">Wages/Salary</Typography>
 
         <Link to="/new-employee">
           <Button
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
           >
-            Data Analytics
+            Financial Analytics
           </Button>
         </Link>
       </Stack>
