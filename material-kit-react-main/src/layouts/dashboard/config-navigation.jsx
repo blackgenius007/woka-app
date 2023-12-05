@@ -23,12 +23,12 @@ const navConfig = [
   {
     title: 'procurement',
     path: '/products',
-    icon: icon('ic_money'),
+    icon: icon('ic_cart'),
   },
   {
     title: 'accounts',
     path: '/salary',
-    icon: icon('ic_analytics'),
+    icon: icon('ic_money'),
   },
   // {
   //   title: 'accounts',
