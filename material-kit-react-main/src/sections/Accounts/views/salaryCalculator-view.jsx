@@ -723,7 +723,7 @@ export default function MainPage() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Wages/Salary</Typography>
+        <Typography variant="h4">Employee Wages/Salary</Typography>
 
         <Link to="/new-employee">
           <Button
