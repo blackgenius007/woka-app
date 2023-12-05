@@ -23,7 +23,7 @@ const navConfig = [
   {
     title: 'procurement',
     path: '/products',
-    icon: icon('ic_cart'),
+    icon: icon('ic_money'),
   },
   {
     title: 'accounts',
