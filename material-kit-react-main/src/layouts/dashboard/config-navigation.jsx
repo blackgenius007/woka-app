@@ -1,10 +1,9 @@
- /* eslint-disable */
+/* eslint-disable */
 
 import SvgColor from 'src/components/svg-color';
- 
 
 // ----------------------------------------------------------------------
- 
+
 const icon = (name) => (
   <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
 );
@@ -13,7 +12,7 @@ const navConfig = [
   {
     title: 'dashboard',
     path: '/',
-    icon: icon('ic_analytics'),
+    icon: icon('ic_moneymatter'),
   },
   {
     title: 'human resources',
@@ -28,13 +27,9 @@ const navConfig = [
   {
     title: 'accounts',
     path: '/salary',
-    icon: icon('ic_moneymatter'),
+    icon: icon('ic_analytics'),
   },
-  // {
-  //   title: 'accounts',
-  //   path: '/blog',
-  //   icon: icon('ic_blog'),
-  // },
+
   {
     title: 'login',
     path: '/login',
