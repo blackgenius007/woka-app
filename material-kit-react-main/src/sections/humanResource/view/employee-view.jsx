@@ -171,6 +171,7 @@ const FilterableTable = ({ drawer }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [selectedUpdate, setSelectedUpdate] = useState(null);
   const [selectDept, setSelectDept] = useState([]);
   const [isUploadVisible, setUploadVisible] = useState(false);
   const [options, setOptions] = useState([]);
@@ -183,13 +184,20 @@ const FilterableTable = ({ drawer }) => {
   const [dateOffset, setDateOffset] = useState(7);
   const [open, setOpen] = useState(null);
 
-  const handleOpenMenu = (event) => {
+  // function opens Popover menu
+  const handleOpenMenu = (event,employee) => {
     setOpen(event.currentTarget);
+    setSelectedUpdate(employee)
   };
-
+// function closes Popover menu
   const handleCloseMenu = () => {
     setOpen(null);
   };
+  // function navigates to update form
+ const  handleUpdate =()=>{
+  navigate(`/employee-detail/${selectedUpdate._id}`);
+ }
+
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -522,7 +530,7 @@ const FilterableTable = ({ drawer }) => {
                     <td style={combinedStyles.tableBodyCell}>{row.bankName}</td>
                     <td style={combinedStyles.tableBodyCell}>{row.accountNumber}</td>
                     <td style={combinedStyles.tableBodyCell}>
-                      <IconButton onClick={handleOpenMenu}>
+                      <IconButton  onClick={() => handleOpenMenu(row)}>
                         <Iconify icon="eva:more-vertical-fill" />
                       </IconButton>
                     </td>
@@ -673,7 +681,7 @@ const FilterableTable = ({ drawer }) => {
           sx: { width: 140 },
         }}
       >
-        <MenuItem onClick={handleCloseMenu}>
+        <MenuItem   onClick={() => handleUpdate(selectedUpdate._id)}>
           <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit
         </MenuItem>
