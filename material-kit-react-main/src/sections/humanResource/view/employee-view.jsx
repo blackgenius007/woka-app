@@ -184,17 +184,18 @@ const FilterableTable = ({ drawer }) => {
   const [dateOffset, setDateOffset] = useState(7);
   const [open, setOpen] = useState(null);
 
+//function to open Popover
   const handleOpenMenu = (event,employeeId) => {
     setOpen(event.currentTarget);
     setSelectedUpdate(employeeId)
   };
-
+// function to close Popover
   const handleCloseMenu = () => {
     setOpen(null);
   };
-
+//Function to navigate to update form
   const handleEdit=()=>{
-    alert('Edit....')
+    navigate(`/employee-update/${selectedUpdate}`);
   }
   // Pagination state
   const [page, setPage] = useState(0);

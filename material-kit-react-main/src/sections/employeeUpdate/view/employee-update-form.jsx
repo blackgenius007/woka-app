@@ -1,3 +1,17 @@
+/* eslint-disable */
+import React from 'react';
+ 
+
+const employeeupdateform = ( ) => {
+    return <div>ffff</div>;
+};
+ 
+
+export default  employeeupdateform   
+
+
+
+
 // import React, { useState, useEffect } from 'react';
 // import { Typography, TextField, Button, Box } from '@mui/material';
 // import { useParams } from 'react-router-dom';
