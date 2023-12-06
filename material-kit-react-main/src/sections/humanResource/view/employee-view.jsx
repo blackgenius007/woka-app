@@ -185,8 +185,9 @@ const FilterableTable = ({ drawer }) => {
   const [open, setOpen] = useState(null);
 
   const handleOpenMenu = (event,employeeId) => {
-    setSelectedUpdate(employeeId)
+    
     setOpen(event.currentTarget);
+    setSelectedUpdate(employeeId)
   };
 
   const handleCloseMenu = () => {
@@ -524,7 +525,7 @@ const FilterableTable = ({ drawer }) => {
                     <td style={combinedStyles.tableBodyCell}>{row.bankName}</td>
                     <td style={combinedStyles.tableBodyCell}>{row.accountNumber}</td>
                     <td style={combinedStyles.tableBodyCell}>
-                      <IconButton onClick={handleOpenMenu(row._id)}>
+                      <IconButton onClick={handleOpenMenu(row._d )}>
                         <Iconify icon="eva:more-vertical-fill" />
                       </IconButton>
                     </td>
