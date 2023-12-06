@@ -171,6 +171,7 @@ const FilterableTable = ({ drawer }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [selectedUpdate, setSelectedUpdate] = useState(null);
   const [selectDept, setSelectDept] = useState([]);
   const [isUploadVisible, setUploadVisible] = useState(false);
   const [options, setOptions] = useState([]);
@@ -183,7 +184,8 @@ const FilterableTable = ({ drawer }) => {
   const [dateOffset, setDateOffset] = useState(7);
   const [open, setOpen] = useState(null);
 
-  const handleOpenMenu = (event) => {
+  const handleOpenMenu = (event,employeeId) => {
+    setSelectedUpdate(employeeId)
     setOpen(event.currentTarget);
   };
 
@@ -522,7 +524,7 @@ const FilterableTable = ({ drawer }) => {
                     <td style={combinedStyles.tableBodyCell}>{row.bankName}</td>
                     <td style={combinedStyles.tableBodyCell}>{row.accountNumber}</td>
                     <td style={combinedStyles.tableBodyCell}>
-                      <IconButton onClick={handleOpenMenu}>
+                      <IconButton onClick={handleOpenMenu(row._id)}>
                         <Iconify icon="eva:more-vertical-fill" />
                       </IconButton>
                     </td>
