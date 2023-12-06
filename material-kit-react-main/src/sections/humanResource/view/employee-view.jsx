@@ -171,6 +171,7 @@ const FilterableTable = ({ drawer }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [selectedUpdate, setSelectedUpdate] = useState(null);
   const [selectDept, setSelectDept] = useState([]);
   const [isUploadVisible, setUploadVisible] = useState(false);
   const [options, setOptions] = useState([]);
@@ -185,6 +186,7 @@ const FilterableTable = ({ drawer }) => {
 
   const handleOpenMenu = (event,employeeId) => {
     setOpen(event.currentTarget);
+    setSelectedUpdate(employeeId)
   };
 
   const handleCloseMenu = () => {
