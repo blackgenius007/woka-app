@@ -183,7 +183,7 @@ const FilterableTable = ({ drawer }) => {
   const [dateOffset, setDateOffset] = useState(7);
   const [open, setOpen] = useState(null);
 
-  const handleOpenMenu = (event) => {
+  const handleOpenMenu = (event,employeeId) => {
     setOpen(event.currentTarget);
   };
 
@@ -522,7 +522,7 @@ const FilterableTable = ({ drawer }) => {
                     <td style={combinedStyles.tableBodyCell}>{row.bankName}</td>
                     <td style={combinedStyles.tableBodyCell}>{row.accountNumber}</td>
                     <td style={combinedStyles.tableBodyCell}>
-                      <IconButton onClick={()=>handleOpenMenu(row._id)}>
+                      <IconButton onClick={(event)=>handleOpenMenu(event,row._id)}>
                         <Iconify icon="eva:more-vertical-fill" />
                       </IconButton>
                     </td>
