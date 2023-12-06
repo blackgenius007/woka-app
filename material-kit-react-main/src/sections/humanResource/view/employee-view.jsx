@@ -522,7 +522,7 @@ const FilterableTable = ({ drawer }) => {
                     <td style={combinedStyles.tableBodyCell}>{row.bankName}</td>
                     <td style={combinedStyles.tableBodyCell}>{row.accountNumber}</td>
                     <td style={combinedStyles.tableBodyCell}>
-                      <IconButton onClick={()=>handleOpenMenu()}>
+                      <IconButton onClick={()=>handleOpenMenu(row._id)}>
                         <Iconify icon="eva:more-vertical-fill" />
                       </IconButton>
                     </td>
