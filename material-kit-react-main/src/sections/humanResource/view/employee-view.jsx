@@ -187,7 +187,7 @@ const FilterableTable = ({ drawer }) => {
   const handleOpenMenu = (event,employeeId) => {
     
     setOpen(event.currentTarget);
-    setSelectedUpdate(employeeId)
+    
   };
 
   const handleCloseMenu = () => {
