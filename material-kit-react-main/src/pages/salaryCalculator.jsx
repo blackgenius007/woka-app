@@ -8,7 +8,7 @@ export default function SalaryCalculatorPage() {
   return (
     <>
       <Helmet>
-        <title> Accounts  | Workfily </title>
+        <title> Account   | Workfily </title>
       </Helmet>
 
       <SalaryCalculatorView/>
