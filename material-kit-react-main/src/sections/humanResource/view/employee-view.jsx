@@ -171,7 +171,6 @@ const FilterableTable = ({ drawer }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [selectedUpdate, setSelectedUpdate] = useState(null);
   const [selectDept, setSelectDept] = useState([]);
   const [isUploadVisible, setUploadVisible] = useState(false);
   const [options, setOptions] = useState([]);
@@ -184,9 +183,8 @@ const FilterableTable = ({ drawer }) => {
   const [dateOffset, setDateOffset] = useState(7);
   const [open, setOpen] = useState(null);
 
-  const handleOpenMenu = (event,employee) => {
+  const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
-    
   };
 
   const handleCloseMenu = () => {
@@ -524,7 +522,7 @@ const FilterableTable = ({ drawer }) => {
                     <td style={combinedStyles.tableBodyCell}>{row.bankName}</td>
                     <td style={combinedStyles.tableBodyCell}>{row.accountNumber}</td>
                     <td style={combinedStyles.tableBodyCell}>
-                      <IconButton  onClick={() => handleOpenMenu(row)}>
+                      <IconButton onClick={handleOpenMenu}>
                         <Iconify icon="eva:more-vertical-fill" />
                       </IconButton>
                     </td>
@@ -675,7 +673,7 @@ const FilterableTable = ({ drawer }) => {
           sx: { width: 140 },
         }}
       >
-        <MenuItem   onClick={() => handleUpdate(row._id)}>
+        <MenuItem onClick={handleCloseMenu}>
           <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit
         </MenuItem>
