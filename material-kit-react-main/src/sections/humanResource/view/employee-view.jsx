@@ -184,20 +184,14 @@ const FilterableTable = ({ drawer }) => {
   const [dateOffset, setDateOffset] = useState(7);
   const [open, setOpen] = useState(null);
 
-  // function opens Popover menu
   const handleOpenMenu = (event,employee) => {
     setOpen(event.currentTarget);
-    setSelectedUpdate(employee)
+    
   };
-// function closes Popover menu
+
   const handleCloseMenu = () => {
     setOpen(null);
   };
-  // function navigates to update form
- const  handleUpdate =()=>{
-  navigate(`/employee-detail/${selectedUpdate._id}`);
- }
-
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -681,7 +675,7 @@ const FilterableTable = ({ drawer }) => {
           sx: { width: 140 },
         }}
       >
-        <MenuItem   onClick={() => handleUpdate(selectedUpdate._id)}>
+        <MenuItem   onClick={() => handleUpdate(row._id)}>
           <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit
         </MenuItem>
