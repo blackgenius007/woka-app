@@ -313,6 +313,7 @@ exports.updateEmployee = (req, res, next) => {
   var _id = req.params.id;
 
   console.log(`id from front===>${_id}`);
+  console.log(req.body)
   var pool = {
     employeeName: req.body.employeeName,
     department: req.body.department,
