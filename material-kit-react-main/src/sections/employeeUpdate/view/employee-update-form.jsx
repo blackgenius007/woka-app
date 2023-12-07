@@ -16,14 +16,13 @@ const EmployeeUpdateForm = () => {
     employeeNumber: '',
     bankName: '',
     accountDetail: '',
-    allowance:'',
-    overtime:'',
+    allowance: '',
+    overtime: '',
     address: '',
     nextName: '',
     nextAddress: '',
     nextNumber: '',
     nextRelationship: '',
-   
   });
 
   const handleBackButtonClick = () => {
@@ -34,7 +33,7 @@ const EmployeeUpdateForm = () => {
     const fetchEmployee = async () => {
       try {
         const response = await employeeServices.updateEmployee(id);
-        console.log('response from front:',response)
+        console.log('response from front:', response);
         setEmployee(response);
         setFormData({
           // Update the form data state with the retrieved inmate data
@@ -43,9 +42,9 @@ const EmployeeUpdateForm = () => {
           employeeNumber: response.employeeNumber,
           origin: response.origin,
           address: response.address,
-          bankName:response.bankName,
-          overtime:response.overtime,
-          allowance:response.allowance,
+          bankName: response.bankName,
+          overtime: response.overtime,
+          allowance: response.allowance,
           nextName: response.nextName,
           nextAddress: response.nextAddress,
           nextNumber: response.nextNumber,
@@ -76,6 +75,11 @@ const EmployeeUpdateForm = () => {
   };
 
   return (
+    // <Box sx={{ display: 'flex', flexDirection: 'column', maxWidth: '400px', mx: 'auto' }}>
+    //   <Typography variant="h4" gutterBottom>
+    //     Update - {formData.employeeName}
+    //   </Typography>
+
     <Box sx={{ display: 'flex', flexDirection: 'column', maxWidth: '400px', mx: 'auto' }}>
       <Typography variant="h4" gutterBottom>
         Update - {formData.employeeName}
@@ -115,7 +119,7 @@ const EmployeeUpdateForm = () => {
             onChange={(e) => setFormData({ ...formData, address: e.target.value })}
             margin="normal"
           />
-                    <TextField
+          <TextField
             fullWidth
             label="Bank Name"
             name="bankName"
@@ -123,7 +127,7 @@ const EmployeeUpdateForm = () => {
             onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
             margin="normal"
           />
-                    <TextField
+          <TextField
             fullWidth
             label="Allowance"
             name="allowance"
@@ -131,7 +135,7 @@ const EmployeeUpdateForm = () => {
             onChange={(e) => setFormData({ ...formData, allowance: e.target.value })}
             margin="normal"
           />
-                         <TextField
+          <TextField
             fullWidth
             label="Overtime"
             name="overtime"
@@ -139,6 +143,10 @@ const EmployeeUpdateForm = () => {
             onChange={(e) => setFormData({ ...formData, overtime: e.target.value })}
             margin="normal"
           />
+          {/* Next of Kin Section */}
+          <Typography variant="h6" gutterBottom>
+            Next of Kin
+          </Typography>
           <TextField
             fullWidth
             label="Next of Kin"
@@ -155,7 +163,7 @@ const EmployeeUpdateForm = () => {
             onChange={(e) => setFormData({ ...formData, nextAddress: e.target.value })}
             margin="normal"
           />
-     
+
           <TextField
             fullWidth
             label="Contact"
@@ -172,7 +180,6 @@ const EmployeeUpdateForm = () => {
             onChange={(e) => setFormData({ ...formData, nextRelationship: e.target.value })}
             margin="normal"
           />
-         
 
           <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
             Update
