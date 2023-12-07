@@ -1,13 +1,10 @@
 /* eslint-disable */
 
 import React, { useState, useEffect } from 'react';
-import { Typography, TextField, Button, Box,Grid } from '@mui/material';
+import { Typography, TextField, Button, Box, Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import employeeServices from 'src/Services/HR-Services/employeeServices';
 import { useNavigate } from 'react-router-dom';
-
- 
-
 
 const EmployeeUpdateForm = () => {
   const navigate = useNavigate();
@@ -79,138 +76,130 @@ const EmployeeUpdateForm = () => {
 
   return (
     <>
-    
-    
+      <Box sx={{ display: 'flex', flexDirection: 'column', maxWidth: '400px', mx: 'auto' }}>
+        <Typography variant="h4" gutterBottom>
+          Update - {formData.employeeName}
+        </Typography>
 
-    <Box sx={{ display: 'flex', flexDirection: 'column', maxWidth: '400px', mx: 'auto' }}>
-      <Typography variant="h4" gutterBottom>
-        Update - {formData.employeeName}
-      </Typography>
+        {employee ? (
+          <form onSubmit={handleFormSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  fullWidth
+                  label="Name"
+                  name="employeeName"
+                  value={formData.employeeName}
+                  onChange={(e) => setFormData({ ...formData, employeeName: e.target.value })}
+                  margin="normal"
+                />
+                <TextField
+                  fullWidth
+                  label="Department"
+                  name="department"
+                  value={formData.department}
+                  onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                  margin="normal"
+                />
+                <TextField
+                  fullWidth
+                  label="Contact"
+                  name="employeeNumber"
+                  value={formData.employeeNumber}
+                  onChange={(e) => setFormData({ ...formData, employeeNumber: e.target.value })}
+                  margin="normal"
+                />
+                <TextField
+                  fullWidth
+                  label="Address"
+                  name="address"
+                  value={formData.address}
+                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  margin="normal"
+                />
+                <TextField
+                  fullWidth
+                  label="Bank Name"
+                  name="bankName"
+                  value={formData.bankName}
+                  onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
+                  margin="normal"
+                />
+                <TextField
+                  fullWidth
+                  label="Allowance"
+                  name="allowance"
+                  value={formData.allowance}
+                  onChange={(e) => setFormData({ ...formData, allowance: e.target.value })}
+                  margin="normal"
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}></Grid>
 
-      {employee ? (
-        <form onSubmit={handleFormSubmit}>
-          <Grid container spacing={2}>
-    <Grid item xs={12} sm={4}  >
-    <TextField
-            fullWidth
-            label="Name"
-            name="employeeName"
-            value={formData.employeeName}
-            onChange={(e) => setFormData({ ...formData, employeeName: e.target.value })}
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Department"
-            name="department"
-            value={formData.department}
-            onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Contact"
-            name="employeeNumber"
-            value={formData.employeeNumber}
-            onChange={(e) => setFormData({ ...formData, employeeNumber: e.target.value })}
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Address"
-            name="address"
-            value={formData.address}
-            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Bank Name"
-            name="bankName"
-            value={formData.bankName}
-            onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Allowance"
-            name="allowance"
-            value={formData.allowance}
-            onChange={(e) => setFormData({ ...formData, allowance: e.target.value })}
-            margin="normal"
-          />
-    </Grid>
-    <Grid item xs={12} sm={4} style={columnStyle}>
-    </Grid>
+              <TextField
+                fullWidth
+                label="Overtime"
+                name="overtime"
+                value={formData.overtime}
+                onChange={(e) => setFormData({ ...formData, overtime: e.target.value })}
+                margin="normal"
+              />
+              {/* Next of Kin Section */}
+              <Typography variant="h6" gutterBottom>
+                Next of Kin
+              </Typography>
+              <TextField
+                fullWidth
+                label="Next of Kin"
+                name="nextName"
+                value={formData.nextName}
+                onChange={(e) => setFormData({ ...formData, nextName: e.target.value })}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="Address "
+                name="nextAddress"
+                value={formData.nextAddress}
+                onChange={(e) => setFormData({ ...formData, nextAddress: e.target.value })}
+                margin="normal"
+              />
 
-    <TextField
-            fullWidth
-            label="Overtime"
-            name="overtime"
-            value={formData.overtime}
-            onChange={(e) => setFormData({ ...formData, overtime: e.target.value })}
-            margin="normal"
-          />
-          {/* Next of Kin Section */}
-          <Typography variant="h6" gutterBottom>
-            Next of Kin
-          </Typography>
-          <TextField
-            fullWidth
-            label="Next of Kin"
-            name="nextName"
-            value={formData.nextName}
-            onChange={(e) => setFormData({ ...formData, nextName: e.target.value })}
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Address "
-            name="nextAddress"
-            value={formData.nextAddress}
-            onChange={(e) => setFormData({ ...formData, nextAddress: e.target.value })}
-            margin="normal"
-          />
+              <TextField
+                fullWidth
+                label="Contact"
+                name="nextNumber"
+                value={formData.nextNumber}
+                onChange={(e) => setFormData({ ...formData, nextNumber: e.target.value })}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="Relationship"
+                name="nextRelationship"
+                value={formData.nextRelationship}
+                onChange={(e) => setFormData({ ...formData, nextRelationship: e.target.value })}
+                margin="normal"
+              />
+            </Grid>
 
-          <TextField
-            fullWidth
-            label="Contact"
-            name="nextNumber"
-            value={formData.nextNumber}
-            onChange={(e) => setFormData({ ...formData, nextNumber: e.target.value })}
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Relationship"
-            name="nextRelationship"
-            value={formData.nextRelationship}
-            onChange={(e) => setFormData({ ...formData, nextRelationship: e.target.value })}
-            margin="normal"
-          />
-
-    </Grid>
-          
-          
-          <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
-            Update
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={handleBackButtonClick}
-            sx={{ mt: 2, ml: 2 }}
-          >
-            Back
-          </Button>
-        </form>
-      ) : (
-        <Typography>Loading employee data...</Typography>
-      )}
-    </Box>
-    
+            <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+              Update
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleBackButtonClick}
+              sx={{ mt: 2, ml: 2 }}
+            >
+              Back
+            </Button>
+          </form>
+        ) : (
+          <Typography>Loading employee data...</Typography>
+        )}
+      </Box>
     </>
-    
   );
 };
 
