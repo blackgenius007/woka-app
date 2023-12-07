@@ -1,17 +1,17 @@
-const path = require('path');
-const mongoose = require('mongoose');
-const ErrorResponse = require('../utils/errorResponse.js');
-const listDatesForThePastDays = require('../utils/pastDaysPicker.js');
-const GenerateCode = require('../utils/generateCode.js');
-const asyncHandler = require('../middleware/async');
-const Employee = require('../models/Employee.js');
-const User = require('../models/User');
-const Payroll = require('../models/Payroll.js');
-const Score = require('../models/scoreCard'); 
-var cron = require('node-cron');
-const moment = require('moment');
-const Resume = require('../models/ResumeDetail');
-const ShortList = require('../models/Shortlisted');
+const path = require("path");
+const mongoose = require("mongoose");
+const ErrorResponse = require("../utils/errorResponse.js");
+const listDatesForThePastDays = require("../utils/pastDaysPicker.js");
+const GenerateCode = require("../utils/generateCode.js");
+const asyncHandler = require("../middleware/async");
+const Employee = require("../models/Employee.js");
+const User = require("../models/User");
+const Payroll = require("../models/Payroll.js");
+const Score = require("../models/scoreCard");
+var cron = require("node-cron");
+const moment = require("moment");
+const Resume = require("../models/ResumeDetail");
+const ShortList = require("../models/Shortlisted");
 const toId = mongoose.Types.ObjectId;
 
 // @desc    Create new employee with logged in id
@@ -44,9 +44,9 @@ exports.createNewEmployee = asyncHandler(async (req, res, next) => {
 
     let designation_id = new mongoose.Types.ObjectId(designation);
 
-    console.log('request from front =>', req.body.designation, designation_id);
+    console.log("request from front =>", req.body.designation, designation_id);
     const pool = await User.findOne({ _id: _id });
-    console.log('pool content=>', pool);
+    console.log("pool content=>", pool);
 
     const income = await Payroll.findOne({ _id: designation });
     console.log(income.grossIncome);
@@ -80,13 +80,13 @@ exports.createNewEmployee = asyncHandler(async (req, res, next) => {
       joinDate: req.body.joinDate,
       projectName: projectName,
       employeeCode: ItemCoded,
-      isActive: 'Active',
+      isActive: "Active",
       attendances: {},
     });
 
     console.log(`pool before save ${employee}`);
     const savedEmployee = await employee.save();
-    console.log('add pool success');
+    console.log("add pool success");
     res.send(savedEmployee);
   } catch (error) {
     console.log(error);
@@ -100,15 +100,15 @@ exports.createNewEmployee = asyncHandler(async (req, res, next) => {
 exports.getAllEmployee = asyncHandler(async (req, res, next) => {
   try {
     const { userEmail } = req.params;
-    console.log('employee email from front+>', userEmail);
+    console.log("employee email from front+>", userEmail);
 
     const employees = await Employee.find(
       { $or: [{ email: userEmail }, { ownerEmail: userEmail }] },
       null,
       { sort: { name: 1 } }
     ).populate({
-      model: 'Payroll',
-      path: 'designation',
+      model: "Payroll",
+      path: "designation",
     });
 
     res.json(employees);
@@ -156,8 +156,8 @@ exports.getAllEmployeePerProject = asyncHandler(async (req, res, next) => {
       }
     }
   ).populate({
-    model: 'Payroll',
-    path: 'department',
+    model: "Payroll",
+    path: "department",
   });
 });
 
@@ -180,8 +180,8 @@ exports.getAllEmployeePerDepartment = asyncHandler(async (req, res, next) => {
       }
     }
   ).populate({
-    model: 'Payroll',
-    path: 'department',
+    model: "Payroll",
+    path: "department",
   });
 });
 
@@ -193,13 +193,13 @@ exports.archieve = asyncHandler(async (req, res, next) => {
   Employee.findOneAndUpdate(
     { _id: id },
     {
-      $set: { isActive: 'inActive' },
+      $set: { isActive: "inActive" },
     }
   ).exec((err, result) => {
     if (err) {
       console.log(err);
     } else {
-      console.log('archieved successfully!');
+      console.log("archieved successfully!");
 
       res.send(result);
     }
@@ -220,7 +220,7 @@ exports.department = asyncHandler(async (req, res, next) => {
     if (err) {
       console.log(err);
     } else {
-      console.log('department added successfully!');
+      console.log("department added successfully!");
 
       res.send(result);
     }
@@ -264,7 +264,7 @@ exports.getOneEmployee = asyncHandler(async (req, res, next) => {
 exports.getOneEmployeePerProject = asyncHandler(async (req, res, next) => {
   var _id = req.params.id;
   var projectName = req.params.projectname;
-  console.log('from getOneEmployeePerProject', _id, projectName);
+  console.log("from getOneEmployeePerProject", _id, projectName);
   Employee.findOne(
     { _id: _id, projectName: projectName },
     function (err, employee) {
@@ -276,8 +276,8 @@ exports.getOneEmployeePerProject = asyncHandler(async (req, res, next) => {
       }
     }
   ).populate({
-    model: 'Payroll',
-    path: 'department',
+    model: "Payroll",
+    path: "department",
   });
 });
 
@@ -286,10 +286,10 @@ exports.getOneEmployeePerProject = asyncHandler(async (req, res, next) => {
 // @access Public
 exports.getPaySlip = asyncHandler(async (req, res, next) => {
   const payslip = await Employee.findById(req.params.id).populate({
-    model: 'Payroll',
-    path: 'department',
+    model: "Payroll",
+    path: "department",
     select:
-      'basicPay housingAllowance transportAllowance Entertainment leaveAllowance ',
+      "basicPay housingAllowance transportAllowance Entertainment leaveAllowance ",
   });
 
   if (!payslip) {
@@ -310,31 +310,30 @@ exports.getPaySlip = asyncHandler(async (req, res, next) => {
 //@acess    Private
 
 exports.updateEmployee = (req, res, next) => {
-  // console.log("req.body", req.body);
-  // inserting a new update in SupplierPool
   var _id = req.params.id;
-  var projectName = req.params.projectname;
-  console.log(`id from front===>${(_id, projectName)}`);
+
+  console.log(`id from front===>${_id}`);
   var pool = {
     employeeName: req.body.employeeName,
     department: req.body.department,
     employeeNumber: req.body.employeeNumber,
-    origin: req.body.origin,
     address: req.body.address,
+    bankName: req.body.bankName,
     nextName: req.body.nextName,
+    allowance: req.body.allowance,
     nextAddress: req.body.nextAddress,
+    overtime: req.body.overtime,
     nextNumber: req.body.nextNumber,
     nextRelationship: req.body.nextRelationship,
     accountDetail: req.body.accountDetail,
-    wages: req.body.wages,
   };
 
   Employee.findByIdAndUpdate(_id, pool, { new: true }, function (err, pool) {
     if (err) {
-      console.log('err', err);
+      console.log("err", err);
       res.status(500).send(err);
     } else {
-      console.log('success');
+      console.log("success");
       res.send(pool);
     }
   });
@@ -348,22 +347,22 @@ exports.getEmployeeDetail = asyncHandler(async (req, res, next) => {
   try {
     const _id = req.params.id;
 
-    console.log('Employ-detail=>', _id);
+    console.log("Employ-detail=>", _id);
 
     const employee = await Employee.findOne({ _id: _id }).populate({
-      model: 'Payroll',
-      path: 'designation',
+      model: "Payroll",
+      path: "designation",
     });
 
     if (!employee) {
       res.status(404);
-      throw new Error('Employee not found');
+      throw new Error("Employee not found");
     }
 
     var data = {};
     var today = new Date();
-    var currentMonth = moment(today).format('MMM');
-    var currentYear = moment(today).format('YYYY');
+    var currentMonth = moment(today).format("MMM");
+    var currentYear = moment(today).format("YYYY");
     data.employee = employee;
     data.last30Days = {
       Present: 0,
@@ -388,18 +387,18 @@ exports.getEmployeeDetail = asyncHandler(async (req, res, next) => {
     };
 
     var months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
     data.last12Months = [];
     data.last12MonthsData = {
@@ -431,13 +430,13 @@ exports.getEmployeeDetail = asyncHandler(async (req, res, next) => {
       // jika uda ada, maka kita perlu hitung satu satu
       while (count < 365) {
         var checkedDate = moment(today)
-          .subtract(count, 'days')
-          .format('YYYY-MM-DD');
-        var checkedMonth = moment(checkedDate).format('MMM');
+          .subtract(count, "days")
+          .format("YYYY-MM-DD");
+        var checkedMonth = moment(checkedDate).format("MMM");
         var checkedMonthIndex = data.last12Months.indexOf(
-          moment(checkedDate).format('MMM')
+          moment(checkedDate).format("MMM")
         );
-        var checkedYear = moment(checkedDate).format('YYYY');
+        var checkedYear = moment(checkedDate).format("YYYY");
 
         if (!employee.attendances[checkedDate]) {
           // jika tidak ada, berarti absent
@@ -466,7 +465,7 @@ exports.getEmployeeDetail = asyncHandler(async (req, res, next) => {
 
     res.json(data);
   } catch (err) {
-    res.status(500).json({ message: 'An error occurred!', error: err.message });
+    res.status(500).json({ message: "An error occurred!", error: err.message });
   }
 });
 
@@ -507,7 +506,7 @@ exports.getOneEmployeeLabel = asyncHandler(async (req, res, next) => {
   const date = req.params.date;
   const label = req.params.label;
 
-  const updatedField = 'attendances.' + date;
+  const updatedField = "attendances." + date;
   const updateObject = { [updatedField]: label };
 
   try {
@@ -563,23 +562,23 @@ exports.getEmployeeLabelS = asyncHandler(async (req, res, next) => {
   const date = req.params.date;
   let label = req.params.label;
 
-  if (label === 'Absent') {
-    label = 'Absent';
+  if (label === "Absent") {
+    label = "Absent";
   }
 
-  const updatedField = 'attendances.' + date;
+  const updatedField = "attendances." + date;
   const updateObject = { [updatedField]: label };
 
   try {
     const updatedEmployees = await Employee.updateMany(
       {
         $or: [{ email: email }, { ownerEmail: email }],
-        complainStatus: 'good',
+        complainStatus: "good",
       },
       { $set: updateObject }
     );
 
-    console.log('Labels updated successfully');
+    console.log("Labels updated successfully");
     res.status(200).send();
   } catch (err) {
     console.error(err);
@@ -601,14 +600,14 @@ exports.ComplainStatus = asyncHandler(async (req, res, next) => {
 
   console.log(complainDetail, date, label);
   var employee = {};
-  var updatedField = 'attendances.' + date;
+  var updatedField = "attendances." + date;
   employee[updatedField] = label;
 
   Employee.findByIdAndUpdate(
     _id,
     {
       $set: employee,
-      complainStatus: 'Suspension',
+      complainStatus: "Suspension",
       endDate: dueDate,
       complainDetail: detail,
     },
@@ -630,20 +629,20 @@ exports.ComplainStatus = asyncHandler(async (req, res, next) => {
 //@acess    Public
 exports.reviewComplain = asyncHandler(async (req, res, next) => {
   const { date } = req.params;
-  console.log('update=>', date);
-  console.log('Complain-status-here');
+  console.log("update=>", date);
+  console.log("Complain-status-here");
 
   try {
     const result = await Employee.updateMany(
       { endDate: new Date(date) },
-      { $set: { complainStatus: 'good' } }
+      { $set: { complainStatus: "good" } }
     );
 
-    console.log('due date updated successfully...');
+    console.log("due date updated successfully...");
     res.send(result);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: 'An error occurred' });
+    res.status(500).json({ message: "An error occurred" });
   }
 });
 
@@ -693,7 +692,7 @@ exports.getEmployeeAttendance = asyncHandler(async (req, res, next) => {
   const email = req.params.email;
   const dateOffset = parseInt(req.params.dateOffset);
 
-  console.log('from front =>', email);
+  console.log("from front =>", email);
 
   try {
     const results = await Employee.aggregate([
@@ -708,13 +707,13 @@ exports.getEmployeeAttendance = asyncHandler(async (req, res, next) => {
           numberofPresentAttendances: {
             $size: {
               $filter: {
-                input: { $objectToArray: '$attendances' },
+                input: { $objectToArray: "$attendances" },
                 cond: {
                   $and: [
                     {
-                      $in: ['$$this.k', listDatesForThePastDays(dateOffset)],
+                      $in: ["$$this.k", listDatesForThePastDays(dateOffset)],
                     },
-                    { $eq: ['$$this.v', 'Present'] },
+                    { $eq: ["$$this.v", "Present"] },
                   ],
                 },
               },
@@ -724,14 +723,14 @@ exports.getEmployeeAttendance = asyncHandler(async (req, res, next) => {
       },
       {
         $lookup: {
-          from: 'payrolls', // collection name is 'payrolls'
-          localField: 'designation',
-          foreignField: '_id',
-          as: 'designation',
+          from: "payrolls", // collection name is 'payrolls'
+          localField: "designation",
+          foreignField: "_id",
+          as: "designation",
         },
       },
       {
-        $unwind: '$designation',
+        $unwind: "$designation",
       },
     ]);
 
@@ -796,11 +795,11 @@ exports.getEmployeeRedundancy = asyncHandler(async (req, res, next) => {
           numberofPresentAttendances: {
             $size: {
               $filter: {
-                input: { $objectToArray: '$attendances' },
+                input: { $objectToArray: "$attendances" },
                 cond: {
                   $and: [
-                    { $in: ['$$this.k', listDatesForThePastDays(7)] },
-                    { $eq: ['$$this.v', 'Present'] },
+                    { $in: ["$$this.k", listDatesForThePastDays(7)] },
+                    { $eq: ["$$this.v", "Present"] },
                   ],
                 },
               },
@@ -832,11 +831,11 @@ exports.getEmployeeRedundancy = asyncHandler(async (req, res, next) => {
         numberofPresentAttendances: {
           $size: {
             $filter: {
-              input: { $objectToArray: '$attendances' },
+              input: { $objectToArray: "$attendances" },
               cond: {
                 $and: [
-                  { $in: ['$$this.k', listDatesForThePastDays(7)] },
-                  { $eq: ['$$this.v', 'Present'] },
+                  { $in: ["$$this.k", listDatesForThePastDays(7)] },
+                  { $eq: ["$$this.v", "Present"] },
                 ],
               },
             },
@@ -868,11 +867,11 @@ exports.getEmployeeRedundancyPerProject = asyncHandler(
           numberofPresentAttendances: {
             $size: {
               $filter: {
-                input: { $objectToArray: '$attendances' },
+                input: { $objectToArray: "$attendances" },
                 cond: {
                   $and: [
-                    { $in: ['$$this.k', listDatesForThePastDays(2)] },
-                    { $eq: ['$$this.v', 'Present'] },
+                    { $in: ["$$this.k", listDatesForThePastDays(2)] },
+                    { $eq: ["$$this.v", "Present"] },
                   ],
                 },
               },
@@ -904,11 +903,11 @@ exports.getEmployeeGhostPerProject = asyncHandler(async (req, res, next) => {
         numberofPresentAttendances: {
           $size: {
             $filter: {
-              input: { $objectToArray: '$attendances' },
+              input: { $objectToArray: "$attendances" },
               cond: {
                 $and: [
-                  { $in: ['$$this.k', listDatesForThePastDays(90)] },
-                  { $eq: ['$$this.v', 'Present'] },
+                  { $in: ["$$this.k", listDatesForThePastDays(90)] },
+                  { $eq: ["$$this.v", "Present"] },
                 ],
               },
             },
@@ -928,7 +927,7 @@ exports.getEmployeeGhostPerProject = asyncHandler(async (req, res, next) => {
 exports.getEmployeeAttendancePerProject = asyncHandler(
   async (req, res, next) => {
     const { userEmail, dateOffset } = req.params;
-    console.log('fromfront=>', email);
+    console.log("fromfront=>", email);
     const dateOffsets = parseInt(dateOffset);
 
     console.log(userEmail);
@@ -945,11 +944,11 @@ exports.getEmployeeAttendancePerProject = asyncHandler(
           numberofPresentAttendances: {
             $size: {
               $filter: {
-                input: { $objectToArray: '$attendances' },
+                input: { $objectToArray: "$attendances" },
                 cond: {
                   $and: [
-                    { $in: ['$$this.k', listDatesForThePastDays(dateOffsets)] },
-                    { $eq: ['$$this.v', 'Present'] },
+                    { $in: ["$$this.k", listDatesForThePastDays(dateOffsets)] },
+                    { $eq: ["$$this.v", "Present"] },
                   ],
                 },
               },
@@ -985,11 +984,11 @@ exports.getEmployeeAttendancePreviousDay = asyncHandler(
           numberofPresentAttendances: {
             $size: {
               $filter: {
-                input: { $objectToArray: '$attendances' },
+                input: { $objectToArray: "$attendances" },
                 cond: {
                   $and: [
-                    { $in: ['$$this.k', listDatesForThePastDays(dateOffset)] },
-                    { $eq: ['$$this.v', 'Present'] },
+                    { $in: ["$$this.k", listDatesForThePastDays(dateOffset)] },
+                    { $eq: ["$$this.v", "Present"] },
                   ],
                 },
               },
@@ -1000,7 +999,7 @@ exports.getEmployeeAttendancePreviousDay = asyncHandler(
 
       {
         $group: {
-          _id: '$department',
+          _id: "$department",
           count: { $sum: 1 },
         },
       },
@@ -1010,8 +1009,8 @@ exports.getEmployeeAttendancePreviousDay = asyncHandler(
           _id: null,
           counts: {
             $push: {
-              department: '$_id',
-              number: '$count',
+              department: "$_id",
+              number: "$count",
             },
           },
         },
@@ -1038,11 +1037,11 @@ exports.getGhostEmployeeAttendance = asyncHandler(async (req, res, next) => {
         numberofPresentAttendances: {
           $size: {
             $filter: {
-              input: { $objectToArray: '$attendances' },
+              input: { $objectToArray: "$attendances" },
               cond: {
                 $and: [
-                  { $in: ['$$this.k', listDatesForThePastDays(90)] },
-                  { $eq: ['$$this.v', 'Present'] },
+                  { $in: ["$$this.k", listDatesForThePastDays(90)] },
+                  { $eq: ["$$this.v", "Present"] },
                 ],
               },
             },
@@ -1073,11 +1072,11 @@ exports.SumOfAttendances = asyncHandler(async (req, res, next) => {
           $sum: {
             $size: {
               $filter: {
-                input: { $objectToArray: '$attendances' },
+                input: { $objectToArray: "$attendances" },
                 cond: {
                   $and: [
-                    { $in: ['$$this.k', listDatesForThePastDays(7)] },
-                    { $eq: ['$$this.v', 'Present'] },
+                    { $in: ["$$this.k", listDatesForThePastDays(7)] },
+                    { $eq: ["$$this.v", "Present"] },
                   ],
                 },
               },
@@ -1110,7 +1109,7 @@ exports.AddScore = asyncHandler(async (req, res, next) => {
   ).exec((err, results) => {
     if (err) throw err;
     res.json(results);
-    console.log('update successful...');
+    console.log("update successful...");
   });
 });
 
@@ -1126,14 +1125,14 @@ exports.SubScore = asyncHandler(async (req, res, next) => {
   // console.log('id----', id);
   var num_mod = req.params.num;
   var modified_count = parseInt(num_mod) - parseInt(score);
-  console.log('num_mod----', num_mod);
+  console.log("num_mod----", num_mod);
   Employee.findByIdAndUpdate(
     id,
     { score: parseInt(num_mod) },
     { new: true },
     function (err, scoreCard) {
       if (err) {
-        console.log('err', err);
+        console.log("err", err);
         res.status(500).send(err);
       } else {
         console.log(scoreCard.employeeName);
@@ -1152,7 +1151,7 @@ exports.SubScore = asyncHandler(async (req, res, next) => {
           if (err) {
             console.log(err);
           } else {
-            console.log('add log success');
+            console.log("add log success");
             res.send(scoreCard);
           }
         });
@@ -1171,14 +1170,14 @@ exports.AddComplainScore = asyncHandler(async (req, res, next) => {
   // console.log('id----', id);
   var num_mod = req.params.num;
   var modified_count = parseInt(complainScore) + parseInt(num_mod);
-  console.log('num_mod----', num_mod);
+  console.log("num_mod----", num_mod);
   Employee.findByIdAndUpdate(
     id,
     { complainScore: parseInt(num_mod) },
     { new: true },
     function (err, scoreCard) {
       if (err) {
-        console.log('err', err);
+        console.log("err", err);
         res.status(500).send(err);
       } else {
         console.log(scoreCard.employeeName);
@@ -1197,7 +1196,7 @@ exports.AddComplainScore = asyncHandler(async (req, res, next) => {
           if (err) {
             console.log(err);
           } else {
-            console.log('add log success');
+            console.log("add log success");
             res.send(scoreCard);
           }
         });
@@ -1217,7 +1216,7 @@ exports.numberPerDepartment = asyncHandler(async (req, res, next) => {
 
     {
       $group: {
-        _id: '$department',
+        _id: "$department",
         count: { $sum: 1 },
       },
     },
@@ -1227,8 +1226,8 @@ exports.numberPerDepartment = asyncHandler(async (req, res, next) => {
         _id: null,
         counts: {
           $push: {
-            department: '$_id',
-            number: '$count',
+            department: "$_id",
+            number: "$count",
           },
         },
       },
@@ -1243,7 +1242,7 @@ exports.numberPerDepartment = asyncHandler(async (req, res, next) => {
 //@routes Get//:id/:num/:quantity
 //@acess Private
 exports.overtimeAdder = asyncHandler(async (req, res, next) => {
-  console.log('overtime-==>');
+  console.log("overtime-==>");
   const _id = req.params.id;
   const overtime = req.params.value;
   console.log(overtime, _id);
@@ -1257,15 +1256,15 @@ exports.overtimeAdder = asyncHandler(async (req, res, next) => {
     ).exec();
 
     if (updatedEmployee) {
-      console.log('overtime update successful');
+      console.log("overtime update successful");
       res.send(updatedEmployee);
     } else {
-      console.log('Employee not found');
-      res.status(404).send('Employee not found');
+      console.log("Employee not found");
+      res.status(404).send("Employee not found");
     }
   } catch (err) {
     console.log(err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -1285,15 +1284,15 @@ exports.IOU = asyncHandler(async (req, res, next) => {
     ).exec();
 
     if (updatedEmployee) {
-      console.log('IOU update successful');
+      console.log("IOU update successful");
       res.send(updatedEmployee);
     } else {
-      console.log('Employee not found');
-      res.status(404).send('Employee not found');
+      console.log("Employee not found");
+      res.status(404).send("Employee not found");
     }
   } catch (err) {
     console.log(err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -1312,7 +1311,7 @@ exports.overtimeReset = asyncHandler(async (req, res, next) => {
     if (err) {
       console.log(err);
     } else {
-      console.log('overtime update successful');
+      console.log("overtime update successful");
 
       res.send(pool);
     }
@@ -1325,7 +1324,7 @@ exports.overtimeReset = asyncHandler(async (req, res, next) => {
 exports.allowanceAdder = asyncHandler(async (req, res, next) => {
   const _id = req.params.id;
   const allowance = req.params.value;
-  console.log('allowance:', allowance, _id);
+  console.log("allowance:", allowance, _id);
 
   try {
     const updatedEmployee = await Employee.findOneAndUpdate(
@@ -1336,15 +1335,15 @@ exports.allowanceAdder = asyncHandler(async (req, res, next) => {
     ).exec();
 
     if (updatedEmployee) {
-      console.log('allowance update successful');
+      console.log("allowance update successful");
       res.send(updatedEmployee);
     } else {
-      console.log('Employee not found');
-      res.status(404).send('Employee not found');
+      console.log("Employee not found");
+      res.status(404).send("Employee not found");
     }
   } catch (err) {
     console.log(err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -1363,7 +1362,7 @@ exports.allowanceReset = asyncHandler(async (req, res, next) => {
     if (err) {
       console.log(err);
     } else {
-      console.log('overtime update successful');
+      console.log("overtime update successful");
 
       res.send(pool);
     }
@@ -1375,8 +1374,15 @@ exports.allowanceReset = asyncHandler(async (req, res, next) => {
 //@acess    Private
 exports.createPayroll = asyncHandler(async (req, res, next) => {
   console.log(req.body);
-  const { designation, medical, perhrIncome, grossIncome, _id, ownerId,country } =
-    req.body;
+  const {
+    designation,
+    medical,
+    perhrIncome,
+    grossIncome,
+    _id,
+    ownerId,
+    country,
+  } = req.body;
 
   try {
     let user;
@@ -1394,8 +1400,8 @@ exports.createPayroll = asyncHandler(async (req, res, next) => {
       // use _id as ownerId and fetch the user by _id
       user = await User.findOne({ _id });
       if (!user) {
-        console.log('Employee not found...only _id');
-        return res.status(404).send('Employee not found');
+        console.log("Employee not found...only _id");
+        return res.status(404).send("Employee not found");
       }
       // Convert _id to ObjectId
       if (mongoose.Types.ObjectId.isValid(_id)) {
@@ -1413,15 +1419,15 @@ exports.createPayroll = asyncHandler(async (req, res, next) => {
       // use ownerId as _id and fetch the user by ownerId
       user = await User.findOne({ _id: ownerId });
       if (!user) {
-        console.log('Employee not found...only ownerId');
-        return res.status(404).send('Employee not found');
+        console.log("Employee not found...only ownerId");
+        return res.status(404).send("Employee not found");
       }
       // Convert ownerId to ObjectId
       if (mongoose.Types.ObjectId.isValid(ownerId)) {
         ownerObjectId = new mongoose.Types.ObjectId(ownerId);
       }
     } else {
-      return res.status(400).send('Invalid request payload');
+      return res.status(400).send("Invalid request payload");
     }
 
     const newPayroll = new Payroll({
@@ -1432,16 +1438,16 @@ exports.createPayroll = asyncHandler(async (req, res, next) => {
       medicalAllowance: medical,
       grossIncome: grossIncome,
       perhrIncome: perhrIncome,
-      country:country,
+      country: country,
       ownerId: ownerObjectId,
     });
 
     await newPayroll.save();
-    console.log('Payroll created:', newPayroll);
+    console.log("Payroll created:", newPayroll);
     res.status(201).send(newPayroll);
   } catch (error) {
-    console.error('Error creating payroll:', error);
-    res.status(500).send('An error occurred while creating the payroll');
+    console.error("Error creating payroll:", error);
+    res.status(500).send("An error occurred while creating the payroll");
   }
 });
 
@@ -1476,7 +1482,7 @@ exports.shortlisted = asyncHandler(async (req, res, next) => {
     data: doc,
   });
 
-  console.log('create shortlist successful!');
+  console.log("create shortlist successful!");
 });
 
 // @desc    Create shortlisted
@@ -1496,8 +1502,8 @@ exports.getShortlisted = asyncHandler(async (req, res, next) => {
       }
     }
   ).populate({
-    model: 'Resume',
-    path: 'jobseeker_id',
+    model: "Resume",
+    path: "jobseeker_id",
   });
 });
 
@@ -1529,11 +1535,11 @@ exports.addLoan = asyncHandler(async (req, res, next) => {
       }
     ).exec();
 
-    console.log('Loan detail added successfully!');
+    console.log("Loan detail added successfully!");
     res.send(result);
   } catch (err) {
     console.error(err);
-    res.status(500).send('An error occurred while adding loan details.');
+    res.status(500).send("An error occurred while adding loan details.");
   }
 });
 
@@ -1547,16 +1553,16 @@ exports.updateLoan = asyncHandler(async (req, res, next) => {
     const result = await Employee.findOneAndUpdate(
       { _id: id },
       {
-        $set: { repayDate, exemptionIsOn:true },
+        $set: { repayDate, exemptionIsOn: true },
       }
     ).exec();
 
-    console.log('Loan detail added successfully!');
+    console.log("Loan detail added successfully!");
     res.send(result);
   } catch (err) {
     console.error(err);
     // Handle the error and send an appropriate response
-    res.status(500).json({ error: 'An error occurred' });
+    res.status(500).json({ error: "An error occurred" });
   }
 });
 
@@ -1570,16 +1576,15 @@ exports.LoanOff = asyncHandler(async (req, res, next) => {
     const result = await Employee.findOneAndUpdate(
       { _id: id },
       {
-        $set: { repayDate:today, exemptionIsOn:null },
+        $set: { repayDate: today, exemptionIsOn: null },
       }
     ).exec();
 
-    console.log('Loan detail added successfully!');
+    console.log("Loan detail added successfully!");
     res.send(result);
   } catch (err) {
     console.error(err);
     // Handle the error and send an appropriate response
-    res.status(500).json({ error: 'An error occurred' });
+    res.status(500).json({ error: "An error occurred" });
   }
 });
-

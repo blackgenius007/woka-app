@@ -55,6 +55,7 @@ const {
 router.route('/newDesignation').post(createPayroll);
 router.route('/create/:id').post(createNewEmployee);
 router.route('/employees/:userEmail').get(getAllEmployee);
+router.route('/update-1/:id').post(updateEmployee);
 router.route('/designation/:email').get(getAllDesignation);
 router.route('/detail/:id').get(getEmployeeDetail);
 router.route('/add-loan').post(addLoan);
