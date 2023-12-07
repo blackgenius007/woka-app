@@ -33,7 +33,7 @@ const EmployeeUpdateForm = () => {
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const response = await employeeService.updateEmployee(id);
+        const response = await employeeServices.updateEmployee(id);
         setEmployee(response);
         setFormData({
           // Update the form data state with the retrieved inmate data
@@ -64,7 +64,7 @@ const EmployeeUpdateForm = () => {
 
     try {
       // Call your update API endpoint with the updated form data
-      await employeeService.updateEmployee(id, formData);
+      await employeeServices.updateEmployee(id, formData);
 
       // Handle successful update
       console.log('Employee updated successfully!');
@@ -186,7 +186,7 @@ const EmployeeUpdateForm = () => {
           </Button>
         </form>
       ) : (
-        <Typography>Loading inmate data...</Typography>
+        <Typography>Loading employee data...</Typography>
       )}
     </Box>
   );
