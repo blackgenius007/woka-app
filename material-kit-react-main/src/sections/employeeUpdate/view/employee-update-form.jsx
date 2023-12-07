@@ -90,7 +90,7 @@ const EmployeeUpdateForm = () => {
       {employee ? (
         <form onSubmit={handleFormSubmit}>
           <Grid container spacing={2}>
-    <Grid item xs={12} sm={4} style={columnStyle}>
+    <Grid item xs={12} sm={4}  >
     <TextField
             fullWidth
             label="Name"
