@@ -34,6 +34,7 @@ const EmployeeUpdateForm = () => {
     const fetchEmployee = async () => {
       try {
         const response = await employeeServices.updateEmployee(id);
+        console.log('response from front:',response)
         setEmployee(response);
         setFormData({
           // Update the form data state with the retrieved inmate data
@@ -52,7 +53,7 @@ const EmployeeUpdateForm = () => {
           accountDetail: response.accountDetail,
         });
       } catch (error) {
-        console.error('Error retrieving inmate:', error);
+        console.error('Error retrieving employee:', error);
       }
     };
 
@@ -70,7 +71,7 @@ const EmployeeUpdateForm = () => {
       console.log('Employee updated successfully!');
     } catch (error) {
       // Handle error
-      console.error('Error updating inmate:', error);
+      console.error('Error updating employee:', error);
     }
   };
 
