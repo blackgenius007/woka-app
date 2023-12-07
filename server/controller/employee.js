@@ -305,40 +305,77 @@ exports.getPaySlip = asyncHandler(async (req, res, next) => {
   });
 });
 
+ 
 // @desc    Update pool
-//@routes   Put/api/v1/inventory/:email
-//@acess    Private
+// @routes  Put/api/v1/inventory/:email
+// @acess   Private
 
-exports.updateEmployee = (req, res, next) => {
-  var _id = req.params.id;
+exports.updateEmployee = async (req, res, next) => {
+  try {
+    var _id = req.params.id;
 
-  console.log(`id from front===>${_id}`);
-  console.log(req.body)
-  var pool = {
-    employeeName: req.body.employeeName,
-    department: req.body.department,
-    employeeNumber: req.body.employeeNumber,
-    address: req.body.address,
-    bankName: req.body.bankName,
-    nextName: req.body.nextName,
-    allowance: req.body.allowance,
-    nextAddress: req.body.nextAddress,
-    overtime: req.body.overtime,
-    nextNumber: req.body.nextNumber,
-    nextRelationship: req.body.nextRelationship,
-    accountDetail: req.body.accountDetail,
-  };
+    console.log(`id from front===>${_id}`);
+    console.log(req.body)
+    var pool = {
+      employeeName: req.body.employeeName,
+      department: req.body.department,
+      employeeNumber: req.body.employeeNumber,
+      address: req.body.address,
+      bankName: req.body.bankName,
+      nextName: req.body.nextName,
+      allowance: req.body.allowance,
+      nextAddress: req.body.nextAddress,
+      overtime: req.body.overtime,
+      nextNumber: req.body.nextNumber,
+      nextRelationship: req.body.nextRelationship,
+      accountDetail: req.body.accountDetail,
+    };
 
-  Employee.findByIdAndUpdate(_id, pool, { new: true }, function (err, pool) {
-    if (err) {
-      console.log("err", err);
-      res.status(500).send(err);
-    } else {
-      console.log("success");
-      res.send(pool);
+    const updatedEmployee = await Employee.findByIdAndUpdate(_id, pool, { new: true });
+
+    if (!updatedEmployee) {
+      return res.status(404).send("Employee not found");
     }
-  });
+
+    console.log("success");
+    res.send(updatedEmployee);
+  } catch (error) {
+    console.error("Error updating employee:", error);
+    res.status(500).send("Internal Server Error");
+  }
 };
+
+
+// exports.updateEmployee = (req, res, next) => {
+//   var _id = req.params.id;
+
+//   console.log(`id from front===>${_id}`);
+//   console.log(req.body)
+//   var pool = {
+//     employeeName: req.body.employeeName,
+//     department: req.body.department,
+//     employeeNumber: req.body.employeeNumber,
+//     address: req.body.address,
+//     bankName: req.body.bankName,
+//     nextName: req.body.nextName,
+//     allowance: req.body.allowance,
+//     nextAddress: req.body.nextAddress,
+//     overtime: req.body.overtime,
+//     nextNumber: req.body.nextNumber,
+//     nextRelationship: req.body.nextRelationship,
+//     accountDetail: req.body.accountDetail,
+//   };
+
+//   Employee.findByIdAndUpdate(_id, pool, { new: true }, function (err, pool) {
+//     if (err) {
+//       console.log("err", err);
+//       res.status(500).send(err);
+//     } else {
+//       console.log("success");
+//       res.send(pool);
+//     }
+//   });
+// };
 
 // @desc Get Employee Detail
 //@routes Get/api/employee/detail/:id'
