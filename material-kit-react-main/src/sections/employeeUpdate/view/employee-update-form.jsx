@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import React, { useState, useEffect } from 'react';
-import { Typography, TextField, Button, Box } from '@mui/material';
+import { Typography, TextField, Button, Box,Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import employeeServices from 'src/Services/HR-Services/employeeServices';
 import { useNavigate } from 'react-router-dom';
@@ -75,10 +75,9 @@ const EmployeeUpdateForm = () => {
   };
 
   return (
-    // <Box sx={{ display: 'flex', flexDirection: 'column', maxWidth: '400px', mx: 'auto' }}>
-    //   <Typography variant="h4" gutterBottom>
-    //     Update - {formData.employeeName}
-    //   </Typography>
+    <>
+    
+    
 
     <Box sx={{ display: 'flex', flexDirection: 'column', maxWidth: '400px', mx: 'auto' }}>
       <Typography variant="h4" gutterBottom>
@@ -87,7 +86,9 @@ const EmployeeUpdateForm = () => {
 
       {employee ? (
         <form onSubmit={handleFormSubmit}>
-          <TextField
+          <Grid container spacing={2}>
+    <Grid item xs={12} sm={4} style={columnStyle}>
+    <TextField
             fullWidth
             label="Name"
             name="employeeName"
@@ -135,7 +136,11 @@ const EmployeeUpdateForm = () => {
             onChange={(e) => setFormData({ ...formData, allowance: e.target.value })}
             margin="normal"
           />
-          <TextField
+    </Grid>
+    <Grid item xs={12} sm={4} style={columnStyle}>
+    </Grid>
+
+    <TextField
             fullWidth
             label="Overtime"
             name="overtime"
@@ -181,6 +186,9 @@ const EmployeeUpdateForm = () => {
             margin="normal"
           />
 
+    </Grid>
+          
+          
           <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
             Update
           </Button>
@@ -197,6 +205,9 @@ const EmployeeUpdateForm = () => {
         <Typography>Loading employee data...</Typography>
       )}
     </Box>
+    
+    </>
+    
   );
 };
 
