@@ -6,6 +6,13 @@ import { useParams } from 'react-router-dom';
 import employeeServices from 'src/Services/HR-Services/employeeServices';
 import { useNavigate } from 'react-router-dom';
 
+const columnStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+};
+
+
 const EmployeeUpdateForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
