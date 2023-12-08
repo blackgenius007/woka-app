@@ -1,10 +1,14 @@
-/* scrollbar */
+ /* Import simplebar-react styles */
 @import 'simplebar-react/dist/simplebar.min.css';
- /* For small screens */
+
+/* For small screens */
 @media (max-width: 700px) {
   /* Hide header cells */
   thead th {
-    display: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.25rem;
   }
 
   /* Display cells as block elements */
