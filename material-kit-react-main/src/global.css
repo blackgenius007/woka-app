@@ -1,10 +1,10 @@
  /* Import simplebar-react styles */
 @import 'simplebar-react/dist/simplebar.min.css';
 
-/* For small screens */
+ /* For small screens */
 @media (max-width: 700px) {
   /* Hide header cells */
-  thead th {
+  thead {
     display: none;
   }
 
@@ -38,3 +38,4 @@
     margin-top: 0.5rem; /* Adjust margin between the halves */
   }
 }
+
