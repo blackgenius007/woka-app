@@ -10,6 +10,14 @@ import Iconify from 'src/components/iconify';
  
 
 const IMSPage = () => {
+  const handleLowStockAlerts = () => {
+    // Add logic for Low Stock Alerts
+  };
+
+  const handleOrderStatusUpdates = () => {
+    // Add logic for Order Status Updates
+  };
+
   return (
     <Container>
       <Stack direction="column" spacing={3} alignItems="center">
