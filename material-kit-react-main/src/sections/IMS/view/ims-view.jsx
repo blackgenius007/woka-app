@@ -5,6 +5,7 @@ import { Container, Typography, Button, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Scrollbar from 'src/components/scrollbar';
 // import InventoryTable from 'components/InventoryTable'; // Adjust this import based on your project structure
+import { Icon } from '@iconify/react';
 import Iconify from 'src/components/iconify';
  
 
