@@ -112,6 +112,43 @@ const futuristicStyles = {
     cursor: 'pointer',
     transition: 'color 0.3s ease-in-out',
   },
+  // Additional styles for small screens
+  '@media (max-width: 700px)': {
+    tableContainer: {
+      background: '#222',
+      borderRadius: '10px',
+      padding: '1rem',
+    },
+    table: {
+      color: '#fff',
+      width: '100%',
+      textAlign: 'left',
+      borderCollapse: 'separate',
+      borderSpacing: '0',
+    },
+    tableHead: {
+      background: '#333',
+    },
+    tableHeadCell: {
+      padding: '0.5rem',
+      textAlign: 'center',
+    },
+    tableBodyRow: {
+      borderBottom: '1px solid #444',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      marginBottom: '0.5rem',
+      borderBottom: '1px solid #ddd',
+    },
+    tableBodyCell: {
+      border: '1px solid #444',
+      padding: '0.5rem',
+      textAlign: 'center',
+      width: '100%', // Take full width of the container
+      boxSizing: 'border-box',
+    },
+  },
 };
 
 // Combine styles based on screen size
