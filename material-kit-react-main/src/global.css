@@ -1,7 +1,7 @@
  /* Import simplebar-react styles */
 @import 'simplebar-react/dist/simplebar.min.css';
 
-  /* For small screens */
+   /* For small screens */
 @media (max-width: 700px) {
   /* Display cells as block elements */
   tbody tr {
@@ -13,8 +13,9 @@
   }
 
   /* Arrange headers and data values vertically within each block */
-  thead th, tbody td {
-    width: 100%; /* Take full width of the container */
+  thead th,
+  tbody td {
+    width: 48%; /* Adjust the width as needed, leaving some space for separation */
     box-sizing: border-box; /* Include padding and border in the width */
   }
 
