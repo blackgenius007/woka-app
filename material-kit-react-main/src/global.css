@@ -1,7 +1,7 @@
  /* Import simplebar-react styles */
 @import 'simplebar-react/dist/simplebar.min.css';
 
- /* For small screens */
+  /* For small screens */
 @media (max-width: 700px) {
   /* Display cells as block elements */
   tbody tr {
@@ -12,6 +12,12 @@
     border-bottom: 1px solid #ddd; /* Add a border between rows */
   }
 
+  /* Arrange headers and data values vertically within each block */
+  thead th, tbody td {
+    width: 100%; /* Take full width of the container */
+    box-sizing: border-box; /* Include padding and border in the width */
+  }
+
   /* Show data labels before each cell content */
   tbody td::before {
     content: attr(data-label);
@@ -20,17 +26,11 @@
     margin-bottom: 0.25rem;
   }
 
-  /* Arrange headers and data values side by side */
-  thead th, tbody td {
-    width: 50%; /* Take half the width of the container */
-    box-sizing: border-box; /* Include padding and border in the width */
-  }
-
-  /* For each row, split into two halves */
+  /* For each row, create a new block */
   tbody tr::after {
     content: '';
-    width: 100%; /* Create a new block */
-    flex: 1; /* Take full width */
-    margin-top: 0.5rem; /* Adjust margin between the halves */
+    width: 100%;
+    display: block;
+    margin-top: 0.5rem; /* Adjust margin between the blocks */
   }
 }
