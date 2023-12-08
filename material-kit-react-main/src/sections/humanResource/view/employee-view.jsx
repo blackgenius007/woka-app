@@ -522,7 +522,7 @@ const FilterableTable = ({ drawer }) => {
                   <td style={combinedStyles.tableBodyCell}>
                     {row.designation && row.designation.designation}
                   </td>
-                  <Hidden xsDown>
+                  
                     <td style={combinedStyles.tableBodyCell}>{row.department}</td>
 
                     <td style={combinedStyles.tableBodyCell}>{row.employeeCode}</td>
@@ -533,7 +533,7 @@ const FilterableTable = ({ drawer }) => {
                         <Iconify icon="eva:more-vertical-fill" />
                       </IconButton>
                     </td>
-                  </Hidden>
+                  
                 </tr>
               );
             })}
