@@ -16,7 +16,7 @@ const {
    connectItem 
 
    
-  } = require('../controller/Inventory');
+  } = require('../controller/inventory');
   
  
 
