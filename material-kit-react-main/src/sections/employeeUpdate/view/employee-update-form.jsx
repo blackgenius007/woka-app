@@ -33,10 +33,11 @@ const EmployeeUpdateForm = () => {
     const fetchEmployee = async () => {
       try {
         const response = await employeeServices.retrieveEmployee(id);
-        console.log('response from front:',  response);
+        console.log('response from front:', response);
         setEmployee(response);
+  
+        // This is where state is being updated
         setFormData({
-          // Update the form data state with the retrieved inmate data
           employeeName: response.employeeName,
           department: response.department,
           employeeNumber: response.employeeNumber,
@@ -55,10 +56,9 @@ const EmployeeUpdateForm = () => {
         console.error('Error retrieving employee:', error);
       }
     };
-
+  
     fetchEmployee();
   }, [id]);
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
