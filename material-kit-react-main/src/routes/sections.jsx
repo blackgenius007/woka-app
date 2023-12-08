@@ -16,6 +16,7 @@ export const SalaryCalculatorPage = lazy(() => import('src/pages/salaryCalculato
 export const DepartmentPage = lazy(() => import('src/pages/department'));
 export const EmployeeDetailPage = lazy(() => import('src/pages/employeeDetail'));
 export const NewEmployeePage = lazy(() => import('src/pages/newEmployeeForm'));
+export const IMSPage = lazy(() => import('src/pages/ims'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
@@ -49,6 +50,7 @@ export default function Router() {
         <Route path="blog" element={<BlogPage />} />
         <Route path="employee" element={<EmployeePage />} />
         <Route path="salary" element={<SalaryCalculatorPage />} />
+        <Route path="inventory" element={<IMSPage />} />
         <Route path="new-employee" element={<NewEmployeePage />} />
         <Route path="employee-detail/:id" element={< EmployeeDetailPage />} />
         <Route path="employee-update/:id" element={<EmployeeUpdate />} />
