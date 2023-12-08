@@ -32,7 +32,7 @@ const EmployeeUpdateForm = () => {
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const response = await employeeServices.updateEmployee(id);
+        const response = await employeeServices.retrieveEmployee(id);
         console.log('response from front:', response);
         setEmployee(response);
         setFormData({
