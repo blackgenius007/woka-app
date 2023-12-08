@@ -29,6 +29,11 @@ const navConfig = [
     path: '/salary',
     icon: icon('ic_analytics'),
   },
+  {
+    title: 'IMS',
+    path: '/inventory',
+    icon: icon('ic_ims'),
+  },
 
   {
     title: 'login',
