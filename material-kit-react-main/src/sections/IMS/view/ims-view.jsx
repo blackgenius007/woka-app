@@ -3,7 +3,7 @@
 import React from 'react';
 import { Container, Typography, Button, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Scrollbar from 'components/Scrollbar'; // Adjust this import based on your project structure
+import Scrollbar from 'src/components/scrollbar';
 import InventoryTable from 'components/InventoryTable'; // Adjust this import based on your project structure
 import Iconify from '@iconify/react';
 import alertIcon from '@iconify-icons/eva/alert-circle-outline';
