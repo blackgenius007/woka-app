@@ -37,6 +37,8 @@ const images = require('./routes/imagesRoutes');
 const errorHandler = require('./middleware/error');
 const payroll = require('./routes/payrollRoutes');
 const openAi = require('./routes/openAiRoutes');
+const inventory = require('./routes/inventoryRoutes');
+ 
 
 
 //mount routers
@@ -45,6 +47,7 @@ app.use('/api/v1/employee', employee);
 app.use('/api/v1/images', images);
 app.use('/api/v1/designation', payroll);
 app.use('/api/v1/openAi', openAi);
+app.use('/api/v1/inventory',inventory);
 app.use(errorHandler);
 
 // connection
