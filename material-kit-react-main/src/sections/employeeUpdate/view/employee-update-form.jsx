@@ -33,7 +33,7 @@ const EmployeeUpdateForm = () => {
     const fetchEmployee = async () => {
       try {
         const response = await employeeServices.retrieveEmployee(id);
-        console.log('response from front:', response);
+        console.log('response from front:', response && response);
         setEmployee(response);
         setFormData({
           // Update the form data state with the retrieved inmate data
