@@ -5,11 +5,8 @@ import { Container, Typography, Button, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Scrollbar from 'src/components/scrollbar';
 // import InventoryTable from 'components/InventoryTable'; // Adjust this import based on your project structure
-import Iconify from '@iconify/react';
-import alertIcon from '@iconify-icons/eva/alert-circle-outline';
-import barChartIcon from '@iconify-icons/eva/bar-chart-outline';
-import truckIcon from '@iconify-icons/eva/truck-outline';
-import peopleIcon from '@iconify-icons/eva/people-outline';
+import Iconify from 'src/components/iconify';
+ 
 
 const IMSPage = () => {
   return (
@@ -35,7 +32,7 @@ const IMSPage = () => {
         <Button
           variant="contained"
           style={{ backgroundColor: '#00CC66', color: 'white' }}
-          startIcon={<Iconify icon={truckIcon} />}
+          startIcon={<Icon icon="vaadin:truck" />}
           // Add link to Order Management page
           component={Link}
           to="/order-management"
@@ -46,7 +43,7 @@ const IMSPage = () => {
         <Button
           variant="contained"
           style={{ backgroundColor: '#FF9900', color: 'white' }}
-          startIcon={<Iconify icon={peopleIcon} />}
+          startIcon={<Icon icon="mdi:people-outline" />}
           // Add link to Supplier Management page
           component={Link}
           to="/supplier-management"
@@ -57,7 +54,7 @@ const IMSPage = () => {
         <Button
           variant="contained"
           style={{ backgroundColor: '#FF3366', color: 'white' }}
-          startIcon={<Iconify icon={barChartIcon} />}
+          startIcon={<Icon icon="fxemoji:barchart" />}
           // Add link to Reports and Analytics page
           component={Link}
           to="/reports-analytics"
@@ -68,7 +65,7 @@ const IMSPage = () => {
         <Button
           variant="contained"
           style={{ backgroundColor: '#FF3366', color: 'white' }}
-          startIcon={<Iconify icon={alertIcon} />}
+          startIcon={<Icon icon="clarity:alert-line" />}
           // Add link or handle Low Stock Alerts
           onClick={() => handleLowStockAlerts()}
         >
