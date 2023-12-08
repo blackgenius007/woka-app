@@ -1,7 +1,7 @@
  /* Import simplebar-react styles */
 @import 'simplebar-react/dist/simplebar.min.css';
 
-   /* For small screens */
+    /* For small screens */
 @media (max-width: 700px) {
   /* Display cells as block elements */
   tbody tr {
@@ -15,7 +15,7 @@
   /* Arrange headers and data values vertically within each block */
   thead th,
   tbody td {
-    width: 48%; /* Adjust the width as needed, leaving some space for separation */
+    width: 100%; /* Take full width of the container */
     box-sizing: border-box; /* Include padding and border in the width */
   }
 
@@ -25,13 +25,5 @@
     font-weight: bold;
     display: block;
     margin-bottom: 0.25rem;
-  }
-
-  /* For each row, create a new block */
-  tbody tr::after {
-    content: '';
-    width: 100%;
-    display: block;
-    margin-top: 0.5rem; /* Adjust margin between the blocks */
   }
 }
