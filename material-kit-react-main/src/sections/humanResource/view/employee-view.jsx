@@ -482,7 +482,7 @@ const FilterableTable = ({ drawer }) => {
       <br />
       <div style={combinedStyles.tableContainer}>
         <table style={combinedStyles.table}>
-          <Hidden xsDown>
+           
             <thead style={combinedStyles.tableHead}>
               <tr>
                 <th style={combinedStyles.tableHeadCell}>Employee</th>
@@ -497,7 +497,7 @@ const FilterableTable = ({ drawer }) => {
                 <th style={combinedStyles.tableHeadCell}>Action</th>
               </tr>
             </thead>
-          </Hidden>
+           
           <tbody>
             {paginatedRows.map((row) => {
               return (
