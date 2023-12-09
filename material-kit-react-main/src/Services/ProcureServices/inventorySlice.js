@@ -1,106 +1,217 @@
-/* eslint-disable */
+ /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import inventoryService from './inventoryService';
+import inventoryService from './inventoryServices';
 
 const initialState = {
   inventory: [],
   totalInventory: 0,
   oneInventory: null,
-  totalCost: 0,
-  stockBalance: 0,
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
+  totalCost: 0,
+  stockBalance: 0,
 };
 
-export const getAllInventory = createAsyncThunk('inventory/getAllInventory', async () => {
-  try {
-    return await inventoryService.getAllInventory();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Retrieve all inventory
+export const getAllInventory = createAsyncThunk(
+  'inventory/getAll',
+  async ({ email}, thunkAPI) => {
+    try {
+      return await inventoryService.getAllInventory(email);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const getTotalInventory = createAsyncThunk('inventory/getTotalInventory', async () => {
-  try {
-    return await inventoryService.getTotalInventory();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Retrieve total inventory count
+export const getTotalInventory = createAsyncThunk(
+  'inventory/getTotal',
+  async ({ email, projectname }, thunkAPI) => {
+    try {
+      return await inventoryService.getTotalInventory(email, projectname);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const getOneInventory = createAsyncThunk('inventory/getOneInventory', async (itemId) => {
-  try {
-    return await inventoryService.getOneInventory(itemId);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Retrieve one inventory item
+export const getOneInventory = createAsyncThunk(
+  'inventory/getOne',
+  async (id, thunkAPI) => {
+    try {
+      return await inventoryService.getOneInventory(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const updateInventory = createAsyncThunk('inventory/updateInventory', async (item) => {
-  try {
-    return await inventoryService.updateInventory(item);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Update an inventory item
+export const updateInventory = createAsyncThunk(
+  'inventory/update',
+  async ({ id, newData }, thunkAPI) => {
+    try {
+      return await inventoryService.updateInventory(id, newData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const deleteInventory = createAsyncThunk('inventory/deleteInventory', async (itemId) => {
-  try {
-    return await inventoryService.deleteInventory(itemId);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Delete an inventory item
+export const deleteInventory = createAsyncThunk(
+  'inventory/delete',
+  async (id, thunkAPI) => {
+    try {
+      await inventoryService.deleteInventory(id);
+      return id;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const getTotalCost = createAsyncThunk('inventory/getTotalCost', async () => {
-  try {
-    return await inventoryService.getTotalCost();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Retrieve total cost of inventory
+export const getTotalCost = createAsyncThunk(
+  'inventory/getTotalCost',
+  async ({ email, projectname }, thunkAPI) => {
+    try {
+      return await inventoryService.getTotalCost(email, projectname);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const outGoingStock = createAsyncThunk('inventory/outGoingStock', async (quantity) => {
-  try {
-    return await inventoryService.outGoingStock(quantity);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Outgoing stock
+export const outGoingStock = createAsyncThunk(
+  'inventory/outGoingStock',
+  async ({ email, id, num, quantity, order }, thunkAPI) => {
+    try {
+      return await inventoryService.outGoingStock(email, id, num, quantity, order);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const incomingStock = createAsyncThunk('inventory/incomingStock', async (quantity) => {
-  try {
-    return await inventoryService.incomingStock(quantity);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Incoming stock
+export const incomingStock = createAsyncThunk(
+  'inventory/incomingStock',
+  async ({ email, id, num, quantity }, thunkAPI) => {
+    try {
+      return await inventoryService.incomingStock(email, id, num, quantity);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const getStockBalance = createAsyncThunk('inventory/getStockBalance', async () => {
-  try {
-    return await inventoryService.getStockBalance();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Retrieve stock balance
+export const getStockBalance = createAsyncThunk(
+  'inventory/getStockBalance',
+  async ({ email, projectname }, thunkAPI) => {
+    try {
+      return await inventoryService.getStockBalance(email, projectname);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const quantityPerItem = createAsyncThunk('inventory/quantityPerItem', async (itemId) => {
-  try {
-    return await inventoryService.quantityPerItem(itemId);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Quantity per item
+export const quantityPerItem = createAsyncThunk(
+  'inventory/quantityPerItem',
+  async ({ email, projectname }, thunkAPI) => {
+    try {
+      return await inventoryService.quantityPerItem(email, projectname);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const connectItem = createAsyncThunk('inventory/connectItem', async (itemId) => {
-  try {
-    return await inventoryService.connectItem(itemId);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+// Connect item
+export const connectItem = createAsyncThunk(
+  'inventory/connectItem',
+  async (data, thunkAPI) => {
+    try {
+      return await inventoryService.connectItem(data);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 export const inventorySlice = createSlice({
   name: 'inventory',
@@ -128,15 +239,140 @@ export const inventorySlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      // ... other cases
+      .addCase(getTotalInventory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getTotalInventory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.totalInventory = action.payload;
+      })
+      .addCase(getTotalInventory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getOneInventory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getOneInventory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.oneInventory = action.payload;
+      })
+      .addCase(getOneInventory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updateInventory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateInventory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        const updatedInventory = action.payload;
+        const inventoryIndex = state.inventory.findIndex(
+          (item) => item.id === updatedInventory.id
+        );
+        if (inventoryIndex !== -1) {
+          // Update the inventory item details
+          state.inventory[inventoryIndex] = updatedInventory;
+        }
+      })
+      .addCase(updateInventory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteInventory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteInventory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        const deletedInventoryId = action.payload;
+        state.inventory = state.inventory.filter(
+          (item) => item.id !== deletedInventoryId
+        );
+      })
+      .addCase(deleteInventory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getTotalCost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getTotalCost.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.totalCost = action.payload;
+      })
+      .addCase(getTotalCost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(outGoingStock.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(outGoingStock.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        // Handle fulfillment if needed
+      })
+      .addCase(outGoingStock.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(incomingStock.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(incomingStock.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        // Handle fulfillment if needed
+      })
+      .addCase(incomingStock.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getStockBalance.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getStockBalance.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.stockBalance = action.payload;
+      })
+      .addCase(getStockBalance.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(quantityPerItem.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(quantityPerItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        // Handle fulfillment if needed
+      })
+      .addCase(quantityPerItem.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
       .addCase(connectItem.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(connectItem.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        // Update state with the result of connectItem
-        state.connectedItem = action.payload;
+        // Handle fulfillment if needed
       })
       .addCase(connectItem.rejected, (state, action) => {
         state.isLoading = false;
