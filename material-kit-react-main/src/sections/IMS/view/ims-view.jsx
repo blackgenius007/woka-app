@@ -4,7 +4,7 @@ import React from 'react';
 import { Container, Typography, Button, Stack, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Scrollbar from 'src/components/scrollbar';
-// import InventoryTable from 'components/InventoryTable'; // Adjust this import based on your project structure
+ import InventorySheet from './inventorySheet';  
 import { Icon } from '@iconify/react';
 import Iconify from 'src/components/iconify';
 
@@ -95,11 +95,10 @@ const IMSPage = () => {
           </Button>
         </Stack>
       </Stack>
-
+<br/>
       {/* Display the current inventory table */}
       <Scrollbar>
-        {/* <InventoryTable /> */}
-        INVENTORY TABLE HERE
+        <InventorySheet /> 
       </Scrollbar>
     </Container>
   );
