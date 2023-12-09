@@ -1,32 +1,28 @@
-
- /* eslint-disable */
- import React, { useState, useEffect,useRef } from 'react';
+/* eslint-disable */
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
- 
+
 import { useDownloadExcel } from 'react-export-table-to-excel';
- 
-import {getAllInventory} from 'src/Services/ProcureServices/inventorySlice'
- 
- 
-import { Clear,FileCopy } from '@mui/icons-material';
+
+import { getAllInventory } from 'src/Services/ProcureServices/inventorySlice';
+
+import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
- 
+
 import Dialog from '@mui/material/Dialog';
- 
+
 import DialogTitle from '@mui/material/DialogTitle';
- 
+
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
- 
 
 import PropTypes from 'prop-types';
- 
+
 import { useNavigate } from 'react-router-dom';
- 
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -123,9 +119,6 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-
-
- 
 const InventoryTable = ({ drawer }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -135,80 +128,69 @@ const InventoryTable = ({ drawer }) => {
   const [input, setInput] = useState(0);
   const [minus, setMinus] = useState(0);
   const [rowInputValues, setRowInputValues] = useState({});
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [exportMode, setExportMode] = useState(0);
+
+  const [filteredRows, setFilteredRows] = useState([]);
   let totalRemunerationForAll = 0;
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   //user details
-  const { role, email, ownerEmail } = useSelector(
-    (state) => state.auth.user.data
-  );
+  const { role, email, ownerEmail } = useSelector((state) => state.auth.user.data);
   // user role
   const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
   console.log(userEmail);
 
   //fetch attendance details
-  useEffect(() => {           
-       
+  useEffect(() => {
     dispatch(getAllInventory({ userEmail, dateOffset }));
   }, [dispatch, userEmail, dateOffset]);
 
- // Retrieve inventory data from inventorySlice
- const { inventory, isLoading, isError, message } = useSelector(state => state.inventory);
-   console.log('all inventory:',inventory)
+  // Retrieve inventory data from inventorySlice
+  const { inventory, isLoading, isError, message } = useSelector((state) => state.inventory);
+  console.log('all inventory:', inventory);
   // search function
   const requestSearch = (searchedVal) => {
     setSearched(searchedVal);
   };
 
- 
+  // Function to enable export mode
+  const enableExportMode = () => {
+    setExportMode(true);
+  };
 
- // Function to enable export mode
- const enableExportMode = () => {
-  setExportMode(true);
-};
-
-// Function to disable export mode
-const disableExportMode = () => {
-  setExportMode(false);
-};
+  // Function to disable export mode
+  const disableExportMode = () => {
+    setExportMode(false);
+  };
   const ExportSheet = () => {
     setExportMode(1);
   };
-  
-  const handleAddChange =(id, quantity)=>{
 
-	console.log('=================', id);
-	var nums = parseInt(quantity) + parseInt(add);
-	 console.log(nums)
-}
+  const handleAddChange = (id, quantity) => {
+    console.log('=================', id);
+    var nums = parseInt(quantity) + parseInt(add);
+    console.log(nums);
+  };
 
-const handleSubChange=(id, quantity)=>{
+  const handleSubChange = (id, quantity) => {
+    if (parseInt(quantity) - parseInt(minus) < 0) {
+      alert('The input value is too high.');
+    } else {
+      var nums = parseInt(quantity) - parseInt(minus);
+      const order = prompt('Please enter destination of item');
 
-	if (parseInt(quantity) - parseInt(minus) < 0) {
-		alert('The input value is too high.');
-	} else {
-		var nums = parseInt(quantity) - parseInt(minus);
-		const order = prompt('Please enter destination of item');
+      console.log(nums, order);
+    }
+  };
 
-		console.log(nums,order)
-	}
-}
- 
-   
+  const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+  const startIndex = page * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const paginatedRows = filteredRows.slice(startIndex, endIndex);
 
-      const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
-      const startIndex = page * rowsPerPage;
-      const endIndex = startIndex + rowsPerPage;
-      const paginatedRows = filteredRows.slice(startIndex, endIndex);
-
-     
-      
-
- 
   // convert currency
   const toMoney = (value) => {
     return accounting.formatMoney(accounting.unformat(value), {
@@ -217,16 +199,15 @@ const handleSubChange=(id, quantity)=>{
     });
   };
 
-
   // Function to handle 'add' input change for a specific row
   const handleAddInputChange = (rowId, value) => {
     // Create a copy of the current rowInputValues object
-    const updatedRowInputValues = { ...rowInputValues };   
+    const updatedRowInputValues = { ...rowInputValues };
     // Update the 'add' value for the specific row
     updatedRowInputValues[rowId] = { ...updatedRowInputValues[rowId], add: value };
-    setRowInputValues(updatedRowInputValues);              
+    setRowInputValues(updatedRowInputValues);
   };
-     
+
   // Function to handle 'minus' input change for a specific row
   const handleMinusInputChange = (rowId, value) => {
     // Create a copy of the current rowInputValues object
@@ -235,7 +216,6 @@ const handleSubChange=(id, quantity)=>{
     updatedRowInputValues[rowId] = { ...updatedRowInputValues[rowId], minus: value };
     setRowInputValues(updatedRowInputValues);
   };
-
 
   // Dialogue box
   const handleClickOpen = () => {
@@ -284,25 +264,22 @@ const handleSubChange=(id, quantity)=>{
         />
       </div>
       <br />
-      
+
       <div style={futuristicStyles.tableContainer}>
         <table style={futuristicStyles.table}>
           <thead style={futuristicStyles.tableHead}>
             <tr>
-          
-            <th style={futuristicStyles.tableHeadCell}>Item image</th>
-            <th style={futuristicStyles.tableHeadCell}>Item</th>
-            <th style={futuristicStyles.tableHeadCell}>Category</th>
-            <th style={futuristicStyles.tableHeadCell}>Location</th>
-            <th style={futuristicStyles.tableHeadCell}>Description</th>
-            <th style={futuristicStyles.tableHeadCell}>Supplier</th>
-            <th style={futuristicStyles.tableHeadCell}>Price</th>
-            <th style={futuristicStyles.tableHeadCell}>Quantity</th>
-            <th style={futuristicStyles.tableHeadCell}>Modified</th>
-            <th style={futuristicStyles.tableHeadCell}>Re-stock</th>
-            <th style={futuristicStyles.tableHeadCell}>Out-going</th>
-             
-               
+              <th style={futuristicStyles.tableHeadCell}>Item image</th>
+              <th style={futuristicStyles.tableHeadCell}>Item</th>
+              <th style={futuristicStyles.tableHeadCell}>Category</th>
+              <th style={futuristicStyles.tableHeadCell}>Location</th>
+              <th style={futuristicStyles.tableHeadCell}>Description</th>
+              <th style={futuristicStyles.tableHeadCell}>Supplier</th>
+              <th style={futuristicStyles.tableHeadCell}>Price</th>
+              <th style={futuristicStyles.tableHeadCell}>Quantity</th>
+              <th style={futuristicStyles.tableHeadCell}>Modified</th>
+              <th style={futuristicStyles.tableHeadCell}>Re-stock</th>
+              <th style={futuristicStyles.tableHeadCell}>Out-going</th>
             </tr>
           </thead>
           <tbody>
@@ -318,179 +295,163 @@ const handleSubChange=(id, quantity)=>{
                 return null; // Render nothing for now, will be updated on next render
               }
               console.log(employeeFinancialData);
- // Calculate financial data if not available
- if (!employeeFinancialData) {
-  calculateFinancialData(_id, grossIncome, country);
-  return null; // Render nothing for now, will be updated on next render
-}
-console.log(employeeFinancialData);
+              // Calculate financial data if not available
+              if (!employeeFinancialData) {
+                calculateFinancialData(_id, grossIncome, country);
+                return null; // Render nothing for now, will be updated on next render
+              }
+              console.log(employeeFinancialData);
 
-// Calculate Total Remuneration
-const monthlyRate =
-  employeeFinancialData.monthlySalary ;
-const totalRemuneration = (
-  monthlyRate   +
-  row.overtime +
-  row.allowance -
-  row.IOU
-).toFixed(2);
-   
-// Calculate net Remuneration
-const netRemuneration =
-monthlyRate +
-  parseFloat(row.overtime) +
-  parseFloat(row.allowance) -
-  parseFloat(row.IOU)         
-;
+              // Calculate Total Remuneration
+              const monthlyRate = employeeFinancialData.monthlySalary;
+              const totalRemuneration = (
+                monthlyRate +
+                row.overtime +
+                row.allowance -
+                row.IOU
+              ).toFixed(2);
 
-// Add the calculated remuneration to the total
-totalRemunerationForAll += netRemuneration;
-console.log('All:',totalRemunerationForAll)
+              // Calculate net Remuneration
+              const netRemuneration =
+                monthlyRate +
+                parseFloat(row.overtime) +
+                parseFloat(row.allowance) -
+                parseFloat(row.IOU);
+              // Add the calculated remuneration to the total
+              totalRemunerationForAll += netRemuneration;
+              console.log('All:', totalRemunerationForAll);
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
-                {exportMode === 1 ? (
+                  {exportMode === 1 ? (
                     ''
                   ) : (
                     <td style={futuristicStyles.tableBodyCell}>
-                    <img
-                      src={row.imagePath}
-                      alt=""
-                      style={futuristicStyles.avatar}
-                    />
-                  </td>
+                      <img src={row.imagePath} alt="" style={futuristicStyles.avatar} />
+                    </td>
                   )}
-                                
 
                   <td style={futuristicStyles.tableBodyRow}>
-              <Link
-                to={ `/employee-detail/${row._id}` }
-                style={{ textDecoration: 'none', color: 'white' }}
-              >
-                {' '}
-                { employeeName}
-              </Link>{' '}
-            </td>
-
-            <td style={futuristicStyles.tableBodyCell}>
-              <Link
-                to={ `/employee-detail/${row._id}` }
-                style={{
-                  color: '#ffff',
-                  textDecoration: 'none',
-                  backgroundImage: 'none',
-                }}
-              >
-                {row.designation.designation}
-              </Link>
-            </td>
-                                  
-                    <td style={futuristicStyles.tableBodyCell}>
-                  
-                    {toMoney(employeeFinancialData.monthlySalary)}
-                  </td>  
+                    <Link
+                      to={`/employee-detail/${row._id}`}
+                      style={{ textDecoration: 'none', color: 'white' }}
+                    >
+                      {' '}
+                      {employeeName}
+                    </Link>{' '}
+                  </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-              {toMoney(row.allowance ? row.allowance : '0.00')}
-            </td>
-            <td style={futuristicStyles.tableBodyCell}>{toMoney(row.overtime)}</td>
-            <td style={futuristicStyles.tableBodyCell}>{toMoney(row.IOU)}</td>
-            <td style={futuristicStyles.tableBodyCell}>{toMoney(row.location)}</td>
-            <td style={futuristicStyles.tableBodyCell}>{toMoney(row.I)}</td>
-            
-      <td style={futuristicStyles.tableBodyCell}>
-              <input
-                type="number"
-                style={{
-                  width: '50px',
-                  padding: '5px',
-                  border: 'none',
-                  borderBottom: '1px solid #ddd',
-                  background: 'transparent',
-                  color: 'white',
-                }}
-                value={rowInputValues[row._id]?.add || ''}
-                onChange={(e) => handleAddInputChange(row._id, e.target.value)}
-              />
-              <IconButton
-                onClick={() => handleAddChange(row._id, row.quantity)}
-                style={{ color: '#26a69a' }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-plus"
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#26a69a"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-             +
-                </svg>
-              </IconButton>
-            </td>
-            <td style={futuristicStyles.tableBodyCell}>
-              <input
-                type="number"
-                style={{
-                  width: '50px',
-                  padding: '5px',
-                  border: 'none',
-                  borderBottom: '1px solid #ddd',
-                  background: 'transparent',
-                  color: 'white',
-                }}
-                value={rowInputValues[row._id]?.minus || ''}
-                onChange={(e) => handleMinusInputChange(row._id, e.target.value)}
-              />
-              <IconButton
-                onClick={() => handleSubChange(row._id, row.quantity)}
-                style={{ color: '#e57373' }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-transfer-out"
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#e57373"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                -
-                </svg>
-              </IconButton>
-            </td>  
-          
+                    <Link
+                      to={`/employee-detail/${row._id}`}
+                      style={{
+                        color: '#ffff',
+                        textDecoration: 'none',
+                        backgroundImage: 'none',
+                      }}
+                    >
+                      {row.designation.designation}
+                    </Link>
+                  </td>
+
+                  <td style={futuristicStyles.tableBodyCell}>
+                    {toMoney(employeeFinancialData.monthlySalary)}
+                  </td>
+
+                  <td style={futuristicStyles.tableBodyCell}>
+                    {toMoney(row.allowance ? row.allowance : '0.00')}
+                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.overtime)}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.IOU)}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.location)}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.I)}</td>
+
+                  <td style={futuristicStyles.tableBodyCell}>
+                    <input
+                      type="number"
+                      style={{
+                        width: '50px',
+                        padding: '5px',
+                        border: 'none',
+                        borderBottom: '1px solid #ddd',
+                        background: 'transparent',
+                        color: 'white',
+                      }}
+                      value={rowInputValues[row._id]?.add || ''}
+                      onChange={(e) => handleAddInputChange(row._id, e.target.value)}
+                    />
+                    <IconButton
+                      onClick={() => handleAddChange(row._id, row.quantity)}
+                      style={{ color: '#26a69a' }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-plus"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#26a69a"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        +
+                      </svg>
+                    </IconButton>
+                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>
+                    <input
+                      type="number"
+                      style={{
+                        width: '50px',
+                        padding: '5px',
+                        border: 'none',
+                        borderBottom: '1px solid #ddd',
+                        background: 'transparent',
+                        color: 'white',
+                      }}
+                      value={rowInputValues[row._id]?.minus || ''}
+                      onChange={(e) => handleMinusInputChange(row._id, e.target.value)}
+                    />
+                    <IconButton
+                      onClick={() => handleSubChange(row._id, row.quantity)}
+                      style={{ color: '#e57373' }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-transfer-out"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#e57373"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        -
+                      </svg>
+                    </IconButton>
+                  </td>
                 </tr>
               );
             })}
 
             <tr>
-            <td colSpan="8" style={{ textAlign: 'right' }}> 
-              <strong>Total:</strong>
-            </td>
-            <td style={{ textAlign: 'center' }}>
-              {/* {toMoney(totalRemunerationForAll.toFixed(2)/2) } */}
-            </td>
-          </tr>
-
+              <td colSpan="8" style={{ textAlign: 'right' }}>
+                <strong>Total:</strong>
+              </td>
+              <td style={{ textAlign: 'center' }}>
+                {/* {toMoney(totalRemunerationForAll.toFixed(2)/2) } */}
+              </td>
+            </tr>
           </tbody>
-          
         </table>
-        
       </div>
-      <br/>
+      <br />
       {/* Pagination controls */}
       <div>
-        <button
-          onClick={() => setPage(Math.max(0, page - 1))}
-          disabled={page === 0}
-        >
+        <button onClick={() => setPage(Math.max(0, page - 1))} disabled={page === 0}>
           Previous
         </button>
         <span>
@@ -518,16 +479,13 @@ export default function MainPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
-  };   
+  };
 
   return (
     <div style={containerStyle}>
-      <h1 style={{ color: '#6082B6' }}>Inventory Sheet</h1>       
-          
+      <h1 style={{ color: '#6082B6' }}>Inventory Sheet</h1>
+
       <InventoryTable drawer={toggleSidebar} />
-     
     </div>
   );
 }
-
- 
