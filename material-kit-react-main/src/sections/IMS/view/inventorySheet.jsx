@@ -2,9 +2,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
-
+import Container from '@mui/material/Container';
 import { useDownloadExcel } from 'react-export-table-to-excel';
-
+import Scrollbar from 'src/components/scrollbar';
 import { getAllInventory } from 'src/Services/ProcureServices/inventorySlice';
 
 import { Clear, FileCopy } from '@mui/icons-material';
@@ -469,23 +469,17 @@ const InventoryTable = ({ drawer }) => {
 };
 
 export default function MainPage() {
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center', // Horizontally center the content
-    justifyContent: 'center', // Vertically center the content
-    // height: '75vh', // Set the height of the container to full viewport height
-  };
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    <div style={containerStyle}>
-      <h1 style={{ color: '#6082B6' }}>Inventory Sheet</h1>
-
-      <InventoryTable drawer={toggleSidebar} />
-    </div>
+    <Container>
+        
+      <Scrollbar>
+        <InventoryTable drawer={toggleSidebar} />
+      </Scrollbar>
+    </Container>
   );
 }
