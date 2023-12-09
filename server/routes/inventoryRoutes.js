@@ -25,7 +25,7 @@ const {
   .get(getOneInventory);
  
   router
-  .route('/all-inventory/:email/:projectname')
+  .route('/all-inventory/:email')
   .get(getAllInventory )
 
    

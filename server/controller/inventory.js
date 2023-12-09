@@ -51,23 +51,30 @@ exports.createInventoryPool =  asyncHandler(async (req, res, next) => {
 })
 })
 
-// @desc Get all inventory
-//@routes Get/api/v1/inventory
-//@acess  Public
-exports.getAllInventory =  asyncHandler(async (req, res, next) => {
-  const email = req.params.email
-  const projectName = req.params.projectname
-  console.log("from inventory-frontend =>",email,projectName)
-    Inventory.find({email:email, projectName:projectName}, function(err, inventory){
-    
-        if(err){
+ // @desc Get all inventory
+// @routes Get/api/v1/inventory
+// @acess Public
+exports.getAllInventory = asyncHandler(async (req, res, next) => {
+    try {
+      const email = req.params.email;
+      // const projectName = req.params.projectname
+      console.log("from inventory-frontend =>", email);
+  
+      Inventory.find({ email: email }, function (err, inventory) {
+        if (err) {
           res.status(500);
           res.send(err);
-        } else {   
+        } else {
           res.json(inventory);
-        }                
+        }
       });
+    } catch (error) {
+      // Handle the error appropriately, log it, and send an error response
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
   });
+  
              
 // @desc Get Total Inventory
 //@routes Get/api/v1/inventory/total
