@@ -157,7 +157,7 @@ const InventoryTable = ({ drawer }) => {
   }, [dispatch, userEmail, dateOffset]);
 
  // Retrieve inventory data from inventorySlice
-const { inventory } = useSelector((state) => state.inventory);
+ const { inventory, isLoading, isError, message } = useSelector(state => state.inventory);
    console.log('all inventory:',inventory)
   // search function
   const requestSearch = (searchedVal) => {
