@@ -1,14 +1,38 @@
  /* eslint-disable */
 
 import React from 'react';
-import { Container, Typography, Button, Stack, useMediaQuery } from '@mui/material';
+import {
+  Container,
+  Typography,
+  Button,
+  Stack,
+  useMediaQuery,
+  Grid,
+  Paper,
+  makeStyles,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 import Scrollbar from 'src/components/scrollbar';
  import InventorySheet from './inventorySheet';  
 import { Icon } from '@iconify/react';
 import Iconify from 'src/components/iconify';
 
+
+const useStyles = makeStyles((theme) => ({
+  buttonContainer: {
+    marginBottom: theme.spacing(2),
+  },
+  button: {
+    marginBottom: theme.spacing(2),
+  },
+  inventorySheetContainer: {
+    padding: theme.spacing(2),
+  },
+}));
+
 const IMSPage = () => {
+  
+  const classes = useStyles();
   const handleLowStockAlerts = () => {
     // Add logic for Low Stock Alerts
   };
@@ -115,7 +139,7 @@ const IMSPage = () => {
       </Grid>
     </Grid>
   </Container>
- 
+ y
   );
 };
 
