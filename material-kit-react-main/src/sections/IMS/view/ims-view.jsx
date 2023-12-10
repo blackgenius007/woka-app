@@ -1,38 +1,14 @@
  /* eslint-disable */
 
 import React from 'react';
-import {
-  Container,
-  Typography,
-  Button,
-  Stack,
-  useMediaQuery,
-  Grid,
-  Paper,
-  makeStyles,
-} from '@mui/material';
+import { Container, Typography, Button, Stack, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Scrollbar from 'src/components/scrollbar';
  import InventorySheet from './inventorySheet';  
 import { Icon } from '@iconify/react';
 import Iconify from 'src/components/iconify';
 
-
-const useStyles = makeStyles((theme) => ({
-  buttonContainer: {
-    marginBottom: theme.spacing(2),
-  },
-  button: {
-    marginBottom: theme.spacing(2),
-  },
-  inventorySheetContainer: {
-    padding: theme.spacing(2),
-  },
-}));
-
 const IMSPage = () => {
-  
-  const classes = useStyles();
   const handleLowStockAlerts = () => {
     // Add logic for Low Stock Alerts
   };
@@ -46,14 +22,14 @@ const IMSPage = () => {
   return (
 
     <Container>
-    <div className={classes.buttonContainer}>
+    <div style={{ marginBottom: '16px' }}>
       <Typography variant="h4">Inventory Management System</Typography>
-         <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={3} alignItems="center">
-          <Typography variant="h4">Inventory Management System</Typography>
+           <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={3} alignItems="center">
+      <Typography variant="h4">Inventory Management System</Typography>
 
-         {/* Add button for creating a new inventory item */}
-         <Link to="/new-inventory-item">
-      <Button
+        {/* Add button for creating a new inventory item */}
+     <Link to="/new-inventory-item">
+       <Button
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }}
           >
@@ -126,20 +102,21 @@ const IMSPage = () => {
 
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
-        <Paper className={classes.inventorySheetContainer}>
+        <Paper style={{ padding: '16px' }}>
           <InventorySheet />
         </Paper>
       </Grid>
 
       {/* Add another grid item for the second column */}
       <Grid item xs={12} md={6}>
-        <Paper className={classes.inventorySheetContainer}>
-        <InventorySheet />
+        <Paper style={{ padding: '16px' }}>
+          {/* Add another component here if needed */}
         </Paper>
       </Grid>
     </Grid>
   </Container>
- y
+
+ 
   );
 };
 
