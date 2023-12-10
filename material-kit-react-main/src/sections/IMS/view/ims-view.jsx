@@ -3,12 +3,34 @@
 import React from 'react';
 import { Container, Typography, Button, Stack, useMediaQuery,Grid,Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
+import CollectionSetup from './Data-collection/collectionSetup'
 import Scrollbar from 'src/components/scrollbar';
  import InventorySheet from './inventorySheet';  
 import { Icon } from '@iconify/react';
 import Iconify from 'src/components/iconify';
 
 const IMSPage = () => {
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleCreateCollectPoint = (collectPoint) => {
+    // Handle the logic for creating a collection point
+    // This can include making an API call to your backend
+    console.log('Creating collection point:', collectPoint);
+    // Close the popover
+    setAnchorEl(null);
+  };
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
   const handleLowStockAlerts = () => {
     // Add logic for Low Stock Alerts
   };
@@ -116,18 +138,33 @@ const IMSPage = () => {
     </Grid>
     <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Button
-            variant="contained"
-            style={{ backgroundColor: '#FF3366', color: 'white' }}
-            fullWidth
-            onClick={() => {
-              // Add logic for 'Create data collection point'
-            }}
-          >
-            Create Data Collection Point
-          </Button>
+        <Button
+          variant="contained"
+          style={{ backgroundColor: '#0096FF', color: 'white' }}
+          onClick={handlePopoverOpen}
+        >
+          Create Collection Point
+        </Button>
         </Grid>
       </Grid>
+      {/* Popover for the Create Collection Point form */}
+      <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handlePopoverClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+        >
+          <Paper style={{ padding: '16px' }}>
+            <CollectionSetup onCreateCollectPoint={handleCreateCollectPoint} />
+          </Paper>
+        </Popover>
   </Container>
 
  
