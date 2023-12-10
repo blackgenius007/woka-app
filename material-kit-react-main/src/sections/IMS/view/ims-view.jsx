@@ -23,7 +23,7 @@ const IMSPage = () => {
 
     <Container>
     <div style={{ marginBottom: '16px' }}>
-      <Typography variant="h4">Inventory Management System</Typography>
+     
            <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={3} alignItems="center">
       <Typography variant="h4">Inventory Management System</Typography>
 
