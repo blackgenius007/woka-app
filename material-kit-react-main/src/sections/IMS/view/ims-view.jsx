@@ -33,7 +33,7 @@ const IMSPage = () => {
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }}
           >
-            New Inventory Item
+            New Inventory 
           </Button>
         </Link>
 
