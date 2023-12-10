@@ -139,8 +139,9 @@ const IMSPage = () => {
     <Grid container spacing={2}>
         <Grid item xs={12}>
         <Button
-          variant="contained"
-          style={{ backgroundColor: '#0096FF', color: 'white' }}
+            variant="contained"
+            style={{ backgroundColor: '#FF3366', color: 'white' }}
+            fullWidth
           onClick={handlePopoverOpen}
         >
           Create Collection Point
