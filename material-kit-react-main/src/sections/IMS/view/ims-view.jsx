@@ -114,6 +114,20 @@ const IMSPage = () => {
         </Paper>
       </Grid>
     </Grid>
+    <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: '#FF3366', color: 'white' }}
+            fullWidth
+            onClick={() => {
+              // Add logic for 'Create data collection point'
+            }}
+          >
+            Create Data Collection Point
+          </Button>
+        </Grid>
+      </Grid>
   </Container>
 
  
