@@ -20,13 +20,16 @@ const IMSPage = () => {
   const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
   return (
-    <Container>
-      <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={3} alignItems="center">
-        <Typography variant="h4">Inventory Management System</Typography>
 
-        {/* Add button for creating a new inventory item */}
-        <Link to="/new-inventory-item">
-          <Button
+    <Container>
+    <div className={classes.buttonContainer}>
+      <Typography variant="h4">Inventory Management System</Typography>
+         <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={3} alignItems="center">
+          <Typography variant="h4">Inventory Management System</Typography>
+
+         {/* Add button for creating a new inventory item */}
+         <Link to="/new-inventory-item">
+      <Button
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }}
           >
@@ -45,7 +48,7 @@ const IMSPage = () => {
             to="/order-management"
             fullWidth={isSmallScreen}
           >
-            Order Management
+            Inventory records
           </Button>
 
           <Button
@@ -95,12 +98,24 @@ const IMSPage = () => {
           </Button>
         </Stack>
       </Stack>
-<br/>
-      {/* Display the current inventory table */}
-      <Scrollbar>
-        <InventorySheet /> 
-      </Scrollbar>
-    </Container>
+    </div>
+
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={6}>
+        <Paper className={classes.inventorySheetContainer}>
+          <InventorySheet />
+        </Paper>
+      </Grid>
+
+      {/* Add another grid item for the second column */}
+      <Grid item xs={12} md={6}>
+        <Paper className={classes.inventorySheetContainer}>
+        <InventorySheet />
+        </Paper>
+      </Grid>
+    </Grid>
+  </Container>
+ 
   );
 };
 
