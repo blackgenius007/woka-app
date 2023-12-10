@@ -1,7 +1,7 @@
  /* eslint-disable */
 
 import React from 'react';
-import { Container, Typography, Button, Stack, useMediaQuery,Grid } from '@mui/material';
+import { Container, Typography, Button, Stack, useMediaQuery,Grid,Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Scrollbar from 'src/components/scrollbar';
  import InventorySheet from './inventorySheet';  
