@@ -1,6 +1,6 @@
  /* eslint-disable */
 
-import React from 'react';
+import React,{useState} from 'react';
 import { Container, Typography, Button, Stack, useMediaQuery,Grid,Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 import CollectionSetup from './Data-collection/collectionSetup'
