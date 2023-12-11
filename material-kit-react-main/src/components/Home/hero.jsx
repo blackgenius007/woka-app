@@ -1,4 +1,4 @@
-/* eslint-disable */
+ /* eslint-disable */
 import React from 'react';
 
 function Hero() {
@@ -7,6 +7,7 @@ function Hero() {
       style={{
         fontFamily: "'Poppins', sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana",
         fontSize: '16px',
+        backgroundColor: 'white', // Add this line to set a white background
       }}
     >
       <section
