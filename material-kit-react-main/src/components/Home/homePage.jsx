@@ -14,7 +14,7 @@ function home() {
   return (
     <div>
       <Navbar />
-      <HeroSection />
+      {/* <HeroSection /> */}
       {/* <Navbar />
       <HeroBanner />
         <Features />
