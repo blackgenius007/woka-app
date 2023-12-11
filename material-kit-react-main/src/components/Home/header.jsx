@@ -14,15 +14,16 @@ const LandingPage = () => {
           </div>
           <nav style={{ flex: '1', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }} className="main-navgation">
   <div className="nav-links">
-    <a href="#features" style={{ margin: '0 20px', color: '#fff', textDecoration: 'none' }}>Features</a>
-    <a href="#pricing" style={{ margin: '0 20px', color: '#fff', textDecoration: 'none' }}>Pricing</a>
-    <a href="#resources" style={{ margin: '0 20px', color: '#fff', textDecoration: 'none' }}>Resources</a>
+    <a href="#features" style={{ margin: '0 20px', color: '#35323e', textDecoration: 'none' }}>Features</a>
+    <a href="#pricing" style={{ margin: '0 20px', color: '#35323e', textDecoration: 'none' }}>Pricing</a>
+    <a href="#resources" style={{ margin: '0 20px', color: '#35323e', textDecoration: 'none' }}>Resources</a>
   </div>
   <div className="nav-buttons">
-    <a href="#" className="log-in" style={{ color: '#fff', margin: '0 20px', textDecoration: 'none' }}>Login</a>
-    <a href="#" className="sign-up btn btn-sm" style={{ color: 'white', textDecoration: 'none' }}>Sign Up</a>
+    <a href="#" className="log-in" style={{ color: '#35323e', margin: '0 20px', textDecoration: 'none' }}>Login</a>
+    <a href="#" className="sign-up btn btn-sm" style={{ color: '#35323e', textDecoration: 'none' }}>Sign Up</a>
   </div>
 </nav>
+
           <div className="burger-menu">
             <i className="fa-regular fa-bars icon"></i>
           </div>
