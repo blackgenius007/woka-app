@@ -6,15 +6,18 @@ const upload = multer();
 const {
   register,
   login,
+  addCollectorPoint,
   fogotPassword,
   resetPassword,
   updateDetails,
   getUserList,
-  addDepartment
+  addDepartment,
+
 } = require('../controller/auth');
 
 router.post('/register', register);
 router.post('/login', login);
+router.post('/dcollector',addCollectorPoint);
 router.get('/users/:ownerId', getUserList);
 router.put('/updatedetails', updateDetails);
 router.post('/forgotpassword', fogotPassword);

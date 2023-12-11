@@ -9,7 +9,7 @@ const crypto = require('crypto');
 const asyncHandler = require('express-async-handler');
 const sendEmail = require('../utils/sendEmail'); 
 const User = require('../models/User');
-const ErrorResponse = require('../utils/errorResponse');
+const ErrorResponse = require('../utils/errorResponse'); 
 
 // @desc  Register new user
 // @route   POST /api/users
@@ -371,6 +371,116 @@ const addDepartment = asyncHandler(async (req, res, next) => {
   }
 });
 
+// @desc create collector point
+//@routes Get/api/v1/dcollector
+//@acess  Public
+
+const addCollectorPoint = asyncHandler(async (req, res, next) => {
+  try {
+    const { employeeNumber, tagName,ownerEmail } = req.body;
+
+    // Generate a passcode (you need to implement or import this function)
+    const passcode = `${GenerateCode(4)}`;
+
+    // Create a new entry for the collection point
+    const collectionPointEntry = {
+      passcode,
+      employeeNumber,
+      tagName,
+    };
+
+    // Find the user by some identifier (e.g., user ID or email)
+    const userEmail = req.user.ownerEmail; // Assuming you have a user in the request after authentication
+
+    // Update the user with the new collection point entry
+    const updatedUser = await User.findOneAndUpdate(
+      { email: userEmail },
+      { $push: { collectionPointDetails: collectionPointEntry } },
+      { new: true }
+    );
+    
+    res.json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// @desc update collector point
+//@routes Get/api/v1/update-dcollector
+//@acess  Public
+
+const updateCollectorPoint = asyncHandler(async (req, res, next) => {
+  try {
+    const { passcode, newPasscode } = req.body;
+
+    // Find the user by email
+    const userEmail = req.user.email; // Assuming you have a user in the request after authentication
+
+    // Update the specific entry in the collectionPointDetails array
+    const updatedUser = await User.findOneAndUpdate(
+      {
+        email: userEmail,
+        'collectionPointDetails.passcode': passcode,
+      },
+      {
+        'collectionPointDetails.$.passcode': newPasscode,
+      },
+      { new: true }
+    );
+
+    // Check if the entry was found and updated
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'Entry not found' });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
+// @desc update collector point
+//@routes Get/api/v1/delete-dcollector
+//@acess  Public
+
+const deleteCollectorPoint = asyncHandler(async (req, res, next) => {
+  const { email, passcodeToDelete } = req.body;
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email });
+
+    // If user not found, return an error
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Find the index of the entry with the provided passcode in the array
+    const entryIndex = user.collectionPointDetails.findIndex(
+      (entry) => entry.passcode === passcodeToDelete
+    );
+
+    // If entry not found, return an error
+    if (entryIndex === -1) {
+      return res.status(404).json({ message: 'Entry not found' });
+    }
+
+    // Remove the entry from the array
+    user.collectionPointDetails.splice(entryIndex, 1);
+
+    // Save the updated user document
+    await user.save();
+
+    res.status(200).json({ message: 'Entry deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+ 
+});
+
 
 
 // const addDepartment = asyncHandler(async (req, res, next) => {
@@ -411,5 +521,6 @@ module.exports = {
   resetPassword,
   updateDetails,
   getUserList,
-  addDepartment
+  addDepartment,
+  addCollectorPoint
 };

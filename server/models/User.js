@@ -73,6 +73,22 @@ const UserSchema = new Schema({
     }
   
   ],
+  collectionPointDetails: [
+    {
+      passcode: {
+        type: String,
+        required: true,
+      },
+      employeeNumber: {
+        type: String,
+        required: true,
+      },
+      tagName: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 iouLimit: {
   type: String,
   default: 30,
