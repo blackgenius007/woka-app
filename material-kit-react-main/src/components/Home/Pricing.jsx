@@ -2,70 +2,13 @@ import React from "react";
 
 function Pricing() {
   return (
-    <section id="pricing">
-      <div className="pricing-upper">
-        <div className="section-text__title-centered text-white">
-          Choose Your Very Best Pricing Plan
-        </div>
-      </div>
-      <div className="pricing-lower">
-        <div className="pricing-cards">
-          <div className="pricing-card">
-            <div className="pricing-card__header">
-              <span className="pricing-card__subtitle">2 years</span>
-              <div className="pricing-card__title">
-                $20<span> / month</span>
-              </div>
-            </div>
-            <ul className="pricing-card__features">
-              <li>Increase traffic 50%</li>
-              <li>E-mail support</li>
-              <li>10 Free Optimization</li>
-              <li>24/7 support</li>
-            </ul>
-            <a href="#pricing" className="pricing-card__btn">
-              Get started
-            </a>
-          </div>
-
-          <div className="pricing-card">
-            <div className="pricing-card__header">
-              <span className="pricing-card__subtitle">3 years</span>
-              <div className="pricing-card__title">
-                $18<span> / month</span>
-              </div>
-            </div>
-            <ul className="pricing-card__features">
-              <li>Increase traffic 50%</li>
-              <li>E-mail support</li>
-              <li>10 Free Optimization</li>
-              <li>24/7 support</li>
-            </ul>
-            <a href="#pricing" className="pricing-card__btn">
-              Get started
-            </a>
-          </div>
-
-          <div className="pricing-card">
-            <div className="pricing-card__header">
-              <span className="pricing-card__subtitle">4 years</span>
-              <div className="pricing-card__title">
-                $14<span> / month</span>
-              </div>
-            </div>
-            <ul className="pricing-card__features">
-              <li>Increase traffic 50%</li>
-              <li>E-mail support</li>
-              <li>10 Free Optimization</li>
-              <li>24/7 support</li>
-            </ul>
-            <a href="#pricing" className="pricing-card__btn">
-              Get started
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+      
+     <section className="pricing" id="pricing" style={{ padding: "50px 0", background: "#3b3054 url(../images/bg-boost-desktop.svg) no-repeat right", backgroundSize: "cover" }}>
+     <div className="container" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%" }}>
+       <h2 style={{ color: "white", marginBottom: "20px" }}>Boost your links today</h2>
+       <a href="#" className="btn btn-lg" style={{ display: "inline-block", color: "white", backgroundColor: "#2acfcf", textTransform: "capitalize", fontWeight: "700", border: "none", outline: "none", cursor: "pointer", borderRadius: "100px", transition: "0.3s", padding: "12px 36px" }}>Get Started</a>
+     </div>
+   </section>
   );
 }
 
