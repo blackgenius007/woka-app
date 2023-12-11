@@ -49,7 +49,7 @@ function Hero() {
         </div>
         <div className="landing-image" style={{ position: 'relative', right: '-70px' }}>
           <img
-            src="https://raw.githubusercontent.com/MohamedAridah/frontendmentor_url-shortening-api/main/images/illustration-working.svg"
+            src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
             alt="Working Illustration"
             style={{ width: '100%' }}
           />
