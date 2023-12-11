@@ -1,7 +1,7 @@
  /* eslint-disable */ 
 import React from 'react';
 import HeroSection from './heroSection';
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./header";
 import HeroBanner from "./HeroBanner";
 import Features  from "./features";
 import Services from "./Services";
@@ -13,6 +13,7 @@ import Footer from "./Footer/footer";
 function home() {
   return (
     <div>
+      <Navbar />
       <HeroSection />
       {/* <Navbar />
       <HeroBanner />
