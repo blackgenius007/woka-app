@@ -22,7 +22,7 @@ function Hero() {
       >
         <div className="landing-text" style={{ flex: 1, minWidth: '465px' }}>
           <h1 style={{ width: '100%', fontSize: '3.9em', lineHeight: '1.15' }}>
-            More than just shorter links
+          Empower your organization with seamless efficiency
           </h1>
           <p style={{ fontSize: '18px', maxWidth: '500px', margin: '0 0 29.41176px' }}>
             Build your brand’s recognition and get detailed insights on how your links are
