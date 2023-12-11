@@ -12,17 +12,17 @@ const LandingPage = () => {
               <img src="https://raw.githubusercontent.com/MohamedAridah/frontendmentor_url-shortening-api/main/images/logo.svg" alt="" style={{ height: "30px" }} />
             </a>
           </div>
-          <nav style={{ flex: 1, gap: "0" }} className="main-navgation flex-between flex-ver-top">
-            <div className="nav-links">
-              <a href="#features">Features</a>
-              <a href="#pricing">Pricing</a>
-              <a href="#resources">Resources</a>
-            </div>
-            <div className="nav-buttons">
-              <a href="#" className="log-in">Login</a>
-              <a href="#" className="sign-up btn btn-sm">Sign Up</a>
-            </div>
-          </nav>
+          <nav style={{ flex: '1', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }} className="main-navgation">
+  <div className="nav-links">
+    <a href="#features" style={{ margin: '0 20px', color: '#fff', textDecoration: 'none' }}>Features</a>
+    <a href="#pricing" style={{ margin: '0 20px', color: '#fff', textDecoration: 'none' }}>Pricing</a>
+    <a href="#resources" style={{ margin: '0 20px', color: '#fff', textDecoration: 'none' }}>Resources</a>
+  </div>
+  <div className="nav-buttons">
+    <a href="#" className="log-in" style={{ color: '#fff', margin: '0 20px', textDecoration: 'none' }}>Login</a>
+    <a href="#" className="sign-up btn btn-sm" style={{ color: 'white', textDecoration: 'none' }}>Sign Up</a>
+  </div>
+</nav>
           <div className="burger-menu">
             <i className="fa-regular fa-bars icon"></i>
           </div>
