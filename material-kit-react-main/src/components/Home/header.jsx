@@ -7,9 +7,9 @@ const LandingPage = () => {
       style={{
         fontFamily: "'Poppins', sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana",
         fontSize: '16px',
+        backgroundColor: 'white', // Add this line to set a white background
       }}
     >
-      {/* Header */}
       <header style={{ padding: '45px 0' }}>
         <div
           style={{
