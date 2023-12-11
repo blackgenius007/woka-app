@@ -22,7 +22,7 @@ function Hero() {
       >
         <div className="landing-text" style={{ flex: 1, minWidth: '465px' }}>
           <h1 style={{ width: '100%', fontSize: '3.9em', lineHeight: '1.15' }}>
-            Empower Your Business, Seamless Efficiency.
+          Seamless efficiency, all-in-one solution.
           </h1>
           <p style={{ fontSize: '18px', maxWidth: '500px', margin: '0 0 29.41176px' }}>
             Streamline employee management, innovate inventory, breeze through procurement. Elevate

@@ -62,12 +62,19 @@ const LandingPage = () => {
                 Login
               </a>
               <a
-                href="#"
-                className="sign-up btn btn-sm"
-                style={{ color: '#35323e', textDecoration: 'none' }}
-              >
-                Sign Up
-              </a>
+  href="#"
+  className="sign-up btn btn-sm"
+  style={{
+    color: '#35323e',
+    textDecoration: 'none',
+    display: 'inline-block',
+    backgroundColor: 'lightgray', // Add a background color for visibility
+    padding: '8px 16px', // Add padding for better appearance
+    borderRadius: '4px', // Optional: Add border-radius for rounded corners
+  }}
+>
+  Sign Up
+</a>
             </div>
           </nav>
 
