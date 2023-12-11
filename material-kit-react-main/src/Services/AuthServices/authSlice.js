@@ -69,6 +69,23 @@ export const saveDepartment = createAsyncThunk(
   }
 );
 
+// New async thunk for creating data collection point
+export const createDataCollectionPoint = createAsyncThunk(
+  'auth/createDataCollectionPoint',
+  async ({ employeeNumber, tag }, thunkAPI) => {
+    try {
+      const response = await authService.createDataCollectionPoint(employeeNumber, tag);
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -137,6 +154,19 @@ export const authSlice = createSlice({
         state.department = action.payload;
       })
       .addCase(saveDepartment.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      }) 
+      .addCase(createDataCollectionPoint.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createDataCollectionPoint.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        // Handle the response if needed
+      })
+      .addCase(createDataCollectionPoint.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
