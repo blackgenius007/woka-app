@@ -36,7 +36,7 @@ function Feature() {
               <input
                 type="text"
                 className="url-input"
-                placeholder="Shorten a link here..."
+                placeholder="Enter Data collector's passcode  ..."
                 autoComplete="off"
                 style={{
                   width: '100%',

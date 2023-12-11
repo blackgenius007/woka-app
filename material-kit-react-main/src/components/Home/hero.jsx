@@ -1,4 +1,4 @@
- /* eslint-disable */
+/* eslint-disable */
 import React from 'react';
 
 function Hero() {
@@ -22,11 +22,11 @@ function Hero() {
       >
         <div className="landing-text" style={{ flex: 1, minWidth: '465px' }}>
           <h1 style={{ width: '100%', fontSize: '3.9em', lineHeight: '1.15' }}>
-          Empower your organization with seamless efficiency
+            Empower Your Business, Seamless Efficiency.
           </h1>
           <p style={{ fontSize: '18px', maxWidth: '500px', margin: '0 0 29.41176px' }}>
-            Build your brand’s recognition and get detailed insights on how your links are
-            performing.
+            Streamline employee management, innovate inventory, breeze through procurement. Elevate
+            your operations effortlessly.
           </p>
           <a
             href="#url-shorten-form"
