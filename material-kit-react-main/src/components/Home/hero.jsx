@@ -13,18 +13,24 @@
         <style>
           {`
             @media (max-width: 768px) {
-              .landing {
-                flex-direction: column;
-                align-items: center;
-              }
               .landing-text {
-                text-align: center;
-                padding: 20px;
+                padding: 0 20px; /* Adjust padding for better visibility */
+              }
+              h1 {
+                font-size: 2.5em; /* Adjust font size for better visibility */
+                line-height: 1.2; /* Adjust line height for better visibility */
+                margin-bottom: 10px; /* Add margin for better spacing */
+              }
+              p {
+                font-size: 16px; /* Adjust font size for better visibility */
+                margin-bottom: 20px; /* Add margin for better spacing */
+              }
+              .landing {
+                flex-direction: column; /* Adjust flex direction for stacking on smaller screens */
+                align-items: center; /* Align items to the center on smaller screens */
               }
               .landing-image {
-                margin-top: 20px;
-                width: 100%;
-                text-align: center;
+                margin-top: 20px; /* Add margin for better spacing between text and image on smaller screens */
               }
             }
           `}
@@ -79,7 +85,6 @@
   }
   
   export default Hero;
-  
   
   
 
