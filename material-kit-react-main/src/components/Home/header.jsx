@@ -20,7 +20,7 @@ const LandingPage = () => {
           }}
           className="container"
         >
-          <div className=" ">
+          <div className=" .logo">
             <a href="#">
               <img
                 src="https://res.cloudinary.com/youseful-apps/image/upload/v1702375182/workfily_yql2vp.png"
@@ -57,6 +57,7 @@ const LandingPage = () => {
               <a
                 href="#"
                 className="log-in"
+                onClick={() => navigate('/login')}
                 style={{ color: '#35323e', margin: '0 20px', textDecoration: 'none' }}
               >
                 Login
