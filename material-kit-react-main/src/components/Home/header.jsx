@@ -25,7 +25,7 @@ const LandingPage = () => {
               <img
                 src="https://res.cloudinary.com/youseful-apps/image/upload/v1702375182/workfily_yql2vp.png"
                 alt=""
-                style={{ height: '30px' }}
+                style={{ height: '90px' }}
               />
             </a>
           </div>
