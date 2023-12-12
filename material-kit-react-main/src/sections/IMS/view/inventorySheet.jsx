@@ -146,10 +146,9 @@ const InventoryTable = ({ drawer }) => {
 // retrieve all employee from API
 useEffect(() => {
     // Ensure userEmail is defined and not an empty string before dispatching
-    if (userEmail && userEmail.trim() !== '') {
-      // Dispatch retrieveAllInventoryAction
+   
       dispatch(getAllInventory(userEmail));
-    }
+   
   }, [dispatch, userEmail]);
   
 
