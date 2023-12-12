@@ -55,7 +55,7 @@ const LandingPage = () => {
             </div>
             <div className="nav-buttons">
               <a
-                href="#"
+                href="/login"
                 className="log-in"
                 onClick={() => navigate('/login')}
                 style={{ color: '#35323e', margin: '0 20px', textDecoration: 'none' }}
