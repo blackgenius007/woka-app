@@ -75,7 +75,7 @@ function Feature() {
                 cursor: 'pointer',
               }}
             >
-              Shorten It!
+             connect!
             </button>
           </div>
           <div className="url-shorten-results"></div>
