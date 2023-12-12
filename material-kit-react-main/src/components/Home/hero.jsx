@@ -1,5 +1,7 @@
   /* eslint-disable */
-  import React from 'react';
+ /* eslint-disable */
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
 function Hero() {
   return (
@@ -16,12 +18,12 @@ function Hero() {
             .landing-text {
               padding: 0 20px; /* Adjust padding for better visibility */
             }
-            h1 {
+            .MuiTypography-h1 {
               font-size: 2.5em; /* Adjust font size for better visibility */
               line-height: 1.2; /* Adjust line height for better visibility */
               margin-bottom: 10px; /* Add margin for better spacing */
             }
-            p {
+            .MuiTypography-body1 {
               font-size: 16px; /* Adjust font size for better visibility */
               margin-bottom: 20px; /* Add margin for better spacing */
             }
@@ -46,13 +48,13 @@ function Hero() {
         }}
       >
         <div className="landing-text" style={{ flex: 1, minWidth: '465px' }}>
-          <h1 style={{ width: '100%', fontSize: '3.9em', lineHeight: '1.15' }}>
+          <Typography variant="h1">
             Seamless efficiency, all-in-one solution.
-          </h1>
-          <p style={{ fontSize: '18px', maxWidth: '500px', margin: '0 0 29.41176px' }}>
+          </Typography>
+          <Typography variant="body1">
             Streamline employee management, innovate inventory, breeze through procurement. Elevate
             your operations effortlessly.
-          </p>
+          </Typography>
           <a
             href="#url-shorten-form"
             className="btn btn-lg"
