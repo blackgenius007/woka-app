@@ -143,11 +143,15 @@ const InventoryTable = ({ drawer }) => {
   const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
   console.log(userEmail);
 
-  // retrieve all employee from API
-  useEffect(() => {
-    // Dispatch retrieveAllInventoryAction
-    dispatch(getAllInventory(userEmail));
+// retrieve all employee from API
+useEffect(() => {
+    // Ensure userEmail is defined and not an empty string before dispatching
+    if (userEmail && userEmail.trim() !== '') {
+      // Dispatch retrieveAllInventoryAction
+      dispatch(getAllInventory(userEmail));
+    }
   }, [dispatch, userEmail]);
+  
 
   // Retrieve inventory data from inventorySlice
   const { inventory, isLoading, isError, message } = useSelector((state) => state.inventory);
