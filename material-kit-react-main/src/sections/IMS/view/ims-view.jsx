@@ -1,23 +1,36 @@
- /* eslint-disable */
+/* eslint-disable */
 
-import React,{useState} from 'react';
-import { Container, Typography, Button, Stack, useMediaQuery,Grid,Paper,Popover } from '@mui/material';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  Container,
+  Typography,
+  Button,
+  Stack,
+  useMediaQuery,
+  Grid,
+  Paper,
+  Popover,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
-import CollectionSetup from './Data-collection/collectionSetup'
+import CollectionSetup from './Data-collection/collectionSetup';
 import Scrollbar from 'src/components/scrollbar';
- import InventorySheet from './inventorySheet';  
+import InventorySheet from './inventorySheet';
 import { Icon } from '@iconify/react';
+import { createDataCollectionPoint } from '../../Services/AuthServices/authSlice';
 import Iconify from 'src/components/iconify';
 
 const IMSPage = () => {
+  const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleCreateCollectPoint = (collectPoint) => {
-    // Handle the logic for creating a collection point
-    // This can include making an API call to your backend
     console.log('Creating collection point:', collectPoint);
-    // Close the popover
+    // Dispatch the createDataCollectionPoint action with the payload
+    dispatch(createDataCollectionPoint(collectPoint));
+
+    // Close the popover or perform any other logic as needed
     setAnchorEl(null);
   };
 
@@ -42,135 +55,125 @@ const IMSPage = () => {
   const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
   return (
-
     <Container>
-    <div style={{ marginBottom: '16px' }}>
-     
-           <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={3} alignItems="center">
-      <Typography variant="h4">Inventory Management System</Typography>
+      <div style={{ marginBottom: '16px' }}>
+        <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={3} alignItems="center">
+          <Typography variant="h4">Inventory Management System</Typography>
 
-        {/* Add button for creating a new inventory item */}
-     <Link to="/new-inventory-item">
-       <Button
-            variant="contained"
-            style={{ backgroundColor: '#0096FF', color: 'white' }}
-          >
-            New Inventory 
-          </Button>
-        </Link>
+          {/* Add button for creating a new inventory item */}
+          <Link to="/new-inventory-item">
+            <Button variant="contained" style={{ backgroundColor: '#0096FF', color: 'white' }}>
+              New Inventory
+            </Button>
+          </Link>
 
-        {/* Add buttons or icons for key elements */}
-        <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={2} width="100%">
-          <Button
-            variant="contained"
-            style={{ backgroundColor: '#00CC66', color: 'white' }}
-            startIcon={<Icon icon="vaadin:truck" />}
-            // Add link to Order Management page
-            component={Link}
-            to="/order-management"
-            fullWidth={isSmallScreen}
-          >
-            Inventory records
-          </Button>
+          {/* Add buttons or icons for key elements */}
+          <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={2} width="100%">
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#00CC66', color: 'white' }}
+              startIcon={<Icon icon="vaadin:truck" />}
+              // Add link to Order Management page
+              component={Link}
+              to="/order-management"
+              fullWidth={isSmallScreen}
+            >
+              Inventory records
+            </Button>
 
-          <Button
-            variant="contained"
-            style={{ backgroundColor: '#FF9900', color: 'white' }}
-            startIcon={<Icon icon="mdi:people-outline" />}
-            // Add link to Supplier Management page
-            component={Link}
-            to="/supplier-management"
-            fullWidth={isSmallScreen}
-          >
-            Supplier Management
-          </Button>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#FF9900', color: 'white' }}
+              startIcon={<Icon icon="mdi:people-outline" />}
+              // Add link to Supplier Management page
+              component={Link}
+              to="/supplier-management"
+              fullWidth={isSmallScreen}
+            >
+              Supplier Management
+            </Button>
 
-          <Button
-            variant="contained"
-            style={{ backgroundColor: '#FF3366', color: 'white' }}
-            startIcon={<Icon icon="fxemoji:barchart" />}
-            // Add link to Reports and Analytics page
-            component={Link}
-            to="/reports-analytics"
-            fullWidth={isSmallScreen}
-          >
-            Reports and Analytics
-          </Button>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#FF3366', color: 'white' }}
+              startIcon={<Icon icon="fxemoji:barchart" />}
+              // Add link to Reports and Analytics page
+              component={Link}
+              to="/reports-analytics"
+              fullWidth={isSmallScreen}
+            >
+              Reports and Analytics
+            </Button>
 
-          <Button
-            variant="contained"
-            style={{ backgroundColor: '#FF3366', color: 'white' }}
-            startIcon={<Icon icon="clarity:alert-line" />}
-            // Add link or handle Low Stock Alerts
-            onClick={handleLowStockAlerts}
-            fullWidth={isSmallScreen}
-          >
-            Low Stock Alerts
-          </Button>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#FF3366', color: 'white' }}
+              startIcon={<Icon icon="clarity:alert-line" />}
+              // Add link or handle Low Stock Alerts
+              onClick={handleLowStockAlerts}
+              fullWidth={isSmallScreen}
+            >
+              Low Stock Alerts
+            </Button>
 
-          <Button
-            variant="contained"
-            style={{ backgroundColor: '#FF3366', color: 'white' }}
-            startIcon={<Icon icon="fluent:alert-28-filled" />}
-            // Add link or handle Order Status Updates
-            onClick={handleOrderStatusUpdates}
-            fullWidth={isSmallScreen}
-          >
-            Order Status Updates
-          </Button>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#FF3366', color: 'white' }}
+              startIcon={<Icon icon="fluent:alert-28-filled" />}
+              // Add link or handle Order Status Updates
+              onClick={handleOrderStatusUpdates}
+              fullWidth={isSmallScreen}
+            >
+              Order Status Updates
+            </Button>
+          </Stack>
         </Stack>
-      </Stack>
-    </div>
+      </div>
 
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
-        <Paper style={{ padding: '16px' }}>
-          <InventorySheet />
-        </Paper>
-      </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Paper style={{ padding: '16px' }}>
+            <InventorySheet />
+          </Paper>
+        </Grid>
 
-      {/* Add another grid item for the second column */}
-      <Grid item xs={12} md={6}>
-        <Paper style={{ padding: '16px' }}>
-          {/* Add another component here if needed */}
-        </Paper>
+        {/* Add another grid item for the second column */}
+        <Grid item xs={12} md={6}>
+          <Paper style={{ padding: '16px' }}>{/* Add another component here if needed */}</Paper>
+        </Grid>
       </Grid>
-    </Grid>
-    <Grid container spacing={2}>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
-        <Button
+          <Button
             variant="contained"
             style={{ backgroundColor: '#FF3366', color: 'white' }}
             fullWidth
-          onClick={handlePopoverOpen}
-        >
-          Create Collection Point
-        </Button>
+            onClick={handlePopoverOpen}
+          >
+            Create Collection Point
+          </Button>
         </Grid>
       </Grid>
       {/* Popover for the Create Collection Point form */}
       <Popover
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handlePopoverClose}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-        >
-          <Paper style={{ padding: '16px' }}>
-            <CollectionSetup onCreateCollectPoint={handleCreateCollectPoint} />
-          </Paper>
-        </Popover>
-  </Container>
-
- 
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handlePopoverClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        <Paper style={{ padding: '16px' }}>
+          <CollectionSetup onCreateCollectPoint={handleCreateCollectPoint} />
+        </Paper>
+      </Popover>
+    </Container>
   );
 };
 
 export default IMSPage;
-
