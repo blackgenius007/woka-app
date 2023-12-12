@@ -23,7 +23,7 @@ const LandingPage = () => {
           <div className="logo">
             <a href="#">
               <img
-                src="https://raw.githubusercontent.com/MohamedAridah/frontendmentor_url-shortening-api/main/images/logo.svg"
+                src="https://res.cloudinary.com/youseful-apps/image/upload/v1702375182/workfily_yql2vp.png"
                 alt=""
                 style={{ height: '30px' }}
               />
