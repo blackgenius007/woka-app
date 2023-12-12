@@ -17,7 +17,7 @@ import CollectionSetup from './Data-collection/collectionSetup';
 import Scrollbar from 'src/components/scrollbar';
 import InventorySheet from './inventorySheet';
 import { Icon } from '@iconify/react';
-import { createDataCollectionPoint } from '../../Services/AuthServices/authSlice';
+import { createDataCollectionPoint } from 'src/Services/AuthServices/authSlice';
 import Iconify from 'src/components/iconify';
 
 const IMSPage = () => {
