@@ -14,17 +14,17 @@ function Hero() {
         className="landing"
         style={{
           display: 'flex',
+          flexDirection: 'column', // Updated to column for better mobile layout
           alignItems: 'center',
-          padding: '40px 0',
-          marginLeft: '11%',
+          padding: '40px 20px', // Adjusted padding for smaller screens
           overflowX: 'hidden',
         }}
       >
-        <div className="landing-text" style={{ flex: 1, minWidth: '465px' }}>
-          <h1 style={{ width: '100%', fontSize: '3.9em', lineHeight: '1.15' }}>
-          Seamless efficiency, all-in-one solution.
+        <div className="landing-text" style={{ minWidth: '100%', textAlign: 'center' }}>
+          <h1 style={{ fontSize: '3em', lineHeight: '1.15' }}>
+            Seamless efficiency, all-in-one solution.
           </h1>
-          <p style={{ fontSize: '18px', maxWidth: '500px', margin: '0 0 29.41176px' }}>
+          <p style={{ fontSize: '18px', maxWidth: '100%', margin: '20px 0' }}>
             Streamline employee management, innovate inventory, breeze through procurement. Elevate
             your operations effortlessly.
           </p>
@@ -48,11 +48,11 @@ function Hero() {
             Get Started
           </a>
         </div>
-        <div className="landing-image" style={{ position: 'relative', right: '-70px' }}>
+        <div className="landing-image" style={{ margin: '20px 0', textAlign: 'center' }}>
           <img
             src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
             alt="Working Illustration"
-            style={{ width: '100%' }}
+            style={{ width: '100%', maxWidth: '300px' }} // Adjusted image width for smaller screens
           />
         </div>
       </section>
