@@ -27,7 +27,7 @@
               }
               .landing {
                 flex-direction: column; /* Adjust flex direction for stacking on smaller screens */
-                align-items: flex-start; /* Align items to the start on smaller screens */
+                align-items: center; /* Align items to the center on smaller screens */
               }
               .landing-image {
                 margin-top: 20px; /* Add margin for better spacing between text and image on smaller screens */
@@ -41,7 +41,6 @@
             display: 'flex',
             alignItems: 'center',
             padding: '40px 0',
-            marginLeft: '11%',
             overflowX: 'hidden',
           }}
         >
@@ -86,6 +85,7 @@
   }
   
   export default Hero;
+  
   
 
 
