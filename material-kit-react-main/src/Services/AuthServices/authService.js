@@ -11,6 +11,8 @@ const API_URL_REGISTER = '/api/v1/auth/register';
 const API_URL_LOGIN = '/api/v1/auth/login';
 const API_URL_USERS_BY_ID = '/api/v1/auth/users';
 const API_URL_DEPARTMENT = '/api/v1/auth/department';
+const API_URL_CREATE_DATA_COLLECTION_POINT = '/api/v1/auth/dcollector';
+
 
 // Function to construct the base URL
 const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
@@ -56,6 +58,16 @@ const saveDepartment = async (email, department) => {
   const formData = new FormData();
   department.forEach((user) => formData.append('department', JSON.stringify(user)));
   const response = await axios.post(constructURL(`${API_URL_DEPARTMENT}/${email}`), formData);
+  return response.data;
+};
+
+// Function to create data collection point
+const createDataCollectionPoint = async (employeeNumber, tag) => {
+  console.log('collector-services=>',employeeNumber, tag)
+  const response = await axios.post(
+    constructURL(API_URL_CREATE_DATA_COLLECTION_POINT),
+    { employeeNumber, tag }
+  );
   return response.data;
 };
 
