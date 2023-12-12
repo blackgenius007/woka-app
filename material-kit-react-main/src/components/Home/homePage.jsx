@@ -1,20 +1,20 @@
-/* eslint-disable */
+ /* eslint-disable */
 import React from 'react';
-import HeroSection from './heroSection';
-import Navbar from './header';
-import HeroBanner from './HeroBanner';
+import Hidden from '@mui/material/Hidden';
+import Hero from './hero';  // Import your Hero component
 import Features from './feature';
-import Hero from './hero';
 import Pricing from './Pricing';
 import Footer from './Footer/footer';
 import Header from './header';
-// import Download from "./components/Download";
 
-function home() {
+function Home() {
   return (
     <div>
       <Header />
-      <Hero />
+      {/* Display Hero component only on screens larger than or equal to 'sm' (600px) */}
+      <Hidden smDown>
+        <Hero />
+      </Hidden>
       <Features />
       <Pricing />
       <Footer />
@@ -22,4 +22,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;
