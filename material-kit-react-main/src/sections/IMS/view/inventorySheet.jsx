@@ -143,10 +143,11 @@ const InventoryTable = ({ drawer }) => {
   const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
   console.log(userEmail);
 
-  //fetch attendance details
+  // retrieve all employee from API
   useEffect(() => {
-    dispatch(getAllInventory({ userEmail, dateOffset }));
-  }, [dispatch, userEmail, dateOffset]);
+    // Dispatch retrieveAllInventoryAction
+    dispatch(getAllInventory(userEmail));
+  }, [dispatch, userEmail]);
 
   // Retrieve inventory data from inventorySlice
   const { inventory, isLoading, isError, message } = useSelector((state) => state.inventory);
@@ -476,7 +477,6 @@ export default function MainPage() {
 
   return (
     <Container>
-        
       <Scrollbar>
         <InventoryTable drawer={toggleSidebar} />
       </Scrollbar>

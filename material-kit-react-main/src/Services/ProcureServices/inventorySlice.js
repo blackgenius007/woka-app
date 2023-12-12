@@ -18,6 +18,7 @@ const initialState = {
 export const getAllInventory = createAsyncThunk(
   'inventory/getAll',
   async ({ email}, thunkAPI) => {
+    console.log('slice-of-inventory')
     try {
       return await inventoryService.getAllInventory(email);
     } catch (error) {

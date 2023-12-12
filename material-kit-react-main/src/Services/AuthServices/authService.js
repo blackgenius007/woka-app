@@ -77,6 +77,7 @@ const authService = {
   login,
   retrieveUsers,
   saveDepartment,
+  createDataCollectionPoint
 };
 
 export default authService;
