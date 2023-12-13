@@ -13,10 +13,10 @@ const CollectPointForm = ({ userEmail }) => {
   });
   const { employeeNumber, tag } = collector;
 
-  const collectpoint = { employeeNumber, tag };
+  const collectpoint = { employeeNumber, tag,userEmail };
   const handleCreateCollectPoint = () => {
     // Dispatch collection point action
-    dispatch(createDataCollectionPoint({ collectpoint, userEmail }));
+    dispatch(createDataCollectionPoint({ collectpoint }));
   };
 
   const handleInputChange = (e) => {

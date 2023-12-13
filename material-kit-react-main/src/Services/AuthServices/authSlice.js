@@ -72,10 +72,10 @@ export const saveDepartment = createAsyncThunk(
 // New async thunk for creating data collection point
 export const createDataCollectionPoint = createAsyncThunk(
   'auth/createDataCollectionPoint',
-  async ({ collectpoint, userEmail }, thunkAPI) => {
-    console.log('collector-slice=>',collectpoint ,userEmail)
+  async ({ collectpoint }, thunkAPI) => {
+    console.log('collector-slice=>',collectpoint )
     try {
-      const response = await authService.createDataCollectionPoint(collectpoint,userEmail);
+      const response = await authService.createDataCollectionPoint(collectpoint);
       return response.data;
     } catch (error) {
       const message =
