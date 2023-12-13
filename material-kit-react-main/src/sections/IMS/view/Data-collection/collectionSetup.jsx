@@ -41,11 +41,11 @@ const CollectPointForm = ({ userEmail }) => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
-              name="mobileNumber"
-              label="Mobile Number"
+              name="tag"
+              label="Inventory location or Project name "
               variant="outlined"
               fullWidth
-              value={collector.mobileNumber}
+              value={collector.tag}
               onChange={handleInputChange}
               required
             />
