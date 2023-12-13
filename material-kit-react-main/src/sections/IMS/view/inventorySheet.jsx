@@ -25,6 +25,9 @@ import {
   updateEmployeeById,
   deleteEmployeeById,
 } from '../../../Services/HR-Services/employeeSlice';
+import {
+    getAllInventory 
+  } from 'src/Services/ProcureServices/inventorySlice';
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -189,7 +192,7 @@ const InventoryTable = ({ drawer }) => {
   const dispatch = useDispatch();
   const hiddenFileInput = React.useRef(null);
 
-  const { employees, isLoading, isError, message } = useSelector((state) => state.employees);
+  const { inventory, isLoading, isError, message } = useSelector((state) => state.inventory);
 
   const { user } = useSelector((state) => state.auth);
   console.log(employees);
@@ -241,7 +244,7 @@ const InventoryTable = ({ drawer }) => {
   useEffect(() => {
     // Function to update filteredRows based on search
     const updateFilteredRows = () => {
-      const filtered = employees.filter((row) => {
+      const filtered = inventory.filter((row) => {
         return Object.values(row).some((value) =>
           String(value).toLowerCase().includes(searched.toLowerCase())
         );
@@ -344,7 +347,7 @@ const InventoryTable = ({ drawer }) => {
   // retrieve all employee from API
   useEffect(() => {
     // Dispatch retrieveAllEmployee action
-    dispatch(retrieveAllEmployees(userEmail));
+    dispatch(getAllInventory(userEmail));
   }, [dispatch, userEmail]);
 
   if (isLoading) {

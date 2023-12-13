@@ -15,23 +15,40 @@ const initialState = {
 };
 
 // Retrieve all inventory
-export const getAllInventory = createAsyncThunk(
-  'inventory/getAll',
-  async ({ email}, thunkAPI) => {
-    console.log('slice-of-inventory')
-    try {
-      return await inventoryService.getAllInventory(email);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
+ 
+export const getAllInventory  = createAsyncThunk(
+    'inventory/getAll',
+    async (userEmail, thunkAPI) => {
+      try {
+        return await employeeService.getAllInventory(userEmail);
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        return thunkAPI.rejectWithValue(message);
+      }
     }
-  }
-);
+  );
+// export const getAllInventory = createAsyncThunk(
+//   'inventory/getAll',
+//   async ({ email}, thunkAPI) => {
+//     console.log('slice-of-inventory')
+//     try {
+//       return await inventoryService.getAllInventory(email);
+//     } catch (error) {
+//       const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 // Retrieve total inventory count
 export const getTotalInventory = createAsyncThunk(
@@ -227,19 +244,32 @@ export const inventorySlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAllInventory.pending, (state) => {
+    .addCase(getAllInventory.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getAllInventory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.inventory = action.payload;
+        state.employees = action.payload;
       })
       .addCase(getAllInventory.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
       })
+    //   .addCase(getAllInventory.pending, (state) => {
+    //     state.isLoading = true;
+    //   })
+    //   .addCase(getAllInventory.fulfilled, (state, action) => {
+    //     state.isLoading = false;
+    //     state.isSuccess = true;
+    //     state.inventory = action.payload;
+    //   })
+    //   .addCase(getAllInventory.rejected, (state, action) => {
+    //     state.isLoading = false;
+    //     state.isError = true;
+    //     state.message = action.payload;
+    //   })
       .addCase(getTotalInventory.pending, (state) => {
         state.isLoading = true;
       })
