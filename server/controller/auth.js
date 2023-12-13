@@ -378,7 +378,7 @@ const addDepartment = asyncHandler(async (req, res, next) => {
 const addCollectorPoint = asyncHandler(async (req, res, next) => {
   try {
     const { employeeNumber, tagName,ownerEmail } = req.body;
-
+console.log(employeeNumber, tagName,ownerEmail)
     // Generate a passcode (you need to implement or import this function)
     const passcode =   GenerateCode(4);
 

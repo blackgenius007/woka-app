@@ -17,7 +17,7 @@ const {
 
 router.post('/register', register);
 router.post('/login', login);
-router.post('/dcollector',addCollectorPoint);
+router.post('/dcollector/:userEmail',addCollectorPoint);
 router.get('/users/:ownerId', getUserList);
 router.put('/updatedetails', updateDetails);
 router.post('/forgotpassword', fogotPassword);
