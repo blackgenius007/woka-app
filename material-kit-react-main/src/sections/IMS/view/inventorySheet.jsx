@@ -137,16 +137,18 @@ const InventoryTable = ({ drawer }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+
+// retrieve all employee from API
+useEffect(() => {
+     
+   
   //user details
   const { role, email, ownerEmail } = useSelector((state) => state.auth.user.data);
   // user role
   const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
   console.log('inventory-userEmail=',userEmail);
 
-// retrieve all employee from API
-useEffect(() => {
-    // Ensure userEmail is defined and not an empty string before dispatching
-   
+
       dispatch(getAllInventory(userEmail));
    
   }, [dispatch, userEmail]);
