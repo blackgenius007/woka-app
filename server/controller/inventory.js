@@ -51,34 +51,44 @@ exports.createInventoryPool =  asyncHandler(async (req, res, next) => {
 })
 })
 
-   // @desc Get all inventory
+ // @desc Get all inventory
 // @routes Get/api/v1/inventory
 // @acess Public
+ 
 exports.getAllInventory = asyncHandler(async (req, res, next) => {
     try {
-      const email = req.params.email;
-      // const projectName = req.params.projectname
-      console.log("from inventory-frontend =>", email);
+      const { userEmail } = req.params;
+      console.log("inventory detail from front+>", userEmail);
   
-      // Wrap the MongoDB query in a Promise to handle errors
-      const inventory = await new Promise((resolve, reject) => {
-        Inventory.find({ email: email }, (err, data) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(data);
-          }
-        });
-      });
+      const inventory = await Inventory.find(
+        { $or: [{ email: userEmail }, { ownerEmail: userEmail }] },
+        null,
+        { sort: { name: 1 } }
+      ) 
   
       res.json(inventory);
     } catch (error) {
-      // Handle the error appropriately, log it, and send an error response
-      console.error(error);
-      res.status(500).send('Internal Server Error');
+      console.log(error);
+      res.status(500).send(error);
     }
-  });
+  });   
+
+
+
+// exports.getAllInventory = asyncHandler(async (req, res, next) => {
+//     try {
+//       const email = req.params.email;
+//       console.log("from inventory-frontend =>", email);
   
+//       // Use the exec method to execute the query and handle the result with a promise
+//       const inventory = await Inventory.find({ email: email }).exec();
+  
+//       res.json(inventory);
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).send('Internal Server Error');
+//     }
+//   });
   
              
 // @desc Get Total Inventory
