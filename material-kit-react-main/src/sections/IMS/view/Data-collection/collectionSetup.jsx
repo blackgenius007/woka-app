@@ -27,7 +27,7 @@ const CollectPointForm = ({ userEmail }) => {
   return (
     <div>
       <Container>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleCreateCollectPoint}>
           <Grid item xs={12} sm={6}>
             <TextField
               name="employeeNumber"
