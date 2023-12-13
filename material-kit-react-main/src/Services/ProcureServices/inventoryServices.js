@@ -24,7 +24,7 @@ const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
 // Get all inventory items
 const getAllInventory = async (email) => {
     console.log('retrievedInventory=>', email);
-    const response = await axios.get(constructURL(API_URL_RETRIEVE + `/${email}`));
+    const response = await axios.get(constructURL(API_URL_ALL_INVENTORY + `/${email}`));
     console.log('inventory retrieved =>', response);
     return response.data;
   };
