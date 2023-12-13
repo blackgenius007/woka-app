@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Container,
   Typography,
@@ -22,10 +22,16 @@ import Iconify from 'src/components/iconify';
 
 const IMSPage = () => {
   const dispatch = useDispatch();
+  //user details
+  const { ownerEmail, role } = useSelector((state) => state.auth.user.data);
+
+  // user role
+  const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
+  console.log(userEmail);
 
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleCreateCollectPoint = (collectPoint) => {
+  const handleCreateCollectPoint = (collectPoint, userEmail) => {
     console.log('Creating collection point:', collectPoint);
     // Dispatch the createDataCollectionPoint action with the payload
     dispatch(createDataCollectionPoint(collectPoint));
@@ -169,7 +175,7 @@ const IMSPage = () => {
         }}
       >
         <Paper style={{ padding: '16px' }}>
-          <CollectionSetup onCreateCollectPoint={handleCreateCollectPoint} />
+          <CollectionSetup userEmail={userEmail} />
         </Paper>
       </Popover>
     </Container>
