@@ -380,7 +380,7 @@ const addCollectorPoint = asyncHandler(async (req, res, next) => {
     const { employeeNumber, tagName,ownerEmail } = req.body;
 
     // Generate a passcode (you need to implement or import this function)
-    const passcode =   generateCode(4);
+    const passcode =   GenerateCode(4);
 
     // Create a new entry for the collection point
     const collectionPointEntry = {
