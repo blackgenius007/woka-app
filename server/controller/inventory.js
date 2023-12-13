@@ -51,7 +51,7 @@ exports.createInventoryPool =  asyncHandler(async (req, res, next) => {
 })
 })
 
- // @desc Get all inventory
+   // @desc Get all inventory
 // @routes Get/api/v1/inventory
 // @acess Public
 exports.getAllInventory = asyncHandler(async (req, res, next) => {
@@ -60,20 +60,25 @@ exports.getAllInventory = asyncHandler(async (req, res, next) => {
       // const projectName = req.params.projectname
       console.log("from inventory-frontend =>", email);
   
-      Inventory.find({ email: email }, function (err, inventory) {
-        if (err) {
-          res.status(500);
-          res.send(err);
-        } else {
-          res.json(inventory);
-        }
+      // Wrap the MongoDB query in a Promise to handle errors
+      const inventory = await new Promise((resolve, reject) => {
+        Inventory.find({ email: email }, (err, data) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(data);
+          }
+        });
       });
+  
+      res.json(inventory);
     } catch (error) {
       // Handle the error appropriately, log it, and send an error response
       console.error(error);
       res.status(500).send('Internal Server Error');
     }
   });
+  
   
              
 // @desc Get Total Inventory
