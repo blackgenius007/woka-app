@@ -141,7 +141,7 @@ const InventoryTable = ({ drawer }) => {
   const { role, email, ownerEmail } = useSelector((state) => state.auth.user.data);
   // user role
   const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
-  console.log(userEmail);
+  console.log('inventory-userEmail=',userEmail);
 
 // retrieve all employee from API
 useEffect(() => {
