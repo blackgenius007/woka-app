@@ -122,6 +122,10 @@ BootstrapDialogTitle.propTypes = {
 const InventoryTable = ({ drawer }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const inventoryData = useSelector((state) => state.inventory.inventory);
+
+  console.log('all inventory:', inventoryData);
+
   const [dateOffset, setDateOffset] = useState(7);
   const [searched, setSearched] = useState('');
   const [add, setAdd] = useState(0);
@@ -137,26 +141,23 @@ const InventoryTable = ({ drawer }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-
-// retrieve all employee from API
-useEffect(() => {
-     
-   
   //user details
   const { role, email, ownerEmail } = useSelector((state) => state.auth.user.data);
   // user role
   const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
   console.log('inventory-userEmail=',userEmail);
 
-
+// retrieve all employee from API
+useEffect(() => {
+    // Ensure userEmail is defined and not an empty string before dispatching
+   
       dispatch(getAllInventory(userEmail));
    
   }, [dispatch, userEmail]);
   
 
   // Retrieve inventory data from inventorySlice
-  const { inventory, isLoading, isError, message } = useSelector((state) => state.inventory);
-  console.log('all inventory:', inventory);
+
   // search function
   const requestSearch = (searchedVal) => {
     setSearched(searchedVal);
