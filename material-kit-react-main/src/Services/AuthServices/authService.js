@@ -1,4 +1,4 @@
- /* eslint-disable */
+/* eslint-disable */
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,6 @@ const API_URL_LOGIN = '/api/v1/auth/login';
 const API_URL_USERS_BY_ID = '/api/v1/auth/users';
 const API_URL_DEPARTMENT = '/api/v1/auth/department';
 const API_URL_CREATE_DATA_COLLECTION_POINT = '/api/v1/auth/dcollector';
-
 
 // Function to construct the base URL
 const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
@@ -62,12 +61,13 @@ const saveDepartment = async (email, department) => {
 };
 
 // Function to create data collection point
-const createDataCollectionPoint = async (employeeNumber, tag) => {
-  console.log('collector-services=>',employeeNumber, tag)
+const createDataCollectionPoint = async (collectpoint, userEmail) => {
+  console.log('collector-services=>', collectpoint, userEmail);
   const response = await axios.post(
-    constructURL(API_URL_CREATE_DATA_COLLECTION_POINT),
-    { employeeNumber, tag }
+    constructURL(API_URL_CREATE_DATA_COLLECTION_POINT + `/${userEmail}`),
+    collectpoint
   );
+
   return response.data;
 };
 
@@ -77,7 +77,7 @@ const authService = {
   login,
   retrieveUsers,
   saveDepartment,
-  createDataCollectionPoint
+  createDataCollectionPoint,
 };
 
 export default authService;
