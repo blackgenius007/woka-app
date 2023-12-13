@@ -19,12 +19,12 @@ import moment from 'moment';
 
 import Box from '@mui/material/Box';
 
-import {
-  retrieveAllEmployees,
-  retrieveEmployeeById,
-  updateEmployeeById,
-  deleteEmployeeById,
-} from '../../../Services/HR-Services/employeeSlice';
+// import {
+//   retrieveAllEmployees,
+//   retrieveEmployeeById,
+//   updateEmployeeById,
+//   deleteEmployeeById,
+// } from '../../../Services/HR-Services/employeeSlice';
 import {
     getAllInventory 
   } from 'src/Services/ProcureServices/inventorySlice';
@@ -195,7 +195,7 @@ const InventoryTable = ({ drawer }) => {
   const { inventory, isLoading, isError, message } = useSelector((state) => state.inventory);
 
   const { user } = useSelector((state) => state.auth);
-  console.log(employees);
+  console.log(inventory);
 
   const tableRef = useRef(null);
   const requestSearch = (searchedVal) => {
@@ -271,7 +271,7 @@ const InventoryTable = ({ drawer }) => {
 
     // Call the function whenever search term or employee data changes
     updateFilteredRows();
-  }, [searched, employees]);
+  }, [searched, inventory]);
 
   //  const defaultOption = selectDept['Select Department'];
 
