@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import { Container, Grid, TextField, Form, Button, Typography } from '@mui/material';
-import { createDataCollectionPoint } from 'src/Services/ProcureServices/inventorySlice';
+import { createDataCollectionPoint } from 'src/Services/AuthServices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CollectPointForm = ({ userEmail }) => {
