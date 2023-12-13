@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
-const cron = require('node-cron');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const generateActivationCode = require('../utils/generateActivationCode.js');
-const GenerateCode = require('../utils/generateCode.js');
-const shortid = require('shortid');
-const crypto = require('crypto');
-const asyncHandler = require('express-async-handler');
-const sendEmail = require('../utils/sendEmail'); 
-const User = require('../models/User');
-const ErrorResponse = require('../utils/errorResponse'); 
+const mongoose = require("mongoose");
+const cron = require("node-cron");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const generateActivationCode = require("../utils/generateActivationCode.js");
+const GenerateCode = require("../utils/generateCode.js");
+const shortid = require("shortid");
+const crypto = require("crypto");
+const asyncHandler = require("express-async-handler");
+const sendEmail = require("../utils/sendEmail");
+const User = require("../models/User");
+const ErrorResponse = require("../utils/errorResponse");
 
 // @desc  Register new user
 // @route   POST /api/users
@@ -27,7 +27,7 @@ const register = asyncHandler(async (req, res) => {
     password,
   } = req.body;
 
-console.log(req.body);
+  console.log(req.body);
 
   if (!ownerId) {
     // Owner's registration
@@ -37,7 +37,6 @@ console.log(req.body);
     const activationCodeExpiration = new Date();
     activationCodeExpiration.setDate(activationCodeExpiration.getDate() + 30);
 
-   
     const user = await User.create({
       email,
       ownerEmail: email,
@@ -57,38 +56,40 @@ console.log(req.body);
     });
 
     // Start the cron job to update activation codes for expired owners and associated users
-cron.schedule('0 0 * * *', async () => {
-  try {
-    // Find owners whose activation codes have expired
-    const expiredOwners = await User.find({
-      ownerId: { $exists: false }, // Only select owners (not users)
-      activationCodeExpiration: { $lt: new Date() },
+    cron.schedule("0 0 * * *", async () => {
+      try {
+        // Find owners whose activation codes have expired
+        const expiredOwners = await User.find({
+          ownerId: { $exists: false }, // Only select owners (not users)
+          activationCodeExpiration: { $lt: new Date() },
+        });
+
+        // Iterate over expired owners and update their activation codes
+        for (const owner of expiredOwners) {
+          owner.activationCode = null;
+          owner.activationCodeExpiration = null;
+          await owner.save();
+
+          // Find users associated with the expired owner and update their activation codes
+          await User.updateMany(
+            { ownerId: owner._id },
+            { $set: { activationCode: null, activationCodeExpiration: null } }
+          );
+        }
+
+        console.log(
+          "Activation codes updated for expired owners and associated users."
+        );
+      } catch (error) {
+        console.error("Error updating activation codes:", error);
+      }
     });
-
-    // Iterate over expired owners and update their activation codes
-    for (const owner of expiredOwners) {
-      owner.activationCode = null;
-      owner.activationCodeExpiration = null;
-      await owner.save();
-
-      // Find users associated with the expired owner and update their activation codes
-      await User.updateMany(
-        { ownerId: owner._id },
-        { $set: { activationCode: null, activationCodeExpiration: null } }
-      );
-    }
-
-    console.log('Activation codes updated for expired owners and associated users.');
-  } catch (error) {
-    console.error('Error updating activation codes:', error);
-  }
-});
   } else {
     // Convert ownerId string to ObjectId
-    let ownerObjectId = null;   
+    let ownerObjectId = null;
     if (ownerId && mongoose.Types.ObjectId.isValid(ownerId)) {
       ownerObjectId = new mongoose.Types.ObjectId(ownerId);
-          }
+    }
 
     const user = await User.create({
       ownerId: ownerObjectId,
@@ -112,7 +113,6 @@ cron.schedule('0 0 * * *', async () => {
     // });
   }
 });
-
 
 // const register = asyncHandler(async (req, res) => {
 //   const {
@@ -177,19 +177,19 @@ const login = asyncHandler(async (req, res, next) => {
 
   // Validate email & password
   if (!email || !password) {
-    return next(new ErrorResponse('Please provide email and password', 400));
+    return next(new ErrorResponse("Please provide email and password", 400));
   }
 
   // Check for user
-  const user = await User.findOne({ email }).select('+password');
+  const user = await User.findOne({ email }).select("+password");
   if (!user) {
-    return next(new ErrorResponse('invalid credentials', 401));
+    return next(new ErrorResponse("invalid credentials", 401));
   }
 
   // Check if password matches
   const isMtached = await user.matchPassword(password);
   if (!isMtached) {
-    return next(new ErrorResponse('invalid credentials', 401));
+    return next(new ErrorResponse("invalid credentials", 401));
   }
 
   // Create Token
@@ -214,12 +214,12 @@ const sendTokenResponse = (user, statusCode, res) => {
   };
 
   // Set secure flag for HTTPS only in production
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === "production") {
     cookieOptions.secure = true;
   }
 
   // Send the token as a cookie
-  res.status(statusCode).cookie('token', token, cookieOptions).json({
+  res.status(statusCode).cookie("token", token, cookieOptions).json({
     success: true,
     token,
     data: user,
@@ -233,7 +233,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 const fogotPassword = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
-    return next(new ErrorResponse('There is no user with that email', 404));
+    return next(new ErrorResponse("There is no user with that email", 404));
   }
 
   // Get reset token
@@ -245,18 +245,18 @@ const fogotPassword = asyncHandler(async (req, res, next) => {
 
   // create reset url
   const resetUrl = `${req.protocol}://${req.get(
-    'host'
+    "host"
   )}/api/v1/authV2/resetpassword/${resetToken}`;
   const message = `Please click the following link to reset your password: \n\n ${resetUrl}`;
   try {
     await sendEmail({
       email: user.email,
-      subject: 'Password reset token',
+      subject: "Password reset token",
       message,
     });
     res.status(200).json({
       success: true,
-      data: 'Email sent',
+      data: "Email sent",
     });
   } catch (error) {
     console.log(error);
@@ -265,7 +265,7 @@ const fogotPassword = asyncHandler(async (req, res, next) => {
 
     await user.save({ validateBeforeSave: false });
 
-    return next(new ErrorResponse('Email could not be sent', 500));
+    return next(new ErrorResponse("Email could not be sent", 500));
   }
 });
 
@@ -275,16 +275,16 @@ const fogotPassword = asyncHandler(async (req, res, next) => {
 const resetPassword = asyncHandler(async (req, res, next) => {
   // Get hash token
   const resetPasswordToken = crypto
-    .createHash('sha256')
+    .createHash("sha256")
     .update(req.params.resettoken)
-    .digest('hex');
+    .digest("hex");
   const user = await User.findOne({
     resetPasswordToken,
     resetPasswordExpire: { $gt: Date.now() },
   });
 
   if (!user) {
-    return next(new ErrorResponse('invalid token', 400));
+    return next(new ErrorResponse("invalid token", 400));
   }
 
   //set new password
@@ -316,14 +316,12 @@ const updateDetails = asyncHandler(async (req, res, next) => {
 
 const getUserList = asyncHandler(async (req, res, next) => {
   // res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  const {
-    ownerId
-  } = req.params;
+  const { ownerId } = req.params;
 
   try {
     const userList = await User.find({
       ownerId,
-      role: { $ne: 'owner' }
+      role: { $ne: "owner" },
     });
 
     res.json(userList);
@@ -345,14 +343,14 @@ const addDepartment = asyncHandler(async (req, res, next) => {
   console.log(urls);
 
   if (urls) {
-    console.log('url exists');
+    console.log("url exists");
     try {
       let departmentArray = department;
       if (!Array.isArray(department)) {
         // Convert single department object to an array
         departmentArray = [department];
       }
-      
+
       const results = await User.findOneAndUpdate(
         { email },
         { $push: { departmentAdded: { $each: departmentArray } } },
@@ -364,7 +362,7 @@ const addDepartment = asyncHandler(async (req, res, next) => {
         }
       ).exec();
       res.json(results);
-      console.log('Submitted successfully!');
+      console.log("Submitted successfully!");
     } catch (err) {
       throw err;
     }
@@ -377,10 +375,10 @@ const addDepartment = asyncHandler(async (req, res, next) => {
 
 const addCollectorPoint = asyncHandler(async (req, res, next) => {
   try {
-    const { employeeNumber, tagName,ownerEmail } = req.body;
-console.log(employeeNumber, tagName,ownerEmail)
+    const { employeeNumber, tagName, ownerEmail } = req.body;
+    console.log(employeeNumber, tagName, ownerEmail);
     // Generate a passcode (you need to implement or import this function)
-    const passcode =   GenerateCode(4);
+    const passcode = GenerateCode(4);
 
     // Create a new entry for the collection point
     const collectionPointEntry = {
@@ -390,7 +388,7 @@ console.log(employeeNumber, tagName,ownerEmail)
     };
 
     // Find the user by some identifier (e.g., user ID or email)
-    const userEmail =  ownerEmail; // Assuming you have a user in the request after authentication
+    const userEmail = ownerEmail; // Assuming you have a user in the request after authentication
 
     // Update the user with the new collection point entry
     const updatedUser = await User.findOneAndUpdate(
@@ -398,11 +396,11 @@ console.log(employeeNumber, tagName,ownerEmail)
       { $push: { collectionPointDetails: collectionPointEntry } },
       { new: true }
     );
-    
+
     res.json(updatedUser);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
@@ -421,26 +419,25 @@ const updateCollectorPoint = asyncHandler(async (req, res, next) => {
     const updatedUser = await User.findOneAndUpdate(
       {
         email: userEmail,
-        'collectionPointDetails.passcode': passcode,
+        "collectionPointDetails.passcode": passcode,
       },
       {
-        'collectionPointDetails.$.passcode': newPasscode,
+        "collectionPointDetails.$.passcode": newPasscode,
       },
       { new: true }
     );
 
     // Check if the entry was found and updated
     if (!updatedUser) {
-      return res.status(404).json({ message: 'Entry not found' });
+      return res.status(404).json({ message: "Entry not found" });
     }
 
     res.json(updatedUser);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
 
 // @desc update collector point
 //@routes Get/api/v1/delete-dcollector
@@ -454,7 +451,7 @@ const deleteCollectorPoint = asyncHandler(async (req, res, next) => {
 
     // If user not found, return an error
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
     // Find the index of the entry with the provided passcode in the array
@@ -464,7 +461,7 @@ const deleteCollectorPoint = asyncHandler(async (req, res, next) => {
 
     // If entry not found, return an error
     if (entryIndex === -1) {
-      return res.status(404).json({ message: 'Entry not found' });
+      return res.status(404).json({ message: "Entry not found" });
     }
 
     // Remove the entry from the array
@@ -473,15 +470,12 @@ const deleteCollectorPoint = asyncHandler(async (req, res, next) => {
     // Save the updated user document
     await user.save();
 
-    res.status(200).json({ message: 'Entry deleted successfully' });
+    res.status(200).json({ message: "Entry deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
- 
 });
-
-
 
 // const addDepartment = asyncHandler(async (req, res, next) => {
 //   const urls = Object.assign({}, req.body);
@@ -512,8 +506,6 @@ const deleteCollectorPoint = asyncHandler(async (req, res, next) => {
 //   }
 // });
 
-
-
 module.exports = {
   register,
   login,
@@ -522,5 +514,5 @@ module.exports = {
   updateDetails,
   getUserList,
   addDepartment,
-  addCollectorPoint
+  addCollectorPoint,
 };
