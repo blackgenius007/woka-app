@@ -390,7 +390,7 @@ const addCollectorPoint = asyncHandler(async (req, res, next) => {
     };
 
     // Find the user by some identifier (e.g., user ID or email)
-    const userEmail = req.user.ownerEmail; // Assuming you have a user in the request after authentication
+    const userEmail =  ownerEmail; // Assuming you have a user in the request after authentication
 
     // Update the user with the new collection point entry
     const updatedUser = await User.findOneAndUpdate(
