@@ -8,7 +8,7 @@ import DashboardLayout from 'src/layouts/dashboard';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
-export const PortalPage = lazy(() => import('src/pages/portal-main'));
+export const PortalPage = lazy(() => import('src/pages/portal'));
 export const UserPage = lazy(() => import('src/pages/user'));
 export const EmployeePage = lazy(() => import('src/pages/employee'));
 export const EmployeeUpdate = lazy(() => import('src/pages/employeeUpdate'));
@@ -47,10 +47,11 @@ export default function Router() {
         <Route path="products" element={<ProductsPage />} />
         <Route path="blog" element={<BlogPage />} />
         <Route path="employee" element={<EmployeePage />} />
+        <Route path="portal" element={<PortalPage />} />
         <Route path="salary" element={<SalaryCalculatorPage />} />
         <Route path="inventory" element={<IMSPage />} />
         <Route path="new-employee" element={<NewEmployeePage />} />
-        <Route path="portal" element={<PortalPage />} />
+        
         <Route path="employee-detail/:id" element={<EmployeeDetailPage />} />
         <Route path="employee-update/:id" element={<EmployeeUpdate />} />
         <Route path="/department-view/:unit" element={<DepartmentPage />} />

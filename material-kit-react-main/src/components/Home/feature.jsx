@@ -16,17 +16,17 @@ function Feature() {
   const handleConnect = () => {
     // Dispatch the setPortalCode action with the entered code
     dispatch(setPortalCode(enteredCode));
-    navigate(`/login`);
+    navigate(`/portal`);
  
   };
 
-  const SubmitHandle = (e) => {
-    e.preventDefault();
+  // const SubmitHandle = (e) => {
+  //   e.preventDefault();
 
-    if (employeeCode) {
-      navigate(`/portal/${employeeCode}`);
-    }
-  };
+  //   if (employeeCode) {
+  //     navigate(`/portal/${employeeCode}`);
+  //   }
+  // };
 
  
   return (

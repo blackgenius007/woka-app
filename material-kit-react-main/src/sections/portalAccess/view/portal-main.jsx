@@ -50,9 +50,7 @@ const handleClose=()=>{
     <>
     <p>
       { portalCode}
-    </p>
-      {/* <Status employeeAccess={employeeAccess} /> */}
-      <br />
+    </p> 
      <Typography
             style={{  marginLeft: '10px',color:'#A9A9A9'}}
             className='panelText'
