@@ -10,10 +10,16 @@ function Feature() {
 
  
    
-  function handleChange(e) {
+  // function handleChange(e) {
+  //   const { name, value } = e.target;
+  //   setEmployeeCode((employeeCode) => ({ ...employeeCode, [name]: value }));
+  // }
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setEmployeeCode((employeeCode) => ({ ...employeeCode, [name]: value }));
-  }
+    setEmployeeCode((prevState) => ({ ...prevState, [name]: value }));
+  };
+
 
   const SubmitHandle = (e) => {
     e.preventDefault();
