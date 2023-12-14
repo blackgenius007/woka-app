@@ -24,7 +24,7 @@ import {
   withStyles,
   withWidth,
   isWidthUp,
-} from '@mui/material-ui';
+} from '@mui/material';
 
 
  
