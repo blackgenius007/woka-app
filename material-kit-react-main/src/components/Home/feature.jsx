@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Feature() {
   const navigate = useNavigate();
-  const [employeeCode, setEmployeeCode] = React.useState({
-    portalCode: '',
-  });
+  const [employeeCode, setEmployeeCode] = React.useState('');
 
  
    
