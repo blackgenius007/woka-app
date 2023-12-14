@@ -95,6 +95,7 @@ function Feature() {
             </div>
             <button
   type="submit"
+  onClick={SubmitHandle}
   className="btn btn-lg btn-plus-icon"
   style={{
     textAlign: 'center',
