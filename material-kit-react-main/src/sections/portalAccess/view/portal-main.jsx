@@ -6,11 +6,11 @@ import Register from './register';
 import PersonalDetail from './personalDetail';
 import {  useParams } from 'react-router-dom';
  
-  import Avatar from '@mui/material/Avatar';
-  import ImageIcon from '@mui/material/icons/Image';
- import WorkIcon from '@mui/icons-material/Work';
-import Carousel from ' @mui/icons-material/Carousel';
-import BeachAccessIcon from '@mui/material-ui/BeachAccess';
+//   import Avatar from '@mui/material/Avatar';
+//   import ImageIcon from '@mui/material/icons/Image';
+//  import WorkIcon from '@mui/icons-material/Work';
+// import Carousel from ' @mui/icons-material/Carousel';
+// import BeachAccessIcon from '@mui/material-ui/BeachAccess';
 import {
   Grid,
   Divider,
