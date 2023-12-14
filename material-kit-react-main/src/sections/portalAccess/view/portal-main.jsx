@@ -3,7 +3,7 @@
 import React,{useState} from 'react';
 import PortalBody from './portal-body';
 // import Register from './register';
-import PersonalDetail from './personalDetail';
+// import PersonalDetail from './personalDetail';
 import {  useParams } from 'react-router-dom';
  
 //   import Avatar from '@mui/material/Avatar';
