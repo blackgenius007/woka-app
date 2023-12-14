@@ -16,7 +16,7 @@ function Feature() {
   const handleConnect = () => {
     // Dispatch the setPortalCode action with the entered code
     dispatch(setPortalCode(enteredCode));
-    navigate(`/portal`);
+    navigate(`/login`);
  
   };
 
