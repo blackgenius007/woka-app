@@ -1,8 +1,33 @@
 /* eslint-disable */
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 function Feature() {
+  const navigate = useNavigate();
+  const [employeeCode, setEmployeeCode] = React.useState({
+    portalCode: '',
+  });
+
+ 
+   
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setEmployeeCode((employeeCode) => ({ ...employeeCode, [name]: value }));
+  }
+
+  const SubmitHandle = (e) => {
+    e.preventDefault();
+
+    if (employeeCode) {
+      navigate(`/portal/${employeeCode}`);
+    }
+  };
+
+  //Function to navigate to update form
+  // const handleEdit=()=>{
+  //   navigate(`/employee-update/${selectedUpdate}`);
+  // }
+
   return (
     <main
       style={{
@@ -50,6 +75,9 @@ function Feature() {
                   outline: 'none',
                   transition: '0.2s',
                 }}
+                name="portalCode"
+                onChange={handleChange}
+                value={employeeCode.portalCode}
               />
               <span
                 className="alert"

@@ -1,14 +1,14 @@
- /* eslint-disable */ 
+/* eslint-disable */
 import React from 'react';
-import { lazy, Suspense } from 'react'; 
+import { lazy, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import DashboardLayout from 'src/layouts/dashboard';
- 
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
+export const PortalPage = lazy(() => import('src/pages/portal-main'));
 export const UserPage = lazy(() => import('src/pages/user'));
 export const EmployeePage = lazy(() => import('src/pages/employee'));
 export const EmployeeUpdate = lazy(() => import('src/pages/employeeUpdate'));
@@ -22,8 +22,6 @@ export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const HomePage = lazy(() => import('src/components/Home/homePage'));
 
- 
-  
 export default function Router() {
   const { isSuccess } = useSelector((state) => state.auth);
   console.log(isSuccess && 'user authenticated');
@@ -52,9 +50,10 @@ export default function Router() {
         <Route path="salary" element={<SalaryCalculatorPage />} />
         <Route path="inventory" element={<IMSPage />} />
         <Route path="new-employee" element={<NewEmployeePage />} />
-        <Route path="employee-detail/:id" element={< EmployeeDetailPage />} />
+        <Route path="portal/:id" element={<PortalPage />} />
+        <Route path="employee-detail/:id" element={<EmployeeDetailPage />} />
         <Route path="employee-update/:id" element={<EmployeeUpdate />} />
-        <Route path="/department-view/:unit" element={< DepartmentPage/>} />
+        <Route path="/department-view/:unit" element={<DepartmentPage />} />
       </Route>
       <Route path="login" element={<LoginPage />} />
       <Route path="404" element={<Page404 />} />
@@ -62,13 +61,6 @@ export default function Router() {
     </Routes>
   );
 }
-
-
-
-
-
-
-
 
 // import { lazy, Suspense } from 'react';
 // import { Outlet, Navigate, useRoutes } from 'react-router-dom';
@@ -80,8 +72,8 @@ export default function Router() {
 // export const UserPage = lazy(() => import('src/pages/user'));
 // export const LoginPage = lazy(() => import('src/pages/login'));
 // export const ProductsPage = lazy(() => import('src/pages/products'));
-// export const Page404 = lazy(() => import('src/pages/page-not-found')); 
-// export const HomePage = lazy(() => import('src/components/Home/homePage')); 
+// export const Page404 = lazy(() => import('src/pages/page-not-found'));
+// export const HomePage = lazy(() => import('src/components/Home/homePage'));
 
 // // ----------------------------------------------------------------------
 
