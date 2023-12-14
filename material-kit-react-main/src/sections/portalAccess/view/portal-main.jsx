@@ -1,7 +1,8 @@
 /* eslint-disable */
 
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
+
 import PortalBody from './portal-body';
 // import Register from './register';
 // import PersonalDetail from './personalDetail';
