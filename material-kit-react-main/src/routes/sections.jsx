@@ -47,7 +47,6 @@ export default function Router() {
         <Route path="products" element={<ProductsPage />} />
         <Route path="blog" element={<BlogPage />} />
         <Route path="employee" element={<EmployeePage />} />
-        <Route path="portal" element={<PortalPage />} />
         <Route path="salary" element={<SalaryCalculatorPage />} />
         <Route path="inventory" element={<IMSPage />} />
         <Route path="new-employee" element={<NewEmployeePage />} />
@@ -57,6 +56,7 @@ export default function Router() {
         <Route path="/department-view/:unit" element={<DepartmentPage />} />
       </Route>
       <Route path="login" element={<LoginPage />} />
+      <Route path="portal" element={<PortalPage />} />
       <Route path="404" element={<Page404 />} />
       <Route path="*" element={<Navigate to="/404" replace />} />
     </Routes>
