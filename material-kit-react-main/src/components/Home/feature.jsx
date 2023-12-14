@@ -37,7 +37,7 @@ function Feature() {
               <input
                 type="text"
                 className="url-input"
-                placeholder="Enter Data collector's passcode  ..."
+                placeholder="Enter the employee portal access code, which is accessible worldwide for registered organizations...."
                 autoComplete="off"
                 style={{
                   width: '100%',
