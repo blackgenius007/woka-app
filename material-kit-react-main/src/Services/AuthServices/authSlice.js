@@ -13,6 +13,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: '',
+  employeeCode: { portalCode: '' }, // Added employeeCode slice
 };
 
 // Register user
@@ -88,22 +89,7 @@ export const createDataCollectionPoint = createAsyncThunk(
     }
   }
 );
-// export const createDataCollectionPoint = createAsyncThunk(
-//   'auth/createDataCollectionPoint',
-//   async ({ collectpoint }, thunkAPI) => {
-//     console.log('collector-slice=>',collectpoint )
-//     try {
-//       const response = await authService.createDataCollectionPoint(collectpoint);
-//       return response.data;
-//     } catch (error) {
-//       const message =
-//         (error.response && error.response.data && error.response.data.message) ||
-//         error.message ||
-//         error.toString();
-//       return thunkAPI.rejectWithValue(message);
-//     }
-//   }
-// );
+
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -114,6 +100,10 @@ export const authSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = '';
+    },
+    //Portal code Action
+    setPortalCode: (state, action) => {
+      state.employeeCode.portalCode = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -193,5 +183,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { reset } = authSlice.actions;
+export const { reset,setPortalCode } = authSlice.actions;
 export default authSlice.reducer;

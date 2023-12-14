@@ -1,23 +1,23 @@
 /* eslint-disable */
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setPortalCode } from 'src/Services/AuthServices/authSlice';
 
 function Feature() {
   const navigate = useNavigate();
-  const [employeeCode, setEmployeeCode] = React.useState('');
+  const dispatch = useDispatch();
+  const [enteredCode, setEnteredCode] = useState('');
 
- 
-   
-  // function handleChange(e) {
-  //   const { name, value } = e.target;
-  //   setEmployeeCode((employeeCode) => ({ ...employeeCode, [name]: value }));
-  // }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEmployeeCode((prevState) => ({ ...prevState, [name]: value }));
+  const handleCodeChange = (e) => {
+    setEnteredCode(e.target.value);
   };
 
+  const handleConnect = () => {
+    // Dispatch the setPortalCode action with the entered code
+    dispatch(setPortalCode(enteredCode));
+ 
+  };
 
   const SubmitHandle = (e) => {
     e.preventDefault();
@@ -27,11 +27,7 @@ function Feature() {
     }
   };
 
-  //Function to navigate to update form
-  // const handleEdit=()=>{
-  //   navigate(`/employee-update/${selectedUpdate}`);
-  // }
-
+ 
   return (
     <main
       style={{
@@ -80,8 +76,8 @@ function Feature() {
                   transition: '0.2s',
                 }}
                 name="portalCode"
-                onChange={handleChange}
-                value={employeeCode.portalCode}
+                onChange={handleCodeChange}
+                value={enteredCode}
               />
               <span
                 className="alert"
@@ -99,7 +95,7 @@ function Feature() {
             </div>
             <button
   type="submit"
-  onClick={SubmitHandle}
+  onClick={handleConnect}
   className="btn btn-lg btn-plus-icon"
   style={{
     textAlign: 'center',

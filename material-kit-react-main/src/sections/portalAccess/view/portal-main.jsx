@@ -1,10 +1,11 @@
 /* eslint-disable */
 
 import React,{useState} from 'react';
+import { useSelector } from 'react-redux';
 import PortalBody from './portal-body';
 // import Register from './register';
 // import PersonalDetail from './personalDetail';
-import {  useParams } from 'react-router-dom';
+ 
  
 //   import Avatar from '@mui/material/Avatar';
 //   import ImageIcon from '@mui/material/icons/Image';
@@ -29,8 +30,10 @@ import {
 
  
 function PortalData() {
-  const classes = useStyles();
-  let { employeeAccess } = useParams();
+   // Access the portalCode from the Redux store
+   const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
+  
+ 
   const[open,setOpen]=useState(false)
 
 const handleOpen=()=>{
@@ -45,7 +48,7 @@ const handleClose=()=>{
   return (
     <>
     <p>
-      {employeeAccess}
+      { portalCode}
     </p>
       {/* <Status employeeAccess={employeeAccess} /> */}
       <br />
