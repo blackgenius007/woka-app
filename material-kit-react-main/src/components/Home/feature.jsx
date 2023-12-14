@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+
 const MoreFeatures = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -17,6 +18,12 @@ const MoreFeatures = styled.div`
 `;
 
 const Features = styled.div`
+  position: relative;
+  background: white;
+  border-radius: 6px;
+`;
+
+const FeatureWrapper = styled.div`
   position: relative;
   background: white;
   border-radius: 6px;
