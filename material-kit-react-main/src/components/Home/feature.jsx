@@ -65,18 +65,19 @@ function Feature() {
               ></span>
             </div>
             <button
-              type="submit"
-              className="btn btn-lg btn-plus-icon"
-              style={{
-                textAlign: 'center',
-                borderRadius: 'inherit',
-                whiteSpace: 'nowrap',
-                fontSize: '16px',
-                cursor: 'pointer',
-              }}
-            >
-             connect!
-            </button>
+  type="submit"
+  className="btn btn-lg btn-plus-icon"
+  style={{
+    textAlign: 'center',
+    borderRadius: 'inherit',
+    whiteSpace: 'nowrap',
+    fontSize: '20px',  // Adjust the size as needed
+    cursor: 'pointer',
+    color: 'white',    // Set the text color to white
+  }}
+>
+  Connect!
+</button>
           </div>
           <div className="url-shorten-results"></div>
         </div>

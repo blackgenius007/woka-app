@@ -61,15 +61,25 @@ const saveDepartment = async (email, department) => {
 };
 
 // Function to create data collection point
-const createDataCollectionPoint = async (collectpoint) => {
-  console.log('collector-services=>', collectpoint);
+const createDataCollectionPoint = async ({ employeeNumber, tag, userEmail }) => {
+  console.log('collector-services=>', { employeeNumber, tag, userEmail });
+
   const response = await axios.post(
     constructURL(API_URL_CREATE_DATA_COLLECTION_POINT),
-    collectpoint
+    { employeeNumber, tag, userEmail }
   );
 
   return response.data;
 };
+// const createDataCollectionPoint = async (collectpoint) => {
+//   console.log('collector-services=>', collectpoint);
+//   const response = await axios.post(
+//     constructURL(API_URL_CREATE_DATA_COLLECTION_POINT),
+//     collectpoint
+//   );
+
+//   return response.data;
+// };
 
 const authService = {
   register,

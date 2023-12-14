@@ -70,12 +70,14 @@ export const saveDepartment = createAsyncThunk(
 );
 
 // New async thunk for creating data collection point
+
 export const createDataCollectionPoint = createAsyncThunk(
   'auth/createDataCollectionPoint',
-  async ({ collectpoint }, thunkAPI) => {
-    console.log('collector-slice=>',collectpoint )
+  async ({ employeeNumber, tag, userEmail }, thunkAPI) => {
+    console.log('collector-slice=>', { employeeNumber, tag, userEmail });
+
     try {
-      const response = await authService.createDataCollectionPoint(collectpoint);
+      const response = await authService.createDataCollectionPoint({ employeeNumber, tag, userEmail });
       return response.data;
     } catch (error) {
       const message =
@@ -86,6 +88,22 @@ export const createDataCollectionPoint = createAsyncThunk(
     }
   }
 );
+// export const createDataCollectionPoint = createAsyncThunk(
+//   'auth/createDataCollectionPoint',
+//   async ({ collectpoint }, thunkAPI) => {
+//     console.log('collector-slice=>',collectpoint )
+//     try {
+//       const response = await authService.createDataCollectionPoint(collectpoint);
+//       return response.data;
+//     } catch (error) {
+//       const message =
+//         (error.response && error.response.data && error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 export const authSlice = createSlice({
   name: 'auth',
