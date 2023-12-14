@@ -50,7 +50,7 @@ export default function Router() {
         <Route path="salary" element={<SalaryCalculatorPage />} />
         <Route path="inventory" element={<IMSPage />} />
         <Route path="new-employee" element={<NewEmployeePage />} />
-        <Route path="portal/:id" element={<PortalPage />} />
+        <Route path="portal" element={<PortalPage />} />
         <Route path="employee-detail/:id" element={<EmployeeDetailPage />} />
         <Route path="employee-update/:id" element={<EmployeeUpdate />} />
         <Route path="/department-view/:unit" element={<DepartmentPage />} />
