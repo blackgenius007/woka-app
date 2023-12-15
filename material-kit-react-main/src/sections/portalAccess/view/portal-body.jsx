@@ -520,7 +520,7 @@ function PortalBody({ employeeAccess }) {
              
                   <Chip
                     size="small"
-                    icon={<PersonOutline />}
+                    // icon={<PersonOutline />}
                     label=""
                     clickable
                     style={{ backgroundColor: '#FFFFFF', marginTop: '10px', display: 'absolute' }}
