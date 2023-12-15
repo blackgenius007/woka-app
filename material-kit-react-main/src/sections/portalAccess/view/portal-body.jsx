@@ -108,7 +108,7 @@ const EmployeePortal = ({ employee }) => {
         <Typography variant="h5" style={{ color: '#00bfff', marginBottom: '16px' }}>
           Advertisements
         </Typography>
-        <div style={{ width: '100%', height: '200px', overflow: 'hidden', borderRadius: '8px' }}>
+        <div style={{ width: '100%', height: '300px', overflow: 'hidden', borderRadius: '8px' }}>
           <Slider {...settings}>
             {advertisements.map((ad) => (
               <div key={ad.id}>
@@ -131,6 +131,7 @@ const EmployeePortal = ({ employee }) => {
 };
 
 export default EmployeePortal;
+
 
 
 
