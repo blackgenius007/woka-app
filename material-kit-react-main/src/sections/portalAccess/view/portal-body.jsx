@@ -78,6 +78,7 @@ const EmployeePortal = ({ employee }) => {
         <MonetizationOnIcon/>
       </IconButton>
     </div>
+    <br/>
     <div>
       <IconButton style={{ color: '#00bfff', backgroundColor: '#fff', border: '1px solid #00bfff' }} onClick={handleEditClick}>
         <Typography variant="body1">Edit Details</Typography>
