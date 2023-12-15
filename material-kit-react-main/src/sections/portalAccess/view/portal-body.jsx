@@ -2,7 +2,7 @@
   import React, { useState } from 'react';
   import {
     Typography,
-    Button,
+    Button,   
     Grid,
     Paper,
     Avatar,
@@ -44,7 +44,65 @@
   
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        {/* ... (Rest of your code) ... */}
+        <div style={{ flex: 1 }}>
+          <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', color: '#fff' }}>
+            <Typography variant="h4">Futuristic Employee Portal</Typography>
+          </Paper>
+  
+          <Grid container style={{ padding: '24px' }}>
+            <Grid item xs={12} md={6}>
+              <div>
+                <Typography variant="h5"> Maxwell James </Typography>
+                <Typography variant="body1">Employee ID: 2888999 </Typography>
+                <Typography variant="body1">Department:  Accounts </Typography>
+                {/* Add more details as needed */}
+              </div>
+            </Grid>
+            <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
+              <Avatar alt={employee} src='https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png' style={{ width: '80px', height: '80px' }} />
+            </Grid>
+          </Grid>
+  
+          <Grid container style={{ padding: '24px' }}>
+            <Grid item xs={12} md={6}>
+              <Typography variant="h5">Actions</Typography>
+              <ul>
+                <li>
+                  <Button style={{ border: '1px solid #fff', color: '#fff' }}>
+                    View Payroll
+                  </Button>
+                </li>
+                <li>
+                  <Button style={{ border: '1px solid #fff', color: '#fff' }} onClick={handleEditClick}>
+                    Edit Details
+                  </Button>
+                </li>
+                {/* Add more actions */}
+              </ul>
+            </Grid>
+  
+            {isEditing && (
+              <Grid item xs={12} md={6}>
+                <Paper style={{ backgroundColor: '#333', padding: '16px', borderRadius: '8px' }}>
+                  <Typography variant="h5">Edit Details</Typography>
+                  {/* Include form for editing details */}
+                  <form onSubmit={handleSaveChanges}>
+                    {/* Add input fields for editing details */}
+                    <TextField label="New Detail" fullWidth style={{ marginBottom: '16px' }} />
+                    {/* Add more input fields as needed */}
+                    <Button type="submit" variant="contained" color="primary">
+                      Save Changes
+                    </Button>
+                  </form>
+                </Paper>
+              </Grid>
+            )}
+          </Grid>
+  
+          <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%' }}>
+            <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
+          </Paper>
+        </div>
   
         <div style={{ flex: 1, marginLeft: '24px', maxWidth: '40%' }}>
           <Typography variant="h5" style={{ color: '#00bfff', marginBottom: '16px' }}>
@@ -72,6 +130,7 @@
   };
   
   export default EmployeePortal;
+  
   
 
 
