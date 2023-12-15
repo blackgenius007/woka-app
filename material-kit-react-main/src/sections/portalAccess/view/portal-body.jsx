@@ -14,20 +14,9 @@ import {
   TextField,
 } from '@mui/material';
 import Slider from 'react-slick';
-import styled from 'styled-components';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
 
 const EmployeePortal = ({ employee }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -59,7 +48,6 @@ const EmployeePortal = ({ employee }) => {
   };
 
   return (
-    <Container>
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', color: '#fff', width: '100%' }}>
         <Typography variant="h4">Futuristic Employee Portal</Typography>
@@ -85,7 +73,7 @@ const EmployeePortal = ({ employee }) => {
             <Button
               variant="contained"
               color="primary"
-              style={{ marginBottom: '16px', width: '100%' }}
+              style={{ marginBottom: '16px' }}
               onClick={() => console.log('View Payroll clicked')}
             >
               <MonetizationOnIcon style={{ marginRight: '8px' }} />
@@ -95,7 +83,6 @@ const EmployeePortal = ({ employee }) => {
             <Button
               variant="contained"
               color="primary"
-              style={{ width: '100%' }}
               onClick={handleEditClick}
             >
               <EditIcon style={{ marginRight: '8px' }} />
@@ -140,24 +127,13 @@ const EmployeePortal = ({ employee }) => {
           ))}
         </Slider>
       </div>
-
-      {/* Media Query for Small Screens */}
-      <style>
-        {`
-          @media (max-width: 600px) {
-            div {
-              flex-direction: column;
-              align-items: center;
-            }
-          }
-        `}
-      </style>
     </div>
-    </Container>
   );
 };
 
 export default EmployeePortal;
+
+
 
 // import React, { useState, useEffect, Fragment } from 'react';
 // // import { GiCash } from 'react-icons/gi';
