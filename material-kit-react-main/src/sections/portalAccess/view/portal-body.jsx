@@ -105,18 +105,18 @@
           </Paper>
         </div>
   
-        <div style={{ flex: 1, marginLeft: '24px' }}>
-          <Typography variant="h5" style={{ color: '#00bfff', marginBottom: '16px' }}>
-            Advertisements
-          </Typography>
-          <Slider {...settings}>
-            {advertisements.map((ad) => (
-              <div key={ad.id} style={{ width: '100%' }}>
-                <img src={ad.image} alt={ad.alt} style={{ width: '100%', borderRadius: '8px' }} />
-              </div>
-            ))}
-          </Slider>
-        </div>
+        <div style={{ flex: 1, marginLeft: '24px', maxWidth: '40%' }}>
+  <Typography variant="h5" style={{ color: '#00bfff', marginBottom: '16px' }}>
+    Advertisements
+  </Typography>
+  <Slider {...settings}>
+    {advertisements.map((ad) => (
+      <div key={ad.id} style={{ width: '100%' }}>
+        <img src={ad.image} alt={ad.alt} style={{ width: '100%', borderRadius: '8px' }} />
+      </div>
+    ))}
+  </Slider>
+</div>
       </div>
     );
   };
@@ -438,6 +438,7 @@
            
 //   //       }
 //   //     );
+
 //     }
 //   }, []);
 
