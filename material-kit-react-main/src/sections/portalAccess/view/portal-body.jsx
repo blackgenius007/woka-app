@@ -189,7 +189,7 @@ const Styles = styled.div`
   }
 `;
 function PortalBody({ employeeAccess }) {
-  let history = useHistory();
+ 
   // let { employeeAccess } = useParams();
   console.log(employeeAccess);
 
@@ -307,7 +307,7 @@ function PortalBody({ employeeAccess }) {
             });
           console.log(err.response.data);
 
-          return history.push(`/`);
+           
         }
       );
     }
