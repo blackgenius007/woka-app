@@ -71,14 +71,14 @@ const EmployeePortal = ({ employee }) => {
           <Grid item xs={12} md={6}>
             <Typography variant="h5">Actions</Typography>
             <div>
-      <IconButton style={{ color: '#fff' }} onClick={() => console.log('View Payroll clicked')}>
+      <IconButton style={{ color: '#00bfff', backgroundColor: '#fff', border: '1px solid #00bfff' }} onClick={() => console.log('View Payroll clicked')}>
         <Typography variant="body1">View Payroll</Typography>
         {/* Add an icon component, for example, the ArrowForwardIcon */}
         <ArrowForwardIcon />
       </IconButton>
     </div>
     <div>
-      <IconButton style={{ color: '#fff' }} onClick={handleEditClick}>
+      <IconButton style={{ color: '#00bfff', backgroundColor: '#fff', border: '1px solid #00bfff' }} onClick={handleEditClick}>
         <Typography variant="body1">Edit Details</Typography>
         {/* Add an icon component, for example, the EditIcon */}
         <EditIcon />
