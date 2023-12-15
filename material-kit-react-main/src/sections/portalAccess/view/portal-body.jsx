@@ -1,131 +1,150 @@
   /* eslint-disable */
-  const EmployeePortal = ({ employee }) => {
-    const [isEditing, setIsEditing] = useState(false);
-  
-    const handleEditClick = () => {
-      setIsEditing(true);
-    };
-  
-    const handleSaveChanges = () => {
-      // Implement logic to save changes to the database
-      setIsEditing(false);
-    };
-  
-    const advertisements = [
-      // Sample data for carousel advertisements
-      { id: 1, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692114/cld-sample.jpg', alt: 'Ad 1' },
-      { id: 2, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692093/samples/ecommerce/shoes.png', alt: 'Ad 2' },
-      { id: 3, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1659615143/avatar/h7oqmtok7lads4qn3s6r.png', alt: 'Ad 3' },
-    ];
-  
-    const settings = {
-      dots: false,
-      infinite: true,
-      speed: 2000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 5000,
-    };
-  
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', color: '#fff', width: '100%' }}>
-          <Typography variant="h4">Futuristic Employee Portal</Typography>
-        </Paper>
-  
-        <Grid container style={{ padding: '24px', width: '100%' }}>
-          <Grid item xs={12} md={6}>
-            <div>
-              <Typography variant="h5"> Maxwell James </Typography>
-              <Typography variant="body1">Employee ID: 2888999 </Typography>
-              <Typography variant="body1">Department:  Accounts </Typography>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-            <Avatar alt={employee} src='https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png' style={{ width: '80px', height: '80px' }} />
-          </Grid>
-        </Grid>
-  
-        <Grid container style={{ padding: '24px', width: '100%' }}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h5">Actions</Typography>
-            <div style={{ display: 'flex', flexDirection: 'column', marginTop: '20px' }}>
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ marginBottom: '16px', width: '100%' }}
-                onClick={() => console.log('View Payroll clicked')}
-              >
-                <MonetizationOnIcon style={{ marginRight: '8px' }} />
-                View Payroll
-              </Button>
-  
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ width: '100%' }}
-                onClick={handleEditClick}
-              >
-                <EditIcon style={{ marginRight: '8px' }} />
-                Edit Details
-              </Button>
-            </div>
-          </Grid>
-  
-          {isEditing && (
-            <Grid item xs={12} md={6}>
-              <Paper style={{ backgroundColor: '#333', padding: '16px', borderRadius: '8px' }}>
-                <Typography variant="h5">Edit Details</Typography>
-                <form onSubmit={handleSaveChanges}>
-                  <TextField label="New Detail" fullWidth style={{ marginBottom: '16px' }} />
-                  <Button type="submit" variant="contained" color="primary">
-                    Save Changes
-                  </Button>
-                </form>
-              </Paper>
-            </Grid>
-          )}
-        </Grid>
-  
-        <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%' }}>
-          <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
-        </Paper>
-  
-        <div style={{ width: '100%', height: '300px', overflow: 'hidden', borderRadius: '8px', marginTop: '16px' }}>
-          <Slider {...settings}>
-            {advertisements.map((ad) => (
-              <div key={ad.id}>
-                <img
-                  src={ad.image}
-                  alt={ad.alt}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </div>
-            ))}
-          </Slider>
-        </div>
-  
-        {/* Media Query for Small Screens */}
-        <style>
-          {`
-            @media (max-width: 600px) {
-              div {
-                flex-direction: column;
-                align-items: center;
-              }
-            }
-          `}
-        </style>
-      </div>
-    );
+  import React, { useState } from 'react';
+  import EditIcon from '@mui/icons-material/Edit';
+  import IconButton from '@mui/material/IconButton';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+
+import {
+  Typography,
+  Button,
+  Grid,
+  Paper,
+  Avatar,
+  TextField,
+} from '@mui/material';
+import Slider from 'react-slick';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+const EmployeePortal = ({ employee }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
   };
-  
-  export default EmployeePortal;
+
+  const handleSaveChanges = () => {
+    // Implement logic to save changes to the database
+    setIsEditing(false);
+  };
+
+  const advertisements = [
+    // Sample data for carousel advertisements
+    { id: 1, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692114/cld-sample.jpg', alt: 'Ad 1' },
+    { id: 2, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692093/samples/ecommerce/shoes.png', alt: 'Ad 2' },
+    { id: 3, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1659615143/avatar/h7oqmtok7lads4qn3s6r.png', alt: 'Ad 3' },
+  ];
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 2000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', color: '#fff', width: '100%' }}>
+        <Typography variant="h4">Futuristic Employee Portal</Typography>
+      </Paper>
+
+      <Grid container style={{ padding: '24px', width: '100%' }}>
+        <Grid item xs={12} md={6}>
+          <div>
+            <Typography variant="h5"> Maxwell James </Typography>
+            <Typography variant="body1">Employee ID: 2888999 </Typography>
+            <Typography variant="body1">Department:  Accounts </Typography>
+          </div>
+        </Grid>
+        <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
+          <Avatar alt={employee} src='https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png' style={{ width: '80px', height: '80px' }} />
+        </Grid>
+      </Grid>
+
+      <Grid container style={{ padding: '24px', width: '100%' }}>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h5">Actions</Typography>
+          <div style={{ display: 'flex', flexDirection: 'column', marginTop: '20px' }}>
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ marginBottom: '16px', width: '100%' }}
+              onClick={() => console.log('View Payroll clicked')}
+            >
+              <MonetizationOnIcon style={{ marginRight: '8px' }} />
+              View Payroll
+            </Button>
+
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ width: '100%' }}
+              onClick={handleEditClick}
+            >
+              <EditIcon style={{ marginRight: '8px' }} />
+              Edit Details
+            </Button>
+          </div>
+        </Grid>
+
+        {isEditing && (
+          <Grid item xs={12} md={6}>
+            <Paper style={{ backgroundColor: '#333', padding: '16px', borderRadius: '8px' }}>
+              <Typography variant="h5">Edit Details</Typography>
+              <form onSubmit={handleSaveChanges}>
+                <TextField label="New Detail" fullWidth style={{ marginBottom: '16px' }} />
+                <Button type="submit" variant="contained" color="primary">
+                  Save Changes
+                </Button>
+              </form>
+            </Paper>
+          </Grid>
+        )}
+      </Grid>
+
+      <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%' }}>
+        <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
+      </Paper>
+
+      <div style={{ width: '100%', height: '300px', overflow: 'hidden', borderRadius: '8px', marginTop: '16px' }}>
+        <Slider {...settings}>
+          {advertisements.map((ad) => (
+            <div key={ad.id}>
+              <img
+                src={ad.image}
+                alt={ad.alt}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
+
+      {/* Media Query for Small Screens */}
+      <style>
+        {`
+          @media (max-width: 600px) {
+            div {
+              flex-direction: column;
+              align-items: center;
+            }
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
+export default EmployeePortal;
 
 // import React, { useState, useEffect, Fragment } from 'react';
 // // import { GiCash } from 'react-icons/gi';
