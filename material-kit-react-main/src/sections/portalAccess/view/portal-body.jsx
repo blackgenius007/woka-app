@@ -3,6 +3,7 @@
   import EditIcon from '@mui/icons-material/Edit';
   import IconButton from '@mui/material/IconButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 
 import {
   Typography,
@@ -74,7 +75,7 @@ const EmployeePortal = ({ employee }) => {
       <IconButton style={{ color: '#00bfff', backgroundColor: '#fff', border: '1px solid #00bfff' }} onClick={() => console.log('View Payroll clicked')}>
         <Typography variant="body1">View Payroll</Typography>
         {/* Add an icon component, for example, the ArrowForwardIcon */}
-        <ArrowForwardIcon />
+        <MonetizationOnIcon/>
       </IconButton>
     </div>
     <div>
