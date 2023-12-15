@@ -507,7 +507,7 @@ function PortalBody({ employeeAccess }) {
               
                   <Chip
                     size="small"
-                    icon={<GiCash />}
+                    // icon={<GiCash />}
                     label=""
                     clickable
                     style={{ backgroundColor: '#FFFFFF', marginTop: '10px', display: 'absolute' }}
