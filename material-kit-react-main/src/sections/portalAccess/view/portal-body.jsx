@@ -553,13 +553,13 @@ function PortalBody({ employeeAccess }) {
           </Grid>
         </Grid>
       </div>
-      <PaymentDetail open={openPayment} close={handleClosePayment} employee={employee} />
+      {/* <PaymentDetail open={openPayment} close={handleClosePayment} employee={employee} />
       <PersonalDetail
         openPersonal={openPersonal}
         close={handleCloseEditPersonal}
         employee={employee}
       />
-      <UploadPhoto openPhoto={editPhoto} close={handleCloseEditPhoto} employee={employee} />
+      <UploadPhoto openPhoto={editPhoto} close={handleCloseEditPhoto} employee={employee} /> */}
     </>
   );
 }
