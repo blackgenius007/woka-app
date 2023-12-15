@@ -29,9 +29,9 @@
   
     // Sample data for carousel advertisements
     const advertisements = [
-      { id: 1, image: 'ad1.jpg', alt: 'Ad 1' },
-      { id: 2, image: 'ad2.jpg', alt: 'Ad 2' },
-      { id: 3, image: 'ad3.jpg', alt: 'Ad 3' },
+      { id: 1, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692114/cld-sample.jpg', alt: 'Ad 1' },
+      { id: 2, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692093/samples/ecommerce/shoes.png', alt: 'Ad 2' },
+      { id: 3, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1659615143/avatar/h7oqmtok7lads4qn3s6r.png', alt: 'Ad 3' },
     ];
   
     const settings = {
@@ -41,6 +41,7 @@
       slidesToShow: 1,
       slidesToScroll: 1,
     };
+
   
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -53,13 +54,13 @@
             <Grid item xs={12} md={6}>
               <div>
                 <Typography variant="h5"> Maxwell James </Typography>
-                <Typography variant="body1">Employee ID: {2888999}</Typography>
-                <Typography variant="body1">Department: {Accounts}</Typography>
+                <Typography variant="body1">Employee ID: 2888999 </Typography>
+                <Typography variant="body1">Department:  Accounts </Typography>
                 {/* Add more details as needed */}
               </div>
             </Grid>
             <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-              <Avatar alt={employee } src={employee.imagePath} style={{ width: '80px', height: '80px' }} />
+              <Avatar alt={employee } src='https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png'  style={{ width: '80px', height: '80px' }} />
             </Grid>
           </Grid>
   
