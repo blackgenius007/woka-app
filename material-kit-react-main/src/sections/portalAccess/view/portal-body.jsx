@@ -322,7 +322,7 @@ function PortalBody({ employeeAccess }) {
           // backgroundRepeat: 'no-repeat',
           position: 'relative',
           backgroundColor: '#00bfff',
-          backgroundImage: `url(${filyIcon2})`,
+          // backgroundImage: `url(${filyIcon2})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'right',
