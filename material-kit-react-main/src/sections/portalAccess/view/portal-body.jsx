@@ -71,21 +71,27 @@ const EmployeePortal = ({ employee }) => {
         <Grid container style={{ padding: '24px' }}>
           <Grid item xs={12} md={6}>
             <Typography variant="h5">Actions</Typography>
-            <div>
-      <IconButton style={{ color: '#00bfff', backgroundColor: '#fff', border: '1px solid #00bfff' }} onClick={() => console.log('View Payroll clicked')}>
-        <Typography variant="body1">View Payroll</Typography>
-        {/* Add an icon component, for example, the ArrowForwardIcon */}
-        <MonetizationOnIcon/>
-      </IconButton>
-    </div>
-    <br/>
-    <div>
-      <IconButton style={{ color: '#00bfff', backgroundColor: '#fff', border: '1px solid #00bfff' }} onClick={handleEditClick}>
-        <Typography variant="body1">Edit Details</Typography>
-        {/* Add an icon component, for example, the EditIcon */}
-        <EditIcon />
-      </IconButton>
-    </div>
+            <div style={{ display: 'flex', marginTop: '20px' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ marginRight: '16px', width: '200px' }}
+          onClick={() => console.log('View Payroll clicked')}
+        >
+          <MonetizationOnIcon style={{ marginRight: '8px' }} />
+          View Payroll
+        </Button>
+
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ width: '200px' }}
+          onClick={handleEditClick}
+        >
+          <EditIcon style={{ marginRight: '8px' }} />
+          Edit Details
+        </Button>
+      </div>
           </Grid>
 
           {isEditing && (
