@@ -7,32 +7,9 @@
     Paper,
     Avatar,
     TextField,
-    makeStyles,
   } from '@mui/material';
   
-  const useStyles = makeStyles((theme) => ({
-    header: {
-      backgroundColor: theme.palette.primary.main,
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.common.white,
-    },
-    section: {
-      padding: theme.spacing(3),
-    },
-    avatar: {
-      width: theme.spacing(10),
-      height: theme.spacing(10),
-    },
-    editSection: {
-      backgroundColor: theme.palette.secondary.main,
-      padding: theme.spacing(2),
-      borderRadius: theme.spacing(1),
-    },
-  }));
-  
   const EmployeePortal = ({ employee }) => {
-    const classes = useStyles();
     const [isEditing, setIsEditing] = useState(false);
   
     const handleEditClick = () => {
@@ -69,12 +46,12 @@
             <Typography variant="h5">Actions</Typography>
             <ul>
               <li>
-                <Button variant="outlined" color="primary">
+                <Button style={{ border: '1px solid #fff', color: '#fff' }}>
                   View Payroll
                 </Button>
               </li>
               <li>
-                <Button variant="outlined" color="primary" onClick={handleEditClick}>
+                <Button style={{ border: '1px solid #fff', color: '#fff' }} onClick={handleEditClick}>
                   Edit Details
                 </Button>
               </li>
