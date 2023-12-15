@@ -1,130 +1,78 @@
   /* eslint-disable */
   import React, { useState } from 'react';
-import {
-  Typography,
-  Button,
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-} from '@mui/material';
-import Slider from 'react-slick';
-
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
-const EmployeePortal = ({ employee }) => {
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleSaveChanges = () => {
-    // Implement logic to save changes to the database
-    setIsEditing(false);
-  };
-
-  // Sample data for carousel advertisements
-  const advertisements = [
-    { id: 1, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692114/cld-sample.jpg', alt: 'Ad 1' },
-    { id: 2, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692093/samples/ecommerce/shoes.png', alt: 'Ad 2' },
-    { id: 3, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1659615143/avatar/h7oqmtok7lads4qn3s6r.png', alt: 'Ad 3' },
-  ];
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <div style={{ flex: 1 }}>
-        <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', color: '#fff' }}>
-          <Typography variant="h4">Futuristic Employee Portal</Typography>
-        </Paper>
-
-        <Grid container style={{ padding: '24px' }}>
-          <Grid item xs={12} md={6}>
-            <div>
-              <Typography variant="h5"> Maxwell James </Typography>
-              <Typography variant="body1">Employee ID: 2888999 </Typography>
-              <Typography variant="body1">Department:  Accounts </Typography>
-              {/* Add more details as needed */}
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-            <Avatar alt={employee} src='https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png' style={{ width: '80px', height: '80px' }} />
-          </Grid>
-        </Grid>
-
-        <Grid container style={{ padding: '24px' }}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h5">Actions</Typography>
-            <ul>
-              <li>
-                <Button style={{ border: '1px solid #fff', color: '#fff' }}>
-                  View Payroll
-                </Button>
-              </li>
-              <li>
-                <Button style={{ border: '1px solid #fff', color: '#fff' }} onClick={handleEditClick}>
-                  Edit Details
-                </Button>
-              </li>
-              {/* Add more actions */}
-            </ul>
-          </Grid>
-
-          {isEditing && (
-            <Grid item xs={12} md={6}>
-              <Paper style={{ backgroundColor: '#333', padding: '16px', borderRadius: '8px' }}>
-                <Typography variant="h5">Edit Details</Typography>
-                {/* Include form for editing details */}
-                <form onSubmit={handleSaveChanges}>
-                  {/* Add input fields for editing details */}
-                  <TextField label="New Detail" fullWidth style={{ marginBottom: '16px' }} />
-                  {/* Add more input fields as needed */}
-                  <Button type="submit" variant="contained" color="primary">
-                    Save Changes
-                  </Button>
-                </form>
-              </Paper>
-            </Grid>
-          )}
-        </Grid>
-
-        <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%' }}>
-          <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
-        </Paper>
+  import {
+    Typography,
+    Button,
+    Grid,
+    Paper,
+    Avatar,
+    TextField,
+  } from '@mui/material';
+  import Slider from 'react-slick';
+  
+  import 'slick-carousel/slick/slick.css';
+  import 'slick-carousel/slick/slick-theme.css';
+  
+  const EmployeePortal = ({ employee }) => {
+    const [isEditing, setIsEditing] = useState(false);
+  
+    const handleEditClick = () => {
+      setIsEditing(true);
+    };
+  
+    const handleSaveChanges = () => {
+      // Implement logic to save changes to the database
+      setIsEditing(false);
+    };
+  
+    // Sample data for carousel advertisements
+    const advertisements = [
+      { id: 1, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692114/cld-sample.jpg', alt: 'Ad 1' },
+      { id: 2, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692093/samples/ecommerce/shoes.png', alt: 'Ad 2' },
+      { id: 3, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1659615143/avatar/h7oqmtok7lads4qn3s6r.png', alt: 'Ad 3' },
+    ];
+  
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 2000, // Adjusted speed for a slower transition
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 5000,
+    };
+  
+    return (
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        {/* ... (Rest of your code) ... */}
+  
+        <div style={{ flex: 1, marginLeft: '24px', maxWidth: '40%' }}>
+          <Typography variant="h5" style={{ color: '#00bfff', marginBottom: '16px' }}>
+            Advertisements
+          </Typography>
+          <Slider {...settings}>
+            {advertisements.map((ad) => (
+              <div key={ad.id} style={{ width: '100%', height: '200px', overflow: 'hidden' }}>
+                <img
+                  src={ad.image}
+                  alt={ad.alt}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: '8px',
+                  }}
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
-
-      <div style={{ flex: 1, marginLeft: '24px', maxWidth: '40%' }}>
-        <Typography variant="h5" style={{ color: '#00bfff', marginBottom: '16px' }}>
-          Advertisements
-        </Typography>
-        <Slider {...settings}>
-          {advertisements.map((ad) => (
-            <div key={ad.id} style={{ width: '100%', height: '200px', overflow: 'hidden' }}>
-              <img
-                src={ad.image}
-                alt={ad.alt}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }}
-              />
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </div>
-  );
-};
-
-export default EmployeePortal;
-
-
+    );
+  };
+  
+  export default EmployeePortal;
+  
 
 
 // import React, { useState, useEffect, Fragment } from 'react';
