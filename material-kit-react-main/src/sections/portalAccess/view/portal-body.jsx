@@ -1,5 +1,8 @@
   /* eslint-disable */
   import React, { useState } from 'react';
+  import EditIcon from '@mui/icons-material/Edit';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 import {
   Typography,
   Button,
@@ -66,19 +69,20 @@ const EmployeePortal = ({ employee }) => {
         <Grid container style={{ padding: '24px' }}>
           <Grid item xs={12} md={6}>
             <Typography variant="h5">Actions</Typography>
-            <ul>
-              <li>
-                <Button style={{ border: '1px solid #fff', color: '#fff' }}>
-                  View Payroll
-                </Button>
-              </li>
-              <li>
-                <Button style={{ border: '1px solid #fff', color: '#fff' }} onClick={handleEditClick}>
-                  Edit Details
-                </Button>
-              </li>
-              {/* Add more actions */}
-            </ul>
+            <div>
+      <IconButton style={{ color: '#fff' }} onClick={() => console.log('View Payroll clicked')}>
+        <Typography variant="body1">View Payroll</Typography>
+        {/* Add an icon component, for example, the ArrowForwardIcon */}
+        <ArrowForwardIcon />
+      </IconButton>
+    </div>
+    <div>
+      <IconButton style={{ color: '#fff' }} onClick={handleEditClick}>
+        <Typography variant="body1">Edit Details</Typography>
+        {/* Add an icon component, for example, the EditIcon */}
+        <EditIcon />
+      </IconButton>
+    </div>
           </Grid>
 
           {isEditing && (
