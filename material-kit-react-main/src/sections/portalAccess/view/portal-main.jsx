@@ -48,9 +48,7 @@ const handleClose=()=>{
 
   return (
     <>
-    <p>
-      { portalCode}
-    </p> 
+  <PortalBody />
      <Typography
             style={{  marginLeft: '10px',color:'#A9A9A9'}}
             className='panelText'
