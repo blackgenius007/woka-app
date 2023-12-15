@@ -12,24 +12,21 @@ import {
   Paper,
   Avatar,
   TextField,
-  makeStyles
 } from '@mui/material';
 import Slider from 'react-slick';
-
+import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-  },
-  // Add more styles as needed
-}));
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 
 
 const EmployeePortal = ({ employee }) => {
@@ -62,7 +59,7 @@ const EmployeePortal = ({ employee }) => {
   };
 
   return (
-    <div className={classes.container}>
+    <Container>
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', color: '#fff', width: '100%' }}>
         <Typography variant="h4">Futuristic Employee Portal</Typography>
@@ -156,7 +153,7 @@ const EmployeePortal = ({ employee }) => {
         `}
       </style>
     </div>
-    </div>
+    </Container>
   );
 };
 
