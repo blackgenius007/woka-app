@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-
+import axios from 'axios';
 // import PaymentDetail from './paymentDetail';
 // import UploadPhoto from './uploadPhoto';
 // import PersonalDetail from './personalDetail';
@@ -16,7 +16,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 // import ColorfulChip from '../../../../shared/components/ColorfulChip';
  
  
-// import Swal from 'sweetalert2';
+ import Swal from 'sweetalert2';
 
 import { Grid, Typography, Card, Chip, IconButton } from '@mui/material';
 
@@ -276,40 +276,41 @@ function PortalBody({ employeeAccess }) {
 
   useEffect(() => {
     if (employeeAccess) {
-      axios.get(`/api/v1/portal/accessId/${employeeAccess}`).then(
-        (res) => {
-          // alert('Submitted successfully!');
-          console.log(res.data);
-          console.log(res.data.department);
-          setEmployee(res.data);
-          setDepartment(res.data.department);
-        },
-        (err) => {
-          if (err.response.status === 500)
-            // alert(err.response.data);
+      console.log(employeeAccess)
+  //     axios.get(`/api/v1/portal/accessId/${employeeAccess}`).then(
+  //       (res) => {
+  //         // alert('Submitted successfully!');
+  //         console.log(res.data);
+  //         console.log(res.data.department);
+  //         setEmployee(res.data);
+  //         setDepartment(res.data.department);
+  //       },
+  //       (err) => {
+  //         if (err.response.status === 500)
+  //           // alert(err.response.data);
 
-            Swal.fire({
-              title: `${err.response.data}`,
-              width: 600,
-              height: 600,
-              padding: '3em',
-              color: '#716add',
-              // imageUrl: 'https://unsplash.it/400/200',
-              // imageWidth: 400,
-              // imageHeight: 200,
-              background: '#fff',
-              backdrop: `
-    rgba(0,0,123,0.4)
-    // url("/images/nyan-cat.gif")
-    left top
-    no-repeat
-  `,
-            });
-          console.log(err.response.data);
+  //           Swal.fire({
+  //             title: `${err.response.data}`,
+  //             width: 600,
+  //             height: 600,
+  //             padding: '3em',
+  //             color: '#716add',
+  //             // imageUrl: 'https://unsplash.it/400/200',
+  //             // imageWidth: 400,
+  //             // imageHeight: 200,
+  //             background: '#fff',
+  //             backdrop: `
+  //   rgba(0,0,123,0.4)
+  //   // url("/images/nyan-cat.gif")
+  //   left top
+  //   no-repeat
+  // `,
+  //           });
+  //         console.log(err.response.data);
 
            
-        }
-      );
+  //       }
+  //     );
     }
   }, []);
 
@@ -503,8 +504,7 @@ function PortalBody({ employeeAccess }) {
           <Grid md={6}>
             {/* <div class="btn-group-vertical" style={{marginRight:'60px'}}> */}
             <label>
-              <Popup
-                trigger={
+              
                   <Chip
                     size="small"
                     icon={<GiCash />}
@@ -514,15 +514,10 @@ function PortalBody({ employeeAccess }) {
                     onClick={() => handleOpenPayment()}
                     deleteIcon={<DoneIcon />}
                   />
-                }
-                position="top"
-              >
-                Renumerations & deductions
-              </Popup>
+ 
             </label>
             <label>
-              <Popup
-                trigger={
+             
                   <Chip
                     size="small"
                     icon={<PersonOutline />}
@@ -532,11 +527,7 @@ function PortalBody({ employeeAccess }) {
                     onClick={() => handleOpenEditPersonal()}
                     deleteIcon={<DoneIcon />}
                   />
-                }
-                position="top"
-              >
-                Personal Detail
-              </Popup>
+                
 
               {/* <Chip
                               size="small"
