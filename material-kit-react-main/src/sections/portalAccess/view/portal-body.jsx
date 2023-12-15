@@ -30,14 +30,14 @@
         <Grid container style={{ padding: '24px' }}>
           <Grid item xs={12} md={6}>
             <div>
-              <Typography variant="h5">{employee.employeeName}</Typography>
-              <Typography variant="body1">Employee ID: {employee.employeeID}</Typography>
-              <Typography variant="body1">Department: {employee.department}</Typography>
+              <Typography variant="h5"> Wester Daniel </Typography>
+              <Typography variant="body1">Employee ID:  12ad4b677777 </Typography>
+              <Typography variant="body1">Department:  Accounts</Typography>
               {/* Add more details as needed */}
             </div>
           </Grid>
           <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-            <Avatar alt={employee.employeeName} src={employee.imagePath} style={{ width: '80px', height: '80px' }} />
+            {/* <Avatar alt={wester } src={employee.imagePath} style={{ width: '80px', height: '80px' }} /> */}
           </Grid>
         </Grid>
   
