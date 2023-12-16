@@ -49,7 +49,7 @@ const {
   addLoan,
   updateLoan,
   connectEmployeerPortal,
-  // PortalAccess,
+  PortalAccess,
 } = require('../controller/employee');
 
 router.route('/newDesignation').post(createPayroll);
