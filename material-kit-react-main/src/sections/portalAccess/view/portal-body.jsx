@@ -1,8 +1,9 @@
- /* eslint-disable */
+/* eslint-disable */
 import React, { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import { Icon } from '@iconify/react';
 import { Typography, Button, Grid, Paper, Avatar, TextField } from '@mui/material';
 import Slider from 'react-slick';
 
@@ -23,9 +24,23 @@ const EmployeePortal = ({ employee }) => {
 
   // Sample data for carousel advertisements
   const advertisements = [
-    { id: 1, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692114/cld-sample.jpg', alt: 'Ad 1' },
-    { id: 2, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692093/samples/ecommerce/shoes.png', alt: 'Ad 2' },
-    { id: 3, image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1659615143/avatar/h7oqmtok7lads4qn3s6r.png', alt: 'Ad 3' },
+    {
+      id: 1,
+      image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692114/cld-sample.jpg',
+      alt: 'Ad 1',
+    },
+    {
+      id: 2,
+      image:
+        'https://res.cloudinary.com/youseful-apps/image/upload/v1656692093/samples/ecommerce/shoes.png',
+      alt: 'Ad 2',
+    },
+    {
+      id: 3,
+      image:
+        'https://res.cloudinary.com/youseful-apps/image/upload/v1659615143/avatar/h7oqmtok7lads4qn3s6r.png',
+      alt: 'Ad 3',
+    },
   ];
 
   const settings = {
@@ -41,13 +56,15 @@ const EmployeePortal = ({ employee }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
-        <Paper style={{
-          backgroundColor: '#fff',
-          padding: '16px',
-          textAlign: 'center',
-          color: '#000', // Contrast text color
-          boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.1), 0px -5px 5px rgba(0, 0, 0, 0.1)',
-        }}>
+        <Paper
+          style={{
+            backgroundColor: '#fff',
+            padding: '16px',
+            textAlign: 'center',
+            color: '#000', // Contrast text color
+            boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.1), 0px -5px 5px rgba(0, 0, 0, 0.1)',
+          }}
+        >
           <Typography variant="h4">Futuristic Employee Portal</Typography>
         </Paper>
 
@@ -56,12 +73,16 @@ const EmployeePortal = ({ employee }) => {
             <div>
               <Typography variant="h5"> Maxwell James </Typography>
               <Typography variant="body1">Employee ID: 2888999 </Typography>
-              <Typography variant="body1">Department:  Accounts </Typography>
+              <Typography variant="body1">Department: Accounts </Typography>
               {/* Add more details as needed */}
             </div>
           </Grid>
           <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-            <Avatar alt={employee} src='https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png' style={{ width: '80px', height: '80px' }} />
+            <Avatar
+              alt={employee}
+              src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
+              style={{ width: '80px', height: '80px' }}
+            />
           </Grid>
         </Grid>
 
@@ -88,6 +109,21 @@ const EmployeePortal = ({ employee }) => {
                 <EditIcon style={{ marginRight: '8px' }} />
                 Edit Details
               </Button>
+              <Button
+                variant="contained"
+                color="#ffff"
+                style={{ marginRight: '16px', width: '200px' }}
+                onClick={() => console.log('View Payroll clicked')}
+              >
+                <Icon
+                  icon="mdi:database-arrow-left"
+                  color="#d5b00b"
+                  width="200"
+                  height="200"
+                  style={{ marginRight: '8px' }}
+                />
+                Data collector point
+              </Button>
             </div>
           </Grid>
 
@@ -109,16 +145,18 @@ const EmployeePortal = ({ employee }) => {
           )}
         </Grid>
 
-        <Paper style={{
-          backgroundColor: '#fff',
-          padding: '16px',
-          textAlign: 'center',
-          position: 'fixed',
-          bottom: 0,
-          width: '100%',
-          color: '#000', // Contrast text color
-          boxShadow: '0px -5px 5px rgba(0, 0, 0, 0.1)',
-        }}>
+        <Paper
+          style={{
+            backgroundColor: '#fff',
+            padding: '16px',
+            textAlign: 'center',
+            position: 'fixed',
+            bottom: 0,
+            width: '100%',
+            color: '#000', // Contrast text color
+            boxShadow: '0px -5px 5px rgba(0, 0, 0, 0.1)',
+          }}
+        >
           <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
         </Paper>
       </Grid>
@@ -151,8 +189,6 @@ const EmployeePortal = ({ employee }) => {
 
 export default EmployeePortal;
 
-
-
 // import React, { useState, useEffect, Fragment } from 'react';
 // // import { GiCash } from 'react-icons/gi';
 // import EditIcon from '@mui/icons-material/Edit';
@@ -167,8 +203,7 @@ export default EmployeePortal;
 // // import filyIcon2 from '../../../../assets/img/about/back.jpg';
 // // import { useHistory, useParams } from 'react-router-dom';
 // // import ColorfulChip from '../../../../shared/components/ColorfulChip';
- 
- 
+
 //  import Swal from 'sweetalert2';
 
 // import { Grid, Typography, Card, Chip, IconButton } from '@mui/material';
@@ -342,7 +377,7 @@ export default EmployeePortal;
 //   }
 // `;
 // function PortalBody({ employeeAccess }) {
- 
+
 //   // let { employeeAccess } = useParams();
 //   console.log(employeeAccess);
 
@@ -461,7 +496,6 @@ export default EmployeePortal;
 //   //           });
 //   //         console.log(err.response.data);
 
-           
 //   //       }
 //   //     );
 
@@ -496,8 +530,6 @@ export default EmployeePortal;
 //                   setIsChecked(!isChecked);
 //                 }}
 //               />
-
- 
 
 //               <svg
 //                 onClick={handleClick}
@@ -581,12 +613,11 @@ export default EmployeePortal;
 //                 </g>
 //                 <g id="container">
 //                   {/* <g id="loadingLights">
-  
+
 //       <path id="firstLight" d="M317,275.5l-2-2.5l9-9.5l5-2h34.5l1,3.5-9.5,9.5-2,1h-36Z" fill="#3da79a" />
-   
-    
+
 //      <path id="firstLight" d="M317,275.5l-2-2.5l9-9.5l5-2h34.5l1,3.5-9.5,9.5-2,1h-36Z" fill="#3da79a" />
- 
+
 //       <path id="secondLight" d="M372.5,275.5l-2-2.5l9-9.5l5-2h34.5l1,3.5-9.5,9.5-2,1h-36Z" fill="#1d91b6"   />
 //       <path id="thirdLight" d="M428,275.5l-2-2.5l9-9.5l5-2h34.5l1,3.5-9.5,9.5-2,1h-36Z" fill="#b4b58d" />
 //     </g>  */}
@@ -664,12 +695,12 @@ export default EmployeePortal;
 //               </svg>
 //             </Styles>
 //           </Grid>
-          
+
 //           <br />
 //           <Grid md={6}>
 //             {/* <div class="btn-group-vertical" style={{marginRight:'60px'}}> */}
 //             <label>
-              
+
 //                   <Chip
 //                     size="small"
 //                     // icon={<GiCash />}
@@ -679,10 +710,10 @@ export default EmployeePortal;
 //                     onClick={() => handleOpenPayment()}
 //                     deleteIcon={<DoneIcon />}
 //                   />
- 
+
 //             </label>
 //             <label>
-             
+
 //                   <Chip
 //                     size="small"
 //                     // icon={<PersonOutline />}
@@ -692,7 +723,6 @@ export default EmployeePortal;
 //                     onClick={() => handleOpenEditPersonal()}
 //                     deleteIcon={<DoneIcon />}
 //                   />
-                
 
 //               {/* <Chip
 //                               size="small"
