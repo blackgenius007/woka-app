@@ -83,12 +83,13 @@ export const retrieveEmployeeById = createAsyncThunk(
     }
   }
 );
-// Retrieve a single employee by ID
+
+// Create an asynchronous thunk for authenticating portal access
 export const authPortalAccess = createAsyncThunk(
-  'employees/retrieveById',
-  async (employeeId, thunkAPI) => {
+  'employees/authenticatePortalAccess',
+  async (portalCode, thunkAPI) => {
     try {
-      return await employeeService.retrieveEmployee(employeeId);
+      return await employeeService.authenticatePortalAccess(portalCode);
     } catch (error) {
       const message =
         (error.response &&
@@ -440,7 +441,7 @@ export const employeeSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      })
+      }) 
       .addCase(authPortalAccess.pending, (state) => {
         state.isLoading = true;
       })
