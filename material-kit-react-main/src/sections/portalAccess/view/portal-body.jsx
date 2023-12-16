@@ -1,5 +1,4 @@
-  /* eslint-disable */
-   /* eslint-disable */
+ /* eslint-disable */
 import React, { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
@@ -42,7 +41,13 @@ const EmployeePortal = ({ employee }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
-        <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', color: '#fff' }}>
+        <Paper style={{
+          backgroundColor: '#fff',
+          padding: '16px',
+          textAlign: 'center',
+          color: '#000', // Contrast text color
+          boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.1), 0px -5px 5px rgba(0, 0, 0, 0.1)',
+        }}>
           <Typography variant="h4">Futuristic Employee Portal</Typography>
         </Paper>
 
@@ -104,13 +109,22 @@ const EmployeePortal = ({ employee }) => {
           )}
         </Grid>
 
-        <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%' }}>
+        <Paper style={{
+          backgroundColor: '#fff',
+          padding: '16px',
+          textAlign: 'center',
+          position: 'fixed',
+          bottom: 0,
+          width: '100%',
+          color: '#000', // Contrast text color
+          boxShadow: '0px -5px 5px rgba(0, 0, 0, 0.1)',
+        }}>
           <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
         </Paper>
       </Grid>
 
       <Grid item xs={12} md={6}>
-        <Typography variant="h5" style={{ color: '#00bfff', marginBottom: '16px' }}>
+        <Typography variant="h5" style={{ color: '#fff', marginBottom: '16px' }}>
           Advertisements
         </Typography>
         <div style={{ width: '100%', height: '300px', overflow: 'hidden', borderRadius: '8px' }}>
