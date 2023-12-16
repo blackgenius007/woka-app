@@ -90,41 +90,35 @@ const EmployeePortal = ({ employee }) => {
           <Grid item xs={12} md={6}>
             <Typography variant="h5">Actions</Typography>
             <div style={{ display: 'flex', marginTop: '20px' }}>
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ marginRight: '16px', width: '200px' }}
-                onClick={() => console.log('View Payroll clicked')}
-              >
-                <MonetizationOnIcon style={{ marginRight: '8px' }} />
-                View Payroll
-              </Button>
+  <Button
+    variant="contained"
+    color="primary"
+    style={{ marginRight: '16px', width: '200px' }}
+    onClick={() => console.log('View Payroll clicked')}
+  >
+    <MonetizationOnIcon style={{ marginRight: '8px' }} />
+    View Payroll
+  </Button>
 
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ width: '200px' }}
-                onClick={handleEditClick}
-              >
-                <EditIcon style={{ marginRight: '8px' }} />
-                Edit Details
-              </Button>
-              {/* <Button
-                variant="contained"
-                color="#ffff"
-                style={{ marginRight: '16px', width: '200px' }}
-                onClick={() => console.log('View Payroll clicked')}
-              >
-                <Icon
-                  icon="mdi:database-arrow-left"
-                  color="#d5b00b"
-                  width="200"
-                  height="200"
-                  style={{ marginRight: '8px' }}
-                />
-                Data collector point
-              </Button> */}
-            </div>
+  <Button
+    variant="contained"
+    color="primary"
+    style={{ marginRight: '16px', width: '200px' }}
+    onClick={handleEditClick}
+  >
+    <EditIcon style={{ marginRight: '8px' }} />
+    Edit Details
+  </Button>
+
+  <Button
+    variant="contained"
+    style={{ width: '200px', backgroundColor: '#fff' }}
+    onClick={() => console.log('Another Button clicked')}
+  >
+    <Icon icon="mdi:database-arrow-left-outline" color="#d5b00b" width="24" />
+   Data collection point
+  </Button>
+</div>
           </Grid>
 
           {isEditing && (
