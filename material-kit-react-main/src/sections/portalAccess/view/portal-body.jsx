@@ -90,36 +90,36 @@ const EmployeePortal = ({ employee }) => {
         <Grid container spacing={2} style={{ padding: '24px' }}>
           <Grid item xs={12} md={6}>
             <Typography variant="h5">Actions</Typography>
-            <div style={{ display: 'flex', marginTop: '20px' }}>
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ marginRight: '16px', width: '200px' }}
-                onClick={() => console.log('View Payroll clicked')}
-              >
-                <MonetizationOnIcon style={{ marginRight: '8px' }} />
-                View Payroll
-              </Button>
+            <div style={{ display: 'flex', marginTop: '20px', alignItems: 'center' }}>
+  <Button
+    variant="contained"
+    color="primary"
+    style={{ marginRight: '16px', width: '200px' }}
+    onClick={() => console.log('View Payroll clicked')}
+  >
+    <MonetizationOnIcon style={{ marginRight: '8px' }} />
+    View Payroll
+  </Button>
 
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ marginRight: '16px', width: '200px' }}
-                onClick={handleEditClick}
-              >
-                <EditIcon style={{ marginRight: '8px' }} />
-                Edit Details
-              </Button>
+  <Button
+    variant="contained"
+    color="primary"
+    style={{ marginRight: '16px', width: '200px' }}
+    onClick={handleEditClick}
+  >
+    <EditIcon style={{ marginRight: '8px' }} />
+    Edit Details
+  </Button>
 
-              <Button
-                variant="contained"
-                style={{ width: '200px', backgroundColor: '#fff' }}
-                onClick={() => console.log('Another Button clicked')}
-              >
-                <StorageIcon style={{ marginRight: '8px' }} />
-                Data collection point
-              </Button>
-            </div>
+  <Button
+    variant="contained"
+    style={{ width: '200px', backgroundColor: '#fff', color: '#00bfff' }}
+    onClick={() => console.log('Another Button clicked')}
+  >
+    <StorageIcon style={{ marginRight: '8px' }} />
+    Data access
+  </Button>
+</div>
           </Grid>
 
           {isEditing && (
