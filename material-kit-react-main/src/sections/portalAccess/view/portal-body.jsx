@@ -1,10 +1,10 @@
 /* eslint-disable */
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { authPortalAccess } from 'src/Services/HR-Services/employeeSlice';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import StorageIcon from '@mui/icons-material/Storage';
-
+import Swal from 'sweetalert2';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 
 import { Typography, Button, Grid, Paper, Avatar, TextField } from '@mui/material';
@@ -16,31 +16,39 @@ import 'slick-carousel/slick/slick-theme.css';
 const EmployeePortal = () => {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  const [employee , setEmployeeData] = useState(null);
+  const [employee, setEmployeeData] = useState(null);
 
   //Access the portalCode from the Redux store
-    const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
+  const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await dispatch( authPortalAccess (portalCode));
-          const employee = response.payload; // Authenticate portal details from the response payload
-    
-          setEmployeeData(employee);
-    
-          console.log(response);
-        } catch (err) {
-          console.log('An error occurred!', err);
-          // Show an alert with a message
-          alert('Authentication failed,consult your organisation');
-          // Redirect to the home page
-          window.location.href = '/'; // Replace '/' with the actual path of your home page
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await dispatch(authPortalAccess(portalCode));
+        const employee = response.payload;
+
+        setEmployeeData(employee);
+
+        console.log(response);
+      } catch (err) {
+        console.log('An error occurred!', err);
+
+        if (response.message !== 'isSuccess') {
+          // Show SweetAlert2 alert
+          Swal({
+            title: 'Invalid portal code!',
+            text: 'Please get in touch with your employer for assistance.',
+            icon: 'error',
+          }).then(() => {
+            // Redirect to the home page
+            window.location.href = '/'; // Replace '/' with the actual path of your home page
+          });
         }
-      };
-    
-      fetchData();
-    }, [dispatch, portalCode]);
+      }
+    };
+
+    fetchData();
+  }, [dispatch, portalCode]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -96,7 +104,7 @@ const EmployeePortal = () => {
         >
           <Typography variant="h4">Futuristic Employee Portal</Typography>
         </Paper>
-        <br/>
+        <br />
         <Grid container spacing={2} style={{ padding: '24px' }}>
           <Grid item xs={12} md={6}>
             <div>
@@ -119,35 +127,35 @@ const EmployeePortal = () => {
           <Grid item xs={12} md={6}>
             <Typography variant="h5">Actions</Typography>
             <div style={{ display: 'flex', marginTop: '20px', alignItems: 'center' }}>
-  <Button
-    variant="contained"
-    color="primary"
-    style={{ marginRight: '16px', width: '200px' }}
-    onClick={() => console.log('View Payroll clicked')}
-  >
-    <MonetizationOnIcon style={{ marginRight: '8px' }} />
-    View Payroll
-  </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginRight: '16px', width: '200px' }}
+                onClick={() => console.log('View Payroll clicked')}
+              >
+                <MonetizationOnIcon style={{ marginRight: '8px' }} />
+                View Payroll
+              </Button>
 
-  <Button
-    variant="contained"
-    color="primary"
-    style={{ marginRight: '16px', width: '200px' }}
-    onClick={handleEditClick}
-  >
-    <EditIcon style={{ marginRight: '8px' }} />
-    Edit Details
-  </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginRight: '16px', width: '200px' }}
+                onClick={handleEditClick}
+              >
+                <EditIcon style={{ marginRight: '8px' }} />
+                Edit Details
+              </Button>
 
-  <Button
-    variant="contained"
-    style={{ width: '200px', backgroundColor: '#fff', color: '#00bfff' }}
-    onClick={() => console.log('Another Button clicked')}
-  >
-    <StorageIcon style={{ marginRight: '8px' }} />
-    Data access
-  </Button>
-</div>
+              <Button
+                variant="contained"
+                style={{ width: '200px', backgroundColor: '#fff', color: '#00bfff' }}
+                onClick={() => console.log('Another Button clicked')}
+              >
+                <StorageIcon style={{ marginRight: '8px' }} />
+                Data access
+              </Button>
+            </div>
           </Grid>
 
           {isEditing && (
