@@ -68,7 +68,7 @@ const EmployeePortal = ({ employee }) => {
         >
           <Typography variant="h4">Futuristic Employee Portal</Typography>
         </Paper>
-
+        <br/>
         <Grid container spacing={2} style={{ padding: '24px' }}>
           <Grid item xs={12} md={6}>
             <div>
