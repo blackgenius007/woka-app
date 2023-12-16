@@ -83,6 +83,23 @@ export const retrieveEmployeeById = createAsyncThunk(
     }
   }
 );
+// Retrieve a single employee by ID
+export const authenticatePortalAccess = createAsyncThunk(
+  'employees/retrieveById',
+  async (employeeCode, thunkAPI) => {
+    try {
+      return await employeeService.retrieveEmployee(employeeCode);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 // Update a single employee
 export const updateEmployeeById = createAsyncThunk(
