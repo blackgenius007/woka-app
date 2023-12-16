@@ -33,7 +33,7 @@ const EmployeePortal = () => {
       } catch (err) {
         console.log('An error occurred!', err);
 
-        if (response.isError) {
+        if (response && response.isError) {
           // Show SweetAlert2 alert
           Swal.fire({
             title: 'Invalid portal code!',
