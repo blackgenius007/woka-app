@@ -305,7 +305,6 @@ exports.getPaySlip = asyncHandler(async (req, res, next) => {
   });
 });
 
- 
 // @desc    Update pool
 // @routes  Put/api/v1/inventory/:email
 // @acess   Private
@@ -315,7 +314,7 @@ exports.updateEmployee = async (req, res, next) => {
     var _id = req.params.id;
 
     console.log(`id from front===>${_id}`);
-    console.log(req.body)
+    console.log(req.body);
     var pool = {
       employeeName: req.body.employeeName,
       department: req.body.department,
@@ -331,7 +330,9 @@ exports.updateEmployee = async (req, res, next) => {
       accountDetail: req.body.accountDetail,
     };
 
-    const updatedEmployee = await Employee.findByIdAndUpdate(_id, pool, { new: true });
+    const updatedEmployee = await Employee.findByIdAndUpdate(_id, pool, {
+      new: true,
+    });
 
     if (!updatedEmployee) {
       return res.status(404).send("Employee not found");
@@ -344,7 +345,6 @@ exports.updateEmployee = async (req, res, next) => {
     res.status(500).send("Internal Server Error");
   }
 };
-
 
 // exports.updateEmployee = (req, res, next) => {
 //   var _id = req.params.id;
@@ -1628,25 +1628,28 @@ exports.LoanOff = asyncHandler(async (req, res, next) => {
 });
 
 // @desc Get Employee portal access
- //@routes Get/api/employee/port-access/:id'
+//@routes Get/api/employee/port-access/:id'
 //@acess Public
 exports.PortalAccess = asyncHandler(async (req, res, next) => {
   const employeeCode = req.params.portalCode;
-  console.log('front-end,Employ-detail=>', employeeCode);
+  console.log("front-end,Employ-detail=>", employeeCode);
 
   try {
     const employee = await Employee.findOne({ employeeCode: employeeCode });
 
     if (!employee) {
-      console.log('Invalid portal code!!! please contact your employer.');
-      return res
-        .status(500)
-        .send('Invalid portal code!!! please contact your employer.');
+      console.log(
+        " Invalid portal code! Please get in touch with your employer for assistance."
+      );
+      return res.status(500).json({
+        message:
+          "Invalid portal code! Please get in touch with your employer for assistance.",
+      });
     } else {
       res.json(employee);
     }
   } catch (err) {
-    console.error('An error occurred while fetching employee details:', err);
-    return res.status(500).send('Internal Server Error');
+    console.error("An error occurred while fetching employee details:", err);
+    return res.status(500).send("Internal Server Error");
   }
 });
