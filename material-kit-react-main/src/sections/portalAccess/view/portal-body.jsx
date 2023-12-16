@@ -29,7 +29,7 @@ const EmployeePortal = () => {
     
           setEmployeeData(employee);
     
-          console.log(employee);
+          console.log(response);
         } catch (err) {
           console.log('An error occurred!', err);
           // Show an alert with a message
