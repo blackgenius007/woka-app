@@ -1,18 +1,10 @@
   /* eslint-disable */
-  import React, { useState } from 'react';
-  import EditIcon from '@mui/icons-material/Edit';
-  import IconButton from '@mui/material/IconButton';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+   /* eslint-disable */
+import React, { useState } from 'react';
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-
-import {
-  Typography,
-  Button,
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-} from '@mui/material';
+import { Typography, Button, Grid, Paper, Avatar, TextField } from '@mui/material';
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
@@ -48,13 +40,13 @@ const EmployeePortal = ({ employee }) => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <div style={{ flex: 1 }}>
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={6}>
         <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', color: '#fff' }}>
           <Typography variant="h4">Futuristic Employee Portal</Typography>
         </Paper>
 
-        <Grid container style={{ padding: '24px' }}>
+        <Grid container spacing={2} style={{ padding: '24px' }}>
           <Grid item xs={12} md={6}>
             <div>
               <Typography variant="h5"> Maxwell James </Typography>
@@ -68,30 +60,30 @@ const EmployeePortal = ({ employee }) => {
           </Grid>
         </Grid>
 
-        <Grid container style={{ padding: '24px' }}>
+        <Grid container spacing={2} style={{ padding: '24px' }}>
           <Grid item xs={12} md={6}>
             <Typography variant="h5">Actions</Typography>
             <div style={{ display: 'flex', marginTop: '20px' }}>
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ marginRight: '16px', width: '200px' }}
-          onClick={() => console.log('View Payroll clicked')}
-        >
-          <MonetizationOnIcon style={{ marginRight: '8px' }} />
-          View Payroll
-        </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginRight: '16px', width: '200px' }}
+                onClick={() => console.log('View Payroll clicked')}
+              >
+                <MonetizationOnIcon style={{ marginRight: '8px' }} />
+                View Payroll
+              </Button>
 
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ width: '200px' }}
-          onClick={handleEditClick}
-        >
-          <EditIcon style={{ marginRight: '8px' }} />
-          Edit Details
-        </Button>
-      </div>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ width: '200px' }}
+                onClick={handleEditClick}
+              >
+                <EditIcon style={{ marginRight: '8px' }} />
+                Edit Details
+              </Button>
+            </div>
           </Grid>
 
           {isEditing && (
@@ -115,9 +107,9 @@ const EmployeePortal = ({ employee }) => {
         <Paper style={{ backgroundColor: '#00bfff', padding: '16px', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%' }}>
           <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
         </Paper>
-      </div>
+      </Grid>
 
-      <div style={{ flex: 1, marginLeft: '24px', maxWidth: '40%' }}>
+      <Grid item xs={12} md={6}>
         <Typography variant="h5" style={{ color: '#00bfff', marginBottom: '16px' }}>
           Advertisements
         </Typography>
@@ -138,13 +130,12 @@ const EmployeePortal = ({ employee }) => {
             ))}
           </Slider>
         </div>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 
 export default EmployeePortal;
-
 
 
 
