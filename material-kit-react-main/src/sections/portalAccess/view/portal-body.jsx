@@ -118,8 +118,8 @@ const EmployeePortal = ({ employee }) => {
                 <Icon
                   icon="mdi:database-arrow-left"
                   color="#d5b00b"
-                  width="200"
-                  height="200"
+                  width="24"
+                  height="24"
                   style={{ marginRight: '8px' }}
                 />
                 Data collector point
