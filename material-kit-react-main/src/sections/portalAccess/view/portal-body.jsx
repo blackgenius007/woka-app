@@ -109,21 +109,21 @@ const EmployeePortal = ({ employee }) => {
                 <EditIcon style={{ marginRight: '8px' }} />
                 Edit Details
               </Button>
-              <Button
+              {/* <Button
                 variant="contained"
-                color="primary"
-                style={{ marginRight: '16px', width: '250px' }}
+                color="#ffff"
+                style={{ marginRight: '16px', width: '200px' }}
                 onClick={() => console.log('View Payroll clicked')}
               >
                 <Icon
                   icon="mdi:database-arrow-left"
                   color="#d5b00b"
-                  width="24"
-                  height="24"
+                  width="200"
+                  height="200"
                   style={{ marginRight: '8px' }}
                 />
                 Data collector point
-              </Button>
+              </Button> */}
             </div>
           </Grid>
 
