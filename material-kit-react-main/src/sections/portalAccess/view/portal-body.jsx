@@ -89,7 +89,7 @@ const EmployeePortal = ({ employee }) => {
         <Grid container spacing={2} style={{ padding: '24px' }}>
           <Grid item xs={12} md={6}>
             <Typography variant="h5">Actions</Typography>
-            <div style={{ display: 'flex', marginTop: '20px' }}>
+             <div style={{ display: 'flex', marginTop: '20px' }}>
   <Button
     variant="contained"
     color="primary"
@@ -115,8 +115,8 @@ const EmployeePortal = ({ employee }) => {
     style={{ width: '200px', backgroundColor: '#fff' }}
     onClick={() => console.log('Another Button clicked')}
   >
-    <Icon icon="mdi:database-arrow-left-outline" color="#d5b00b" width="24" />
-   Data collection point
+    <StorageIcon style={{ marginRight: '8px' }} />
+    Data collection point
   </Button>
 </div>
           </Grid>
