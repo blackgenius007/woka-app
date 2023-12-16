@@ -33,11 +33,11 @@ const EmployeePortal = () => {
       } catch (err) {
         console.log('An error occurred!', err);
 
-        if (response.message !== 'isSuccess') {
+        if ( !isSuccess ) {
           // Show SweetAlert2 alert
           Swal({
             title: 'Invalid portal code!',
-            text: 'Please get in touch with your employer for assistance.',
+            text: `${response.message }`,
             icon: 'error',
           }).then(() => {
             // Redirect to the home page
