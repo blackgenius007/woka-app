@@ -26,18 +26,21 @@ const EmployeePortal = () => {
       try {
         const response = await dispatch(authPortalAccess(portalCode));
         const employee = response.payload;
-
+    
         setEmployeeData(employee);
-
+    
         console.log(response);
       } catch (err) {
         console.log('An error occurred!', err);
-
-        if (response && response.isError) {
+    
+        if (err.message && err.message !== 'isSuccess') {
+          // Access the error message
+          const errorMessage = err.message;
+    
           // Show SweetAlert2 alert
           Swal.fire({
             title: 'Invalid portal code!',
-            text: `${response.message}`,
+            text: errorMessage,
             icon: 'error',
           }).then(() => {
             // Redirect to the home page
