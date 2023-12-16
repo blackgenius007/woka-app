@@ -29,7 +29,7 @@ import {
 
 function PortalData() {
   // Access the portalCode from the Redux store
-  const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
+  // const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
 
   const [open, setOpen] = useState(false);
 

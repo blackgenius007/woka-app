@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState,useEffect } from 'react';
-import { authenticatePortalAccess } from 'src/Services/HR-Services/employeeSlice';
+// import { authenticatePortalAccess } from 'src/Services/HR-Services/employeeSlice';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import StorageIcon from '@mui/icons-material/Storage';
@@ -19,28 +19,28 @@ const EmployeePortal = () => {
   const [employee , setEmployeeData] = useState(null);
 
   // Access the portalCode from the Redux store
-    const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
+    // const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await dispatch(authenticatePortalAccess(portalCode));
-          const employee = response.payload; // Authenticate portal details from the response payload
+    // useEffect(() => {
+    //   const fetchData = async () => {
+    //     try {
+    //       const response = await dispatch(authenticatePortalAccess(portalCode));
+    //       const employee = response.payload; // Authenticate portal details from the response payload
     
-          setEmployeeData(employee);
+    //       setEmployeeData(employee);
     
-          console.log(employee);
-        } catch (err) {
-          console.log('An error occurred!', err);
-          // Show an alert with a message
-          alert('Authentication failed,consult your organisation');
-          // Redirect to the home page
-          window.location.href = '/'; // Replace '/' with the actual path of your home page
-        }
-      };
+    //       console.log(employee);
+    //     } catch (err) {
+    //       console.log('An error occurred!', err);
+    //       // Show an alert with a message
+    //       alert('Authentication failed,consult your organisation');
+    //       // Redirect to the home page
+    //       window.location.href = '/'; // Replace '/' with the actual path of your home page
+    //     }
+    //   };
     
-      fetchData();
-    }, [dispatch, portalCode]);
+    //   fetchData();
+    // }, [dispatch, portalCode]);
 
   const handleEditClick = () => {
     setIsEditing(true);
