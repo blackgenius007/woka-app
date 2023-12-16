@@ -111,8 +111,8 @@ const EmployeePortal = ({ employee }) => {
               </Button>
               <Button
                 variant="contained"
-                color="#ffff"
-                style={{ marginRight: '16px', width: '200px' }}
+                color="primary"
+                style={{ marginRight: '16px', width: '250px' }}
                 onClick={() => console.log('View Payroll clicked')}
               >
                 <Icon
