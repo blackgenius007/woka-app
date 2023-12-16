@@ -1631,7 +1631,7 @@ exports.LoanOff = asyncHandler(async (req, res, next) => {
  //@routes Get/api/employee/port-access/:id'
 //@acess Public
 exports.PortalAccess = asyncHandler(async (req, res, next) => {
-  const employeeCode = req.params.employeeCode;
+  const employeeCode = req.params.portalCode;
   console.log('front-end,Employ-detail=>', employeeCode);
 
   try {
