@@ -84,22 +84,22 @@ export const retrieveEmployeeById = createAsyncThunk(
   }
 );
 // Retrieve a single employee by ID
-// export const authPortalAccess = createAsyncThunk(
-//   'employees/retrieveById',
-//   async (employeeId, thunkAPI) => {
-//     try {
-//       return await employeeService.retrieveEmployee(employeeId);
-//     } catch (error) {
-//       const message =
-//         (error.response &&
-//           error.response.data &&
-//           error.response.data.message) ||
-//         error.message ||
-//         error.toString();
-//       return thunkAPI.rejectWithValue(message);
-//     }
-//   }
-// );
+export const authPortalAccess = createAsyncThunk(
+  'employees/retrieveById',
+  async (employeeId, thunkAPI) => {
+    try {
+      return await employeeService.retrieveEmployee(employeeId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 // Update a single employee
 export const updateEmployeeById = createAsyncThunk(
@@ -437,6 +437,19 @@ export const employeeSlice = createSlice({
         state.attendance = action.payload;
       })
       .addCase(retrieveAllAttendance.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(authPortalAccess.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(authPortalAccess.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.employees.push(action.payload);
+      })
+      .addCase(authPortalAccess.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
