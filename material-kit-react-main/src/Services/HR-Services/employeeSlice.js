@@ -1,4 +1,4 @@
-/* eslint-disable */
+ /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import employeeService from './employeeServices';
 import { createSelector } from 'reselect';
@@ -8,7 +8,7 @@ const initialState = {
   attendance: [],
   isError: false,
   isSuccess: false,
-  isLoading: false,
+  isLoading: false,  
   message: '',
 };
 
@@ -20,7 +20,9 @@ export const registerEmployee = createAsyncThunk(
       return await employeeService.register(employeeData, employeeId);
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -36,7 +38,9 @@ export const retrieveAllEmployees = createAsyncThunk(
       return await employeeService.retrieveEmployees(userEmail);
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -52,7 +56,9 @@ export const fetchDesignations = createAsyncThunk(
       return await employeeService.retrieveDesignations(email);
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -68,7 +74,9 @@ export const retrieveEmployeeById = createAsyncThunk(
       return await employeeService.retrieveEmployee(employeeId);
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -76,20 +84,22 @@ export const retrieveEmployeeById = createAsyncThunk(
   }
 );
 // Retrieve a single employee by ID
-export const authenticatePortalAccess = createAsyncThunk(
-  'employees/retrieveById',
-  async (portalCode, thunkAPI) => {
-    try {
-      return await employeeService.retrieveEmployee(portalCode);
-    } catch (error) {
-      const message =
-        (error.response && error.response.data && error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+// export const authPortalAccess = createAsyncThunk(
+//   'employees/retrieveById',
+//   async (employeeId, thunkAPI) => {
+//     try {
+//       return await employeeService.retrieveEmployee(employeeId);
+//     } catch (error) {
+//       const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 // Update a single employee
 export const updateEmployeeById = createAsyncThunk(
@@ -99,7 +109,9 @@ export const updateEmployeeById = createAsyncThunk(
       return await employeeService.updateEmployee(employeeId, formData);
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -116,7 +128,9 @@ export const deleteEmployeeById = createAsyncThunk(
       return employeeId;
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -131,7 +145,9 @@ export const savePayrollData = createAsyncThunk(
       return await employeeService.savePayrollData(requestPayload);
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -163,7 +179,11 @@ export const markTodayEmployee = createAsyncThunk(
   'employees/markTodayEmployee',
   async ({ date, employeeId, label }, thunkAPI) => {
     try {
-      const response = await employeeService.markTodayEmployee(date, employeeId, label);
+      const response = await employeeService.markTodayEmployee(
+        date,
+        employeeId,
+        label
+      );
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -176,7 +196,11 @@ export const markTodayAllEmployees = createAsyncThunk(
   'employees/markTodayAllEmployees',
   async ({ userEmail, label, date }, thunkAPI) => {
     try {
-      const response = await employeeService.markTodayAllEmployees(userEmail, label, date);
+      const response = await employeeService.markTodayAllEmployees(
+        userEmail,
+        label,
+        date
+      );
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -209,11 +233,16 @@ export const retrieveAllAttendance = createAsyncThunk(
   'employees/retrieveAllAttendance',
   async ({ userEmail, dateOffset }, thunkAPI) => {
     try {
-      const response = await employeeService.retrieveAllAttendance(userEmail, dateOffset);
+      const response = await employeeService.retrieveAllAttendance(
+        userEmail,
+        dateOffset
+      );
       return response;
     } catch (error) {
       const message =
-        (error.response && error.response.data && error.response.data.message) ||
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -226,7 +255,7 @@ export const employeeSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.isLoading = false;
+      state.isLoading = false;         
       state.isSuccess = false;
       state.isError = false;
       state.message = '';
@@ -311,28 +340,15 @@ export const employeeSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         const deletedEmployeeId = action.payload;
-        state.employees = state.employees.filter((employee) => employee.id !== deletedEmployeeId);
+        state.employees = state.employees.filter(
+          (employee) => employee.id !== deletedEmployeeId
+        );
       })
       .addCase(deleteEmployeeById.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
       })
-
-      .addCase(authenticatePortalAccess.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(authenticatePortalAccess.fulfilled, (state) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        // You can update any relevant state here if needed
-      })
-      .addCase(authenticatePortalAccess.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-
       .addCase(savePayrollData.pending, (state) => {
         state.isLoading = true;
       })
@@ -341,7 +357,9 @@ export const employeeSlice = createSlice({
         state.isSuccess = true;
         // Assuming the response contains the saved payroll data
         const { employeeId, payrollData } = action.payload;
-        const employeeIndex = state.employees.findIndex((employee) => employee.id === employeeId);
+        const employeeIndex = state.employees.findIndex(
+          (employee) => employee.id === employeeId
+        );
         if (employeeIndex !== -1) {
           // If the employee already exists, update their payroll data
           state.employees[employeeIndex].payrollData = payrollData;
