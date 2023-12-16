@@ -18,7 +18,7 @@ const API_URL_MARK_TODAY = '/api/v1/employee/mark';
 const API_URL_UPDATE_COMPLAIN = '/api/v1/employee/updateComplain';
 const API_URL_MARK_ALL_TODAY = '/api/v1/employee/all/mark';
 const API_URL_FETCH_ALL_ATTENDANCE = '/api/v1/employee/all-attendance';
-const API_URL_AUTH_PORT_ACCESS = '/api/v1/employee/port-access';
+const API_URL_AUTH_PORT_ACCESS = '/api/v1/employee/accessId';
 
 // Function to construct the base URL
 const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
