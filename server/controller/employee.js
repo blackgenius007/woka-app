@@ -1626,3 +1626,27 @@ exports.LoanOff = asyncHandler(async (req, res, next) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
+
+// @desc Get Employee portal access
+ //@routes Get/api/employee/port-access/:id'
+//@acess Public
+exports.PortalAccess = asyncHandler(async (req, res, next) => {
+  const employeeCode = req.params.employeeCode;
+  console.log('front-end,Employ-detail=>', employeeCode);
+
+  try {
+    const employee = await Employee.findOne({ employeeCode: employeeCode });
+
+    if (!employee) {
+      console.log('Invalid portal code!!! please contact your employer.');
+      return res
+        .status(500)
+        .send('Invalid portal code!!! please contact your employer.');
+    } else {
+      res.json(employee);
+    }
+  } catch (err) {
+    console.error('An error occurred while fetching employee details:', err);
+    return res.status(500).send('Internal Server Error');
+  }
+});

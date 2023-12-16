@@ -68,6 +68,8 @@ router.route('/all-attendance/:email/:dateOffset').get(getEmployeeAttendance);
 router.route('/overtimeAdder/:id/:value').post(overtimeAdder);
 router.route('/allowance/:id/:value').post(allowanceAdder);
 router.route('/IOU/:id/:value').post(IOU);
+router.route('/accessId/:employeeCode').get(PortalAccess);
+
 
 
 // // router
