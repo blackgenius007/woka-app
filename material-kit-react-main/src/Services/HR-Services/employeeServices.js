@@ -124,10 +124,11 @@ const retrieveAllAttendance = async (userEmail, dateOffset) => {
 };
 
 // auth port access
-// const authenticatePortalAccess = async (portalCode) => {
-//   const response = await axios.get(constructURL(API_URL_AUTH_PORT_ACCESS + `/${portalCode}`));
-//   return response.data;
-// };
+const authenticatePortalAccess = async (portalCode) => {
+  console.log(portalCode)
+  const response = await axios.get(constructURL(API_URL_AUTH_PORT_ACCESS + `/${portalCode}`));
+  return response.data;
+};
 
 const employeeService = {
   register,
@@ -142,6 +143,7 @@ const employeeService = {
   markTodayAllEmployees,
   updateComplain,
   retrieveAllAttendance,
+  authenticatePortalAccess
  
 };
 
