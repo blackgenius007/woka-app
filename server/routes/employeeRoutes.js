@@ -1,8 +1,8 @@
-const dotenv = require('dotenv').config();
-const express = require('express');
-const router = express.Router(); 
-const multer = require('multer');
-const path = require('path');
+const dotenv = require("dotenv").config();
+const express = require("express");
+const router = express.Router();
+const multer = require("multer");
+const path = require("path");
 
 const {
   createNewEmployee,
@@ -50,27 +50,27 @@ const {
   updateLoan,
   connectEmployeerPortal,
   PortalAccess,
-} = require('../controller/employee');
+} = require("../controller/employee");
 
-router.route('/newDesignation').post(createPayroll);
-router.route('/create/:id').post(createNewEmployee);
-router.route('/employees/:userEmail').get(getAllEmployee);
-router.route('/update-1/:id').post(updateEmployee);
-router.route('/designation/:email').get(getAllDesignation);
-router.route('/detail/:id').get(getEmployeeDetail);
-router.route('/add-loan').post(addLoan);
-router.route('/update-loan').post(updateLoan);
-router.route('/updateComplain/:date').post(reviewComplain);
-router.route('/complain-status/:id/:dueDate/:date/:label/:detail').get(ComplainStatus);
-router.route('/all/mark/:email/:date/:label').get(getEmployeeLabelS);
-router.route('/mark/:date/:employeeId/:label').get(getOneEmployeeLabel);  
-router.route('/all-attendance/:email/:dateOffset').get(getEmployeeAttendance);
-router.route('/overtimeAdder/:id/:value').post(overtimeAdder);
-router.route('/allowance/:id/:value').post(allowanceAdder);
-router.route('/IOU/:id/:value').post(IOU);
-router.route('/accessId/:portalCode').get(PortalAccess);
-
-
+router.route("/newDesignation").post(createPayroll);
+router.route("/create/:id").post(createNewEmployee);
+router.route("/employees/:userEmail").get(getAllEmployee);
+router.route("/update-1/:id").post(updateEmployee);
+router.route("/designation/:email").get(getAllDesignation);
+router.route("/detail/:id").get(getEmployeeDetail);
+router.route("/add-loan").post(addLoan);
+router.route("/update-loan").post(updateLoan);
+router.route("/updateComplain/:date").post(reviewComplain);
+router
+  .route("/complain-status/:id/:dueDate/:date/:label/:detail")
+  .get(ComplainStatus);
+router.route("/all/mark/:email/:date/:label").get(getEmployeeLabelS);
+router.route("/mark/:date/:employeeId/:label").get(getOneEmployeeLabel);
+router.route("/all-attendance/:email/:dateOffset").get(getEmployeeAttendance);
+router.route("/overtimeAdder/:id/:value").post(overtimeAdder);
+router.route("/allowance/:id/:value").post(allowanceAdder);
+router.route("/IOU/:id/:value").post(IOU);
+router.route("/accessId/:portalCode").get(PortalAccess);
 
 // // router
 // // .route('/create/:id/:projectname')
@@ -108,8 +108,6 @@ router.route('/accessId/:portalCode').get(PortalAccess);
 // // .get(getOneEmployee)
 
 // router.route('/1/:id/:projectname').get(getOneEmployeePerProject);
-
-;
 
 // router.route('/redun/:email/:projectname').get(getEmployeeRedundancyPerProject);
 
