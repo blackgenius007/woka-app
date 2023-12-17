@@ -261,7 +261,7 @@ const EmployeePortal = () => {
           <Typography variant="h6" gutterBottom>
             Enter your Data collector access code
           </Typography>
-          <Input
+          <input
             placeholder="Data Code"
             value={dataCode}
             onChange={handleInputChange}
