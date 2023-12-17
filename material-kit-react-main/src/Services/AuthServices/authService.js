@@ -12,6 +12,7 @@ const API_URL_LOGIN = '/api/v1/auth/login';
 const API_URL_USERS_BY_ID = '/api/v1/auth/users';
 const API_URL_DEPARTMENT = '/api/v1/auth/department';
 const API_URL_CREATE_DATA_COLLECTION_POINT = '/api/v1/auth/dcollector';
+const API_URL_AUTH_DATA_ACCESS = '/api/v1/employee/collectorId';
 
 // Function to construct the base URL
 const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
@@ -71,15 +72,12 @@ const createDataCollectionPoint = async ({ employeeNumber, tag, userEmail }) => 
 
   return response.data;
 };
-// const createDataCollectionPoint = async (collectpoint) => {
-//   console.log('collector-services=>', collectpoint);
-//   const response = await axios.post(
-//     constructURL(API_URL_CREATE_DATA_COLLECTION_POINT),
-//     collectpoint
-//   );
-
-//   return response.data;
-// };
+// auth port access
+const authDataAccess = async (dataCode) => {
+  console.log(dataCode)
+  const response = await axios.get(constructURL(API_URL_AUTH_DATA_ACCESS + `/${dataCode}`));
+  return response.data;
+};
 
 const authService = {
   register,
@@ -88,6 +86,7 @@ const authService = {
   retrieveUsers,
   saveDepartment,
   createDataCollectionPoint,
+  authDataAccess,
 };
 
 export default authService;

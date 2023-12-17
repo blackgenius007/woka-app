@@ -1,6 +1,8 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { authPortalAccess } from 'src/Services/HR-Services/employeeSlice';
+import { createDataCollectionPoint } from 'src/Services/AuthServices/authSlice';
+
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import StorageIcon from '@mui/icons-material/Storage';
@@ -34,8 +36,8 @@ const EmployeePortal = () => {
 
   const handleSubmit = () => {
     // Add your logic to handle the submitted dataCode
-    alert('Data Code submitted:', dataCode);
-    console.log(dataCode)
+    // alert('Data Code submitted:', dataCode);
+    dispatch(createDataCollectionPoint(dataCode));
     // Close the popover
     handleClose();
   };
