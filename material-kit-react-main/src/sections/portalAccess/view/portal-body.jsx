@@ -41,11 +41,19 @@ const EmployeePortal = () => {
   }, [dispatch, portalCode]);
 
   useEffect(() => {
-    // Check if there is an error and show an alert
+    // Check if there is an error and show a SweetAlert
     if (isError) {
-      alert(message);
+      Swal.fire({
+        title: 'Error!',
+        text: message,
+        icon: 'error',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        // Navigate back to the home page
+        window.location.href = '/';
+      });
     }
-  }, [isError, message]);
+  }, [isError, message, MySwal]);
 
   const handleEditClick = () => {
     setIsEditing(true);
