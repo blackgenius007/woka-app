@@ -95,7 +95,7 @@ export const authDataAccess = createAsyncThunk(
   'auth/authDataAccess',
   async (dataCode, thunkAPI) => {
     try {
-      return await authService.authenticatePortalAccess(dataCode);
+      return await authService.authDataAccess(dataCode);
     } catch (error) {
       const message =
         (error.response &&
