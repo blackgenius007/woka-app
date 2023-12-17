@@ -35,6 +35,7 @@ const EmployeePortal = () => {
   const handleSubmit = () => {
     // Add your logic to handle the submitted dataCode
     alert('Data Code submitted:', dataCode);
+    console.log(dataCode)
     // Close the popover
     handleClose();
   };
