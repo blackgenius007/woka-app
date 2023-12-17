@@ -29,12 +29,12 @@ const EmployeePortal = () => {
     
         setEmployeeData(employee);
     
-        console.log(response);
+        console.log(response.employees.message);
       } catch (err) {
         console.log('An error occurred!', err);
     
-        if (err.message && err.message !== 'isSuccess') {
-          // Access the error message
+        if (err.message && err.message  == 'Rejected') {
+          // Access the error message   
           const errorMessage = err.message;
     
           // Show SweetAlert2 alert
