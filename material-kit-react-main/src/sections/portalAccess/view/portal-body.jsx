@@ -53,7 +53,7 @@ const EmployeePortal = () => {
         window.location.href = '/';
       });
     }
-  }, [isError, message, MySwal]);
+  }, [isError, message,  Swal]);
 
   const handleEditClick = () => {
     setIsEditing(true);
