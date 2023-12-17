@@ -37,7 +37,7 @@ const EmployeePortal = () => {
   const handleSubmit = () => {
     // Add your logic to handle the submitted dataCode
     // alert('Data Code submitted:', dataCode);
-    dispatch(createDataCollectionPoint(dataCode));
+    dispatch(authPortalAccess(dataCode));
     // Close the popover
     handleClose();
   };
@@ -51,7 +51,7 @@ const EmployeePortal = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await dispatch(authPortalAccess(portalCode));
+        await dispatch(createDataCollectionPoint (portalCode));
         // Handle success case
       } catch (err) {
         // Access the error message
