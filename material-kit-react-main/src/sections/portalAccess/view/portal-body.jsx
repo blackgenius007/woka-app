@@ -20,6 +20,7 @@ const EmployeePortal = () => {
 
   //Access the portalCode from the Redux store
   const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
+  const { isError, message } = useSelector((state) => state.employees);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,10 +28,8 @@ const EmployeePortal = () => {
         await dispatch(authPortalAccess(portalCode));
         // Handle success case
       } catch (err) {
-        console.log(err && err.message)
         // Access the error message
         if (err && err.message) {
-          alert(portalCode,'is invalid')
           const errorResponseMessage = err.message;
           // Use errorResponseMessage as needed (e.g., show an alert)
           console.error(errorResponseMessage);
@@ -41,37 +40,12 @@ const EmployeePortal = () => {
     fetchData();
   }, [dispatch, portalCode]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await dispatch(authPortalAccess(portalCode));
-  //       const employee = response.payload;
-    
-  //       setEmployeeData(employee);
-    
-  //       console.log(response);
-  //     } catch (err) {
-  //       console.log('An error occurred!', err);
-    
-  //       if (err.message && err.message  == 'isSuccess') {
-  //         // Access the error message
-  //         const errorMessage = err.message;
-    
-  //         // Show SweetAlert2 alert
-  //         Swal.fire({
-  //           title: 'Invalid portal code!',
-  //           text: errorMessage,
-  //           icon: 'error',
-  //         }).then(() => {
-  //           // Redirect to the home page
-  //           window.location.href = '/'; // Replace '/' with the actual path of your home page
-  //         });
-  //       }
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [dispatch, portalCode]);
+  useEffect(() => {
+    // Check if there is an error and show an alert
+    if (isError) {
+      alert(message);
+    }
+  }, [isError, message]);
 
   const handleEditClick = () => {
     setIsEditing(true);
