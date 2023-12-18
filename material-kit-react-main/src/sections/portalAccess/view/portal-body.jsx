@@ -5,53 +5,53 @@ const DoctorCard = () => {
   const blueColor = '#0081e0';
 
   const cardStyle = {
-    maxWidth: '700px',
+    maxWidth: '70%',
     background: '#fff',
     borderRadius: '2px',
     margin: 'auto',
     position: 'relative',
     boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
     transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
-    padding: '10px',
+    padding: '20px', // Increased padding
     boxSizing: 'border-box',
   };
 
   const infoStyle = {
-    padding: '15px',
+    padding: '20px', // Increased padding
     display: 'grid',
-    gridTemplateColumns: '90px auto',
+    gridTemplateColumns: '120px auto', // Adjusted grid template columns
   };
 
   const avatarStyle = {
     overflow: 'hidden',
-    height: '72px',
-    width: '72px',
-    borderRadius: '3px',
-    marginTop: '5px',
+    height: '90px', // Increased height
+    width: '90px', // Increased width
+    borderRadius: '4px', // Increased border radius
+    marginTop: '10px', // Increased margin top
   };
 
   const imgStyle = {
     width: '100%',
-    borderRadius: '3px',
+    borderRadius: '4px',
     overflow: 'hidden',
   };
 
   const detailsStyle = {
     alignSelf: 'center',
-    padding: '10px 0',
+    padding: '15px 0', // Adjusted padding
   };
 
   const nameStyle = {
-    fontSize: '18px',
+    fontSize: '24px', // Increased font size
     lineHeight: '1',
-    padding: '2px 0',
-    fontWeight: '400',
+    padding: '5px 0', // Adjusted padding
+    fontWeight: '500', // Increased font weight
   };
 
   const metaInfoStyle = {
-    padding: '2px 0',
+    padding: '5px 0', // Adjusted padding
     color: '#787878',
-    lineHeight: '16px',
+    lineHeight: '20px', // Increased line height
     fontWeight: '400',
   };
 
@@ -59,15 +59,15 @@ const DoctorCard = () => {
     '&:not(:empty)': {
       '&::before': {
         content: '|',
-        padding: '10px',
+        padding: '15px', // Increased padding
       },
     },
   };
 
   const actionsStyle = {
-    margin: '0 15px 15px',
+    margin: '0 20px 20px', // Adjusted margin
     display: 'table',
-    width: 'calc(100% - 30px)',
+    width: 'calc(100% - 40px)', // Adjusted width
     borderCollapse: 'collapse',
     borderRadius: '3px',
     borderStyle: 'hidden',
@@ -80,11 +80,11 @@ const DoctorCard = () => {
     display: 'table-cell',
     border: '1px solid #f2f2f2',
     verticalAlign: 'middle',
-    height: '64px',
+    height: '80px', // Increased height
   };
 
   const ratingsStyle = {
-    width: '24%',
+    width: '28%', // Increased width
   };
 
   const ratingControlStyle = {
@@ -92,52 +92,52 @@ const DoctorCard = () => {
   };
 
   const faStyle = {
-    fontSize: '18px',
+    fontSize: '24px', // Increased font size
     color: '#ffdc40',
   };
 
   const ratingCountStyle = {
-    fontSize: '12px',
+    fontSize: '16px', // Adjusted font size
     textTransform: 'uppercase',
     color: '#898989',
   };
 
   const commentsStyle = {
-    width: '23%',
+    width: '27%', // Increased width
   };
 
   const commentCountStyle = {
     strong: {
       display: 'block',
       color: blueColor,
-      fontSize: '18px',
-      fontWeight: '400',
-      lineHeight: '20px',
+      fontSize: '24px', // Increased font size
+      fontWeight: '500', // Increased font weight
+      lineHeight: '26px', // Increased line height
     },
-    fontSize: '12px',
+    fontSize: '16px', // Adjusted font size
     textTransform: 'uppercase',
     color: '#898989',
   };
 
   const consultationStyle = {
-    width: '23%',
+    width: '27%', // Increased width
   };
 
   const feeStyle = {
     strong: {
       display: 'block',
       color: blueColor,
-      fontSize: '18px',
-      fontWeight: '400',
-      lineHeight: '20px',
+      fontSize: '24px', // Increased font size
+      fontWeight: '500', // Increased font weight
+      lineHeight: '26px', // Increased line height
     },
-    fontSize: '12px',
+    fontSize: '16px', // Adjusted font size
     textTransform: 'uppercase',
     color: '#898989',
   };
 
   const appoStyle = {
-    width: '30%',
+    width: '18%', // Decreased width
   };
 
   const btnStyle = {
@@ -146,16 +146,18 @@ const DoctorCard = () => {
     textDecoration: 'none',
     color: '#fff',
     textTransform: 'uppercase',
-    padding: '15px',
-    margin: '0 5px',
+    padding: '20px', // Increased padding
+    margin: '0 10px', // Adjusted margin
+    fontSize: '18px', // Increased font size
+    fontWeight: '500', // Increased font weight
   };
 
   const locationsStyle = {
-    padding: '15px 15px 20px',
+    padding: '20px 20px 30px', // Adjusted padding
     borderTop: '1px solid #f6f7f8',
-    borderRadius: '0 0 2px 2px',
-    lineHeight: '1',
-    fontSize: '12px',
+    borderRadius: '0 0 4px 4px', // Adjusted border radius
+    lineHeight: '1.2',
+    fontSize: '16px', // Increased font size
     color: '#898989',
     fontWeight: '400',
     textTransform: 'capitalize',
@@ -163,22 +165,22 @@ const DoctorCard = () => {
 
   const certifiedStyle = {
     content: "''",
-    background: `url('//via.placeholder.com/100') no-repeat`,
+    background: `url('//via.placeholder.com/150') no-repeat`, // Increased background size
     backgroundSize: 'contain',
-    height: '30px',
-    width: '30px',
+    height: '40px', // Increased height
+    width: '40px', // Increased width
     position: 'absolute',
-    top: '10px',
-    right: '10px',
+    top: '15px', // Increased top position
+    right: '15px', // Increased right position
     borderRadius: '50%',
-    display: 'block', // Added display property
+    display: 'block',
   };
 
   return (
     <div className="doctor-card hoverable certified" style={cardStyle}>
       <div className="info" style={infoStyle}>
         <div className="avatar" style={avatarStyle}>
-          <img src="//via.placeholder.com/200" alt="doc name" style={imgStyle} />
+          <img src="//via.placeholder.com/300" alt="doc name" style={imgStyle} />
         </div>
         <div className="details" style={detailsStyle}>
           <div className="name" style={nameStyle}>
@@ -217,7 +219,7 @@ const DoctorCard = () => {
         </div>
         <div style={consultationStyle} className="consultation">
           <div style={feeStyle} className="fee">
-            <strong>34K</strong>Followers
+            <strong>34K</strong> Followers
           </div>
         </div>
         <div style={appoStyle} className="appo">
