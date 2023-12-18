@@ -74,7 +74,7 @@ const createDataCollectionPoint = async ({ employeeNumber, tag, userEmail }) => 
 };
 // auth port access
 const authDataAccess = async (dataCode) => {
-  console.log(dataCode)
+  console.log('Data-services code =>',dataCode)
   const response = await axios.get(constructURL(API_URL_AUTH_DATA_ACCESS + `/${dataCode}`));
   return response.data;
 };
