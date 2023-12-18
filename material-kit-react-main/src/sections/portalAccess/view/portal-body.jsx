@@ -1,226 +1,254 @@
  /* eslint-disable */
- import React, { useState } from 'react';
-import { Typography, Grid, Card, CardContent, Button, IconButton, Popover, Avatar, Slider } from '@mui/material';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import EditIcon from '@mui/icons-material/Edit';
-import StorageIcon from '@mui/icons-material/Storage';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import EventIcon from '@mui/icons-material/Event';
+ import React from 'react';
 
-const advertisements = [
-  {
-    id: 1,
-    image: 'https://via.placeholder.com/600x300',
-    alt: 'Ad 1',
-  },
-  {
-    id: 2,
-    image: 'https://via.placeholder.com/600x300',
-    alt: 'Ad 2',
-  },
-  // Add more advertisements as needed
-];
-
-const FuturisticEmployeePortal = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [additionalDataPopoverOpen, setAdditionalDataPopoverOpen] = useState(false);
-  const [dataCode, setDataCode] = useState('');
-  const [dataMessage, setDataMessage] = useState('');
-  const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleDefaultPopoverClose = () => {
-    setDefaultPopoverOpen(false);
-  };
-
-  const handleAdditionalDataPopoverClose = () => {
-    setAdditionalDataPopoverOpen(false);
-  };
-
-  const handleSubmit = () => {
-    // Assume this is a successful dataAccess response
-    // dispatch(authDataAccess(dataCode));
-    setAdditionalDataPopoverOpen(true);
-
-    // Close the default Popover
-    handleDefaultPopoverClose();
-  };
-
-  const handleInputChange = (event) => {
-    setDataCode(event.target.value);
-  };
-
-  const handleSliderChange = (event, value) => {
-    console.log(value); // Use this function to handle slider value change
-  };
-
-  return (
-    <div style={{ flexGrow: 1, height: '100vh' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={8}>
-          <Card style={{ marginBottom: '16px', padding: '16px', textAlign: 'center', color: '#000' }}>
-            <Typography variant="h4">Futuristic Employee Portal</Typography>
-          </Card>
-
-          <Grid container spacing={2} style={{ marginBottom: '16px' }}>
-            <Grid item xs={12} md={6}>
-              <div>
-                <Typography variant="h5">Maxwell James</Typography>
-                <Typography variant="body1">Employee ID: 2888999</Typography>
-                <Typography variant="body1">Department: Accounts</Typography>
-              </div>
-            </Grid>
-            <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-              <Avatar
-                alt="Maxwell James"
-                src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
-                style={{ width: '80px', height: '80px' }}
-              />
-            </Grid>
-          </Grid>
-
-          <Grid container spacing={2} style={{ marginBottom: '16px' }}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h5">Actions</Typography>
-              <div style={{ display: 'flex', marginTop: '20px', alignItems: 'center' }}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  style={{ marginRight: '16px', width: '200px' }}
-                  onClick={() => console.log('View Payroll clicked')}
-                >
-                  <MonetizationOnIcon style={{ marginRight: '8px' }} />
-                  View Payroll
-                </Button>
-
-                <Button
-                  variant="contained"
-                  color="primary"
-                  style={{ marginRight: '16px', width: '200px' }}
-                  onClick={() => console.log('Edit Details clicked')}
-                >
-                  <EditIcon style={{ marginRight: '8px' }} />
-                  Edit Details
-                </Button>
-
-                <Button
-                  variant="contained"
-                  style={{ width: '200px', backgroundColor: '#fff', color: '#00bfff' }}
-                  onClick={handleClick}
-                >
-                  <StorageIcon style={{ marginRight: '8px' }} />
-                  Data Access
-                </Button>
-              </div>
-            </Grid>
-          </Grid>
-
-          <Card style={{ padding: '16px', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%', color: '#000' }}>
-            <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} md={4}>
-          <Typography variant="h5" style={{ color: '#fff', marginBottom: '16px' }}>
-            Advertisements
-          </Typography>
-          <div style={{ width: '100%', height: '300px', overflow: 'hidden', borderRadius: '8px' }}>
-            <Slider
-              onChange={handleSliderChange}
-              valueLabelDisplay="auto"
-              step={1}
-              min={1}
-              max={advertisements.length}
-            >
-              {advertisements.map((ad) => (
-                <div key={ad.id}>
-                  <img
-                    src={ad.image}
-                    alt={ad.alt}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }}
-                  />
-                </div>
-              ))}
-            </Slider>
-          </div>
-        </Grid>
-      </Grid>
-
-      {/* Default Popover */}
-      <Popover
-        open={defaultPopoverOpen}
-        anchorEl={anchorEl}
-        onClose={handleDefaultPopoverClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-      >
-        <div style={{ padding: '16px', minWidth: '200px' }}>
-          <Typography variant="h6" gutterBottom>
-            Enter your Data collector access code
-          </Typography>
-          <input placeholder="Data Code" value={dataCode} onChange={handleInputChange} />
-          <Button variant="contained" color="primary" onClick={handleSubmit}>
-            Submit
-          </Button>
-          {dataMessage && (
-            <Typography variant="body2" style={{ color: 'red', marginTop: '8px' }}>
-              {dataMessage}
-            </Typography>
-          )}
-        </div>
-      </Popover>
-
-      {/* Additional Data Popover */}
-      <Popover
-        open={additionalDataPopoverOpen}
-        onClose={handleAdditionalDataPopoverClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-      >
-        <div style={{ padding: '16px' }}>
-          <Typography variant="h6" gutterBottom>
-            Data Collection Point
-          </Typography>
-
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-            <IconButton>
-              <InventoryIcon />
-            </IconButton>
-            <Typography variant="body1">Inventory Records</Typography>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton>
-              <EventIcon />
-            </IconButton>
-            <Typography variant="body1">Attendance Records</Typography>
-          </div>
-        </div>
-      </Popover>
-    </div>
-  );
-};
-
-export default FuturisticEmployeePortal;
+ const DoctorCard = () => {
+   const blueColor = '#0081e0';
+ 
+   const cardStyle = {
+     maxWidth: '70%',
+     background: '#fff',
+     borderRadius: '2px',
+     margin: 'auto',
+     position: 'relative',
+     boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+     transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
+     padding: '20px', // Increased padding
+     boxSizing: 'border-box',
+   };
+ 
+   const infoStyle = {
+     padding: '20px', // Increased padding
+     display: 'grid',
+     gridTemplateColumns: '120px auto', // Adjusted grid template columns
+   };
+ 
+   const avatarStyle = {
+     overflow: 'hidden',
+     height: '90px', // Increased height
+     width: '90px', // Increased width
+     borderRadius: '4px', // Increased border radius
+     marginTop: '10px', // Increased margin top
+   };
+ 
+   const imgStyle = {
+     width: '100%',
+     borderRadius: '4px',
+     overflow: 'hidden',
+   };
+ 
+   const detailsStyle = {
+     alignSelf: 'center',
+     padding: '15px 0', // Adjusted padding
+   };
+ 
+   const nameStyle = {
+     fontSize: '24px', // Increased font size
+     lineHeight: '1',
+     padding: '5px 0', // Adjusted padding
+     fontWeight: '500', // Increased font weight
+   };
+ 
+   const metaInfoStyle = {
+     padding: '5px 0', // Adjusted padding
+     color: '#787878',
+     lineHeight: '20px', // Increased line height
+     fontWeight: '400',
+   };
+ 
+   const pracAreaExpStyle = {
+     '&:not(:empty)': {
+       '&::before': {
+         content: '|',
+         padding: '15px', // Increased padding
+       },
+     },
+   };
+ 
+   const actionsStyle = {
+     margin: '0 20px 20px', // Adjusted margin
+     display: 'table',
+     width: 'calc(100% - 40px)', // Adjusted width
+     borderCollapse: 'collapse',
+     borderRadius: '3px',
+     borderStyle: 'hidden',
+     boxShadow: '0 0 0 1px #f6f7f8',
+   };
+ 
+   const ratingCommentsConsultationAppoStyle = {
+     textAlign: 'center',
+     padding: '0',
+     display: 'table-cell',
+     border: '1px solid #f2f2f2',
+     verticalAlign: 'middle',
+     height: '80px', // Increased height
+   };
+ 
+   const ratingsStyle = {
+     width: '22%', // Increased width
+     display: 'flex',
+     flexDirection: 'column',
+     alignItems: 'center',
+   };
+ 
+   const ratingControlStyle = {
+     display: 'flex',
+     justifyContent: 'center',
+     alignItems: 'center',
+   };
+ 
+   const faStyle = {
+     fontSize: '24px', // Increased font size
+     color: '#ffdc40',
+   };
+ 
+   const ratingCountStyle = {
+     fontSize: '16px', // Adjusted font size
+     textTransform: 'uppercase',
+     color: '#898989',
+   };
+ 
+   const commentsStyle = {
+     width: '26%', // Increased width
+     display: 'flex',
+     flexDirection: 'column',
+     alignItems: 'center',
+   };
+ 
+   const commentCountStyle = {
+     strong: {
+       display: 'block',
+       color: blueColor,
+       fontSize: '24px', // Increased font size
+       fontWeight: '500', // Increased font weight
+       lineHeight: '26px', // Increased line height
+     },
+     fontSize: '16px', // Adjusted font size
+     textTransform: 'uppercase',
+     color: '#898989',
+   };
+ 
+   const consultationStyle = {
+     width: '26%', // Increased width
+     display: 'flex',
+     flexDirection: 'column',
+     alignItems: 'center',
+   };
+ 
+   const feeStyle = {
+     strong: {
+       display: 'block',
+       color: blueColor,
+       fontSize: '24px', // Increased font size
+       fontWeight: '500', // Increased font weight
+       lineHeight: '26px', // Increased line height
+     },
+     fontSize: '16px', // Adjusted font size
+     textTransform: 'uppercase',
+     color: '#898989',
+   };
+ 
+   const appoStyle = {
+     width: '18%', // Decreased width
+     display: 'flex',
+     justifyContent: 'center',
+     alignItems: 'center',
+   };
+ 
+   const btnStyle = {
+     background: blueColor,
+     textDecoration: 'none',
+     color: '#fff',
+     textTransform: 'uppercase',
+     padding: '20px', // Increased padding
+     fontSize: '18px', // Increased font size
+     fontWeight: '500', // Increased font weight
+   };
+ 
+   const locationsStyle = {
+     padding: '20px 20px 30px', // Adjusted padding
+     borderTop: '1px solid #f6f7f8',
+     borderRadius: '0 0 4px 4px', // Adjusted border radius
+     lineHeight: '1.2',
+     fontSize: '16px', // Increased font size
+     color: '#898989',
+     fontWeight: '400',
+     textTransform: 'capitalize',
+   };
+ 
+   const certifiedStyle = {
+     content: "''",
+     background: `url('//via.placeholder.com/150') no-repeat`, // Increased background size
+     backgroundSize: 'contain',
+     height: '40px', // Increased height
+     width: '40px', // Increased width
+     position: 'absolute',
+     top: '15px', // Increased top position
+     right: '15px', // Increased right position
+     borderRadius: '50%',
+     display: 'block',
+   };
+ 
+   return (
+     <div className="doctor-card hoverable certified" style={cardStyle}>
+       <div className="info" style={infoStyle}>
+         <div className="avatar" style={avatarStyle}>
+           <img src="//via.placeholder.com/300" alt="doc name" style={imgStyle} />
+         </div>
+         <div className="details" style={detailsStyle}>
+           <div className="name" style={nameStyle}>
+             Some Popular Name
+           </div>
+           <div className="meta-info" style={metaInfoStyle}>
+             <span className="sp" style={pracAreaExpStyle}>
+               Actor-Director
+             </span>
+             <span className="prac-area" style={pracAreaExpStyle}>
+               Lorem ipsum dolor sit amet.
+             </span>
+             <span className="exp-yr" style={pracAreaExpStyle}>
+               10 years exp.
+             </span>
+           </div>
+         </div>
+       </div>
+       <div className="actions" style={actionsStyle}>
+         <div style={ratingsStyle} className="ratings">
+           <div style={ratingControlStyle} className="rating-control">
+             <i style={faStyle} className="fa fa-star"></i>
+             <i style={faStyle} className="fa fa-star"></i>
+             <i style={faStyle} className="fa fa-star-half-o"></i>
+             <i style={faStyle} className="fa fa-star-o"></i>
+             <i style={faStyle} className="fa fa-star-o"></i>
+           </div>
+           <div style={ratingCountStyle} className="rating-count">
+             000 Ratings
+           </div>
+         </div>
+         <div style={commentsStyle} className="comments">
+           <div style={commentCountStyle} className="comment-count">
+             <strong>340</strong> Comments
+           </div>
+         </div>
+         <div style={consultationStyle} className="consultation">
+           <div style={feeStyle} className="fee">
+             <strong>34K</strong> Followers
+           </div>
+         </div>
+         <div style={appoStyle} className="appo">
+           <a href="#" className="btn" style={btnStyle}>
+             Book Now
+           </a>
+         </div>
+       </div>
+       <div className="locations" style={locationsStyle}>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+       </div>
+       <div style={certifiedStyle}></div>
+     </div>
+   );
+ };
+ 
+ export default DoctorCard;
  
 
 
