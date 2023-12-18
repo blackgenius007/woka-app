@@ -40,9 +40,9 @@ const EmployeePortal = () => {
   //   setAnchorEl(event.currentTarget);
   // };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   const handleInputChange = (event) => {
     setDataCode(event.target.value);
@@ -290,7 +290,7 @@ const EmployeePortal = () => {
       <Popover
         open={defaultPopoverOpen}
         anchorEl={anchorEl}
-        onClose={handleClose}
+        onClose={handleDefaultPopoverClose}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'center',
@@ -312,7 +312,7 @@ const EmployeePortal = () => {
       </Popover>
       <Popover
         open={additionalDataPopoverOpen}
-        onClose={onClose}
+        onClose={handleAdditionalDataPopoverClose}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
