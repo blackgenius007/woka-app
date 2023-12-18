@@ -27,22 +27,16 @@ const EmployeePortal = () => {
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
 
+// Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
     setDefaultPopoverOpen(true);
     setAnchorEl(event.currentTarget);
   };
 
+  //Close data code input Popover 
   const handleDefaultPopoverClose = () => {
     setDefaultPopoverOpen(false);
   };
-
-  // const handleCollector = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
 
   const handleInputChange = (event) => {
     setDataCode(event.target.value);
@@ -74,14 +68,7 @@ const EmployeePortal = () => {
     }
   };
 
-  // const handleSubmit = () => {
-  //   // Add your logic to handle the submitted dataCode
-  //   // alert('Data Code submitted:', dataCode);
-  //   dispatch(authDataAccess(dataCode));
-  //   // Close the popover
-  //   handleClose();
-  // };
-
+ 
   const open = Boolean(anchorEl);
 
   //Access the portalCode from the Redux store
@@ -160,7 +147,6 @@ const EmployeePortal = () => {
     autoplay: true,
     autoplaySpeed: 5000,
   };
-
   return (
     <>
       <Grid container spacing={2}>
@@ -170,7 +156,7 @@ const EmployeePortal = () => {
               backgroundColor: '#fff',
               padding: '16px',
               textAlign: 'center',
-              color: '#000', // Contrast text color
+              color: '#000',
               boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.1), 0px -5px 5px rgba(0, 0, 0, 0.1)',
             }}
           >
@@ -194,7 +180,7 @@ const EmployeePortal = () => {
               />
             </Grid>
           </Grid>
-
+  
           <Grid container spacing={2} style={{ padding: '24px' }}>
             <Grid item xs={12} md={6}>
               <Typography variant="h5">Actions</Typography>
@@ -208,7 +194,7 @@ const EmployeePortal = () => {
                   <MonetizationOnIcon style={{ marginRight: '8px' }} />
                   View Payroll
                 </Button>
-
+  
                 <Button
                   variant="contained"
                   color="primary"
@@ -218,7 +204,7 @@ const EmployeePortal = () => {
                   <EditIcon style={{ marginRight: '8px' }} />
                   Edit Details
                 </Button>
-
+  
                 <Button
                   variant="contained"
                   style={{ width: '200px', backgroundColor: '#fff', color: '#00bfff' }}
@@ -229,7 +215,7 @@ const EmployeePortal = () => {
                 </Button>
               </div>
             </Grid>
-
+  
             {isEditing && (
               <Grid item xs={12} md={6}>
                 <Paper style={{ backgroundColor: '#333', padding: '16px', borderRadius: '8px' }}>
@@ -247,7 +233,7 @@ const EmployeePortal = () => {
               </Grid>
             )}
           </Grid>
-
+  
           <Paper
             style={{
               backgroundColor: '#fff',
@@ -256,14 +242,14 @@ const EmployeePortal = () => {
               position: 'fixed',
               bottom: 0,
               width: '100%',
-              color: '#000', // Contrast text color
+              color: '#000',
               boxShadow: '0px -5px 5px rgba(0, 0, 0, 0.1)',
             }}
           >
             <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
           </Paper>
         </Grid>
-
+  
         <Grid item xs={12} md={6}>
           <Typography variant="h5" style={{ color: '#fff', marginBottom: '16px' }}>
             Advertisements
@@ -287,6 +273,8 @@ const EmployeePortal = () => {
           </div>
         </Grid>
       </Grid>
+  
+      {/* Data access Popover */}
       <Popover
         open={defaultPopoverOpen}
         anchorEl={anchorEl}
@@ -308,14 +296,15 @@ const EmployeePortal = () => {
           <Button variant="contained" color="primary" onClick={handleSubmit}>
             Submit
           </Button>
-          
-    {dataMessage && ( // Conditionally render the error message
-      <Typography variant="body2" style={{ color: 'red', marginTop: '8px' }}>
-        {dataMessage}
-      </Typography>
-    )}
+          {dataMessage && (
+            <Typography variant="body2" style={{ color: 'red', marginTop: '8px' }}>
+              {dataMessage}
+            </Typography>
+          )}
         </div>
       </Popover>
+  
+      {/* Additional data Popover */}
       <Popover
         open={additionalDataPopoverOpen}
         anchorEl={anchorEl}
@@ -333,14 +322,14 @@ const EmployeePortal = () => {
           <Typography variant="h6" gutterBottom>
             Data Collection Point
           </Typography>
-
+  
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
             <IconButton>
               <InventoryIcon />
             </IconButton>
             <Typography variant="body1">Inventory Records</Typography>
           </div>
-
+  
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <IconButton>
               <EventIcon />
@@ -351,6 +340,196 @@ const EmployeePortal = () => {
       </Popover>
     </>
   );
+  // return (
+  //   <>
+  //     <Grid container spacing={2}>
+  //       <Grid item xs={12} md={6}>
+  //         <Paper
+  //           style={{
+  //             backgroundColor: '#fff',
+  //             padding: '16px',
+  //             textAlign: 'center',
+  //             color: '#000', // Contrast text color
+  //             boxShadow: '0px 5px 5px rgba(0, 0, 0, 0.1), 0px -5px 5px rgba(0, 0, 0, 0.1)',
+  //           }}
+  //         >
+  //           <Typography variant="h4">Futuristic Employee Portal</Typography>
+  //         </Paper>
+  //         <br />
+  //         <Grid container spacing={2} style={{ padding: '24px' }}>
+  //           <Grid item xs={12} md={6}>
+  //             <div>
+  //               <Typography variant="h5"> Maxwell James </Typography>
+  //               <Typography variant="body1">Employee ID: 2888999 </Typography>
+  //               <Typography variant="body1">Department: Accounts </Typography>
+  //               {/* Add more details as needed */}
+  //             </div>
+  //           </Grid>
+  //           <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
+  //             <Avatar
+  //               alt={employee}
+  //               src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
+  //               style={{ width: '80px', height: '80px' }}
+  //             />
+  //           </Grid>
+  //         </Grid>
+
+  //         <Grid container spacing={2} style={{ padding: '24px' }}>
+  //           <Grid item xs={12} md={6}>
+  //             <Typography variant="h5">Actions</Typography>
+  //             <div style={{ display: 'flex', marginTop: '20px', alignItems: 'center' }}>
+  //               <Button
+  //                 variant="contained"
+  //                 color="primary"
+  //                 style={{ marginRight: '16px', width: '200px' }}
+  //                 onClick={() => console.log('View Payroll clicked')}
+  //               >
+  //                 <MonetizationOnIcon style={{ marginRight: '8px' }} />
+  //                 View Payroll
+  //               </Button>
+
+  //               <Button
+  //                 variant="contained"
+  //                 color="primary"
+  //                 style={{ marginRight: '16px', width: '200px' }}
+  //                 onClick={handleEditClick}
+  //               >
+  //                 <EditIcon style={{ marginRight: '8px' }} />
+  //                 Edit Details
+  //               </Button>
+
+  //               <Button
+  //                 variant="contained"
+  //                 style={{ width: '200px', backgroundColor: '#fff', color: '#00bfff' }}
+  //                 onClick={handleDefaultPopoverOpen}
+  //               >
+  //                 <StorageIcon style={{ marginRight: '8px' }} />
+  //                 Data access
+  //               </Button>
+  //             </div>
+  //           </Grid>
+
+  //           {isEditing && (
+  //             <Grid item xs={12} md={6}>
+  //               <Paper style={{ backgroundColor: '#333', padding: '16px', borderRadius: '8px' }}>
+  //                 <Typography variant="h5">Edit Details</Typography>
+  //                 {/* Include form for editing details */}
+  //                 <form onSubmit={handleSaveChanges}>
+  //                   {/* Add input fields for editing details */}
+  //                   <TextField label="New Detail" fullWidth style={{ marginBottom: '16px' }} />
+  //                   {/* Add more input fields as needed */}
+  //                   <Button type="submit" variant="contained" color="primary">
+  //                     Save Changes
+  //                   </Button>
+  //                 </form>
+  //               </Paper>
+  //             </Grid>
+  //           )}
+  //         </Grid>
+
+  //         <Paper
+  //           style={{
+  //             backgroundColor: '#fff',
+  //             padding: '16px',
+  //             textAlign: 'center',
+  //             position: 'fixed',
+  //             bottom: 0,
+  //             width: '100%',
+  //             color: '#000', // Contrast text color
+  //             boxShadow: '0px -5px 5px rgba(0, 0, 0, 0.1)',
+  //           }}
+  //         >
+  //           <Typography variant="body2">© 2023 Futuristic Employee Portal</Typography>
+  //         </Paper>
+  //       </Grid>
+
+  //       <Grid item xs={12} md={6}>
+  //         <Typography variant="h5" style={{ color: '#fff', marginBottom: '16px' }}>
+  //           Advertisements
+  //         </Typography>
+  //         <div style={{ width: '100%', height: '300px', overflow: 'hidden', borderRadius: '8px' }}>
+  //           <Slider {...settings}>
+  //             {advertisements.map((ad) => (
+  //               <div key={ad.id}>
+  //                 <img
+  //                   src={ad.image}
+  //                   alt={ad.alt}
+  //                   style={{
+  //                     width: '100%',
+  //                     height: '100%',
+  //                     objectFit: 'cover',
+  //                   }}
+  //                 />
+  //               </div>
+  //             ))}
+  //           </Slider>
+  //         </div>
+  //       </Grid>
+  //     </Grid>
+  //     <Popover
+  //       open={defaultPopoverOpen}
+  //       anchorEl={anchorEl}
+  //       onClose={handleDefaultPopoverClose}
+  //       anchorOrigin={{
+  //         vertical: 'bottom',
+  //         horizontal: 'center',
+  //       }}
+  //       transformOrigin={{
+  //         vertical: 'top',
+  //         horizontal: 'center',
+  //       }}
+  //     >
+  //       <div style={{ padding: '16px', minWidth: '200px' }}>
+  //         <Typography variant="h6" gutterBottom>
+  //           Enter your Data collector access code
+  //         </Typography>
+  //         <input placeholder="Data Code" value={dataCode} onChange={handleInputChange} />
+  //         <Button variant="contained" color="primary" onClick={handleSubmit}>
+  //           Submit
+  //         </Button>
+          
+  //   {dataMessage && ( // Conditionally render the error message
+  //     <Typography variant="body2" style={{ color: 'red', marginTop: '8px' }}>
+  //       {dataMessage}
+  //     </Typography>
+  //   )}
+  //       </div>
+  //     </Popover>
+  //     <Popover
+  //       open={additionalDataPopoverOpen}
+  //       anchorEl={anchorEl}
+  //       onClose={handleAdditionalDataPopoverClose}
+  //       anchorOrigin={{
+  //         vertical: 'bottom',
+  //         horizontal: 'right',
+  //       }}
+  //       transformOrigin={{
+  //         vertical: 'top',
+  //         horizontal: 'right',
+  //       }}
+  //     >
+  //       <div style={{ padding: '16px' }}>
+  //         <Typography variant="h6" gutterBottom>
+  //           Data Collection Point
+  //         </Typography>
+
+  //         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+  //           <IconButton>
+  //             <InventoryIcon />
+  //           </IconButton>
+  //           <Typography variant="body1">Inventory Records</Typography>
+  //         </div>
+
+  //         <div style={{ display: 'flex', alignItems: 'center' }}>
+  //           <IconButton>
+  //             <EventIcon />
+  //           </IconButton>
+  //           <Typography variant="body1">Attendance Records</Typography>
+  //         </div>
+  //       </div>
+  //     </Popover>
+  //   </>
+  // );
 };
 
 export default EmployeePortal;
