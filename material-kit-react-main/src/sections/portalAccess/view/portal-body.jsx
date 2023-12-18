@@ -1,5 +1,5 @@
-// /* eslint-disable */
-import React from 'react';
+ /* eslint-disable */
+ import React from 'react';
 
 const DoctorCard = () => {
   const blueColor = '#0081e0';
@@ -171,6 +171,7 @@ const DoctorCard = () => {
     top: '10px',
     right: '10px',
     borderRadius: '50%',
+    display: 'block', // Added display property
   };
 
   return (
@@ -228,15 +229,12 @@ const DoctorCard = () => {
       <div className="locations" style={locationsStyle}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </div>
-      <div style={certifiedStyle}></div> {/* Corrected: Added content */}
+      <div style={certifiedStyle}></div>
     </div>
   );
 };
 
 export default DoctorCard;
-
-
-
 
 
 
