@@ -1,5 +1,6 @@
  /* eslint-disable */
  import React from 'react';
+import { Container, Typography, Button } from '@mui/material';
 
 const CourseSection = () => {
   const sectionStyle = {
@@ -107,54 +108,55 @@ const CourseSection = () => {
 
   return (
     <section style={sectionStyle}>
-      <div className="container" style={containerStyle}>
-        <h1 style={h1Style}>
+      <Container sx={containerStyle}>
+        <Typography variant="h1" sx={h1Style}>
           buy the course
           <i className="fa-solid fa-hand-peace"></i>
-        </h1>
-        <p style={pStyle}>
-          join over 2,300 developers who have already stepped up their database
-          performance game!
-        </p>
+        </Typography>
+        <Typography variant="body1" sx={pStyle}>
+          join over 2,300 developers who have already stepped up their database performance game!
+        </Typography>
         <div className="info" style={infoStyle}>
           <div className="box one" style={boxStyle}>
-            <h2 style={h2Style}>
+            <Typography variant="h2" sx={h2Style}>
               <i className="fa-solid fa-star"></i>
               premium package
-            </h2>
+            </Typography>
             <div className="text" style={textStyle}>
-              <p>access to the total of 28 lessons</p>
-              <p>
+              <Typography variant="body1">access to the total of 28 lessons</Typography>
+              <Typography variant="body1">
                 includes additional advanced lessons on natural sorting, full-text searching, and geospatial queries
-              </p>
-              <p>
+              </Typography>
+              <Typography variant="body1">
                 full source code for all lessons, including MYSQL, Postgres, and SQLite versions (where possible)
-              </p>
-              <p>over two full hours of video content</p>
-              <p>stream online or download videos</p>
+              </Typography>
+              <Typography variant="body1">over two full hours of video content</Typography>
+              <Typography variant="body1">stream online or download videos</Typography>
             </div>
             <div className="price" style={priceStyle}>
-              <h3 style={priceH3Style}><sup>$</sup>149<sub>usd</sub></h3>
-              <button style={buttonStyle}>buy now</button>
-              <p>buying for your team?<a href="#" style={pLinkStyle}>view the team pricing.</a></p>
+              <Typography variant="h3" sx={priceH3Style}><sup>$</sup>149<sub>usd</sub></Typography>
+              <Button variant="contained" style={buttonStyle}>buy now</Button>
+              <Typography variant="body1">
+                buying for your team?<a href="#" style={pLinkStyle}>view the team pricing.</a>
+              </Typography>
             </div>
           </div>
           <div className="box tow" style={towStyle}>
-            <h2 style={h2Style}>
+            <Typography variant="h2" sx={h2Style}>
               <i className="fa-sharp fa-solid fa-check"></i> essentials package
-            </h2>
+            </Typography>
             <div className="text" style={textStyle}>
-              <p>access to the first 22 lessons</p>
-              <p>just under two hours of video content</p>
-              <p>stream online or download videos</p>
+              <Typography variant="body1">access to the first 22 lessons</Typography>
+              <Typography variant="body1">just under two hours of video content</Typography>
+              <Typography variant="body1">stream online or download videos</Typography>
             </div>
             <div className="price" style={priceStyle}>
-              <h3 style={towPriceH3Style}><sup>$</sup>99<sub>usd</sub></h3>
-              <button style={towButtonStyle}>buy now</button>
+              <Typography variant="h3" sx={towPriceH3Style}><sup>$</sup>99<sub>usd</sub></Typography>
+              <Button variant="contained" style={towButtonStyle}>buy now</Button>
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
