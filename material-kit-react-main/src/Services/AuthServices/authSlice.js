@@ -14,6 +14,7 @@ const initialState = {
   isLoading: false,
   message: '',
   employeeCode: { portalCode: '' }, // Added employeeCode slice
+  auth: []
 };
 
 // Register user
