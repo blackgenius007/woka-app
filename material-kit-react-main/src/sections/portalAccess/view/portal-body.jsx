@@ -308,6 +308,12 @@ const EmployeePortal = () => {
           <Button variant="contained" color="primary" onClick={handleSubmit}>
             Submit
           </Button>
+          
+    {dataMessage && ( // Conditionally render the error message
+      <Typography variant="body2" style={{ color: 'red', marginTop: '8px' }}>
+        {dataMessage}
+      </Typography>
+    )}
         </div>
       </Popover>
       <Popover
