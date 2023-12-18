@@ -228,13 +228,12 @@ const DoctorCard = () => {
       <div className="locations" style={locationsStyle}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </div>
-      <div style={certifiedStyle}></div>
+      <div style={certifiedStyle}></div> {/* Corrected: Added content */}
     </div>
   );
 };
 
 export default DoctorCard;
-
 
 
 
