@@ -312,6 +312,7 @@ const EmployeePortal = () => {
       </Popover>
       <Popover
         open={additionalDataPopoverOpen}
+        anchorEl={anchorEl}
         onClose={handleAdditionalDataPopoverClose}
         anchorOrigin={{
           vertical: 'bottom',
