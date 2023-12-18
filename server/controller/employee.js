@@ -1654,9 +1654,7 @@ exports.PortalAccess = asyncHandler(async (req, res, next) => {
   }
 });
 
-  // @desc Get Employee Data access
-// @routes Get/api/employee/port-access/:id'
-// @access Public
+ 
 
 // @desc Get Employee portal access
 // @routes Get/api/employee/port-access/:id'
@@ -1679,10 +1677,6 @@ exports.DataAccess = asyncHandler(async (req, res, next) => {
 
     // If employee is found, construct the data to send to the frontend
     const responseData = {
-      businessName: employee.businessName,
-      ownerEmail: employee.ownerEmail,
-      businessSector:employee.businessSector,
-      country:employee.country,
       collectionPointDetails:employee.collectionPointDetails
       // Add more fields as needed
     };
