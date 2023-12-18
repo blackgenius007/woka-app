@@ -257,7 +257,7 @@ export const authDataAccess = createAsyncThunk(
   'auth/authDataAccess',
   async (dataCode, thunkAPI) => {
     try {
-      return await authService.authDataAccess(dataCode);
+      return await employeeService.authDataAccess(dataCode);
     } catch (error) {
       const message =
         (error.response &&
