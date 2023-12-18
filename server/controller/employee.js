@@ -1657,6 +1657,10 @@ exports.PortalAccess = asyncHandler(async (req, res, next) => {
   // @desc Get Employee Data access
 // @routes Get/api/employee/port-access/:id'
 // @access Public
+
+// @desc Get Employee portal access
+// @routes Get/api/employee/port-access/:id'
+// @access Public
 exports.DataAccess = asyncHandler(async (req, res, next) => {
   const dataCode = req.params.dataCode;
 
@@ -1673,11 +1677,54 @@ exports.DataAccess = asyncHandler(async (req, res, next) => {
       return res.status(404).json({ message: 'Invalid code' });
     }
 
-    // If employee is found, return the entire document
-    res.json(employee);
+    // If employee is found, construct the data to send to the frontend
+    const responseData = {
+      businessName: employee.businessName,
+      ownerEmail: employee.ownerEmail,
+      businessSector:employee.businessSector,
+      country:employee.country,
+      collectionPointDetails:employee.collectionPointDetails
+      // Add more fields as needed
+    };
+
+    // Send the customized data to the frontend
+    res.json(responseData);
   } catch (err) {
     // Handle errors
     console.error('An error occurred while fetching employee details:', err);
     return res.status(500).send('Internal Server Error');
   }
 });
+
+
+
+
+
+
+
+
+
+// exports.DataAccess = asyncHandler(async (req, res, next) => {
+//   const dataCode = req.params.dataCode;
+
+//   try {
+//     // Find the employee with the matching passcode in the array
+//     const employee = await User.findOne({
+//       'collectionPointDetails': {
+//         $elemMatch: { 'passcode': dataCode }
+//       }
+//     });
+
+//     if (!employee) {
+//       // If no employee is found, return an error response with "Invalid code" message
+//       return res.status(404).json({ message: 'Invalid code' });
+//     }
+
+//     // If employee is found, return the entire document
+//     res.json(employee);
+//   } catch (err) {
+//     // Handle errors
+//     console.error('An error occurred while fetching employee details:', err);
+//     return res.status(500).send('Internal Server Error');
+//   }
+// });
