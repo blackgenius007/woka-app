@@ -14,7 +14,7 @@ const initialState = {
   isLoading: false,
   message: '',
   employeeCode: { portalCode: '' }, // Added employeeCode slice
-  auth: []
+  // auth: []
 };
 
 // Register user
@@ -92,22 +92,22 @@ export const createDataCollectionPoint = createAsyncThunk(
 );
 
 // Create an asynchronous thunk for authenticating data access
-export const authDataAccess = createAsyncThunk(
-  'auth/authDataAccess',
-  async (dataCode, thunkAPI) => {
-    try {
-      return await authService.authDataAccess(dataCode);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+// export const authDataAccess = createAsyncThunk(
+//   'auth/authDataAccess',
+//   async (dataCode, thunkAPI) => {
+//     try {
+//       return await authService.authDataAccess(dataCode);
+//     } catch (error) {
+//       const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -196,20 +196,20 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      }) 
-      .addCase(authDataAccess.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(authDataAccess.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.auth.push(action.payload);
-      })
-      .addCase(authDataAccess.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      });
+      }) ;
+      // .addCase(authDataAccess.pending, (state) => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(authDataAccess.fulfilled, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isSuccess = true;
+      //   state.auth.push(action.payload);
+      // })
+      // .addCase(authDataAccess.rejected, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isError = true;
+      //   state.message = action.payload;
+      // });
   },
 });
 
