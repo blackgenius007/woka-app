@@ -1,5 +1,5 @@
  /* eslint-disable */
- i import React from 'react';
+ import React from 'react';
 
  const DoctorCard = () => {
    const blueColor = '#0081e0';
