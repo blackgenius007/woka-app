@@ -1,243 +1,255 @@
  /* eslint-disable */
- import React from 'react';
+ i import React from 'react';
 
-const DoctorCard = () => {
-  const blueColor = '#0081e0';
-
-  const cardStyle = {
-    maxWidth: '70%',
-    background: '#fff',
-    borderRadius: '2px',
-    margin: 'auto',
-    position: 'relative',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-    transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
-    padding: '20px', // Increased padding
-    boxSizing: 'border-box',
-  };
-
-  const infoStyle = {
-    padding: '20px', // Increased padding
-    display: 'grid',
-    gridTemplateColumns: '120px auto', // Adjusted grid template columns
-  };
-
-  const avatarStyle = {
-    overflow: 'hidden',
-    height: '90px', // Increased height
-    width: '90px', // Increased width
-    borderRadius: '4px', // Increased border radius
-    marginTop: '10px', // Increased margin top
-  };
-
-  const imgStyle = {
-    width: '100%',
-    borderRadius: '4px',
-    overflow: 'hidden',
-  };
-
-  const detailsStyle = {
-    alignSelf: 'center',
-    padding: '15px 0', // Adjusted padding
-  };
-
-  const nameStyle = {
-    fontSize: '24px', // Increased font size
-    lineHeight: '1',
-    padding: '5px 0', // Adjusted padding
-    fontWeight: '500', // Increased font weight
-  };
-
-  const metaInfoStyle = {
-    padding: '5px 0', // Adjusted padding
-    color: '#787878',
-    lineHeight: '20px', // Increased line height
-    fontWeight: '400',
-  };
-
-  const pracAreaExpStyle = {
-    '&:not(:empty)': {
-      '&::before': {
-        content: '|',
-        padding: '15px', // Increased padding
-      },
-    },
-  };
-
-  const actionsStyle = {
-    margin: '0 20px 20px', // Adjusted margin
-    display: 'table',
-    width: 'calc(100% - 40px)', // Adjusted width
-    borderCollapse: 'collapse',
-    borderRadius: '3px',
-    borderStyle: 'hidden',
-    boxShadow: '0 0 0 1px #f6f7f8',
-  };
-
-  const ratingCommentsConsultationAppoStyle = {
-    textAlign: 'center',
-    padding: '0',
-    display: 'table-cell',
-    border: '1px solid #f2f2f2',
-    verticalAlign: 'middle',
-    height: '80px', // Increased height
-  };
-
-  const ratingsStyle = {
-    width: '28%', // Increased width
-  };
-
-  const ratingControlStyle = {
-    display: 'block',
-  };
-
-  const faStyle = {
-    fontSize: '24px', // Increased font size
-    color: '#ffdc40',
-  };
-
-  const ratingCountStyle = {
-    fontSize: '16px', // Adjusted font size
-    textTransform: 'uppercase',
-    color: '#898989',
-  };
-
-  const commentsStyle = {
-    width: '27%', // Increased width
-  };
-
-  const commentCountStyle = {
-    strong: {
-      display: 'block',
-      color: blueColor,
-      fontSize: '24px', // Increased font size
-      fontWeight: '500', // Increased font weight
-      lineHeight: '26px', // Increased line height
-    },
-    fontSize: '16px', // Adjusted font size
-    textTransform: 'uppercase',
-    color: '#898989',
-  };
-
-  const consultationStyle = {
-    width: '27%', // Increased width
-  };
-
-  const feeStyle = {
-    strong: {
-      display: 'block',
-      color: blueColor,
-      fontSize: '24px', // Increased font size
-      fontWeight: '500', // Increased font weight
-      lineHeight: '26px', // Increased line height
-    },
-    fontSize: '16px', // Adjusted font size
-    textTransform: 'uppercase',
-    color: '#898989',
-  };
-
-  const appoStyle = {
-    width: '18%', // Decreased width
-  };
-
-  const btnStyle = {
-    background: blueColor,
-    display: 'block',
-    textDecoration: 'none',
-    color: '#fff',
-    textTransform: 'uppercase',
-    padding: '20px', // Increased padding
-    margin: '0 10px', // Adjusted margin
-    fontSize: '18px', // Increased font size
-    fontWeight: '500', // Increased font weight
-  };
-
-  const locationsStyle = {
-    padding: '20px 20px 30px', // Adjusted padding
-    borderTop: '1px solid #f6f7f8',
-    borderRadius: '0 0 4px 4px', // Adjusted border radius
-    lineHeight: '1.2',
-    fontSize: '16px', // Increased font size
-    color: '#898989',
-    fontWeight: '400',
-    textTransform: 'capitalize',
-  };
-
-  const certifiedStyle = {
-    content: "''",
-    background: `url('//via.placeholder.com/150') no-repeat`, // Increased background size
-    backgroundSize: 'contain',
-    height: '40px', // Increased height
-    width: '40px', // Increased width
-    position: 'absolute',
-    top: '15px', // Increased top position
-    right: '15px', // Increased right position
-    borderRadius: '50%',
-    display: 'block',
-  };
-
-  return (
-    <div className="doctor-card hoverable certified" style={cardStyle}>
-      <div className="info" style={infoStyle}>
-        <div className="avatar" style={avatarStyle}>
-          <img src="//via.placeholder.com/300" alt="doc name" style={imgStyle} />
-        </div>
-        <div className="details" style={detailsStyle}>
-          <div className="name" style={nameStyle}>
-            Some Popular Name
-          </div>
-          <div className="meta-info" style={metaInfoStyle}>
-            <span className="sp" style={pracAreaExpStyle}>
-              Actor-Director
-            </span>
-            <span className="prac-area" style={pracAreaExpStyle}>
-              Lorem ipsum dolor sit amet.
-            </span>
-            <span className="exp-yr" style={pracAreaExpStyle}>
-              10 years exp.
-            </span>
-          </div>
-        </div>
-      </div>
-      <div className="actions" style={actionsStyle}>
-        <div style={ratingsStyle} className="ratings">
-          <div style={ratingControlStyle} className="rating-control">
-            <i style={faStyle} className="fa fa-star"></i>
-            <i style={faStyle} className="fa fa-star"></i>
-            <i style={faStyle} className="fa fa-star-half-o"></i>
-            <i style={faStyle} className="fa fa-star-o"></i>
-            <i style={faStyle} className="fa fa-star-o"></i>
-          </div>
-          <div style={ratingCountStyle} className="rating-count">
-            000 Ratings
-          </div>
-        </div>
-        <div style={commentsStyle} className="comments">
-          <div style={commentCountStyle} className="comment-count">
-            <strong>340</strong> Comments
-          </div>
-        </div>
-        <div style={consultationStyle} className="consultation">
-          <div style={feeStyle} className="fee">
-            <strong>34K</strong> Followers
-          </div>
-        </div>
-        <div style={appoStyle} className="appo">
-          <a href="#" className="btn" style={btnStyle}>
-            Book Now
-          </a>
-        </div>
-      </div>
-      <div className="locations" style={locationsStyle}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </div>
-      <div style={certifiedStyle}></div>
-    </div>
-  );
-};
-
-export default DoctorCard;
-
+ const DoctorCard = () => {
+   const blueColor = '#0081e0';
+ 
+   const cardStyle = {
+     maxWidth: '70%',
+     background: '#fff',
+     borderRadius: '2px',
+     margin: 'auto',
+     position: 'relative',
+     boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+     transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
+     padding: '20px', // Increased padding
+     boxSizing: 'border-box',
+   };
+ 
+   const infoStyle = {
+     padding: '20px', // Increased padding
+     display: 'grid',
+     gridTemplateColumns: '120px auto', // Adjusted grid template columns
+   };
+ 
+   const avatarStyle = {
+     overflow: 'hidden',
+     height: '90px', // Increased height
+     width: '90px', // Increased width
+     borderRadius: '4px', // Increased border radius
+     marginTop: '10px', // Increased margin top
+   };
+ 
+   const imgStyle = {
+     width: '100%',
+     borderRadius: '4px',
+     overflow: 'hidden',
+   };
+ 
+   const detailsStyle = {
+     alignSelf: 'center',
+     padding: '15px 0', // Adjusted padding
+   };
+ 
+   const nameStyle = {
+     fontSize: '24px', // Increased font size
+     lineHeight: '1',
+     padding: '5px 0', // Adjusted padding
+     fontWeight: '500', // Increased font weight
+   };
+ 
+   const metaInfoStyle = {
+     padding: '5px 0', // Adjusted padding
+     color: '#787878',
+     lineHeight: '20px', // Increased line height
+     fontWeight: '400',
+   };
+ 
+   const pracAreaExpStyle = {
+     '&:not(:empty)': {
+       '&::before': {
+         content: '|',
+         padding: '15px', // Increased padding
+       },
+     },
+   };
+ 
+   const actionsStyle = {
+     margin: '0 20px 20px', // Adjusted margin
+     display: 'table',
+     width: 'calc(100% - 40px)', // Adjusted width
+     borderCollapse: 'collapse',
+     borderRadius: '3px',
+     borderStyle: 'hidden',
+     boxShadow: '0 0 0 1px #f6f7f8',
+   };
+ 
+   const ratingCommentsConsultationAppoStyle = {
+     textAlign: 'center',
+     padding: '0',
+     display: 'table-cell',
+     border: '1px solid #f2f2f2',
+     verticalAlign: 'middle',
+     height: '80px', // Increased height
+   };
+ 
+   const ratingsStyle = {
+     width: '22%', // Increased width
+     display: 'flex',
+     flexDirection: 'column',
+     alignItems: 'center',
+   };
+ 
+   const ratingControlStyle = {
+     display: 'flex',
+     justifyContent: 'center',
+     alignItems: 'center',
+   };
+ 
+   const faStyle = {
+     fontSize: '24px', // Increased font size
+     color: '#ffdc40',
+   };
+ 
+   const ratingCountStyle = {
+     fontSize: '16px', // Adjusted font size
+     textTransform: 'uppercase',
+     color: '#898989',
+   };
+ 
+   const commentsStyle = {
+     width: '26%', // Increased width
+     display: 'flex',
+     flexDirection: 'column',
+     alignItems: 'center',
+   };
+ 
+   const commentCountStyle = {
+     strong: {
+       display: 'block',
+       color: blueColor,
+       fontSize: '24px', // Increased font size
+       fontWeight: '500', // Increased font weight
+       lineHeight: '26px', // Increased line height
+     },
+     fontSize: '16px', // Adjusted font size
+     textTransform: 'uppercase',
+     color: '#898989',
+   };
+ 
+   const consultationStyle = {
+     width: '26%', // Increased width
+     display: 'flex',
+     flexDirection: 'column',
+     alignItems: 'center',
+   };
+ 
+   const feeStyle = {
+     strong: {
+       display: 'block',
+       color: blueColor,
+       fontSize: '24px', // Increased font size
+       fontWeight: '500', // Increased font weight
+       lineHeight: '26px', // Increased line height
+     },
+     fontSize: '16px', // Adjusted font size
+     textTransform: 'uppercase',
+     color: '#898989',
+   };
+ 
+   const appoStyle = {
+     width: '18%', // Decreased width
+     display: 'flex',
+     justifyContent: 'center',
+     alignItems: 'center',
+   };
+ 
+   const btnStyle = {
+     background: blueColor,
+     textDecoration: 'none',
+     color: '#fff',
+     textTransform: 'uppercase',
+     padding: '20px', // Increased padding
+     fontSize: '18px', // Increased font size
+     fontWeight: '500', // Increased font weight
+   };
+ 
+   const locationsStyle = {
+     padding: '20px 20px 30px', // Adjusted padding
+     borderTop: '1px solid #f6f7f8',
+     borderRadius: '0 0 4px 4px', // Adjusted border radius
+     lineHeight: '1.2',
+     fontSize: '16px', // Increased font size
+     color: '#898989',
+     fontWeight: '400',
+     textTransform: 'capitalize',
+   };
+ 
+   const certifiedStyle = {
+     content: "''",
+     background: `url('//via.placeholder.com/150') no-repeat`, // Increased background size
+     backgroundSize: 'contain',
+     height: '40px', // Increased height
+     width: '40px', // Increased width
+     position: 'absolute',
+     top: '15px', // Increased top position
+     right: '15px', // Increased right position
+     borderRadius: '50%',
+     display: 'block',
+   };
+ 
+   return (
+     <div className="doctor-card hoverable certified" style={cardStyle}>
+       <div className="info" style={infoStyle}>
+         <div className="avatar" style={avatarStyle}>
+           <img src="//via.placeholder.com/300" alt="doc name" style={imgStyle} />
+         </div>
+         <div className="details" style={detailsStyle}>
+           <div className="name" style={nameStyle}>
+             Some Popular Name
+           </div>
+           <div className="meta-info" style={metaInfoStyle}>
+             <span className="sp" style={pracAreaExpStyle}>
+               Actor-Director
+             </span>
+             <span className="prac-area" style={pracAreaExpStyle}>
+               Lorem ipsum dolor sit amet.
+             </span>
+             <span className="exp-yr" style={pracAreaExpStyle}>
+               10 years exp.
+             </span>
+           </div>
+         </div>
+       </div>
+       <div className="actions" style={actionsStyle}>
+         <div style={ratingsStyle} className="ratings">
+           <div style={ratingControlStyle} className="rating-control">
+             <i style={faStyle} className="fa fa-star"></i>
+             <i style={faStyle} className="fa fa-star"></i>
+             <i style={faStyle} className="fa fa-star-half-o"></i>
+             <i style={faStyle} className="fa fa-star-o"></i>
+             <i style={faStyle} className="fa fa-star-o"></i>
+           </div>
+           <div style={ratingCountStyle} className="rating-count">
+             000 Ratings
+           </div>
+         </div>
+         <div style={commentsStyle} className="comments">
+           <div style={commentCountStyle} className="comment-count">
+             <strong>340</strong> Comments
+           </div>
+         </div>
+         <div style={consultationStyle} className="consultation">
+           <div style={feeStyle} className="fee">
+             <strong>34K</strong> Followers
+           </div>
+         </div>
+         <div style={appoStyle} className="appo">
+           <a href="#" className="btn" style={btnStyle}>
+             Book Now
+           </a>
+         </div>
+       </div>
+       <div className="locations" style={locationsStyle}>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+       </div>
+       <div style={certifiedStyle}></div>
+     </div>
+   );
+ };
+ 
+ export default DoctorCard;
+ 
 
 
 
