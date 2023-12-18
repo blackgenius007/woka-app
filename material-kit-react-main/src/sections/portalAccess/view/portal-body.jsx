@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { authPortalAccess } from 'src/Services/HR-Services/employeeSlice';
-import { createDataCollectionPoint } from 'src/Services/AuthServices/authSlice';
+import { authDataAccess } from 'src/Services/AuthServices/authSlice';
 
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,7 +37,7 @@ const EmployeePortal = () => {
   const handleSubmit = () => {
     // Add your logic to handle the submitted dataCode
     // alert('Data Code submitted:', dataCode);
-    dispatch(authPortalAccess(dataCode));
+    dispatch(authDataAccess(dataCode));
     // Close the popover
     handleClose();
   };
@@ -51,7 +51,7 @@ const EmployeePortal = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await dispatch(createDataCollectionPoint (portalCode));
+        await dispatch(authPortalAccess (portalCode));
         // Handle success case
       } catch (err) {
         // Access the error message
