@@ -50,6 +50,7 @@ const {
   updateLoan,
   connectEmployeerPortal,
   PortalAccess,
+  DataAccess
 } = require("../controller/employee");
 
 router.route("/newDesignation").post(createPayroll);
@@ -71,6 +72,7 @@ router.route("/overtimeAdder/:id/:value").post(overtimeAdder);
 router.route("/allowance/:id/:value").post(allowanceAdder);
 router.route("/IOU/:id/:value").post(IOU);
 router.route("/accessId/:portalCode").get(PortalAccess);
+router.route("/collectorId/:dataCode").get(DataAccess);
 
 // // router
 // // .route('/create/:id/:projectname')
