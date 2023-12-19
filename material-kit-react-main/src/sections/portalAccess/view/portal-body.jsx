@@ -221,7 +221,7 @@ const EmployeePortal = () => {
                     size="large"
                     sx={{ marginRight: 2 }}
                   >
-                    Get Started
+                    Payroll
                   </Button>
                   <Button
                     href="#"
@@ -230,7 +230,7 @@ const EmployeePortal = () => {
                     size="large"
                     sx={{ marginRight: 2 }}
                   >
-                    Another Button
+                    Personal
                   </Button>
                   <Button
                     href="#"
