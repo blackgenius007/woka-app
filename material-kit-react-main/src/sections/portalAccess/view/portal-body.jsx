@@ -40,8 +40,19 @@ const EmployeePortal = () => {
             {/* Left Section */}
             <Grid item md={6} xs={12}>
               <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
-                Awesome Startup Name
+              <Avatar
+               alt={employee}
+             src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
+               style={{ width: '80px', height: '80px' }}
+              />
               </Typography>
+               {/* <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
+             <Avatar
+               alt={employee}
+             src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
+               style={{ width: '80px', height: '80px' }}
+              />
+         </Grid> */}
               <Typography variant="body1" paragraph>
                 Made with 1 prompt using the new{' '}
                 <a
