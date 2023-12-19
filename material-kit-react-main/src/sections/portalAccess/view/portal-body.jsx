@@ -19,8 +19,8 @@ import DataIcon from '@mui/icons-material/DataUsage';
 const EmployeePortal = () => {
   return (
     <Box>
-      {/* Navbar */}
-      <AppBar position="static" color="transparent" elevation={0}>
+       {/* Navbar */}
+       <AppBar position="static" color="transparent" elevation={0} sx={{ mb: -2 }}>
         <Toolbar>
           <Avatar variant="rounded" sx={{ backgroundColor: 'white', marginRight: '8px' }}>
             <IconButton color="primary">
@@ -32,21 +32,9 @@ const EmployeePortal = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      {/* <AppBar position="static" color="transparent" elevation={0}>
-        <Toolbar>
-          <Typography variant="h6" component="div" flexGrow={1}>
-            Awesome Startup Name
-          </Typography>
-          <Avatar variant="rounded" sx={{ backgroundColor: 'bg-gray-100' }}>
-            <IconButton color="inherit">
-              <HomeIcon />
-            </IconButton>
-          </Avatar>
-        </Toolbar>
-      </AppBar> */}
 
       {/* Hero Section */}
-      <Box py={24} sm={16} md={20} lg={24} bgcolor="gray.100">
+      <Box py={8} sm={6} md={8} lg={10} bgcolor="gray.100">
         <Container maxWidth="lg">
           <Grid container spacing={8} alignItems="center">
             {/* Left Section */}
@@ -75,7 +63,6 @@ const EmployeePortal = () => {
                 <Button href="#" variant="contained" color="primary" size="large" sx={{ marginRight: 2 }}>
                   Another Button
                 </Button>
-
                 <Button
                   href="#"
                   variant="contained"
