@@ -206,7 +206,7 @@ const EmployeePortal = () => {
                     className="underline"
                     href="https://huggingface.co/fblgit/una-cybertron-7b-v2-bf16"
                   >
-                    cybertron-7b-v2
+                     {employeeData.joinDate}
                   </a>
                   .<br />
                   Sed rhoncus ante in risus viverra aliquam. Fusce ultrices tellus eu nisl
