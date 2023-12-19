@@ -9,13 +9,31 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Avatar from '@mui/material/Avatar';
-import TextField from '@mui/material/TextField';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import HomeIcon from '@mui/icons-material/Home';
+import DataIcon from '@mui/icons-material/DataUsage';
 
 const EmployeePortal = () => {
   return (
-    <Box className="bg-gray-100 text-gray-800 antialiased font-sans">
+    <Box>
+      {/* Navbar */}
+      <AppBar position="static" color="transparent" elevation={0}>
+        <Toolbar>
+          <Typography variant="h6" component="div" flexGrow={1}>
+            Awesome Startup Name
+          </Typography>
+          <Avatar variant="rounded" sx={{ backgroundColor: 'bg-gray-100' }}>
+            <IconButton color="inherit">
+              <HomeIcon />
+            </IconButton>
+          </Avatar>
+        </Toolbar>
+      </AppBar>
+
       {/* Hero Section */}
-      <Box py={24} sm={16} md={20} lg={24}>
+      <Box py={24} sm={16} md={20} lg={24} bgcolor="gray.100">
         <Container maxWidth="lg">
           <Grid container spacing={8} alignItems="center">
             {/* Left Section */}
@@ -37,9 +55,17 @@ const EmployeePortal = () => {
                 Sed rhoncus ante in risus viverra aliquam. Fusce ultrices tellus eu nisl malesuada, vitae dapibus odio
                 pulvinar. Integer a dui sed dolor cursus ornare eget quis enim.
               </Typography>
-              <Button href="#" variant="contained" color="primary" size="large">
-                Get Started
-              </Button>
+              <Box>
+                <Button href="#" variant="contained" color="primary" size="large" sx={{ marginRight: 2 }}>
+                  Get Started
+                </Button>
+                <Button href="#" variant="contained" color="primary" size="large" sx={{ marginRight: 2 }}>
+                  Another Button
+                </Button>
+                <Button href="#" variant="contained" size="large" startIcon={<DataIcon />} sx={{ backgroundColor: 'white' }}>
+                  Data Access
+                </Button>
+              </Box>
             </Grid>
 
             {/* Right Section */}
@@ -58,43 +84,16 @@ const EmployeePortal = () => {
       </Box>
 
       {/* Articles Section */}
-      <Box py={20} bgcolor="gray.50">
-        <Container maxWidth="lg">
-          <Typography variant="h3" align="center" gutterBottom fontWeight="bold">
-            Our Latest Articles
-          </Typography>
-          {/* ... (rest of the code) */}
-        </Container>
-      </Box>
+      {/* ... (rest of the code) */}
 
       {/* Testimonials Section */}
-      <Box py={20} bgcolor="gray.50">
-        <Container maxWidth="lg">
-          <Typography variant="h3" align="center" gutterBottom fontWeight="bold">
-            What People Are Saying
-          </Typography>
-          {/* ... (rest of the code) */}
-        </Container>
-      </Box>
+      {/* ... (rest of the code) */}
 
       {/* Contact Form Section */}
-      <Box py={24} sm={16} md={20} lg={24}>
-        <Container maxWidth="lg">
-          <Typography variant="h3" align="center" gutterBottom fontWeight="bold">
-            Get in Touch
-          </Typography>
-          <Grid container spacing={6}>
-            {/* ... (rest of the code) */}
-          </Grid>
-        </Container>
-      </Box>
+      {/* ... (rest of the code) */}
 
       {/* Footer Section */}
-      <Box py={12} textAlign="center" bgcolor="gray.50">
-        <Typography variant="body2" color="textSecondary">
-          &copy; 2023 Awesome Startup Name. All rights reserved.
-        </Typography>
-      </Box>
+      {/* ... (rest of the code) */}
     </Box>
   );
 };
