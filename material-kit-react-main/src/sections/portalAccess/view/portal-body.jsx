@@ -214,7 +214,7 @@ const EmployeePortal = () => {
                       eget quis enim.
                     </Typography>
                     <Box>
-                      <Link to={`/payroll/${employees._id}`}>
+                      <Link to={`/payroll/${employeeData._id}`}>
                         <Button
                           variant="contained"
                           color="primary"
