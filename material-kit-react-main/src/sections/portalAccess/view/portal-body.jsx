@@ -245,7 +245,7 @@ const EmployeePortal = () => {
             {/* Right Section */}
             <Grid item md={6} xs={12}>
               <Card>
-                   <div style={{ width: '350%', height: '150px', overflow: 'hidden', borderRadius: '8px' }}>
+                   <div style={{ width: '100%', height: '300px', overflow: 'hidden', borderRadius: '8px' }}>
              <Slider {...settings}>
                 {advertisements.map((ad) => (
                 <div key={ad.id}>
