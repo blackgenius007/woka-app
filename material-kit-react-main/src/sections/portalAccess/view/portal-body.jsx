@@ -28,9 +28,9 @@ const EmployeePortal = () => {
             </IconButton>
           </Avatar>
           <Avatar
-               alt={employee}
+               alt= ''
              src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
-               style={{ width: '80px', height: '80px' }}
+               style={{ width: '50px', height: '50px' }}
               />
         </Toolbar>
       </AppBar>
