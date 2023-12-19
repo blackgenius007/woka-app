@@ -22,6 +22,18 @@ const EmployeePortal = () => {
       {/* Navbar */}
       <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar>
+          <Avatar variant="rounded" sx={{ backgroundColor: 'white', marginRight: '8px' }}>
+            <IconButton color="primary">
+              <HomeIcon />
+            </IconButton>
+          </Avatar>
+          <Typography variant="h6" component="div" flexGrow={1}>
+            Awesome Startup Name
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      {/* <AppBar position="static" color="transparent" elevation={0}>
+        <Toolbar>
           <Typography variant="h6" component="div" flexGrow={1}>
             Awesome Startup Name
           </Typography>
@@ -31,7 +43,7 @@ const EmployeePortal = () => {
             </IconButton>
           </Avatar>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
 
       {/* Hero Section */}
       <Box py={24} sm={16} md={20} lg={24} bgcolor="gray.100">
@@ -64,9 +76,16 @@ const EmployeePortal = () => {
                   Another Button
                 </Button>
 
-                
-                <Button href="#" variant="contained" size="large" startIcon={<StorageIcon style={{ marginRight: '8px' }} />} sx={{ backgroundColor: 'white' }}>
-                  
+                <Button
+                  href="#"
+                  variant="contained"
+                  size="large"
+                  startIcon={<StorageIcon style={{ marginRight: '8px' }} />}
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#00227b',
+                  }}
+                >
                   Data Access
                 </Button>
               </Box>
