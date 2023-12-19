@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { authPortalAccess } from 'src/Services/HR-Services/employeeSlice';
 import { authDataAccess } from 'src/Services/HR-Services/employeeSlice';
 
@@ -151,8 +151,7 @@ const EmployeePortal = () => {
     },
     {
       id: 3,
-      image:
-        'https://res.cloudinary.com/youseful-apps/image/upload/v1702968361/GLO_vyaejh.jpg',
+      image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1702968361/GLO_vyaejh.jpg',
       alt: 'Ad 3',
     },
   ];
@@ -168,119 +167,117 @@ const EmployeePortal = () => {
   };
   return (
     <>
-    <Box>
-      {/* Navbar */}
-      <AppBar position="static" color="transparent" elevation={0} sx={{ mb: -2 }}>
-        <Toolbar>
-          <Avatar variant="rounded" sx={{ backgroundColor: 'white', marginRight: '8px' }}>
-            <IconButton color="primary">
-              <HomeIcon />
-            </IconButton>
-          </Avatar>
-          <Avatar
-            alt=""
-            src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
-            style={{ width: '50px', height: '50px' }}
-          />
-        </Toolbar>
-      </AppBar>
+      <Box>
+        {/* Navbar */}
+        <AppBar position="static" color="transparent" elevation={0} sx={{ mb: -2 }}>
+          <Toolbar>
+            <Avatar variant="rounded" sx={{ backgroundColor: 'white', marginRight: '8px' }}>
+              <IconButton color="primary">
+                <HomeIcon />
+              </IconButton>
+            </Avatar>
+            <Avatar
+              alt=""
+              src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
+              style={{ width: '50px', height: '50px' }}
+            />
+          </Toolbar>
+        </AppBar>
 
-      {/* Hero Section */}
-      <Box py={8} sm={6} md={8} lg={10} bgcolor="gray.100">
-        <Container maxWidth="lg">
-          <Grid container spacing={8} alignItems="center">
-            {/* Left Section */}
-            <Grid item md={6} xs={12}>
-              <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
-                Awesome Startup Name
-              </Typography>
+        {/* Hero Section */}
+        <Box py={8} sm={6} md={8} lg={10} bgcolor="gray.100">
+          <Container maxWidth="lg">
+            <Grid container spacing={8} alignItems="center">
+              {/* Left Section */}
+              <Grid item md={6} xs={12}>
+                <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
+                  Awesome Startup Name
+                </Typography>
 
-              <Typography variant="body1" paragraph>
-                Made with 1 prompt using the new{' '}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                  href="https://huggingface.co/fblgit/una-cybertron-7b-v2-bf16"
-                >
-                  cybertron-7b-v2
-                </a>
-                .<br />
-                Sed rhoncus ante in risus viverra aliquam. Fusce ultrices tellus eu nisl malesuada,
-                vitae dapibus odio pulvinar. Integer a dui sed dolor cursus ornare eget quis enim.
-              </Typography>
-              <Box>
-                <Button
-                  href="#"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  sx={{ marginRight: 2 }}
-                >
-                  Get Started
-                </Button>
-                <Button
-                  href="#"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  sx={{ marginRight: 2 }}
-                >
-                  Another Button
-                </Button>
-                <Button
-                  href="#"
-                  variant="contained"
-                  size="large"
-                  startIcon={<StorageIcon style={{ marginRight: '8px' }} />}
-                  sx={{
-                    backgroundColor: 'white',
-                    color: '#00227b',
-                  }}
-                  onClick={handleDefaultPopoverOpen}
-                >
-                  Data Access
-                </Button>
-              </Box>
-            </Grid>
+                <Typography variant="body1" paragraph>
+                  Made with 1 prompt using the new{' '}
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline"
+                    href="https://huggingface.co/fblgit/una-cybertron-7b-v2-bf16"
+                  >
+                    cybertron-7b-v2
+                  </a>
+                  .<br />
+                  Sed rhoncus ante in risus viverra aliquam. Fusce ultrices tellus eu nisl
+                  malesuada, vitae dapibus odio pulvinar. Integer a dui sed dolor cursus ornare eget
+                  quis enim.
+                </Typography>
+                <Box>
+                  <Button
+                    href="#"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    sx={{ marginRight: 2 }}
+                  >
+                    Get Started
+                  </Button>
+                  <Button
+                    href="#"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    sx={{ marginRight: 2 }}
+                  >
+                    Another Button
+                  </Button>
+                  <Button
+                    href="#"
+                    variant="contained"
+                    size="large"
+                    startIcon={<StorageIcon style={{ marginRight: '8px' }} />}
+                    sx={{
+                      backgroundColor: 'white',
+                      color: '#00227b',
+                    }}
+                    onClick={handleDefaultPopoverOpen}
+                  >
+                    Data Access
+                  </Button>
+                </Box>
+              </Grid>
 
-            {/* Right Section */}
-            <Grid item md={6} xs={12}>
-              <Card>
-                   <div style={{ width: '100%', height: '300px', overflow: 'hidden', borderRadius: '8px' }}>
-             <Slider {...settings}>
-                {advertisements.map((ad) => (
-                <div key={ad.id}>
-                  <img
-                    src={ad.image}
-                    alt={ad.alt}
+              {/* Right Section */}
+              <Grid item md={6} xs={12}>
+                <Card>
+                  <div
                     style={{
                       width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
+                      height: '300px',
+                      overflow: 'hidden',
+                      borderRadius: '8px',
                     }}
-                  />
-                </div>
-              ))}
-            </Slider>
-          </div>
-                {/* <CardMedia
-                  component="img"
-                  height="350x"
-                  width="150px"
-                  alt="Hero Image"
-                  src="https://source.unsplash.com/random"
-                  sx={{ margin: '8px', padding: '8px' }}
-                /> */}
-              </Card>
+                  >
+                    <Slider {...settings}>
+                      {advertisements.map((ad) => (
+                        <div key={ad.id}>
+                          <img
+                            src={ad.image}
+                            alt={ad.alt}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover',
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </Slider>
+                  </div>
+                </Card>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
+          </Container>
+        </Box>
       </Box>
-
- 
-    </Box>
-          {/* Data access Popover */}
+      {/* Data access Popover */}
       <Popover
         open={defaultPopoverOpen}
         anchorEl={anchorEl}
@@ -295,7 +292,7 @@ const EmployeePortal = () => {
         }}
       >
         <div style={{ padding: '16px', minWidth: '200px' }}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom sx={{ fontWeight: 'lighter', fontSize: '1.2rem' }}>
             Enter your Data collector access code
           </Typography>
           <input placeholder="Data Code" value={dataCode} onChange={handleInputChange} />
