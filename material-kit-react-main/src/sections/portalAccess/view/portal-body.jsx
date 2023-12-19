@@ -27,9 +27,11 @@ const EmployeePortal = () => {
               <HomeIcon />
             </IconButton>
           </Avatar>
-          <Typography variant="h6" component="div" flexGrow={1}>
-            Awesome Startup Name
-          </Typography>
+          <Avatar
+               alt={employee}
+             src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
+               style={{ width: '80px', height: '80px' }}
+              />
         </Toolbar>
       </AppBar>
 
@@ -40,19 +42,9 @@ const EmployeePortal = () => {
             {/* Left Section */}
             <Grid item md={6} xs={12}>
               <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
-              <Avatar
-               alt={employee}
-             src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
-               style={{ width: '80px', height: '80px' }}
-              />
+                Awesome Startup Name
               </Typography>
-               {/* <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-             <Avatar
-               alt={employee}
-             src="https://res.cloudinary.com/youseful-apps/image/upload/v1702332939/front_unv6ak.png"
-               style={{ width: '80px', height: '80px' }}
-              />
-         </Grid> */}
+        
               <Typography variant="body1" paragraph>
                 Made with 1 prompt using the new{' '}
                 <a
