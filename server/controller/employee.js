@@ -1698,27 +1698,27 @@ exports.DataAccess = asyncHandler(async (req, res, next) => {
 
 
 
-exports.DataAccess2 = asyncHandler(async (req, res, next) => {
-  const dataCode = req.params.dataCode;
+// exports.DataAccess2 = asyncHandler(async (req, res, next) => {
+//   const dataCode = req.params.dataCode;
 
-  try {
-    // Find the employee with the matching passcode in the array
-    const employee = await User.findOne({
-      'collectionPointDetails': {
-        $elemMatch: { 'passcode': dataCode }
-      }
-    });
+//   try {
+//     // Find the employee with the matching passcode in the array
+//     const employee = await User.findOne({
+//       'collectionPointDetails': {
+//         $elemMatch: { 'passcode': dataCode }
+//       }
+//     });
 
-    if (!employee) {
-      // If no employee is found, return an error response with "Invalid code" message
-      return res.status(404).json({ message: 'Invalid code' });
-    }
+//     if (!employee) {
+//       // If no employee is found, return an error response with "Invalid code" message
+//       return res.status(404).json({ message: 'Invalid code' });
+//     }
 
-    // If employee is found, return the entire document
-    res.json(employee);
-  } catch (err) {
-    // Handle errors
-    console.error('An error occurred while fetching employee details:', err);
-    return res.status(500).send('Internal Server Error');
-  }
-});
+//     // If employee is found, return the entire document
+//     res.json(employee);
+//   } catch (err) {
+//     // Handle errors
+//     console.error('An error occurred while fetching employee details:', err);
+//     return res.status(500).send('Internal Server Error');
+//   }
+// });
