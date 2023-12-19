@@ -146,13 +146,13 @@ const EmployeePortal = () => {
     {
       id: 2,
       image:
-        'https://res.cloudinary.com/youseful-apps/image/upload/v1656692093/samples/ecommerce/shoes.png',
+        'https://res.cloudinary.com/youseful-apps/image/upload/v1702968350/mcdonald_iweq7v.webp',
       alt: 'Ad 2',
     },
     {
       id: 3,
       image:
-        'https://res.cloudinary.com/youseful-apps/image/upload/v1659615143/avatar/h7oqmtok7lads4qn3s6r.png',
+        'https://res.cloudinary.com/youseful-apps/image/upload/v1702968361/GLO_vyaejh.jpg',
       alt: 'Ad 3',
     },
   ];
