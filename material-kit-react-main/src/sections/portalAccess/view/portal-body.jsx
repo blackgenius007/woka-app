@@ -1,4 +1,5 @@
-import React from 'react';
+ /* eslint-disable */
+ import React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -31,9 +32,21 @@ const EmployeePortal = () => {
           </Typography>
         </Toolbar>
       </AppBar>
+      {/* <AppBar position="static" color="transparent" elevation={0}>
+        <Toolbar>
+          <Typography variant="h6" component="div" flexGrow={1}>
+            Awesome Startup Name
+          </Typography>
+          <Avatar variant="rounded" sx={{ backgroundColor: 'bg-gray-100' }}>
+            <IconButton color="inherit">
+              <HomeIcon />
+            </IconButton>
+          </Avatar>
+        </Toolbar>
+      </AppBar> */}
 
       {/* Hero Section */}
-      <Box py={12} sm={8} md={10} lg={12} bgcolor="gray.100">
+      <Box py={24} sm={16} md={20} lg={24} bgcolor="gray.100">
         <Container maxWidth="lg">
           <Grid container spacing={8} alignItems="center">
             {/* Left Section */}
@@ -62,6 +75,7 @@ const EmployeePortal = () => {
                 <Button href="#" variant="contained" color="primary" size="large" sx={{ marginRight: 2 }}>
                   Another Button
                 </Button>
+
                 <Button
                   href="#"
                   variant="contained"
@@ -83,10 +97,10 @@ const EmployeePortal = () => {
                 <CardMedia
                   component="img"
                   height="auto"
-                  width="100%" {/* Adjusted width */}
+                  width="100%"
                   alt="Hero Image"
                   src="https://source.unsplash.com/random"
-                  sx={{ margin: '16px' }} {/* Added margin for space */}
+                  sx={{ margin: '8px', padding: '8px' }}
                 />
               </Card>
             </Grid>
@@ -108,6 +122,8 @@ const EmployeePortal = () => {
     </Box>
   );
 };
+
+ 
 
 export default EmployeePortal;
 
