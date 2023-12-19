@@ -167,6 +167,7 @@ const EmployeePortal = () => {
     autoplaySpeed: 5000,
   };
   return (
+    <>
     <Box>
       {/* Navbar */}
       <AppBar position="static" color="transparent" elevation={0} sx={{ mb: -2 }}>
@@ -276,18 +277,73 @@ const EmployeePortal = () => {
         </Container>
       </Box>
 
-      {/* Articles Section */}
-      {/* ... (rest of the code) */}
-
-      {/* Testimonials Section */}
-      {/* ... (rest of the code) */}
-
-      {/* Contact Form Section */}
-      {/* ... (rest of the code) */}
-
-      {/* Footer Section */}
-      {/* ... (rest of the code) */}
+ 
     </Box>
+          {/* Data access Popover */}
+      <Popover
+        open={defaultPopoverOpen}
+        anchorEl={anchorEl}
+        onClose={handleDefaultPopoverClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        <div style={{ padding: '16px', minWidth: '200px' }}>
+          <Typography variant="h6" gutterBottom>
+            Enter your Data collector access code
+          </Typography>
+          <input placeholder="Data Code" value={dataCode} onChange={handleInputChange} />
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Submit
+          </Button>
+          {dataMessage && (
+            <Typography variant="body2" style={{ color: 'red', marginTop: '8px' }}>
+              {dataMessage}
+            </Typography>
+          )}
+        </div>
+      </Popover>
+
+      {/* Additional data Popover */}
+      <Popover
+        open={additionalDataPopoverOpen}
+        anchorEl={anchorEl}
+        onClose={handleAdditionalDataPopoverClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <div style={{ padding: '16px' }}>
+          <Typography variant="h6" gutterBottom>
+            Data Collection Point
+          </Typography>
+
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+            <IconButton>
+              <InventoryIcon />
+            </IconButton>
+            <Typography variant="body1">Inventory Records</Typography>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton>
+              <EventIcon />
+            </IconButton>
+            <Typography variant="body1">Attendance Records</Typography>
+          </div>
+        </div>
+      </Popover>
+    </>
   );
 };
 
