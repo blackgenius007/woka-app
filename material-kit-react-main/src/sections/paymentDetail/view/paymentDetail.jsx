@@ -1,11 +1,13 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import Payroll from './payroll';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+ 
 
 export default function PaymentDetail() {
+  const dispatch = useDispatch();
   // Use useParams to get the parameters from the URL
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
