@@ -83,7 +83,7 @@ const EmployeePortal = () => {
               <Card>
                 <CardMedia
                   component="img"
-                  height="150px"
+                  height="350x"
                   width="150px"
                   alt="Hero Image"
                   src="https://source.unsplash.com/random"
