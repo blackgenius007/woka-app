@@ -169,7 +169,7 @@ const EmployeePortal = () => {
   };
   return (
     <>
-        {employees.map((employee) => (
+        {employees.map((employeeData) => (
                  <>
                   <Box>
         {/* Navbar */}
@@ -195,7 +195,7 @@ const EmployeePortal = () => {
               {/* Left Section */}
               <Grid item md={6} xs={12}>
                 <Typography variant="h1" component="h1" gutterBottom fontWeight="bold">
-                 { employee.employeeName} - {employee.department}
+                 { employeeData.employeeName} - {employeeData.department}
                 </Typography>
 
                 <Typography variant="body1" paragraph>
