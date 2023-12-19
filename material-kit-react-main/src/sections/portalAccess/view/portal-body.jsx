@@ -169,6 +169,7 @@ const EmployeePortal = () => {
   };
   return (
     <>
+        
       <Box>
         {/* Navbar */}
         <AppBar position="static" color="transparent" elevation={0} sx={{ mb: -2 }}>
