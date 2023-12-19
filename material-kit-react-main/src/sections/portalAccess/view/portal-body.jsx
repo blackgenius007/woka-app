@@ -13,6 +13,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
+import StorageIcon from '@mui/icons-material/Storage';
 import DataIcon from '@mui/icons-material/DataUsage';
 
 const EmployeePortal = () => {
@@ -36,15 +37,8 @@ const EmployeePortal = () => {
       <Box py={24} sm={16} md={20} lg={24} bgcolor="gray.100">
         <Container maxWidth="lg">
           <Grid container spacing={8} alignItems="center">
-            {/* Avatar Section */}
-            <Grid item xs={12} md={2} sx={{ textAlign: 'center' }}>
-              <Avatar variant="rounded" sx={{ width: 100, height: 100, backgroundColor: 'bg-gray-100' }}>
-                {/* Your Avatar content goes here */}
-              </Avatar>
-            </Grid>
-
             {/* Left Section */}
-            <Grid item md={4} xs={12}>
+            <Grid item md={6} xs={12}>
               <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
                 Awesome Startup Name
               </Typography>
@@ -69,7 +63,10 @@ const EmployeePortal = () => {
                 <Button href="#" variant="contained" color="primary" size="large" sx={{ marginRight: 2 }}>
                   Another Button
                 </Button>
-                <Button href="#" variant="contained" size="large" startIcon={<DataIcon />} sx={{ backgroundColor: 'white' }}>
+
+                
+                <Button href="#" variant="contained" size="large" startIcon={<StorageIcon style={{ marginRight: '8px' }} />} sx={{ backgroundColor: 'white' }}>
+                  
                   Data Access
                 </Button>
               </Box>
@@ -104,6 +101,8 @@ const EmployeePortal = () => {
     </Box>
   );
 };
+
+ 
 
 export default EmployeePortal;
 
