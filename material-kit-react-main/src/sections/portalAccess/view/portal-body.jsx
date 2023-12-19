@@ -237,6 +237,7 @@ const EmployeePortal = () => {
                     backgroundColor: 'white',
                     color: '#00227b',
                   }}
+                  onClick={handleDefaultPopoverOpen}
                 >
                   Data Access
                 </Button>
