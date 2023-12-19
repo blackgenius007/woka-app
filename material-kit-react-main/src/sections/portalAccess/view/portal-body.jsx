@@ -36,8 +36,15 @@ const EmployeePortal = () => {
       <Box py={24} sm={16} md={20} lg={24} bgcolor="gray.100">
         <Container maxWidth="lg">
           <Grid container spacing={8} alignItems="center">
+            {/* Avatar Section */}
+            <Grid item xs={12} md={2} sx={{ textAlign: 'center' }}>
+              <Avatar variant="rounded" sx={{ width: 100, height: 100, backgroundColor: 'bg-gray-100' }}>
+                {/* Your Avatar content goes here */}
+              </Avatar>
+            </Grid>
+
             {/* Left Section */}
-            <Grid item md={6} xs={12}>
+            <Grid item md={4} xs={12}>
               <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
                 Awesome Startup Name
               </Typography>
