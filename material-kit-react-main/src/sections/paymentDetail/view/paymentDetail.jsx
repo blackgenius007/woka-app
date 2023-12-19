@@ -14,6 +14,7 @@ export default function PaymentDetail() {
   // Use useParams to get the parameters from the URL
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
+  const [openPayment, setOpenPayment] = useState(false);
 
   const handlePayment = (name, country, healthCare, iou, loan, benefitInKind) => {
     setName(name);
