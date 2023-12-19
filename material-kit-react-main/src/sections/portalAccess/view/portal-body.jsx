@@ -83,8 +83,8 @@ const EmployeePortal = () => {
               <Card>
                 <CardMedia
                   component="img"
-                  height="50%"
-                  width="100%"
+                  height="150px"
+                  width="150px"
                   alt="Hero Image"
                   src="https://source.unsplash.com/random"
                   sx={{ margin: '8px', padding: '8px' }}
