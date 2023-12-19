@@ -169,7 +169,7 @@ const EmployeePortal = () => {
   };
   return (
     <>
-      {employees.map((employeeData) => (
+      {employees && employees.map((employeeData) => (
         <>
           <Box>
             {/* Navbar */}
