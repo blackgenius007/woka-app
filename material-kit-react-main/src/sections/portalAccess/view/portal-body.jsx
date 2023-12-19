@@ -193,7 +193,7 @@ const EmployeePortal = () => {
               {/* Left Section */}
               <Grid item md={6} xs={12}>
                 <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
-                  Awesome Startup Name
+                 { employees.employeeName}
                 </Typography>
 
                 <Typography variant="body1" paragraph>
