@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react';
+import { Card, CardContent, Typography, Grid, Avatar, Button, Box } from '@mui/material';
 import Payroll from './payroll';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
