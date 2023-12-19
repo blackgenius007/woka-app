@@ -194,7 +194,7 @@ const EmployeePortal = () => {
             <Grid container spacing={8} alignItems="center">
               {/* Left Section */}
               <Grid item md={6} xs={12}>
-                <Typography variant="h1" component="h1" gutterBottom fontWeight="bold">
+                <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
                  { employeeData.employeeName} - {employeeData.department}
                 </Typography>
 
