@@ -245,14 +245,31 @@ const EmployeePortal = () => {
             {/* Right Section */}
             <Grid item md={6} xs={12}>
               <Card>
-                <CardMedia
+                   <div style={{ width: '350%', height: '150px', overflow: 'hidden', borderRadius: '8px' }}>
+             <Slider {...settings}>
+                {advertisements.map((ad) => (
+                <div key={ad.id}>
+                  <img
+                    src={ad.image}
+                    alt={ad.alt}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
+                {/* <CardMedia
                   component="img"
                   height="350x"
                   width="150px"
                   alt="Hero Image"
                   src="https://source.unsplash.com/random"
                   sx={{ margin: '8px', padding: '8px' }}
-                />
+                /> */}
               </Card>
             </Grid>
           </Grid>
