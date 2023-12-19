@@ -6,34 +6,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
 import { retrieveEmployeeById } from 'src/Services/HR-Services/employeeSlice';
+import { calculateTaxAsync } from 'src/Services/AccountServices/financialSlice';
+
 
  
 
 export default function PaymentDetail() {
   const dispatch = useDispatch();
-  // Use useParams to get the parameters from the URL
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [openPayment, setOpenPayment] = useState(false);
-
-  const handlePayment = (name, country, healthCare, iou, loan, benefitInKind) => {
-    setName(name);
-    setLocation(country);
-    setPaycare(healthCare);
-    setOpenPayment(true);
-  };
-  const closehandlePayment = () => {
-    setOpenPayment(false);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const date = moment().format('YYYY-MM-DD');
         const response = await dispatch(retrieveEmployeeById(id));
-        const employee = response.payload; // Access the employee details from the response payload
+        const employee = response.payload;
 
+        // Set the employee data in the local state
         setEmployeeData(employee);
+
+        // Dispatch the action to calculate financial data
+        dispatch(
+          calculateTaxAsync({
+            employeeId: id,
+            grossIncome: employee?.designation?.grossIncome,
+            country: employee?.designation?.country,
+            healthCare: employee?.healthCare,
+            // Add other properties as needed
+          })
+        );
 
         console.log(employee);
       } catch (err) {
@@ -50,51 +53,32 @@ export default function PaymentDetail() {
   }
 
   const {
-    employeeName,
-    department,
-    createdAt,
-    imagePath,
-    designation,
-    healthCare,
-    loan,
-    iou,
-    minimumRepay,
-    benefitInKind,
-    employeeCode,
-    address,
-    dateOfBirth,
-    sex,
-    repayDate,
-    nextOfKinRelationship,
-    accountNumber,
-    bankName,
-    nextOfKinName,
-    nextOfKinAddress,
-    nextOfKinPhoneNumber,
+    // ... (other employee properties)
   } = employeeData.employee;
-  const { grossIncome, country } = designation;
 
+  // Assuming financialData is stored in the Redux state
+  const financialData = useSelector((state) => state.financial);
+
+  const employeeFinancialData = financialData[id] || {};
   return (
     <div>
-      <Button
-        onClick={() => handlePayment(employeeName, country, healthCare, loan, iou, benefitInKind)}
-        variant="outlined"
-        color="primary"
-      >
-        Renumeration
-      </Button>
-      <Payroll
-        id={id}
-        name={name}
-        country={location}
-        grossIncome={grossIncome}
-        healthCare={healthCare}
-        loan={loan}
-        iou={iou}
-        benefit={benefitInKind}
-        open={openPayment}
-        close={closehandlePayment}
-      />
+      {/* ... (other components) */}
+
+      {/* Display financial data if available */}
+      {employeeFinancialData && (
+        <tr>
+          <td>{fNumber(employeeFinancialData.consolidatedSalary)}</td>
+          <td>{fNumber(employeeFinancialData.annualTaxPayable)}</td>
+          <td>{fNumber(employeeFinancialData.monthlyTaxPayable)}</td>
+          <td>{fNumber(employeeFinancialData.annualSalary)}</td>
+          <td>{fNumber(employeeFinancialData.monthlySalary)}</td>
+          <td>{fNumber(employeeFinancialData.cra)}</td>
+          <td>{fNumber(employeeFinancialData.pension)}</td>
+          {/* Add other cells for the financial data you want to display */}
+        </tr>
+      )}
+
+      {/* ... (rest of the component) */}
     </div>
   );
 }
