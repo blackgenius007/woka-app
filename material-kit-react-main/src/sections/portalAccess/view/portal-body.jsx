@@ -1,168 +1,108 @@
  /* eslint-disable */
  import React from 'react';
-import { Container, Typography, Button } from '@mui/material';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Avatar from '@mui/material/Avatar';
+import TextField from '@mui/material/TextField';
 
-const CourseSection = () => {
-  const sectionStyle = {
-    display: 'flex',
-    padding: '100px 0',
-  };
-
-  const containerStyle = {
-    padding: '30px',
-    backgroundColor: '#51509b',
-    borderRadius: '10px',
-  };
-
-  const h1Style = {
-    color: 'white',
-  };
-
-  const pStyle = {
-    color: 'white',
-    padding: '10px 0px 20px 0',
-    fontSize: '15px',
-  };
-
-  const infoStyle = {
-    display: 'flex',
-    position: 'relative',
-  };
-
-  const boxStyle = {
-    backgroundColor: 'white',
-    padding: '20px',
-    borderRadius: '10px',
-  };
-
-  const h2Style = {
-    color: '#4A5568',
-    position: 'relative',
-    zIndex: '1',
-    padding: '10px',
-  };
-
-  const textStyle = {
-    paddingBottom: '80px',
-  };
-
-  const priceStyle = {
-    position: 'relative',
-  };
-
-  const priceH3Style = {
-    position: 'absolute',
-    bottom: '35px',
-    left: '20px',
-    fontSize: '40px',
-    color: '#4A5568',
-  };
-
-  const buttonStyle = {
-    fontSize: '20px',
-    position: 'absolute',
-    bottom: '35px',
-    right: '50px',
-    backgroundColor: '#E5AF40',
-    color: 'white',
-    padding: '10px',
-    outline: 'none',
-    border: 'navajowhite',
-    borderRadius: '5px',
-  };
-
-  const pLinkStyle = {
-    textDecoration: 'none',
-    color: 'black',
-    fontWeight: 'bold',
-  };
-
-  const towStyle = {
-    height: '300px',
-    position: 'absolute',
-    top: '50%',
-    left: '48%',
-    transform: 'translatey(-50%)',
-  };
-
-  const towPriceH3Style = {
-    position: 'absolute',
-    bottom: '0',
-    left: '20px',
-    fontSize: '40px',
-    color: '#4A5568',
-  };
-
-  const towButtonStyle = {
-    fontSize: '20px',
-    position: 'absolute',
-    bottom: '0',
-    right: '15px',
-    backgroundColor: '#E5AF40',
-    color: 'white',
-    padding: '10px',
-    outline: 'none',
-    border: 'navajowhite',
-    borderRadius: '5px',
-  };
-
+const EmployeePortal = () => {
   return (
-    <section style={sectionStyle}>
-      <Container sx={containerStyle}>
-        <Typography variant="h1" sx={h1Style}>
-          buy the course
-          <i className="fa-solid fa-hand-peace"></i>
+    <Box className="bg-gray-100 text-gray-800 antialiased font-sans">
+      {/* Hero Section */}
+      <Box py={24} sm={16} md={20} lg={24}>
+        <Container maxWidth="lg">
+          <Grid container spacing={8} alignItems="center">
+            {/* Left Section */}
+            <Grid item md={6} xs={12}>
+              <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
+                Awesome Startup Name
+              </Typography>
+              <Typography variant="body1" paragraph>
+                Made with 1 prompt using the new{' '}
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                  href="https://huggingface.co/fblgit/una-cybertron-7b-v2-bf16"
+                >
+                  cybertron-7b-v2
+                </a>
+                .<br />
+                Sed rhoncus ante in risus viverra aliquam. Fusce ultrices tellus eu nisl malesuada, vitae dapibus odio
+                pulvinar. Integer a dui sed dolor cursus ornare eget quis enim.
+              </Typography>
+              <Button href="#" variant="contained" color="primary" size="large">
+                Get Started
+              </Button>
+            </Grid>
+
+            {/* Right Section */}
+            <Grid item md={6} xs={12}>
+              <Card>
+                <CardMedia
+                  component="img"
+                  height="auto"
+                  alt="Hero Image"
+                  src="https://source.unsplash.com/random"
+                />
+              </Card>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Articles Section */}
+      <Box py={20} bgcolor="gray.50">
+        <Container maxWidth="lg">
+          <Typography variant="h3" align="center" gutterBottom fontWeight="bold">
+            Our Latest Articles
+          </Typography>
+          {/* ... (rest of the code) */}
+        </Container>
+      </Box>
+
+      {/* Testimonials Section */}
+      <Box py={20} bgcolor="gray.50">
+        <Container maxWidth="lg">
+          <Typography variant="h3" align="center" gutterBottom fontWeight="bold">
+            What People Are Saying
+          </Typography>
+          {/* ... (rest of the code) */}
+        </Container>
+      </Box>
+
+      {/* Contact Form Section */}
+      <Box py={24} sm={16} md={20} lg={24}>
+        <Container maxWidth="lg">
+          <Typography variant="h3" align="center" gutterBottom fontWeight="bold">
+            Get in Touch
+          </Typography>
+          <Grid container spacing={6}>
+            {/* ... (rest of the code) */}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Footer Section */}
+      <Box py={12} textAlign="center" bgcolor="gray.50">
+        <Typography variant="body2" color="textSecondary">
+          &copy; 2023 Awesome Startup Name. All rights reserved.
         </Typography>
-        <Typography variant="body1" sx={pStyle}>
-          join over 2,300 developers who have already stepped up their database performance game!
-        </Typography>
-        <div className="info" style={infoStyle}>
-          <div className="box one" style={boxStyle}>
-            <Typography variant="h2" sx={h2Style}>
-              <i className="fa-solid fa-star"></i>
-              premium package
-            </Typography>
-            <div className="text" style={textStyle}>
-              <Typography variant="body1">access to the total of 28 lessons</Typography>
-              <Typography variant="body1">
-                includes additional advanced lessons on natural sorting, full-text searching, and geospatial queries
-              </Typography>
-              <Typography variant="body1">
-                full source code for all lessons, including MYSQL, Postgres, and SQLite versions (where possible)
-              </Typography>
-              <Typography variant="body1">over two full hours of video content</Typography>
-              <Typography variant="body1">stream online or download videos</Typography>
-            </div>
-            <div className="price" style={priceStyle}>
-              <Typography variant="h3" sx={priceH3Style}><sup>$</sup>149<sub>usd</sub></Typography>
-              <Button variant="contained" style={buttonStyle}>buy now</Button>
-              <Typography variant="body1">
-                buying for your team?<a href="#" style={pLinkStyle}>view the team pricing.</a>
-              </Typography>
-            </div>
-          </div>
-          <div className="box tow" style={towStyle}>
-            <Typography variant="h2" sx={h2Style}>
-              <i className="fa-sharp fa-solid fa-check"></i> essentials package
-            </Typography>
-            <div className="text" style={textStyle}>
-              <Typography variant="body1">access to the first 22 lessons</Typography>
-              <Typography variant="body1">just under two hours of video content</Typography>
-              <Typography variant="body1">stream online or download videos</Typography>
-            </div>
-            <div className="price" style={priceStyle}>
-              <Typography variant="h3" sx={towPriceH3Style}><sup>$</sup>99<sub>usd</sub></Typography>
-              <Button variant="contained" style={towButtonStyle}>buy now</Button>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </section>
+      </Box>
+    </Box>
   );
 };
 
-export default CourseSection;
+export default EmployeePortal;
 
+ 
+ 
 
 
 
