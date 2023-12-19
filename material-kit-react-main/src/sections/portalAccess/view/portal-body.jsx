@@ -39,8 +39,8 @@ import DataIcon from '@mui/icons-material/DataUsage';
 
 const EmployeePortal = () => {
   const dispatch = useDispatch();
-  const { employees } = useState(initialState);
-console.log('portal:',employees)
+  const { employees, isLoading } = useSelector((state) => state.employees);
+  console.log(employees)
   const [isEditing, setIsEditing] = useState(false);
   const [employee, setEmployeeData] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
