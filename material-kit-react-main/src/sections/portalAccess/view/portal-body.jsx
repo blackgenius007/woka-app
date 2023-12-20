@@ -91,10 +91,12 @@ const EmployeePortal = () => {
     }
   };
 
-  const handleTaxCalculatorPopoverOpen = (event) => {
-    setTaxCalculatorPopoverOpen(true);
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleTaxCalculatorPopoverOpen = (event) => {
+  //   setTaxCalculatorPopoverOpen(true);
+  //   setAnchorEl(event.currentTarget);
+  // };
+
+  
 
   const handleTaxCalculatorPopoverClose = () => {
     setTaxCalculatorPopoverOpen(false);
