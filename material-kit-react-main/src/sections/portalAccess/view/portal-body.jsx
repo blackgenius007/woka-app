@@ -43,7 +43,7 @@ const EmployeePortal = () => {
   const { employees, isLoading } = useSelector((state) => state.employees);
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
-  const [employee, setEmployeeData] = useState(null);
+  const [employeeData, setEmployeeData] = useState(null);
   
   const [anchorEl, setAnchorEl] = useState(null);
   const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
@@ -51,6 +51,32 @@ const EmployeePortal = () => {
   const [taxCalculatorPopoverOpen, setTaxCalculatorPopoverOpen] = useState(false);
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
+
+  const {
+    employeeName,
+    department,
+    createdAt,
+    imagePath,
+    designation,
+    healthCare,
+    loan,
+    iou,
+    minimumRepay,
+    benefitInKind,
+    employeeCode,
+    address,
+    dateOfBirth,
+    sex,
+    repayDate,
+    nextOfKinRelationship,
+    accountNumber,
+    bankName,
+    nextOfKinName,
+    nextOfKinAddress,
+    nextOfKinPhoneNumber,
+  } = employeeData ;
+  const { grossIncome, country } = designation;
+console.log(grossIncome, country,designation,healthCare)
 
 
   // Popover to for data code input
@@ -119,7 +145,7 @@ console.log('check id :',employeeId)
     }
   };
 
-console.log('portal-body :',employee && employee)
+console.log('portal-body :',employeeData && employeeData)
   // ... (rest of the component)
 
   const handleTaxCalculatorPopoverClose = () => {
@@ -401,7 +427,12 @@ console.log()
                 horizontal: 'center',
               }}
             >
-              <TaxCalculator />
+              <TaxCalculator
+              healthCare={healthCare}
+              grossIncome={grossIncome}
+
+              
+              />
             </Popover>
           </>
         ))}
