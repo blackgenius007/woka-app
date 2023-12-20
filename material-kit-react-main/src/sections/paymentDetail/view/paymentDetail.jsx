@@ -5,22 +5,26 @@ import Payroll from './payroll';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
-import { fNumber } from 'src/utils/format-number';
 import { retrieveEmployeeById } from 'src/Services/HR-Services/employeeSlice';
-import { calculateTaxAsync } from 'src/Services/AccountServices/financialSlice';
-
 
  
 
 export default function PaymentDetail() {
   const dispatch = useDispatch();
+  // Use useParams to get the parameters from the URL
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [openPayment, setOpenPayment] = useState(false);
-    // Assuming financialData is stored in the Redux state
-    const financialData = useSelector((state) => state.financial);
 
-    const employeeFinancialData = financialData[id] || {};
+  const handlePayment = (name, country, healthCare, iou, loan, benefitInKind) => {
+    setName(name);
+    setLocation(country);
+    setPaycare(healthCare);
+    setOpenPayment(true);
+  };
+  const closehandlePayment = () => {
+    setOpenPayment(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,28 +32,15 @@ export default function PaymentDetail() {
         const date = moment().format('YYYY-MM-DD');
         const response = await dispatch(retrieveEmployeeById(id));
         const employee = response.payload; // Access the employee details from the response payload
-  
+
         setEmployeeData(employee);
-  
+
         console.log(employee);
-  
-        // Check if required data is available before dispatching the action
-        if (employee?.designation?.grossIncome && employee?.designation?.country && employee?.healthCare) {
-          dispatch(
-           calculateTaxAsync({
-              employeeId: id,
-              grossIncome: employee.designation.grossIncome,
-              country: employee.designation.country,
-              healthCare: employee.healthCare,
-              // Add other properties as needed
-            })
-          );
-        }
       } catch (err) {
         console.log('An error occurred!', err);
       }
     };
-  
+
     fetchData();
   }, [dispatch, id]);
 
@@ -58,28 +49,54 @@ export default function PaymentDetail() {
     return <div>Loading...</div>;
   }
 
- 
+  const {
+    employeeName,
+    department,
+    createdAt,
+    imagePath,
+    designation,
+    healthCare,
+    loan,
+    iou,
+    minimumRepay,
+    benefitInKind,
+    employeeCode,
+    address,
+    dateOfBirth,
+    sex,
+    repayDate,
+    nextOfKinRelationship,
+    accountNumber,
+    bankName,
+    nextOfKinName,
+    nextOfKinAddress,
+    nextOfKinPhoneNumber,
+  } = employeeData.employee;
+  const { grossIncome, country } = designation;
 
 
+  
   return (
     <div>
-      {/* ... (other components) */}
-
-      {/* Display financial data if available */}
-      {employeeFinancialData && (
-        <tr>
-          <td>{fNumber(employeeFinancialData.consolidatedSalary)}</td>
-          <td>{fNumber(employeeFinancialData.annualTaxPayable)}</td>
-          <td>{fNumber(employeeFinancialData.monthlyTaxPayable)}</td>
-          <td>{fNumber(employeeFinancialData.annualSalary)}</td>
-          <td>{fNumber(employeeFinancialData.monthlySalary)}</td>
-          <td>{fNumber(employeeFinancialData.cra)}</td>
-          <td>{fNumber(employeeFinancialData.pension)}</td>
-          {/* Add other cells for the financial data you want to display */}
-        </tr>
-      )}
-
-      {/* ... (rest of the component) */}
+      <Button
+        onClick={() => handlePayment(employeeName, country, healthCare, loan, iou, benefitInKind)}
+        variant="outlined"
+        color="primary"
+      >
+        Renumeration
+      </Button>
+      <Payroll
+        id={id}
+        name={name}
+        country={location}
+        grossIncome={grossIncome}
+        healthCare={healthCare}
+        loan={loan}
+        iou={iou}
+        benefit={benefitInKind}
+        open={openPayment}
+        close={closehandlePayment}
+      />
     </div>
   );
 }
