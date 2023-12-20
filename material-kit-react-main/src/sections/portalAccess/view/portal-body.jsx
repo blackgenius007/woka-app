@@ -113,8 +113,7 @@ const EmployeePortal = () => {
   };
 
   // ... (rest of the component)
-}
-
+ 
   const handleTaxCalculatorPopoverClose = () => {
     setTaxCalculatorPopoverOpen(false);
   };
