@@ -41,10 +41,9 @@ import DataIcon from '@mui/icons-material/DataUsage';
 const EmployeePortal = () => {
   const dispatch = useDispatch();
   const { employees, isLoading } = useSelector((state) => state.employees);
-  console.log(employees);
+
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
-  
   const [anchorEl, setAnchorEl] = useState(null);
   const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
   const [additionalDataPopoverOpen, setAdditionalDataPopoverOpen] = useState(false);
@@ -52,88 +51,11 @@ const EmployeePortal = () => {
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
 
-  
-console.log(employeeData )
+  // Retrieve portalCode from localStorage on page load
+  const portalCodeLocalStorage = localStorage.getItem('portalCode');
 
-
-  // Popover to for data code input
-  const handleDefaultPopoverOpen = (event) => {
-    setDefaultPopoverOpen(true);
-    setAnchorEl(event.currentTarget);
-  };
-
-  //Close data code input Popover
-  const handleDefaultPopoverClose = () => {
-    setDefaultPopoverOpen(false);
-  };
-
-  const handleInputChange = (event) => {
-    setDataCode(event.target.value);
-  };
-
-  const handleAdditionalDataPopoverClose = () => {
-    setAdditionalDataPopoverOpen(false);
-  };
-
-  const handleSubmit = async () => {
-    try {
-      // Dispatch the authDataAccess action and wait for the response
-      const response = await dispatch(authDataAccess(dataCode));
-
-      // Check if the response is successful
-      if (response.meta.requestStatus === 'fulfilled') {
-        // If successful, set the additional data Popover to open
-        setAdditionalDataPopoverOpen(true);
-      } else {
-        // If not successful, set the error message in the component state
-        setDataMessage(response.payload.message); // Assuming the error message is available in the payload
-      }
-
-      // Close the default Popover
-      handleDefaultPopoverClose();
-    } catch (error) {
-      // Handle any errors that might occur during the dispatch
-      console.error('An error occurred during dataAccess dispatch:', error);
-    }
-  };
-
-  // const handleTaxCalculatorPopoverOpen = (event) => {
-  //   setTaxCalculatorPopoverOpen(true);
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  const handleTaxCalculatorPopoverOpen = (event) => {
-    if (employees && employees.length === 1) {
-      const employeeId = employees[0]._id;
-console.log('check id :',employeeId)
-      // Optionally, you can also fetch complete employee details here if needed
-      dispatch(retrieveEmployeeById(employeeId && employeeId))
-        .then((response) => {
-          const employeeDetails = response.payload; // Access the complete employee details
-          setEmployeeData(employeeDetails);
-
-          // Now you can open the Tax Calculator Popover and pass required properties
-          setTaxCalculatorPopoverOpen(true);
-          setAnchorEl(event.currentTarget);
-        })
-        .catch((error) => {
-          console.error('Error fetching employee details:', error);
-        });
-    }
-  };
-
-console.log('portal-body :',employeeData && employeeData)
-  // ... (rest of the component)
-
-  const handleTaxCalculatorPopoverClose = () => {
-    setTaxCalculatorPopoverOpen(false);
-  };
-
-  const open = Boolean(anchorEl);
-
-  //Access the portalCode from the Redux store
-  const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
-  const { isError, message } = useSelector((state) => state.employees);
+  // Use portalCodeLocalStorage if available, otherwise use the one from Redux
+  const portalCode = portalCodeLocalStorage || useSelector((state) => state.auth.employeeCode.portalCode);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -152,21 +74,79 @@ console.log('portal-body :',employeeData && employeeData)
 
     fetchData();
   }, [dispatch, portalCode]);
-console.log()
+
   useEffect(() => {
     // Check if there is an error and show a SweetAlert
-    if (isError) {
+    if (isLoading) {
+      // Handle loading state if needed
+      return;
+    }
+
+    if (employees.length === 0) {
       Swal.fire({
         title: 'Error!',
-        text: message,
+        text: 'No employee data available.',
         icon: 'error',
         confirmButtonText: 'OK',
       }).then(() => {
         // Navigate back to the home page
         window.location.href = '/';
       });
+    } else if (employees.length === 1) {
+      handleTaxCalculatorPopoverOpen();
     }
-  }, [isError, message, Swal]);
+  }, [isLoading, employees]);
+
+  const handleDefaultPopoverOpen = (event) => {
+    setDefaultPopoverOpen(true);
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleDefaultPopoverClose = () => {
+    setDefaultPopoverOpen(false);
+  };
+
+  const handleInputChange = (event) => {
+    setDataCode(event.target.value);
+  };
+
+  const handleAdditionalDataPopoverClose = () => {
+    setAdditionalDataPopoverOpen(false);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await dispatch(authDataAccess(dataCode));
+
+      if (response.meta.requestStatus === 'fulfilled') {
+        setAdditionalDataPopoverOpen(true);
+      } else {
+        setDataMessage(response.payload.message);
+      }
+
+      handleDefaultPopoverClose();
+    } catch (error) {
+      console.error('An error occurred during dataAccess dispatch:', error);
+    }
+  };
+
+  const handleTaxCalculatorPopoverOpen = () => {
+    const employeeId = employees[0]._id;
+
+    dispatch(retrieveEmployeeById(employeeId))
+      .then((response) => {
+        const employeeDetails = response.payload;
+        setEmployeeData(employeeDetails);
+        setTaxCalculatorPopoverOpen(true);
+      })
+      .catch((error) => {
+        console.error('Error fetching employee details:', error);
+      });
+  };
+
+  const handleTaxCalculatorPopoverClose = () => {
+    setTaxCalculatorPopoverOpen(false);
+  };
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -179,33 +159,19 @@ console.log()
 
   // Sample data for carousel advertisements
   const advertisements = [
-    {
-      id: 1,
-      image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1656692114/cld-sample.jpg',
-      alt: 'Ad 1',
-    },
-    {
-      id: 2,
-      image:
-        'https://res.cloudinary.com/youseful-apps/image/upload/v1702968350/mcdonald_iweq7v.webp',
-      alt: 'Ad 2',
-    },
-    {
-      id: 3,
-      image: 'https://res.cloudinary.com/youseful-apps/image/upload/v1702968361/GLO_vyaejh.jpg',
-      alt: 'Ad 3',
-    },
+    // Your ad data here
   ];
 
   const settings = {
     dots: false,
     infinite: true,
-    speed: 2000, // Adjusted speed for a slower transition
+    speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
   };
+
   return (
     <>
       {employees &&
