@@ -102,7 +102,7 @@ const EmployeePortal = () => {
   const handleTaxCalculatorPopoverOpen = (event) => {
     if (employees && employees.length === 1) {
       const employeeId = employees[0]._id;
-
+console.log('check id :',employeeId)
       // Optionally, you can also fetch complete employee details here if needed
       dispatch(retrieveEmployeeById(employeeId))
         .then((response) => {
