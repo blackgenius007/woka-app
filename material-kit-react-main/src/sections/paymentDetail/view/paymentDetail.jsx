@@ -16,11 +16,10 @@ export default function PaymentDetail() {
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [openPayment, setOpenPayment] = useState(false);
-  
     // Assuming financialData is stored in the Redux state
-  const financialData = useSelector((state) => state.financial);
+    const financialData = useSelector((state) => state.financial);
 
-  const employeeFinancialData = financialData[id] || {};
+    const employeeFinancialData = financialData[id] || {};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +35,7 @@ export default function PaymentDetail() {
         // Check if required data is available before dispatching the action
         if (employee?.designation?.grossIncome && employee?.designation?.country && employee?.healthCare) {
           dispatch(
-            calculateTaxAsync({
+           calculateTaxAsync({
               employeeId: id,
               grossIncome: employee.designation.grossIncome,
               country: employee.designation.country,
@@ -57,11 +56,29 @@ export default function PaymentDetail() {
     // If employeeData or employeeData.employee is not yet available, show a loading message or handle the case appropriately
     return <div>Loading...</div>;
   }
+
  
+
 
   return (
     <div>
-   tell
+      {/* ... (other components) */}
+
+      {/* Display financial data if available */}
+      {employeeFinancialData && (
+        <tr>
+          <td>{fNumber(employeeFinancialData.consolidatedSalary)}</td>
+          <td>{fNumber(employeeFinancialData.annualTaxPayable)}</td>
+          <td>{fNumber(employeeFinancialData.monthlyTaxPayable)}</td>
+          <td>{fNumber(employeeFinancialData.annualSalary)}</td>
+          <td>{fNumber(employeeFinancialData.monthlySalary)}</td>
+          <td>{fNumber(employeeFinancialData.cra)}</td>
+          <td>{fNumber(employeeFinancialData.pension)}</td>
+          {/* Add other cells for the financial data you want to display */}
+        </tr>
+      )}
+
+      {/* ... (rest of the component) */}
     </div>
   );
 }
