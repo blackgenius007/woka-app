@@ -405,8 +405,7 @@ console.log()
               }}
             >
               <TaxCalculator
-              healthCare={healthCare}
-              grossIncome={grossIncome}
+           
 
               
               />
