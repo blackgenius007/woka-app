@@ -225,8 +225,9 @@ const EmployeePortal = () => {
                         ornare eget quis enim.
                       </Typography>
                       <Box>
-                        <Link to={`/payroll/${employeeData._id}`}>
+                       
                           <Button
+                            onClick={handleTaxCalculatorPopoverOpen}
                             variant="contained"
                             color="primary"
                             size="large"
@@ -234,7 +235,7 @@ const EmployeePortal = () => {
                           >
                             Payroll
                           </Button>
-                        </Link>
+                      
                         <Button
                           href="#"
                           variant="contained"
