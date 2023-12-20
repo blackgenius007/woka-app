@@ -5,6 +5,7 @@ import Payroll from './payroll';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
+import { fNumber } from 'src/utils/format-number';
 import { retrieveEmployeeById } from 'src/Services/HR-Services/employeeSlice';
 import { calculateTaxAsync } from 'src/Services/AccountServices/financialSlice';
 
