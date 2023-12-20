@@ -104,7 +104,7 @@ const EmployeePortal = () => {
       const employeeId = employees[0]._id;
 console.log('check id :',employeeId)
       // Optionally, you can also fetch complete employee details here if needed
-      dispatch(retrieveEmployeeById(employeeId))
+      dispatch(retrieveEmployeeById(employeeId && employeeId))
         .then((response) => {
           const employeeDetails = response.payload; // Access the complete employee details
           setEmployeeData(employeeDetails);
@@ -119,7 +119,7 @@ console.log('check id :',employeeId)
     }
   };
 
-console.log('portal-body :',employee)
+console.log('portal-body :',employee && employee)
   // ... (rest of the component)
 
   const handleTaxCalculatorPopoverClose = () => {
