@@ -96,7 +96,24 @@ const EmployeePortal = () => {
   //   setAnchorEl(event.currentTarget);
   // };
 
-  
+  const handleTaxCalculatorPopoverOpen = (employeeId,event) => {
+    // When opening the Tax Calculator Popover, fetch complete employee details first
+    dispatch(retrieveEmployeeById(employeeId))
+      .then((response) => {
+        const employeeDetails = response.payload; // Access the complete employee details
+        setEmployeeData(employeeDetails);
+
+        // Now you can open the Tax Calculator Popover and pass required properties
+        setTaxCalculatorPopoverOpen(true);
+        setAnchorEl(event.currentTarget);
+      })
+      .catch((error) => {
+        console.error('Error fetching employee details:', error);
+      });
+  };
+
+  // ... (rest of the component)
+}
 
   const handleTaxCalculatorPopoverClose = () => {
     setTaxCalculatorPopoverOpen(false);
