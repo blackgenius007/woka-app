@@ -48,38 +48,18 @@ export default function PaymentDetail() {
     fetchData();
   }, [dispatch, id]);
 
-  if (!employeeData || !employeeData.employee) {
-    // If employeeData or employeeData.employee is not yet available, show a loading message or handle the case appropriately
-    return <div>Loading...</div>;
-  }
+  // if (!employeeData || !employeeData.employee) {
+  //   // If employeeData or employeeData.employee is not yet available, show a loading message or handle the case appropriately
+  //   return <div>Loading...</div>;
+  // }
+ 
+  // // Assuming financialData is stored in the Redux state
+  // const financialData = useSelector((state) => state.financial);
 
-  const {
-    // ... (other employee properties)
-  } = employeeData.employee;
-
-  // Assuming financialData is stored in the Redux state
-  const financialData = useSelector((state) => state.financial);
-
-  const employeeFinancialData = financialData[id] || {};
+  // const employeeFinancialData = financialData[id] || {};
   return (
     <div>
-      {/* ... (other components) */}
-
-      {/* Display financial data if available */}
-      {employeeFinancialData && (
-        <tr>
-          <td>{fNumber(employeeFinancialData.consolidatedSalary)}</td>
-          <td>{fNumber(employeeFinancialData.annualTaxPayable)}</td>
-          <td>{fNumber(employeeFinancialData.monthlyTaxPayable)}</td>
-          <td>{fNumber(employeeFinancialData.annualSalary)}</td>
-          <td>{fNumber(employeeFinancialData.monthlySalary)}</td>
-          <td>{fNumber(employeeFinancialData.cra)}</td>
-          <td>{fNumber(employeeFinancialData.pension)}</td>
-          {/* Add other cells for the financial data you want to display */}
-        </tr>
-      )}
-
-      {/* ... (rest of the component) */}
+   tell
     </div>
   );
 }
