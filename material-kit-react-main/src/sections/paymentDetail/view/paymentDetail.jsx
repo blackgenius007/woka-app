@@ -31,7 +31,7 @@ export default function PaymentDetail() {
         // Check if required data is available before dispatching the action
         if (employee?.designation?.grossIncome && employee?.designation?.country && employee?.healthCare) {
           dispatch(
-            calculateFinancialDataAsync({
+            calculateTaxAsync({
               employeeId: id,
               grossIncome: employee.designation.grossIncome,
               country: employee.designation.country,
