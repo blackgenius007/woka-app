@@ -16,6 +16,11 @@ export default function PaymentDetail() {
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [openPayment, setOpenPayment] = useState(false);
+  
+    // Assuming financialData is stored in the Redux state
+  const financialData = useSelector((state) => state.financial);
+
+  const employeeFinancialData = financialData[id] || {};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,10 +58,7 @@ export default function PaymentDetail() {
     return <div>Loading...</div>;
   }
  
-  // // Assuming financialData is stored in the Redux state
-  // const financialData = useSelector((state) => state.financial);
 
-  // const employeeFinancialData = financialData[id] || {};
   return (
     <div>
    tell
