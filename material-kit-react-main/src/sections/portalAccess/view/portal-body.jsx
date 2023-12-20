@@ -52,31 +52,8 @@ const EmployeePortal = () => {
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
 
-  const {
-    employeeName,
-    department,
-    createdAt,
-    imagePath,
-    designation,
-    healthCare,
-    loan,
-    iou,
-    minimumRepay,
-    benefitInKind,
-    employeeCode,
-    address,
-    dateOfBirth,
-    sex,
-    repayDate,
-    nextOfKinRelationship,
-    accountNumber,
-    bankName,
-    nextOfKinName,
-    nextOfKinAddress,
-    nextOfKinPhoneNumber,
-  } = employeeData ;
-  const { grossIncome, country } = designation;
-console.log(grossIncome, country,designation,healthCare)
+  
+console.log(employeeData && employeeData )
 
 
   // Popover to for data code input
