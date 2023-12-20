@@ -48,10 +48,10 @@ export default function PaymentDetail() {
     fetchData();
   }, [dispatch, id]);
 
-  // if (!employeeData || !employeeData.employee) {
-  //   // If employeeData or employeeData.employee is not yet available, show a loading message or handle the case appropriately
-  //   return <div>Loading...</div>;
-  // }
+  if (!employeeData || !employeeData.employee) {
+    // If employeeData or employeeData.employee is not yet available, show a loading message or handle the case appropriately
+    return <div>Loading...</div>;
+  }
  
   // // Assuming financialData is stored in the Redux state
   // const financialData = useSelector((state) => state.financial);
