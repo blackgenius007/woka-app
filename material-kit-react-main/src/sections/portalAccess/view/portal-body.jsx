@@ -41,11 +41,10 @@ import DataIcon from '@mui/icons-material/DataUsage';
 const EmployeePortal = () => {
   const dispatch = useDispatch();
   const { employees, isLoading } = useSelector((state) => state.employees);
-
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
-
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
   const [additionalDataPopoverOpen, setAdditionalDataPopoverOpen] = useState(false);
@@ -53,7 +52,9 @@ const EmployeePortal = () => {
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
 
-  console.log(employeeData && employeeData);
+  
+console.log(employeeData )
+
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
@@ -96,16 +97,43 @@ const EmployeePortal = () => {
     }
   };
 
-  // Retrieve portalCode from Redux store
-  const portalCodeRedux = useSelector((state) => state.auth.employeeCode.portalCode);
+  // const handleTaxCalculatorPopoverOpen = (event) => {
+  //   setTaxCalculatorPopoverOpen(true);
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  // Store portalCodeRedux in localStorage when it changes
-  useEffect(() => {
-    localStorage.setItem('portalCode', portalCodeRedux);
-  }, [portalCodeRedux]);
+  const handleTaxCalculatorPopoverOpen = (event) => {
+    if (employees && employees.length === 1) {
+      const employeeId = employees[0]._id;
+console.log('check id :',employeeId)
+      // Optionally, you can also fetch complete employee details here if needed
+      dispatch(retrieveEmployeeById(employeeId && employeeId))
+        .then((response) => {
+          const employeeDetails = response.payload; // Access the complete employee details
+          setEmployeeData(employeeDetails);
 
-  // Use portalCodeLocalStorage if available, otherwise use the one from Redux
-  const portalCode = portalCodeLocalStorage || portalCodeRedux;
+          // Now you can open the Tax Calculator Popover and pass required properties
+          setTaxCalculatorPopoverOpen(true);
+          setAnchorEl(event.currentTarget);
+        })
+        .catch((error) => {
+          console.error('Error fetching employee details:', error);
+        });
+    }
+  };
+
+console.log('portal-body :',employeeData && employeeData)
+  // ... (rest of the component)
+
+  const handleTaxCalculatorPopoverClose = () => {
+    setTaxCalculatorPopoverOpen(false);
+  };
+
+  const open = Boolean(anchorEl);
+
+  //Access the portalCode from the Redux store
+  const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
+  const { isError, message } = useSelector((state) => state.employees);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -124,7 +152,7 @@ const EmployeePortal = () => {
 
     fetchData();
   }, [dispatch, portalCode]);
-  console.log();
+console.log()
   useEffect(() => {
     // Check if there is an error and show a SweetAlert
     if (isError) {
@@ -139,39 +167,6 @@ const EmployeePortal = () => {
       });
     }
   }, [isError, message, Swal]);
-
-  const handleTaxCalculatorPopoverOpen = (event) => {
-    if (employees && employees.length === 1) {
-      const employeeId = employees[0]._id;
-      console.log('check id :', employeeId);
-      // Optionally, you can also fetch complete employee details here if needed
-      dispatch(retrieveEmployeeById(employeeId && employeeId))
-        .then((response) => {
-          const employeeDetails = response.payload; // Access the complete employee details
-          setEmployeeData(employeeDetails);
-
-          // Now you can open the Tax Calculator Popover and pass required properties
-          setTaxCalculatorPopoverOpen(true);
-          setAnchorEl(event.currentTarget);
-        })
-        .catch((error) => {
-          console.error('Error fetching employee details:', error);
-        });
-    }
-  };
-
-  console.log('portal-body :', employeeData && employeeData);
-  // ... (rest of the component)
-
-  const handleTaxCalculatorPopoverClose = () => {
-    setTaxCalculatorPopoverOpen(false);
-  };
-
-  const open = Boolean(anchorEl);
-
-  //Access the portalCode from the Redux store
-  // const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
-  const { isError, message } = useSelector((state) => state.employees);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -409,7 +404,11 @@ const EmployeePortal = () => {
                 horizontal: 'center',
               }}
             >
-              <TaxCalculator />
+              <TaxCalculator
+               
+
+              
+              />
             </Popover>
           </>
         ))}
