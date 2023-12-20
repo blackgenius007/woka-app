@@ -52,9 +52,6 @@ const EmployeePortal = () => {
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
 
-  
-console.log(employeeData )
-
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
@@ -404,11 +401,7 @@ console.log()
                 horizontal: 'center',
               }}
             >
-              <TaxCalculator
-               
-
-              
-              />
+          TRUF
             </Popover>
           </>
         ))}
