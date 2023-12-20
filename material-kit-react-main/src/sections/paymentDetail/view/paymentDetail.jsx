@@ -22,28 +22,29 @@ export default function PaymentDetail() {
       try {
         const date = moment().format('YYYY-MM-DD');
         const response = await dispatch(retrieveEmployeeById(id));
-        const employee = response.payload;
-
-        // Set the employee data in the local state
+        const employee = response.payload; // Access the employee details from the response payload
+  
         setEmployeeData(employee);
-
-        // Dispatch the action to calculate financial data
-        dispatch(
-          calculateTaxAsync({
-            employeeId: id,
-            grossIncome: employee?.designation?.grossIncome,
-            country: employee?.designation?.country,
-            healthCare: employee?.healthCare,
-            // Add other properties as needed
-          })
-        );
-
+  
         console.log(employee);
+  
+        // Check if required data is available before dispatching the action
+        if (employee?.designation?.grossIncome && employee?.designation?.country && employee?.healthCare) {
+          dispatch(
+            calculateFinancialDataAsync({
+              employeeId: id,
+              grossIncome: employee.designation.grossIncome,
+              country: employee.designation.country,
+              healthCare: employee.healthCare,
+              // Add other properties as needed
+            })
+          );
+        }
       } catch (err) {
         console.log('An error occurred!', err);
       }
     };
-
+  
     fetchData();
   }, [dispatch, id]);
 
