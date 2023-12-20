@@ -44,12 +44,14 @@ const EmployeePortal = () => {
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employee, setEmployeeData] = useState(null);
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
   const [additionalDataPopoverOpen, setAdditionalDataPopoverOpen] = useState(false);
   const [taxCalculatorPopoverOpen, setTaxCalculatorPopoverOpen] = useState(false);
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
+
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
@@ -97,24 +99,29 @@ const EmployeePortal = () => {
   //   setAnchorEl(event.currentTarget);
   // };
 
-  const handleTaxCalculatorPopoverOpen = (employeeId,event) => {
-    // When opening the Tax Calculator Popover, fetch complete employee details first
-    dispatch(retrieveEmployeeById(employeeId))
-      .then((response) => {
-        const employeeDetails = response.payload; // Access the complete employee details
-        setEmployeeData(employeeDetails);
+  const handleTaxCalculatorPopoverOpen = (event) => {
+    if (employees && employees.length === 1) {
+      const employeeId = employees[0]._id;
 
-        // Now you can open the Tax Calculator Popover and pass required properties
-        setTaxCalculatorPopoverOpen(true);
-        setAnchorEl(event.currentTarget);
-      })
-      .catch((error) => {
-        console.error('Error fetching employee details:', error);
-      });
+      // Optionally, you can also fetch complete employee details here if needed
+      dispatch(retrieveEmployeeById(employeeId))
+        .then((response) => {
+          const employeeDetails = response.payload; // Access the complete employee details
+          setEmployeeData(employeeDetails);
+
+          // Now you can open the Tax Calculator Popover and pass required properties
+          setTaxCalculatorPopoverOpen(true);
+          setAnchorEl(event.currentTarget);
+        })
+        .catch((error) => {
+          console.error('Error fetching employee details:', error);
+        });
+    }
   };
 
+console.log('portal-body :',employee)
   // ... (rest of the component)
- 
+
   const handleTaxCalculatorPopoverClose = () => {
     setTaxCalculatorPopoverOpen(false);
   };
@@ -142,7 +149,7 @@ const EmployeePortal = () => {
 
     fetchData();
   }, [dispatch, portalCode]);
-
+console.log()
   useEffect(() => {
     // Check if there is an error and show a SweetAlert
     if (isError) {
@@ -244,17 +251,16 @@ const EmployeePortal = () => {
                         ornare eget quis enim.
                       </Typography>
                       <Box>
-                       
-                          <Button
-                            onClick={handleTaxCalculatorPopoverOpen}
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            sx={{ marginRight: 2 }}
-                          >
-                            Payroll
-                          </Button>
-                      
+                        <Button
+                          onClick={handleTaxCalculatorPopoverOpen}
+                          variant="contained"
+                          color="primary"
+                          size="large"
+                          sx={{ marginRight: 2 }}
+                        >
+                          Payroll
+                        </Button>
+
                         <Button
                           href="#"
                           variant="contained"
