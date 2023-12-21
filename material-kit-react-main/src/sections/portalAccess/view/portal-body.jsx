@@ -436,11 +436,11 @@ const EmployeePortal = () => {
             >
                           <TaxCalculator
              cra={cra}
-             grossIncome={ grossIncome}
-             healthCare={ healthCare}
-             loan={ loan}
-             benefit={ benefitInKind}
-             pensionFund={pensionFund}
+             grossIncome={ employeeAccessData.grossIncome}
+            //  healthCare={ healthCare}
+            //  loan={ loan}
+            //  benefit={ benefitInKind}
+            //  pensionFund={pensionFund}
              
              />
             </Popover>
