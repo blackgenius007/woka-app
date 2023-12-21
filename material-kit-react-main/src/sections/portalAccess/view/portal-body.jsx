@@ -222,9 +222,9 @@ const EmployeePortal = () => {
     const transportAllowancePercentage = 0.075;
     const housingAllowancePercentage = 0.075;
 
-    const basicSalary = grossIncome * basicSalaryPercentage;
-    const transportAllowance = grossIncome * transportAllowancePercentage;
-    const housingAllowance = grossIncome * housingAllowancePercentage;
+    const basicSalary = employeeAccessData.grossIncome * basicSalaryPercentage;
+    const transportAllowance = employeeAccessData.grossIncome * transportAllowancePercentage;
+    const housingAllowance = employeeAccessData.grossIncome * housingAllowancePercentage;
 
     const sumOfValues = basicSalary + transportAllowance + housingAllowance;
     const pension = (sumOfValues * 8) / 100;
