@@ -12,14 +12,14 @@ import {
 } from '@mui/material';
 import { fNumber } from 'src/utils/format-number';
 
-const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeableIncome,pensionFund,grossIncome,healthCare}) => {
+const TaxCalculator = ({consolidatedSalary,cra,benefit,loan,basicSalary,chargeableIncome,employeeAccessData,pensionFund,grossIncome,healthCare}) => {
   const [consolidatedSalaryState, setConsolidatedSalary] = useState(0);
   const [annualTaxPayable, setAnnualTaxPayable] = useState(0);
   const [monthlyTaxPayable, setMonthlyTaxPayable] = useState(0);
   const [annualSalary, setAnnualSalary] = useState(0);
   const [pension, setPension] = useState(0);
   const [monthlySalary, setMonthlySalary] = useState(0);
-
+console.log('taxaccess:',employeeAccessData)
 
  
 
