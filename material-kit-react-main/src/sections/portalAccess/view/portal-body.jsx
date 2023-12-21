@@ -430,16 +430,22 @@ const EmployeePortal = () => {
             {/* Tax Calculator Popover */}
             <Popover
               open={taxCalculatorPopoverOpen}
-              anchorEl={anchorEl}
               onClose={handleTaxCalculatorPopoverClose}
-              anchorOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
+              anchorReference="none"
+              anchorEl={null}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-              }}
+              // anchorOrigin={{
+              //   vertical: 'center',
+              //   horizontal: 'center',
+              // }}
+              // transformOrigin={{
+              //   vertical: 'top',
+              //   horizontal: 'center',
+              // }}
             >
               <TaxCalculator
                 cra={cra}
