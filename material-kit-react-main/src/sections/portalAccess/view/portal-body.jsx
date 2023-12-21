@@ -71,7 +71,7 @@ useEffect(() => {
   }
 }, [employees]);
   // destructuring employeeAccessData
-  const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData || {};
+  const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData ;
   const { grossIncome, country } = designation;
 
   // portal code verification
