@@ -217,24 +217,24 @@ const EmployeePortal = () => {
   };
 
   // calculate Employee Renumerations
-  // const getPensionFund = (grossIncome) => {
-  //   const basicSalaryPercentage = 0.15;
-  //   const transportAllowancePercentage = 0.075;
-  //   const housingAllowancePercentage = 0.075;
+  const getPensionFund = (grossIncome) => {
+    const basicSalaryPercentage = 0.15;
+    const transportAllowancePercentage = 0.075;
+    const housingAllowancePercentage = 0.075;
 
-  //   const basicSalary = grossIncome * basicSalaryPercentage;
-  //   const transportAllowance = grossIncome * transportAllowancePercentage;
-  //   const housingAllowance = grossIncome * housingAllowancePercentage;
+    const basicSalary = grossIncome * basicSalaryPercentage;
+    const transportAllowance = grossIncome * transportAllowancePercentage;
+    const housingAllowance = grossIncome * housingAllowancePercentage;
 
-  //   const sumOfValues = basicSalary + transportAllowance + housingAllowance;
-  //   const pension = (sumOfValues * 8) / 100;
+    const sumOfValues = basicSalary + transportAllowance + housingAllowance;
+    const pension = (sumOfValues * 8) / 100;
 
-  //   return pension;
-  // };
-  // const pensionFund  = getPensionFund(employeeAccessData.grossIncome)
+    return pension;
+  };
+  const pensionFund  = getPensionFund(employeeAccessData.grossIncome)
 
-  //  //calculate consolidated salary
-  // const cra =  200000+20/100*employeeAccessData.grossIncome;
+   //calculate consolidated salary
+  const cra =  200000+20/100*employeeAccessData.grossIncome;
 
   return (
     <>
@@ -434,7 +434,15 @@ const EmployeePortal = () => {
                 horizontal: 'center',
               }}
             >
-              <TaxCalculator />
+                          <TaxCalculator
+             cra={cra}
+             grossIncome={ grossIncome}
+             healthCare={ healthCare}
+             loan={ loan}
+             benefit={ benefitInKind}
+             pensionFund={pensionFund}
+             
+             />
             </Popover>
           </>
         ))}
