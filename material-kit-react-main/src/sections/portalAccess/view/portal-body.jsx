@@ -71,8 +71,8 @@ useEffect(() => {
   }
 }, [employees]);
   // destructuring employeeAccessData
-  const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData ;
-  const { grossIncome, country } = designation;
+  // const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData ;
+  // const { grossIncome, country } = designation;
 
   // portal code verification
   useEffect(() => {
@@ -440,10 +440,10 @@ useEffect(() => {
             >
              <TaxCalculator
              cra={cra}
-             grossIncome={grossIncome}
-             healthCare={healthCare}
-             loan={loan}
-             benefit={benefitInKind}
+             grossIncome={employeeAccessData.designation.grossIncome}
+             healthCare={employeeAccessData.healthCare}
+             loan={employeeAccessData.loan}
+             benefit={employeeAccessData.benefitInKind}
              pensionFund={pensionFund}
              
              />
