@@ -443,8 +443,8 @@ const EmployeePortal = () => {
             >
               <TaxCalculator
                 cra={cra}
-                grossIncome={employeeAccessData && employeeAccessData.grossIncome}
-                //  healthCare={ healthCare}
+                // grossIncome={employeeAccessData && employeeAccessData.grossIncome}
+              healthCare={ employeeAccessData.healthCare}
                 //  loan={ loan}
                 //  benefit={ benefitInKind}
                 //  pensionFund={pensionFund}
