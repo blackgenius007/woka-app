@@ -411,7 +411,7 @@ const EmployeePortal = () => {
             >
               <div style={{ padding: '16px' }}>
                 <Typography variant="h6" gutterBottom>
-                  {employeeAccessData.businessName} Data Collection Point
+                  {employeeData.businessName} Data Collection Point
                 </Typography>
 
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
