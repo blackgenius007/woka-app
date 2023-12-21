@@ -73,7 +73,10 @@ const EmployeePortal = () => {
 
   // console.log(employeeAccessData);
   const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData || {};
-  console.log(healthCare, designation, loan, IOU, benefitInKind);
+  const { grossIncome, country } = designation || {};
+  console.log(healthCare, designation, loan, IOU, benefitInKind,grossIncome, country);
+
+ 
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
