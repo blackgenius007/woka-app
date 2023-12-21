@@ -432,7 +432,7 @@ const EmployeePortal = () => {
   open={taxCalculatorPopoverOpen}
   anchorEl={null} // Set anchorEl to null
   anchorReference="anchorPosition" // Use anchorPosition for centering
-  anchorPosition={{ top: '50%', left: '50%' }} // Center of the page
+  anchorPosition={{ top: '150%', left: '200%' }} // Center of the page
   onClose={handleTaxCalculatorPopoverClose}
   anchorOrigin={{
     vertical: 'center',
