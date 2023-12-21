@@ -72,7 +72,7 @@ const EmployeePortal = () => {
   }, [employees]);
 
   // console.log(employeeAccessData);
-  const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData;
+  const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData || {};
   console.log(healthCare, designation, loan, IOU, benefitInKind);
 
   // Popover to for data code input
