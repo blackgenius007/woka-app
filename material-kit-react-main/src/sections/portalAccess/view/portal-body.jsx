@@ -74,9 +74,16 @@ const EmployeePortal = () => {
   // console.log(employeeAccessData);
   const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData || {};
   const { grossIncome, country } = designation || {};
-  console.log('destructure:',healthCare, designation, loan, IOU, benefitInKind,grossIncome, country);
-
- 
+  console.log(
+    'destructure:',
+    healthCare,
+    designation,
+    loan,
+    IOU,
+    benefitInKind,
+    grossIncome,
+    country
+  );
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
@@ -231,10 +238,10 @@ const EmployeePortal = () => {
 
     return pension;
   };
-  const pensionFund  = getPensionFund(employeeAccessData.grossIncome)
+  const pensionFund = getPensionFund(employeeAccessData.grossIncome);
 
-   //calculate consolidated salary
-  const cra =  200000+20/100*employeeAccessData.grossIncome;
+  //calculate consolidated salary
+  const cra = 200000 + (20 / 100) * employeeAccessData.grossIncome;
 
   return (
     <>
@@ -434,15 +441,14 @@ const EmployeePortal = () => {
                 horizontal: 'center',
               }}
             >
-                          <TaxCalculator
-             cra={cra}
-             grossIncome={ employeeAccessData.grossIncome}
-            //  healthCare={ healthCare}
-            //  loan={ loan}
-            //  benefit={ benefitInKind}
-            //  pensionFund={pensionFund}
-             
-             />
+              <TaxCalculator
+                cra={cra}
+                grossIncome={employeeAccessData && employeeAccessData.grossIncome}
+                //  healthCare={ healthCare}
+                //  loan={ loan}
+                //  benefit={ benefitInKind}
+                //  pensionFund={pensionFund}
+              />
             </Popover>
           </>
         ))}
