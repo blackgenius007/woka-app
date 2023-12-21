@@ -189,11 +189,6 @@ const EmployeePortal = () => {
     autoplay: true,
     autoplaySpeed: 5000,
   };
-
-  // destructuring employeeData
-  const{healthCare,designation,loan,IOU,benefitInKind}=employeeData
-  const { grossIncome, country } = designation;
-
   return (
     <>
       {employees &&
