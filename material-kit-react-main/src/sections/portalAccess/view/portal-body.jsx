@@ -387,7 +387,7 @@ const EmployeePortal = () => {
                 horizontal: 'center',
               }}
             >
-              TRUF
+             <TaxCalculator/>
             </Popover>
           </>
         ))}
