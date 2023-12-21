@@ -224,24 +224,24 @@ const EmployeePortal = () => {
   };
 
   // calculate Employee Renumerations
-  const getPensionFund = (grossIncome) => {
-    const basicSalaryPercentage = 0.15;
-    const transportAllowancePercentage = 0.075;
-    const housingAllowancePercentage = 0.075;
+  // const getPensionFund = (grossIncome) => {
+  //   const basicSalaryPercentage = 0.15;
+  //   const transportAllowancePercentage = 0.075;
+  //   const housingAllowancePercentage = 0.075;
 
-    const basicSalary = employeeAccessData.grossIncome * basicSalaryPercentage;
-    const transportAllowance = employeeAccessData.grossIncome * transportAllowancePercentage;
-    const housingAllowance = employeeAccessData.grossIncome * housingAllowancePercentage;
+  //   const basicSalary = employeeAccessData.grossIncome * basicSalaryPercentage;
+  //   const transportAllowance = employeeAccessData.grossIncome * transportAllowancePercentage;
+  //   const housingAllowance = employeeAccessData.grossIncome * housingAllowancePercentage;
 
-    const sumOfValues = basicSalary + transportAllowance + housingAllowance;
-    const pension = (sumOfValues * 8) / 100;
+  //   const sumOfValues = basicSalary + transportAllowance + housingAllowance;
+  //   const pension = (sumOfValues * 8) / 100;
 
-    return pension;
-  };
-  const pensionFund = getPensionFund(employeeAccessData.grossIncome);
+  //   return pension;
+  // };
+  // const pensionFund = getPensionFund(employeeAccessData.grossIncome);
 
-  //calculate consolidated salary
-  const cra = 200000 + (20 / 100) * employeeAccessData.grossIncome;
+  // //calculate consolidated salary
+  // const cra = 200000 + (20 / 100) * employeeAccessData.grossIncome;
 
   return (
     <>
@@ -442,9 +442,10 @@ const EmployeePortal = () => {
               }}
             >
               <TaxCalculator
-                cra={cra}
-                // grossIncome={employeeAccessData && employeeAccessData.grossIncome}
-              healthCare={ employeeAccessData.healthCare}
+              data={employeeAccessData}
+                // cra={cra}
+                // grossIncome={ grossIncome}
+                //  healthCare={ healthCare}
                 //  loan={ loan}
                 //  benefit={ benefitInKind}
                 //  pensionFund={pensionFund}
