@@ -429,27 +429,29 @@ const EmployeePortal = () => {
             </Popover>
             {/* Tax Calculator Popover */}
             <Popover
-              open={taxCalculatorPopoverOpen}
-              anchorEl={anchorEl}
-              onClose={handleTaxCalculatorPopoverClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-              }}
-            >
-              <TaxCalculator
-                cra={cra}
-                grossIncome={grossIncome}
-                healthCare={healthCare}
-                loan={loan}
-                benefit={benefitInKind}
-                pensionFund={pensionFund}
-              />
-            </Popover>
+  open={taxCalculatorPopoverOpen}
+  anchorEl={null} // Set anchorEl to null
+  anchorReference="anchorPosition" // Use anchorPosition for centering
+  anchorPosition={{ top: '50%', left: '50%' }} // Center of the page
+  onClose={handleTaxCalculatorPopoverClose}
+  anchorOrigin={{
+    vertical: 'center',
+    horizontal: 'center',
+  }}
+  transformOrigin={{
+    vertical: 'center',
+    horizontal: 'center',
+  }}
+>
+  <TaxCalculator
+    cra={cra}
+    grossIncome={grossIncome}
+    healthCare={healthCare}
+    loan={loan}
+    benefit={benefitInKind}
+    pensionFund={pensionFund}
+  />
+</Popover>
           </>
         ))}
     </>
