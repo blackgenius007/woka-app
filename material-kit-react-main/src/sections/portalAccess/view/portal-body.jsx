@@ -44,7 +44,7 @@ const EmployeePortal = () => {
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
-  const [employeeAccessData, setEmployeeAccessData] = useState(null);
+  const [employeeAccessData, setEmployeeAccessData] = useState([ ]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
   const [additionalDataPopoverOpen, setAdditionalDataPopoverOpen] = useState(false);
@@ -441,7 +441,8 @@ const EmployeePortal = () => {
                 horizontal: 'center',
               }}
             >
-              <TaxCalculator
+              {grossIncome}
+              {/* <TaxCalculator
               data={employeeAccessData}
                 // cra={cra}
                 // grossIncome={ grossIncome}
@@ -449,7 +450,7 @@ const EmployeePortal = () => {
                 //  loan={ loan}
                 //  benefit={ benefitInKind}
                 //  pensionFund={pensionFund}
-              />
+              /> */}
             </Popover>
           </>
         ))}
