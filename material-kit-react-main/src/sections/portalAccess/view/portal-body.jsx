@@ -74,7 +74,7 @@ const EmployeePortal = () => {
   // console.log(employeeAccessData);
   const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData || {};
   const { grossIncome, country } = designation || {};
-  console.log(healthCare, designation, loan, IOU, benefitInKind,grossIncome, country);
+  console.log('destructure:',healthCare, designation, loan, IOU, benefitInKind,grossIncome, country);
 
  
 
