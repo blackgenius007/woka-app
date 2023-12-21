@@ -52,27 +52,28 @@ const EmployeePortal = () => {
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
 
+  //Destructure employees from redux
+  useEffect(() => {
+    // Assuming employees is an array
+    if (employees && employees.length === 1) {
+      // Access the first (and only) employee in the array
+      const firstEmployee = employees[0];
 
-//Destructure employees from redux
-useEffect(() => {
-  // Assuming employees is an array
-  if (employees && employees.length === 1) {
-    // Access the first (and only) employee in the array
-    const firstEmployee = employees[0];
+      // Destructure properties from the employee and set them in the component state
+      setEmployeeAccessData({
+        healthCare: firstEmployee.healthCare,
+        designation: firstEmployee.designation,
+        loan: firstEmployee.loan,
+        IOU: firstEmployee.IOU,
+        benefitInKind: firstEmployee.benefitInKind,
+        // Add other properties as needed
+      });
+    }
+  }, [employees]);
 
-    // Destructure properties from the employee and set them in the component state
-    setEmployeeAccessData({
-      healthCare: firstEmployee.healthCare,
-      designation: firstEmployee.designation,
-      loan: firstEmployee.loan,
-      IOU: firstEmployee.IOU,
-      benefitInKind:firstEmployee.benefitInKind
-      // Add other properties as needed
-    });
-  }
-}, [employees]);
-
-console.log(employeeAccessData)
+  // console.log(employeeAccessData);
+  const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData;
+  console.log(healthCare, designation, loan, IOU, benefitInKind);
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
@@ -217,28 +218,25 @@ console.log(employeeAccessData)
   //   const basicSalaryPercentage = 0.15;
   //   const transportAllowancePercentage = 0.075;
   //   const housingAllowancePercentage = 0.075;
-  
+
   //   const basicSalary = grossIncome * basicSalaryPercentage;
   //   const transportAllowance = grossIncome * transportAllowancePercentage;
   //   const housingAllowance = grossIncome * housingAllowancePercentage;
-  
+
   //   const sumOfValues = basicSalary + transportAllowance + housingAllowance;
   //   const pension = (sumOfValues * 8) / 100;
-  
+
   //   return pension;
   // };
   // const pensionFund  = getPensionFund(employeeAccessData.grossIncome)
 
-
   //  //calculate consolidated salary
   // const cra =  200000+20/100*employeeAccessData.grossIncome;
-
 
   return (
     <>
       {employees &&
         employees.map((employeeData) => (
-          
           <>
             <Box>
               {/* Navbar */}
@@ -433,7 +431,7 @@ console.log(employeeAccessData)
                 horizontal: 'center',
               }}
             >
-             <TaxCalculator/>
+              <TaxCalculator />
             </Popover>
           </>
         ))}
