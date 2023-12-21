@@ -1627,15 +1627,20 @@ exports.LoanOff = asyncHandler(async (req, res, next) => {
   }
 });
 
+ 
 // @desc Get Employee portal access
-//@routes Get/api/employee/port-access/:id'
-//@acess Public
+// @routes Get/api/employee/port-access/:id'
+// @acess Public
 exports.PortalAccess = asyncHandler(async (req, res, next) => {
   const employeeCode = req.params.portalCode;
   console.log("front-end,Employ-detail=>", employeeCode);
 
   try {
-    const employee = await Employee.findOne({ employeeCode: employeeCode });
+    const employee = await Employee.findOne({ employeeCode: employeeCode })
+      .populate({
+        model: "Payroll",  
+        path: "designation",
+      });
 
     if (!employee) {
       console.log(
@@ -1653,6 +1658,33 @@ exports.PortalAccess = asyncHandler(async (req, res, next) => {
     return res.status(500).send("Internal Server Error");
   }
 });
+
+
+
+
+// exports.PortalAccess = asyncHandler(async (req, res, next) => {
+//   const employeeCode = req.params.portalCode;
+//   console.log("front-end,Employ-detail=>", employeeCode);
+
+//   try {
+//     const employee = await Employee.findOne({ employeeCode: employeeCode });
+
+//     if (!employee) {
+//       console.log(
+//         " Invalid portal code! Please get in touch with your employer for assistance."
+//       );
+//       return res.status(500).json({
+//         message:
+//           "Invalid portal code! Please get in touch with your employer for assistance.",
+//       });
+//     } else {
+//       res.json(employee);
+//     }
+//   } catch (err) {
+//     console.error("An error occurred while fetching employee details:", err);
+//     return res.status(500).send("Internal Server Error");
+//   }
+// });
 
  
 
