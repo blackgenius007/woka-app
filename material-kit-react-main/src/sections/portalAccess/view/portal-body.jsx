@@ -191,7 +191,7 @@ const EmployeePortal = () => {
   };
 
   // destructuring employeeData
-  const{healthCare,designation,loan,IOU,benefitInKind}=employeeData
+  const { healthCare, designation, loan, IOU, benefitInKind } = employeeData || {};
   const { grossIncome, country } = designation;
 
   // calculate Employee Renumerations
