@@ -44,13 +44,71 @@ const EmployeePortal = () => {
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
-
+  const [employeeAccessData, setEmployeeAccessData] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
   const [additionalDataPopoverOpen, setAdditionalDataPopoverOpen] = useState(false);
   const [taxCalculatorPopoverOpen, setTaxCalculatorPopoverOpen] = useState(false);
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
+
+//Destructure employees from redux
+useEffect(() => {
+  // Assuming employees is an array
+  if (employees && employees.length === 1) {
+    // Access the first (and only) employee in the array
+    const firstEmployee = employees[0];
+
+    // Destructure properties from the employee and set them in the component state
+    setEmployeeAccessData({
+      healthCare: firstEmployee.healthCare,
+      designation: firstEmployee.designation,
+      loan: firstEmployee.loan,
+      IOU: firstEmployee.IOU,
+      benefitInKind:firstEmployee.benefitInKind
+      // Add other properties as needed
+    });
+  }
+}, [employees]);
+  // destructuring employeeAccessData
+  const { healthCare, designation, loan, IOU, benefitInKind } = employeeAccessData || {};
+  const { grossIncome, country } = designation;
+
+  // portal code verification
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await dispatch(authPortalAccess(portalCode));
+        // Handle success case
+      } catch (err) {
+        // Access the error message
+        if (err && err.message) {
+          const errorResponseMessage = err.message;
+          // Use errorResponseMessage as needed (e.g., show an alert)
+          console.error(errorResponseMessage);
+        }
+      }
+    };
+
+    fetchData();
+  }, [dispatch, portalCode]);
+  console.log();
+
+  // Check if there is an error after portal access and show a SweetAlert
+  useEffect(() => {
+  
+    if (isError) {
+      Swal.fire({
+        title: 'Error!',
+        text: message,
+        icon: 'error',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        // Navigate back to the home page
+        window.location.href = '/';
+      });
+    }
+  }, [isError, message, Swal]);
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
@@ -117,39 +175,7 @@ const EmployeePortal = () => {
   const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
   const { isError, message } = useSelector((state) => state.employees);
 
-  // portal code verification
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await dispatch(authPortalAccess(portalCode));
-        // Handle success case
-      } catch (err) {
-        // Access the error message
-        if (err && err.message) {
-          const errorResponseMessage = err.message;
-          // Use errorResponseMessage as needed (e.g., show an alert)
-          console.error(errorResponseMessage);
-        }
-      }
-    };
 
-    fetchData();
-  }, [dispatch, portalCode]);
-  console.log();
-  useEffect(() => {
-    // Check if there is an error and show a SweetAlert
-    if (isError) {
-      Swal.fire({
-        title: 'Error!',
-        text: message,
-        icon: 'error',
-        confirmButtonText: 'OK',
-      }).then(() => {
-        // Navigate back to the home page
-        window.location.href = '/';
-      });
-    }
-  }, [isError, message, Swal]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -190,9 +216,7 @@ const EmployeePortal = () => {
     autoplaySpeed: 5000,
   };
 
-  // destructuring employeeData
-  const { healthCare, designation, loan, IOU, benefitInKind } = employeeData || {};
-  const { grossIncome, country } = designation;
+
 
   // calculate Employee Renumerations
   const getPensionFund = (grossIncome) => {
