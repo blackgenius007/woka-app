@@ -44,13 +44,35 @@ const EmployeePortal = () => {
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
-
+  const [employeeAccessData, setEmployeeAccessData] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
   const [additionalDataPopoverOpen, setAdditionalDataPopoverOpen] = useState(false);
   const [taxCalculatorPopoverOpen, setTaxCalculatorPopoverOpen] = useState(false);
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
+
+
+//Destructure employees from redux
+useEffect(() => {
+  // Assuming employees is an array
+  if (employees && employees.length === 1) {
+    // Access the first (and only) employee in the array
+    const firstEmployee = employees[0];
+
+    // Destructure properties from the employee and set them in the component state
+    setEmployeeAccessData({
+      healthCare: firstEmployee.healthCare,
+      designation: firstEmployee.designation,
+      loan: firstEmployee.loan,
+      IOU: firstEmployee.IOU,
+      benefitInKind:firstEmployee.benefitInKind
+      // Add other properties as needed
+    });
+  }
+}, [employees]);
+
+
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
