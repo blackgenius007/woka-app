@@ -441,16 +441,16 @@ const EmployeePortal = () => {
                 horizontal: 'center',
               }}
             >
-              {grossIncome}
-              {/* <TaxCalculator
-              data={employeeAccessData}
+             
+              <TaxCalculator
+           
                 // cra={cra}
-                // grossIncome={ grossIncome}
-                //  healthCare={ healthCare}
-                //  loan={ loan}
-                //  benefit={ benefitInKind}
+                grossIncome={ grossIncome}
+                 healthCare={ healthCare}
+                 loan={ loan}
+                 benefit={ benefitInKind}
                 //  pensionFund={pensionFund}
-              /> */}
+              />
             </Popover>
           </>
         ))}
