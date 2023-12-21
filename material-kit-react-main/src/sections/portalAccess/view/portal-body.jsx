@@ -44,14 +44,13 @@ const EmployeePortal = () => {
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
-  
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
   const [additionalDataPopoverOpen, setAdditionalDataPopoverOpen] = useState(false);
   const [taxCalculatorPopoverOpen, setTaxCalculatorPopoverOpen] = useState(false);
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
-
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
@@ -100,26 +99,12 @@ const EmployeePortal = () => {
   // };
 
   const handleTaxCalculatorPopoverOpen = (event) => {
-    if (employees && employees.length === 1) {
-      const employeeId = employees[0]._id;
-console.log('check id :',employeeId)
-      // Optionally, you can also fetch complete employee details here if needed
-      dispatch(retrieveEmployeeById(employeeId && employeeId))
-        .then((response) => {
-          const employeeDetails = response.payload; // Access the complete employee details
-          setEmployeeData(employeeDetails);
-
-          // Now you can open the Tax Calculator Popover and pass required properties
-          setTaxCalculatorPopoverOpen(true);
-          setAnchorEl(event.currentTarget);
-        })
-        .catch((error) => {
-          console.error('Error fetching employee details:', error);
-        });
-    }
+    // Now you can open the Tax Calculator Popover and pass required properties
+    setTaxCalculatorPopoverOpen(true);
+    setAnchorEl(event.currentTarget);
   };
 
-console.log('portal-body :',employeeData && employeeData)
+  console.log('portal-body :', employeeData && employeeData);
   // ... (rest of the component)
 
   const handleTaxCalculatorPopoverClose = () => {
@@ -132,6 +117,7 @@ console.log('portal-body :',employeeData && employeeData)
   const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
   const { isError, message } = useSelector((state) => state.employees);
 
+  // portal code verification
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -149,7 +135,7 @@ console.log('portal-body :',employeeData && employeeData)
 
     fetchData();
   }, [dispatch, portalCode]);
-console.log()
+  console.log();
   useEffect(() => {
     // Check if there is an error and show a SweetAlert
     if (isError) {
@@ -401,7 +387,7 @@ console.log()
                 horizontal: 'center',
               }}
             >
-          TRUF
+              TRUF
             </Popover>
           </>
         ))}
