@@ -10,9 +10,9 @@ const CollectPointForm = ({ userEmail }) => {
 
   const [collector, setCollector] = useState({
     employeeNumber: '',
-    tag: '',
+    tagName: '',
   });
-  const { employeeNumber, tag } = collector;
+  const { employeeNumber, tagName } = collector;
 
   const handleCreateCollectPoint = async () => {
     console.log('collector:', employeeNumber, tag, userEmail);
