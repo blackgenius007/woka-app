@@ -41,7 +41,17 @@ import DataIcon from '@mui/icons-material/DataUsage';
 const EmployeePortal = () => {
   const dispatch = useDispatch();
   const { employees,DataAuth, isLoading } = useSelector((state) => state.employees);
-  console.log(employees);
+  // Find the item in DataAuth that matches the portalCode
+const relevantDataAuthItem = DataAuth.find((item) =>
+item.collectionPointDetails.some((detail) => detail.employeeNumber === portalCode)
+);
+
+// Extract collectionPointDetails from the relevant item
+const collectionPointDetails = relevantDataAuthItem?.collectionPointDetails || [];
+
+// Now you can use collectionPointDetails in your component
+console.log('data points: ',collectionPointDetails);
+  console.log(employees,collectionPointDetails);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
   const [employeeAccessData, setEmployeeAccessData] = useState([]);
@@ -107,16 +117,7 @@ const EmployeePortal = () => {
       // Check if the response is successful
       if (response.meta.requestStatus === 'fulfilled') {
 
-       // Find the item in DataAuth that matches the portalCode
-const relevantDataAuthItem = DataAuth.find((item) =>
-item.collectionPointDetails.some((detail) => detail.employeeNumber === portalCode)
-);
-
-// Extract collectionPointDetails from the relevant item
-const collectionPointDetails = relevantDataAuthItem?.collectionPointDetails || [];
-
-// Now you can use collectionPointDetails in your component
-console.log('data points: ',collectionPointDetails);
+       
 
         // If successful, set the additional data Popover to open
         setAdditionalDataPopoverOpen(true);
