@@ -50,13 +50,18 @@ const EmployeePortal = () => {
   // Log dataAuth to the console to check its contents
   console.log('DataAuth:', dataAuth,portalCode);
 
-// Filter the DataAuth array based on the portalCode
-const filteredDataAuth = dataAuth.filter(
-  (item) => item.employeeName === portalCode
+ // Filter the collectionPointDetails array based on the employeeNumber (portalCode)
+ const filteredCollectionPointDetails = dataAuth.reduce(
+  (acc, item) => [
+    ...acc,
+    ...item.collectionPointDetails.filter(
+      (detail) => detail.employeeNumber === portalCode
+    ),
+  ],
+  []
 );
-
 // Log the filteredDataAuth to the console
-console.log('Filtered DataAuth:', filteredDataAuth);
+console.log('Filtered DataAuth:', filteredCollectionPointDetails);
 
 
 
