@@ -454,7 +454,7 @@ const EmployeePortal = () => {
             open={inventoryOpen}
             close={handleInventoryClose}
             email={ownerEmail}
-            tag={tagName}
+            // tag={tagName}
             />
           </>
         ))}
