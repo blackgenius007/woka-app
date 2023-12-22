@@ -114,7 +114,7 @@ const EmployeePortal = () => {
     if (DataAuth && DataAuth.length === 1) {
       // Access the first (and only) employee in the array
       const firstData = DataAuth[0];
-      console.log(firstData)
+      console.log(firstData.collectionPointDetail)
       // Destructure properties from the employee and set them in the component state
   
       // setDataPointProperties({
