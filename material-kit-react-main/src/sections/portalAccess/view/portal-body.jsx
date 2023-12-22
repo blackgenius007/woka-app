@@ -11,7 +11,7 @@ import TaxCalculator from 'src/sections/employeeDetail/view/taxCalculator';
 import { retrieveEmployeeById } from 'src/Services/HR-Services/employeeSlice';
 import Swal from 'sweetalert2';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import InventoryRecords  from './inventoryRecords';
+import InventoryRecords from './inventoryRecords';
 import {
   Typography,
   Button,
@@ -40,11 +40,28 @@ import DataIcon from '@mui/icons-material/DataUsage';
 
 const EmployeePortal = () => {
   const dispatch = useDispatch();
-  const { employees,  isLoading } = useSelector((state) => state.employees);
+  // Fetch employee
+  const { employees, isLoading } = useSelector((state) => state.employees);
+  //Access the portalCode from the Redux store
+  const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
+  const { isError, message } = useSelector((state) => state.employees);
+  // Access data point properties
   const dataAuth = useSelector((state) => state.employees.DataAuth);
-    // Log dataAuth to the console to check its contents
-    console.log('DataAuth:', dataAuth);
-  console.log(employees );
+  // Log dataAuth to the console to check its contents
+  console.log('DataAuth:', dataAuth,portalCode);
+
+// Filter the DataAuth array based on the portalCode
+const filteredDataAuth = dataAuth.filter(
+  (item) => item.employeeName === portalCode
+);
+
+// Log the filteredDataAuth to the console
+console.log('Filtered DataAuth:', filteredDataAuth);
+
+
+
+
+  console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
   const [employeeAccessData, setEmployeeAccessData] = useState([]);
@@ -71,17 +88,16 @@ const EmployeePortal = () => {
         IOU: firstEmployee.IOU,
         benefitInKind: firstEmployee.benefitInKind,
         businessName: firstEmployee.businessName,
-        ownerEmail:firstEmployee.ownerEmail
+        ownerEmail: firstEmployee.ownerEmail,
         // Add other properties as needed
       });
     }
   }, [employees]);
 
   //destructure properties
-  const { healthCare, designation, loan, IOU, benefitInKind,ownerEmail } =
+  const { healthCare, designation, loan, IOU, benefitInKind, ownerEmail } =
     employeeAccessData || {};
-  const { grossIncome, country,businessName } = designation || {};
- 
+  const { grossIncome, country, businessName } = designation || {};
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
@@ -109,9 +125,6 @@ const EmployeePortal = () => {
 
       // Check if the response is successful
       if (response.meta.requestStatus === 'fulfilled') {
-
-       
-
         // If successful, set the additional data Popover to open
         setAdditionalDataPopoverOpen(true);
       } else {
@@ -127,8 +140,7 @@ const EmployeePortal = () => {
     }
   };
 
- 
-// Open renumeration Popover
+  // Open renumeration Popover
   const handleTaxCalculatorPopoverOpen = (event) => {
     // Now you can open the Tax Calculator Popover and pass required properties
     setTaxCalculatorPopoverOpen(true);
@@ -136,17 +148,13 @@ const EmployeePortal = () => {
   };
 
   console.log('portal-body :', employeeData && employeeData);
- 
-// Close renumeration Popover
+
+  // Close renumeration Popover
   const handleTaxCalculatorPopoverClose = () => {
     setTaxCalculatorPopoverOpen(false);
   };
 
   const open = Boolean(anchorEl);
-
-  //Access the portalCode from the Redux store
-  const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
-  const { isError, message } = useSelector((state) => state.employees);
 
   // portal code verification
   useEffect(() => {
@@ -246,8 +254,8 @@ const EmployeePortal = () => {
     setInventoryOpen(true);
   };
 
-   // Open Inventory dialog
-   const handleInventoryClose = () => {
+  // Open Inventory dialog
+  const handleInventoryClose = () => {
     setInventoryOpen(false);
   };
 
@@ -421,7 +429,7 @@ const EmployeePortal = () => {
                 </Typography>
 
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-                  <IconButton onClick={handleInventoryOpen }>
+                  <IconButton onClick={handleInventoryOpen}>
                     <InventoryIcon />
                   </IconButton>
                   <Typography variant="body1">Inventory Records</Typography>
@@ -456,11 +464,11 @@ const EmployeePortal = () => {
                 pensionFund={pensionFund}
               />
             </Popover>
-            <InventoryRecords 
-            open={inventoryOpen}
-            close={handleInventoryClose}
-            email={ownerEmail}
-            // tag={tagName}
+            <InventoryRecords
+              open={inventoryOpen}
+              close={handleInventoryClose}
+              email={ownerEmail}
+              // tag={tagName}
             />
           </>
         ))}
