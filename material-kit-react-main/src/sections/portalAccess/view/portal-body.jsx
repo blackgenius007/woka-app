@@ -11,7 +11,7 @@ import TaxCalculator from 'src/sections/employeeDetail/view/taxCalculator';
 import { retrieveEmployeeById } from 'src/Services/HR-Services/employeeSlice';
 import Swal from 'sweetalert2';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-
+import InventoryRecords  from './inventoryRecords';
 import {
   Typography,
   Button,
@@ -51,6 +51,7 @@ const EmployeePortal = () => {
   const [taxCalculatorPopoverOpen, setTaxCalculatorPopoverOpen] = useState(false);
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
+  const [inventoryOpen, setInventoryOpen] = useState(false);
 
   //Destructure employees from redux
   useEffect(() => {
@@ -67,25 +68,17 @@ const EmployeePortal = () => {
         IOU: firstEmployee.IOU,
         benefitInKind: firstEmployee.benefitInKind,
         businessName: firstEmployee.businessName,
+        ownerEmail:firstEmployee.ownerEmail
         // Add other properties as needed
       });
     }
   }, [employees]);
 
-  // console.log(employeeAccessData);
-  const { healthCare, designation, loan, IOU, benefitInKind, businessName } =
+  //destructure properties
+  const { healthCare, designation, loan, IOU, benefitInKind,ownerEmail } =
     employeeAccessData || {};
-  const { grossIncome, country } = designation || {};
-  console.log(
-    'destructure:',
-    healthCare,
-    designation,
-    loan,
-    IOU,
-    benefitInKind,
-    grossIncome,
-    country
-  );
+  const { grossIncome, country,businessName } = designation || {};
+ 
 
   // Popover to for data code input
   const handleDefaultPopoverOpen = (event) => {
@@ -128,11 +121,8 @@ const EmployeePortal = () => {
     }
   };
 
-  // const handleTaxCalculatorPopoverOpen = (event) => {
-  //   setTaxCalculatorPopoverOpen(true);
-  //   setAnchorEl(event.currentTarget);
-  // };
-
+ 
+// Open renumeration Popover
   const handleTaxCalculatorPopoverOpen = (event) => {
     // Now you can open the Tax Calculator Popover and pass required properties
     setTaxCalculatorPopoverOpen(true);
@@ -140,8 +130,8 @@ const EmployeePortal = () => {
   };
 
   console.log('portal-body :', employeeData && employeeData);
-  // ... (rest of the component)
-
+ 
+// Close renumeration Popover
   const handleTaxCalculatorPopoverClose = () => {
     setTaxCalculatorPopoverOpen(false);
   };
@@ -244,6 +234,16 @@ const EmployeePortal = () => {
 
   //calculate consolidated salary
   const cra = 200000 + (20 / 100) * grossIncome;
+
+  // Open Inventory dialog
+  const handleInventoryOpen = () => {
+    setInventoryOpen(true);
+  };
+
+   // Open Inventory dialog
+   const handleInventoryClose = () => {
+    setInventoryOpen(false);
+  };
 
   return (
     <>
@@ -450,6 +450,12 @@ const EmployeePortal = () => {
                 pensionFund={pensionFund}
               />
             </Popover>
+            <InventoryRecords 
+            open={inventoryOpen}
+            close={handleInventoryClose}
+            email={ownerEmail}
+            
+            />
           </>
         ))}
     </>
