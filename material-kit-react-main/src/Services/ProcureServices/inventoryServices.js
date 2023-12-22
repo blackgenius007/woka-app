@@ -1,11 +1,12 @@
 /* eslint-disable */
 import axios from 'axios';
 
-// Define your base URL here
+// Defined base URL here
 const BASE_URL = 'https://woka-app.vercel.app';
 axios.defaults.baseURL = BASE_URL;
 
 const API_URL_ALL_INVENTORY = '/api/v1/inventory/all-inventory';
+const API_URL_ALL_INVENTORY_POINT = '/api/v1/inventory/inventory-point';
 const API_URL_ONE_INVENTORY = '/api/v1/inventory';
 const API_URL_CREATE_INVENTORY = '/api/v1/inventory/create';
 const API_URL_PER_ITEM = '/api/v1/inventory/per-item';
@@ -23,18 +24,20 @@ const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
 
 // Get all inventory items
 const getAllInventory = async (email) => {
-    console.log('retrievedInventory=>', email);
-    const response = await axios.get(constructURL(API_URL_ALL_INVENTORY + `/${email}`));
-    console.log('inventory retrieved =>', response);
-    return response.data;
-  };
+  console.log('retrievedInventory=>', email);
+  const response = await axios.get(constructURL(API_URL_ALL_INVENTORY + `/${email}`));
+  console.log('inventory retrieved =>', response);
+  return response.data;
+};
 
-// const getAllInventory = async (email) => {
-//     console.log('inventory-services',email)
-//   //   const response = await axios.get(constructURL(`${API_URL_ALL_INVENTORY}/${email}/${projectName}`));
-//   const response = await axios.get(constructURL(`${API_URL_ALL_INVENTORY}/${email} `));
-//   return response.data;
-// };
+const getAllInventoryEachPoint = async (email, tagName) => {
+  console.log('inventory-services', email, tagName);
+
+  const response = await axios.get(
+    constructURL(`${API_URL_ALL_INVENTORY_POINT}/${email}/${tagName} `)
+  );
+  return response.data;
+};
 
 // Get one inventory item by ID
 const getOneInventory = async (id) => {
@@ -118,6 +121,7 @@ const deleteInventory = async (id) => {
 
 const inventoryService = {
   getAllInventory,
+  getAllInventoryEachPoint,
   getOneInventory,
   createInventory,
   quantityPerItem,
