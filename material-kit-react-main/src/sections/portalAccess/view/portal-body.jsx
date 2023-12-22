@@ -51,7 +51,7 @@ const collectionPointDetails = relevantDataAuthItem?.collectionPointDetails || [
 
 // Now you can use collectionPointDetails in your component
 console.log('data points: ',collectionPointDetails);
-  console.log(employees,collectionPointDetails);
+  console.log(employees,DataAuth);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
   const [employeeAccessData, setEmployeeAccessData] = useState([]);
