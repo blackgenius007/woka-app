@@ -14,6 +14,7 @@ const CollectPointForm = ({ userEmail }) => {
   const { employeeNumber, tag } = collector;
 
   const handleCreateCollectPoint = () => {
+    console.log('collector:',employeeNumber, tag, userEmail )
     // Dispatch collection point action with separate string values
     dispatch(createDataCollectionPoint(employeeNumber, tag, userEmail));
   };
