@@ -41,7 +41,7 @@ import DataIcon from '@mui/icons-material/DataUsage';
 const EmployeePortal = () => {
   const dispatch = useDispatch();
   const { employees,DataAuth, isLoading } = useSelector((state) => state.employees);
-  // Find the item in DataAuth that matches the portalCode
+ // Find the item in DataAuth that matches the portalCode
 const relevantDataAuthItem = DataAuth.find((item) =>
 item.collectionPointDetails.some((detail) => detail.employeeNumber === portalCode)
 );
@@ -49,8 +49,13 @@ item.collectionPointDetails.some((detail) => detail.employeeNumber === portalCod
 // Extract collectionPointDetails from the relevant item
 const collectionPointDetails = relevantDataAuthItem?.collectionPointDetails || [];
 
+console.log('portalCode:', portalCode);
+console.log('DataAuth:', DataAuth);
+console.log('relevantDataAuthItem:', relevantDataAuthItem);
+console.log('collectionPointDetails:', collectionPointDetails);
+
 // Now you can use collectionPointDetails in your component
-console.log('data points: ',collectionPointDetails);
+console.log(collectionPointDetails);
   console.log(employees,DataAuth);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
