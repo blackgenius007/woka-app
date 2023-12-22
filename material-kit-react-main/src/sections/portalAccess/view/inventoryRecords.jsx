@@ -38,7 +38,7 @@ export default function InventoryDialog({open, close, email}) {
             <IconButton
               edge="start"
               color="inherit"
-              onClick={handleClose}
+              onClick={close}
               aria-label="close"
             >
               <CloseIcon />
@@ -46,7 +46,7 @@ export default function InventoryDialog({open, close, email}) {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               Sound
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
+            <Button autoFocus color="inherit" onClick={close}>
               save
             </Button>
           </Toolbar>
