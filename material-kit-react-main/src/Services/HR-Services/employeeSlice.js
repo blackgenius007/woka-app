@@ -10,7 +10,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,  
   message: '',
-  collectionPointDetail: []
+  DataAuth: []
  
 };
 
@@ -481,7 +481,7 @@ export const employeeSlice = createSlice({
       .addCase(authDataAccess.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.collectionPointDetail.push(action.payload);
+        state.DataAuth.push(action.payload);
       })
       .addCase(authDataAccess.rejected, (state, action) => {
         state.isLoading = false;

@@ -41,9 +41,9 @@ import DataIcon from '@mui/icons-material/DataUsage';
 const EmployeePortal = () => {
   const dispatch = useDispatch();
   const { employees, isLoading } = useSelector((state) => state.employees);
-  const { collectionPointDetail } = useSelector((state) => state.DataAuth);
+  const { DataAuth  } = useSelector((state) => state.DataAuth);
  
-   const dataAuthInitialState = useSelector((state) => state.dataAuth);
+ 
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
@@ -111,10 +111,10 @@ const EmployeePortal = () => {
       if (response.meta.requestStatus === 'fulfilled') {
        // update state with dataAccess properties
     
-    if ( collectionPointDetail &&  collectionPointDetail.length === 1) {
+    if (DataAuth && DataAuth.length === 1) {
       // Access the first (and only) employee in the array
-      const firstData =  collectionPointDetail[0];
-      console.log( firstData)
+      const firstData = DataAuth[0];
+      console.log(firstData)
       // Destructure properties from the employee and set them in the component state
   
       // setDataPointProperties({
