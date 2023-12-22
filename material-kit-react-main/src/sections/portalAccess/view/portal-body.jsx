@@ -41,6 +41,9 @@ import DataIcon from '@mui/icons-material/DataUsage';
 const EmployeePortal = () => {
   const dispatch = useDispatch();
   const { employees, isLoading } = useSelector((state) => state.employees);
+  const { DataAuth  } = useSelector((state) => state.dataAuth);
+ 
+   const dataAuthInitialState = useSelector((state) => state.dataAuth);
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
@@ -106,6 +109,27 @@ const EmployeePortal = () => {
 
       // Check if the response is successful
       if (response.meta.requestStatus === 'fulfilled') {
+       // update state with dataAccess properties
+    
+    if (DataAuth && DataAuth.length === 1) {
+      // Access the first (and only) employee in the array
+      const firstData = DataAuth[0];
+      console.log(firstData)
+      // Destructure properties from the employee and set them in the component state
+  
+      // setDataPointProperties({
+      //   healthCare: firstEmployee.healthCare,
+      //   designation: firstEmployee.designation,
+      //   loan: firstEmployee.loan,
+      //   IOU: firstEmployee.IOU,
+      //   benefitInKind: firstEmployee.benefitInKind,
+      //   businessName: firstEmployee.businessName,
+      //   ownerEmail:firstEmployee.ownerEmail
+      //   // Add other properties as needed
+      // });
+    }
+
+
         // If successful, set the additional data Popover to open
         setAdditionalDataPopoverOpen(true);
       } else {
@@ -454,7 +478,7 @@ const EmployeePortal = () => {
             open={inventoryOpen}
             close={handleInventoryClose}
             email={ownerEmail}
-            
+            tag={tagName}
             />
           </>
         ))}
