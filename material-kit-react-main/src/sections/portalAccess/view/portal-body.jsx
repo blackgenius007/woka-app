@@ -40,9 +40,11 @@ import DataIcon from '@mui/icons-material/DataUsage';
 
 const EmployeePortal = () => {
   const dispatch = useDispatch();
-  const { employees,DataAuth, isLoading } = useSelector((state) => state.employees);
-  
-  console.log(employees,DataAuth.collectionPointDetail);
+  const { employees,  isLoading } = useSelector((state) => state.employees);
+  const dataAuth = useSelector((state) => state.employees.DataAuth);
+    // Log dataAuth to the console to check its contents
+    console.log('DataAuth:', dataAuth);
+  console.log(employees );
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
   const [employeeAccessData, setEmployeeAccessData] = useState([]);
