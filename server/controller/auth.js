@@ -375,8 +375,8 @@ const addDepartment = asyncHandler(async (req, res, next) => {
 
 const addCollectorPoint = asyncHandler(async (req, res, next) => {
   try {
-    const { employeeNumber, tag, userEmail } = req.body;
-    console.log(employeeNumber, tag , userEmail);
+    const { employeeNumber, tagName, userEmail } = req.body;
+    console.log(employeeNumber, tagName , userEmail);
     // Generate a passcode (you need to implement or import this function)
     const passcode = GenerateCode(4);
 
@@ -384,7 +384,7 @@ const addCollectorPoint = asyncHandler(async (req, res, next) => {
     const collectionPointEntry = {
       passcode,
       employeeNumber,
-      tag ,
+      tagName ,
     };
 
     // Find the user by some identifier (e.g., user ID or email)
@@ -396,7 +396,7 @@ const addCollectorPoint = asyncHandler(async (req, res, next) => {
       { $push: { collectionPointDetails: collectionPointEntry } },
       { new: true }
     );
-
+console.log(updatedUser)
     res.json(updatedUser);
   } catch (error) {
     console.error(error);
