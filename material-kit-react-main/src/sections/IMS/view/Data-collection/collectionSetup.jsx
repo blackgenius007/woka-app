@@ -15,7 +15,7 @@ const CollectPointForm = ({ userEmail }) => {
   const { employeeNumber, tagName } = collector;
 
   const handleCreateCollectPoint = async () => {
-    console.log('collector:', employeeNumber, tag, userEmail);
+    console.log('collector:', employeeNumber, tagName, userEmail);
   
     try {
       // Dispatch collection point action with separate string values
