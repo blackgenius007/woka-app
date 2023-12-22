@@ -60,6 +60,10 @@ const EmployeePortal = () => {
   ],
   []
 );
+
+// Destructure filteredCollectionPointDetails properties
+const { tagName, employeeNumber } = filteredCollectionPointDetails[0] || {};
+
 // Log the filteredDataAuth to the console
 console.log('Filtered DataAuth:', filteredCollectionPointDetails);
 
@@ -473,7 +477,8 @@ console.log('Filtered DataAuth:', filteredCollectionPointDetails);
               open={inventoryOpen}
               close={handleInventoryClose}
               email={ownerEmail}
-              // tag={tagName}
+               tag={tagName}
+               employeeNumber={employeeNumber}
             />
           </>
         ))}
