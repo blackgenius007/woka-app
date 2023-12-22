@@ -62,12 +62,12 @@ const saveDepartment = async (email, department) => {
 };
 
 // Function to create data collection point
-const createDataCollectionPoint = async ({ employeeNumber, tag, userEmail }) => {
-  console.log('collector-services=>', { employeeNumber, tag, userEmail });
+const createDataCollectionPoint = async ({ employeeNumber, tagName, userEmail }) => {
+  console.log('collector-services=>', { employeeNumber, tagName, userEmail });
 
   const response = await axios.post(
     constructURL(API_URL_CREATE_DATA_COLLECTION_POINT),
-    { employeeNumber, tag, userEmail }
+    { employeeNumber, tagName, userEmail }
   );
 
   return response.data;

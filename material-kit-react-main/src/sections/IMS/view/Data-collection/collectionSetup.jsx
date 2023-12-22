@@ -13,11 +13,54 @@ const CollectPointForm = ({ userEmail }) => {
   });
   const { employeeNumber, tag } = collector;
 
-  const handleCreateCollectPoint = () => {
-    console.log('collector:',employeeNumber, tag, userEmail )
-    // Dispatch collection point action with separate string values
-    dispatch(createDataCollectionPoint({employeeNumber, tag, userEmail}));
+  const handleCreateCollectPoint = async () => {
+    console.log('collector:', employeeNumber, tag, userEmail);
+  
+    try {
+      // Dispatch collection point action with separate string values
+      const response = await dispatch(createDataCollectionPoint({ employeeNumber, tagName, userEmail }));
+  
+      // Check if the response is successful
+      if (createDataCollectionPoint.fulfilled.match(response)) {
+        // Display SweetAlert2 success message
+        Swal.fire({
+          title: 'Success!',
+          text: 'Data collection point created successfully.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+  
+        // You can also perform any additional actions after success if needed
+        // For example, navigate to another page, reset form fields, etc.
+      } else {
+        // Handle the case where the response indicates an error
+        console.error('Error creating data collection point:', response.error);
+  
+        Swal.fire({
+          title: 'Error!',
+          text: 'An error occurred while creating the data collection point.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
+    } catch (error) {
+      // Handle other errors, not related to the action
+      console.error('Error creating data collection point:', error);
+  
+      Swal.fire({
+        title: 'Error!',
+        text: 'An unexpected error occurred.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
   };
+
+  // const handleCreateCollectPoint = () => {
+  //   console.log('collector:',employeeNumber, tag, userEmail )
+  //   // Dispatch collection point action with separate string values
+  //   dispatch(createDataCollectionPoint({employeeNumber, tag, userEmail}));
+  // };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
