@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Container, Grid, TextField, Form, Button, Typography } from '@mui/material';
 import { createDataCollectionPoint } from 'src/Services/AuthServices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 const CollectPointForm = ({ userEmail }) => {
   const dispatch = useDispatch();
@@ -84,11 +85,11 @@ const CollectPointForm = ({ userEmail }) => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
-              name="tag"
+              name="tagName"
               label="Inventory location or Project name "
               variant="outlined"
               fullWidth
-              value={collector.tag}
+              value={collector.tagName}
               onChange={handleInputChange}
               required
             />
