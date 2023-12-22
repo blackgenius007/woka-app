@@ -415,7 +415,7 @@ const EmployeePortal = () => {
                 </Typography>
 
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-                  <IconButton>
+                  <IconButton onClick={handleInventoryOpen }>
                     <InventoryIcon />
                   </IconButton>
                   <Typography variant="body1">Inventory Records</Typography>
