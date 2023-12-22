@@ -1,1 +1,1 @@
-export { default as InventoryView } from './InventoryRecords';
+// export { default as InventoryView } from './InventoryRecords';

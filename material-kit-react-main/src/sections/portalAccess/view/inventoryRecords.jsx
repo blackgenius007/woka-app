@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -17,7 +18,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function InventoryDialog({open, close, email}) {
-  const [open, setOpen] = React.useState(false);
+ 
 
  
 

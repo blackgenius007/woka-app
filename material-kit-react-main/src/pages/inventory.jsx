@@ -1,18 +1,18 @@
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 
-import {InventoryView } from 'src/sections/Inventory/view';
+// import {InventoryView } from 'src/sections/Inventory/view';
 
-// ----------------------------------------------------------------------
+// // ----------------------------------------------------------------------
 
-export default function InventoryPage() {
-  return (
-    <>
-      <Helmet>
-        <title> Inventory | Workfily </title>
-      </Helmet>
+// export default function InventoryPage() {
+//   return (
+//     <>
+//       <Helmet>
+//         <title> Inventory | Workfily </title>
+//       </Helmet>
 
-      <InventoryView />
-    </>
-  );
-}
+//       <InventoryView />
+//     </>
+//   );
+// }
  
