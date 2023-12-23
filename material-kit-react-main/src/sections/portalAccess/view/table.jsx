@@ -333,34 +333,8 @@ const InventoryTable = ({ drawer }) => {
       </div>
       <br />
       <label>
-        <IconButton></IconButton>
-        <IconButton>
-          <Popup
-            trigger={
-              <Link>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-history"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#9e9e9e"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <polyline points="12 8 12 12 14 14" />
-                  <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" />
-                </svg>
-              </Link>
-            }
-            position="bottom center"
-          >
-            Inventory history
-          </Popup>
-        </IconButton>
+     
+        
         <IconButton>
           <Popup
             trigger={
@@ -659,75 +633,4 @@ export default function MainPage() {
   );
 }
 
-// import React, { useState } from 'react';
-
-// const InventoryTable = () => {
-//   const initialItems = [
-//     { id: 1, name: 'Item A', quantity: 10 },
-//     { id: 2, name: 'Item B', quantity: 5 },
-//     { id: 3, name: 'Item C', quantity: 15 },
-//   ];
-
-//   const [items, setItems] = useState(initialItems);
-
-//   const handleChange = (itemId, newQuantity) => {
-//     const updatedItems = items.map((item) =>
-//       item.id === itemId ? { ...item, quantity: newQuantity } : item
-//     );
-//     setItems(updatedItems);
-//     console.log(updatedItems);
-
-//     // Simulate API call to backend
-//     setTimeout(() => {
-//       updateBackend(itemId, newQuantity);
-//     }, 500);
-//   };
-
-//   const updateBackend = (itemId, newQuantity) => {
-//     // Simulated API call
-//     console.log(`Sending data to backend: Item ${itemId} - New Quantity: ${newQuantity}`);
-//   };
-
-//   return (
-//     <div>
-//       <h2>Inventory Table</h2>
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Item Name</th>
-//             <th>Current Quantity</th>
-//             <th>Quantity</th>
-//             <th>Actions</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {items.map((item) => (
-//             <tr key={item.id}>
-//               <td>{item.name}</td>
-//               <td>{item.quantity}</td>
-//               <td>
-//                 <input
-//                   type="number"
-//                   value={item.quantity}
-//                   onChange={(e) =>
-//                     handleChange(item.id, parseInt(e.target.value, 10))
-//                   }
-//                 />
-//               </td>
-//               <td>
-//                 <button onClick={() => handleChange(item.id, item.quantity + 1)}>
-//                   +
-//                 </button>
-//                 <button onClick={() => handleChange(item.id, item.quantity - 1)}>
-//                   -
-//                 </button>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-
-// export default InventoryTable;
+ 
