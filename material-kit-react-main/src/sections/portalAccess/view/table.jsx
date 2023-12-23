@@ -287,24 +287,7 @@ const InventoryTable = ({ email, tagName }) => {
           justifyContent: 'center',
         }}
       >
-        <TextField
-          value={searched}
-          onChange={(e) => requestSearch(e.target.value)}
-          label="Search database"
-          variant="outlined"
-          size="small"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                {searched && (
-                  <IconButton onClick={() => requestSearch('')}>
-                    <Clear />
-                  </IconButton>
-                )}
-              </InputAdornment>
-            ),
-          }}
-        />
+       
       </div>
       <br />
       <label>
@@ -363,7 +346,24 @@ const InventoryTable = ({ email, tagName }) => {
         </Button>
       
         <Button variant="contained">Request for orders</Button>
-        
+        <TextField
+          value={searched}
+          onChange={(e) => requestSearch(e.target.value)}
+          label="Search database"
+          variant="outlined"
+          size="small"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                {searched && (
+                  <IconButton onClick={() => requestSearch('')}>
+                    <Clear />
+                  </IconButton>
+                )}
+              </InputAdornment>
+            ),
+          }}
+        />
          
       </label>
       <div style={futuristicStyles.tableContainer}>
