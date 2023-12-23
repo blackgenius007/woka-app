@@ -610,7 +610,7 @@ export default function MainPage() {
       </Scrollbar>
       <Popover
         // open={formPopoverOpen}
-        onClose={handleFormPopoverClose}
+        // onClose={handleFormPopoverClose}
         anchorReference="none"
         anchorEl={null}
         style={{
