@@ -140,7 +140,7 @@ const InventoryTable = ({ email, tagName }) => {
   const [rowInputValues, setRowInputValues] = useState({});
   const [open, setOpen] = useState(false);
   const [exportMode, setExportMode] = useState(0);
-  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+//   const [formPopoverOpen, setFormPopoverOpen] = useState(false);
 
   // Open new form Popover
 //   const handleFormPopoverOpen = (event) => {
@@ -609,7 +609,7 @@ export default function MainPage() {
         <InventoryTable />
       </Scrollbar>
       <Popover
-        open={formPopoverOpen}
+        // open={formPopoverOpen}
         onClose={handleFormPopoverClose}
         anchorReference="none"
         anchorEl={null}
