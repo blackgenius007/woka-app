@@ -363,13 +363,8 @@ const InventoryTable = ({ email, tagName }) => {
         </Button>
         Button to toggle the sidebar
         <Button variant="contained">Request for orders</Button>
-        Render totalRemunerationForAll in a separate table row
-        <tr>
-          <td colSpan="8" style={{ textAlign: 'right' }}>
-            <strong>After Tax Aggregate Salary for All Monthly Employees:</strong>
-          </td>
-          <td style={{ textAlign: 'center' }}>{fNumber(totalRemunerationForAll.toFixed(2))}</td>
-        </tr>
+        
+         
       </label>
       <div style={futuristicStyles.tableContainer}>
         <table style={futuristicStyles.table}>
