@@ -27,7 +27,7 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-
+import NewItemForm from './newItemForm';
 import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import { Popup } from 'semantic-ui-react';
@@ -621,7 +621,7 @@ export default function MainPage() {
           alignItems: 'center',
         }}
       >
-        realio
+       < NewItemForm/>
       </Popover>
     </Container>
   );
