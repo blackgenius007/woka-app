@@ -82,7 +82,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
  
       <Scrollbar>
         <h2>Inventory Table</h2> 
-        {/* <Table/> */}
+        <Table email={email} tagName={tagName} />
       </Scrollbar>
     </Container>
       </Dialog>
