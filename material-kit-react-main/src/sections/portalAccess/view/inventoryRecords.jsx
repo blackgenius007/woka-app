@@ -36,7 +36,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
   // Accessing inventory data from the Redux store
   const inventoryData = useSelector((state) => state.inventory);
 
- console.log(inventoryData)
+ console.log('INVENTORY=>',inventoryData)
 
   return (
     <React.Fragment>
