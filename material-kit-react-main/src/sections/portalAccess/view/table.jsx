@@ -143,10 +143,10 @@ const InventoryTable = ({ email, tagName }) => {
   const [formPopoverOpen, setFormPopoverOpen] = useState(false);
 
   // Open new form Popover
-  const handleFormPopoverOpen = (event) => {
-    setFormPopoverOpen(true);
-    setAnchorEl(event.currentTarget);
-  };
+//   const handleFormPopoverOpen = (event) => {
+//     setFormPopoverOpen(true);
+//     setAnchorEl(event.currentTarget);
+//   };
 
   // Close new form Popover
   const handleFormPopoverClose = () => {
@@ -596,7 +596,7 @@ export default function MainPage() {
 
         <Link to="/new-employee">
           <Button
-          onClick={handleFormPopoverOpen}
+        //   onClick={handleFormPopoverOpen}
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
             startIcon={<Iconify icon="eva:plus-fill" />}
