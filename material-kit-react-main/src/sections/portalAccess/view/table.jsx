@@ -4,21 +4,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import RightSidebar from './RightSidebar';
-import { RiFileExcel2Fill } from 'react-icons/ri';
+ 
 import moment from 'moment';
-import excelIconSvg from '../../../../assets/svg/excel-1516.svg';
+import{getAllInventoryEachPoint} from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
-import {
-  calculateTaxAsync,
-  addAllowance,
-  allowanceReset,
-  addOvertime,
-  addIOU,
-  overtimeReset,
-} from '../../../Services/AccountServices/financialSlice';
+ 
 import accounting from 'accounting-js';
-import { retrieveAllAttendance } from 'src/Services/HR-Services/employeeSlice';
+ 
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -135,7 +128,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = ({ drawer }) => {
+const InventoryTable = ({ email, tagName }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dateOffset, setDateOffset] = useState(7);
@@ -151,22 +144,16 @@ const InventoryTable = ({ drawer }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  //user details
-  const { role, email, ownerEmail } = useSelector((state) => state.auth.user.data);
-  // user role
-  const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
-  console.log(userEmail);
+ 
+useEffect(() => {
+    // Assuming getAllInventoryEachPoint is an async thunk
+    dispatch(getAllInventoryEachPoint({ email, tagName  }));
+  }, [dispatch, email, tagName ]);
 
-  //fetch attendance details
-  useEffect(() => {
-    dispatch(retrieveAllAttendance({ userEmail, dateOffset }));
-  }, [dispatch, userEmail, dateOffset]);
-
-  // Retrieve attendance data from employeeSlice
+ 
   const { attendance } = useSelector((state) => state.employees);
-  // Retrieve financial data from financialSlice
-  const financialData = useSelector((state) => state.financial);
-  console.log(attendance, financialData);
+   
+ 
 
   // Function to trigger financial data calculation
   const calculateFinancialData = (employeeId, grossIncome, country) => {
