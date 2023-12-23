@@ -367,13 +367,13 @@ useEffect(() => {
             Convert to Exportable version
           </Button>
         )}
-        <Button variant="contained" onClick={drawer} style={{ backgroundColor: '#E97451' }}>
+        {/* <Button variant="contained" onClick={drawer} style={{ backgroundColor: '#E97451' }}>
           Wages Calculator
-        </Button>
+        </Button> */}
         {/* Button to toggle the sidebar */}
-        <Button variant="contained" onClick={drawer}>
+        {/* <Button variant="contained" onClick={drawer}>
           How it works
-        </Button>
+        </Button> */}
         {/* Render totalRemunerationForAll in a separate table row */}
         <tr>
           <td colSpan="8" style={{ textAlign: 'right' }}>
@@ -607,7 +607,7 @@ export default function MainPage() {
     <div style={containerStyle}>
       <h1 style={{ color: '#6082B6' }}>Inventory Sheet</h1>
 
-      <InventoryTable drawer={toggleSidebar} />
+      <InventoryTable  />
       {/* Right Sidebar */}
       {/* <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
     </div>
