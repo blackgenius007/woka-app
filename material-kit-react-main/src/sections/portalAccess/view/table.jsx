@@ -596,7 +596,7 @@ export default function MainPage() {
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Inventory Management</Typography>
 
-        <Link to="/new-employee">
+        
           <Button
           onClick={handleFormPopoverOpen}
             variant="contained"
@@ -605,7 +605,7 @@ export default function MainPage() {
           >
             New Item
           </Button>
-        </Link>
+      
       </Stack>
       <Scrollbar>
         <InventoryTable />
