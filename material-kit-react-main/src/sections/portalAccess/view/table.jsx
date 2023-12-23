@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
+import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
@@ -139,6 +140,19 @@ const InventoryTable = ({ email, tagName }) => {
   const [rowInputValues, setRowInputValues] = useState({});
   const [open, setOpen] = useState(false);
   const [exportMode, setExportMode] = useState(0);
+  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+
+  // Open new form Popover
+  const handleFormPopoverOpen = (event) => {
+    setFormPopoverOpen(true);
+    setAnchorEl(event.currentTarget);
+  };
+
+  // Close new form Popover
+  const handleFormPopoverClose = () => {
+    setFormPopoverOpen(false);
+  };
+
   let totalRemunerationForAll = 0;
   // Pagination state
   const [page, setPage] = useState(0);
@@ -286,9 +300,7 @@ const InventoryTable = ({ email, tagName }) => {
           alignItems: 'center',
           justifyContent: 'center',
         }}
-      >
-       
-      </div>
+      ></div>
       <br />
       <label>
         <IconButton>
@@ -344,7 +356,7 @@ const InventoryTable = ({ email, tagName }) => {
         <Button variant="contained" style={{ backgroundColor: '#E97451' }}>
           suppliers contact
         </Button>
-      
+
         <Button variant="contained">Request for orders</Button>
         <TextField
           value={searched}
@@ -364,7 +376,6 @@ const InventoryTable = ({ email, tagName }) => {
             ),
           }}
         />
-         
       </label>
       <div style={futuristicStyles.tableContainer}>
         <table style={futuristicStyles.table}>
@@ -585,17 +596,31 @@ export default function MainPage() {
 
         <Link to="/new-employee">
           <Button
+          onClick={handleFormPopoverOpen}
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
             startIcon={<Iconify icon="eva:plus-fill" />}
           >
-           New Item
+            New Item
           </Button>
         </Link>
       </Stack>
       <Scrollbar>
         <InventoryTable />
       </Scrollbar>
+      <Popover
+        open={formPopoverOpen}
+        onClose={handleFormPopoverClose}
+        anchorReference="none"
+        anchorEl={null}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        realio
+      </Popover>
     </Container>
   );
 }
