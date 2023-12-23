@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
-import RightSidebar from './RightSidebar';
+ 
  
 import moment from 'moment';
 import{getAllInventoryEachPoint} from 'src/Services/ProcureServices/inventorySlice';
