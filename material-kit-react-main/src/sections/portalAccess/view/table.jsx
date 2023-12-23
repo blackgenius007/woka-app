@@ -139,20 +139,18 @@ const InventoryTable = ({ email, tagName }) => {
   const [minus, setMinus] = useState(0);
   const [rowInputValues, setRowInputValues] = useState({});
   const [open, setOpen] = useState(false);
- 
-
-  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+  const [defaultPopoverOpen, setDefaultPopoverOpen] = useState(false);
 
   // Open new form Popover
-//   const handleFormPopoverOpen = (event) => {
-//     setFormPopoverOpen(true);
-//     setAnchorEl(event.currentTarget);
-//   };
+  //   const handleFormPopoverOpen = (event) => {
+  //     setFormPopoverOpen(true);
+  //     setAnchorEl(event.currentTarget);
+  //   };
 
-//   // Close new form Popover
-//   const handleFormPopoverClose = () => {
-//     setFormPopoverOpen(false);
-//   };
+  //   // Close new form Popover
+  //   const handleFormPopoverClose = () => {
+  //     setFormPopoverOpen(false);
+  //   };
 
   let totalRemunerationForAll = 0;
   // Pagination state
@@ -597,7 +595,7 @@ export default function MainPage() {
 
         <Link to="/new-employee">
           <Button
-        //   onClick={handleFormPopoverOpen}
+            //   onClick={handleFormPopoverOpen}
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
             startIcon={<Iconify icon="eva:plus-fill" />}
@@ -610,7 +608,7 @@ export default function MainPage() {
         <InventoryTable />
       </Scrollbar>
       <Popover
-       open={formPopoverOpen}
+        open={defaultPopoverOpen}
         // onClose={handleFormPopoverClose}
         anchorReference="none"
         anchorEl={null}
