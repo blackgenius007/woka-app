@@ -46,7 +46,16 @@ export default function InventoryDialog({open, close,employeeNumber, tag ,email,
             <Typography sx={{ ml: 2, flex: 1 }} variant="h4" component="div">
               {businessName}-{tag}
             </Typography>
-            <Typography variant="h4" style={{ color: '#1565c0', marginTop: '20px', marginRight: '300px' }}>
+            <Typography
+          variant="h4"
+          style={{
+            color: '#1565c0',
+            marginTop: '20px',
+            marginRight: '900px',
+            fontFamily: 'cursive', // Use a curvy font family
+            fontWeight: 'bold', // Make the font thicker
+          }}
+        >
           Manage Inventory Records
         </Typography>
             <Button
