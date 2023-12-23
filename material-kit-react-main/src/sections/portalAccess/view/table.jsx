@@ -25,7 +25,7 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { IconContext } from 'react-icons';
+ 
 
 import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
