@@ -55,7 +55,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
             <Typography sx={{ ml: 2, flex: 1 }} variant="h4" component="div">
               {businessName}-{tagName}
             </Typography>
-            <Typography
+            {/* <Typography
           variant="h4"
           style={{
             color: '#1565c0',
@@ -66,7 +66,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
           }}
         >
           Manage Inventory Records
-        </Typography>
+        </Typography> */}
             <Button
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
@@ -78,13 +78,9 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
         </AppBar>
          <br/>
          <br/>
-        <Container>
- 
-      <Scrollbar>
-        <h2>Inventory Table</h2> 
+        
         <Table email={email} tagName={tagName} />
-      </Scrollbar>
-    </Container>
+    
       </Dialog>
     </React.Fragment>
   );

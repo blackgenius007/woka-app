@@ -3,15 +3,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
- 
- 
+
 import moment from 'moment';
-import{getAllInventoryEachPoint} from 'src/Services/ProcureServices/inventorySlice';
+import { getAllInventoryEachPoint } from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
-import { fNumber } from 'src/utils/format-number'; 
- 
- 
+import { fNumber } from 'src/utils/format-number';
+
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -25,7 +23,6 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
- 
 
 import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
@@ -144,16 +141,12 @@ const InventoryTable = ({ email, tagName }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
- 
-useEffect(() => {
+  useEffect(() => {
     // Assuming getAllInventoryEachPoint is an async thunk
-    dispatch(getAllInventoryEachPoint({ email, tagName  }));
-  }, [dispatch, email, tagName ]);
+    dispatch(getAllInventoryEachPoint({ email, tagName }));
+  }, [dispatch, email, tagName]);
 
- 
   const { attendance } = useSelector((state) => state.employees);
-   
- 
 
   // Function to trigger financial data calculation
   const calculateFinancialData = (employeeId, grossIncome, country) => {
@@ -246,8 +239,6 @@ useEffect(() => {
 
   console.log('function for salary=>', totalRemunerationForAll);
 
- 
-
   // Function to handle 'add' input change for a specific row
   const handleAddInputChange = (rowId, value) => {
     // Create a copy of the current rowInputValues object
@@ -314,8 +305,6 @@ useEffect(() => {
       </div>
       <br />
       <label>
-     
-        
         <IconButton>
           <Popup
             trigger={
@@ -346,7 +335,6 @@ useEffect(() => {
             Out of stock
           </Popup>
         </IconButton>
-
         {exportMode ? (
           <>
             {/* Cancel button with Clear icon */}
@@ -367,14 +355,12 @@ useEffect(() => {
             Convert to Exportable version
           </Button>
         )}
-        {/* <Button variant="contained" onClick={drawer} style={{ backgroundColor: '#E97451' }}>
-          Wages Calculator
-        </Button> */}
-        {/* Button to toggle the sidebar */}
-        {/* <Button variant="contained" onClick={drawer}>
-          How it works
-        </Button> */}
-        {/* Render totalRemunerationForAll in a separate table row */}
+        <Button variant="contained" style={{ backgroundColor: '#E97451' }}>
+          suppliers contact
+        </Button>
+        Button to toggle the sidebar
+        <Button variant="contained">Request for orders</Button>
+        Render totalRemunerationForAll in a separate table row
         <tr>
           <td colSpan="8" style={{ textAlign: 'right' }}>
             <strong>After Tax Aggregate Salary for All Monthly Employees:</strong>
@@ -397,11 +383,6 @@ useEffect(() => {
               <th style={futuristicStyles.tableHeadCell}>Modified</th>
               <th style={futuristicStyles.tableHeadCell}>Re-stock</th>
               <th style={futuristicStyles.tableHeadCell}>Out-going</th>
-              {/* <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
-            <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
-            <th style={futuristicStyles.tableHeadCell}>Bank name</th>
-            <th style={futuristicStyles.tableHeadCell}>Bank code</th>
-            <th style={futuristicStyles.tableHeadCell}>Account Number</th> */}
             </tr>
           </thead>
           <tbody>
@@ -482,10 +463,6 @@ useEffect(() => {
                   <td style={futuristicStyles.tableBodyCell}>
                     {fNumber(row.allowance ? row.allowance : '0.00')}
                   </td>
-                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.overtime)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.IOU)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.location)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.I)}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
                     <input
@@ -604,14 +581,22 @@ export default function MainPage() {
   };
 
   return (
-    <div style={containerStyle}>
-      <h1 style={{ color: '#6082B6' }}>Inventory Sheet</h1>
+    <Container>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Typography variant="h4">Inventory Management</Typography>
 
-      <InventoryTable  />
-      {/* Right Sidebar */}
-      {/* <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
-    </div>
+        <Link to="/new-employee">
+          <Button
+            variant="contained"
+            style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
+          >
+            Asset Analytics
+          </Button>
+        </Link>
+      </Stack>
+      <Scrollbar>
+        <InventoryTable />
+      </Scrollbar>
+    </Container>
   );
 }
-
- 
