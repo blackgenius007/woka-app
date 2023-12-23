@@ -609,7 +609,7 @@ export default function MainPage() {
 
       <InventoryTable drawer={toggleSidebar} />
       {/* Right Sidebar */}
-      <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
+      {/* <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
     </div>
   );
 }
