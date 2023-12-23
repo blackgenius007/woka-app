@@ -46,26 +46,21 @@ export default function InventoryDialog({open, close,employeeNumber, tag ,email,
             <Typography sx={{ ml: 2, flex: 1 }} variant="h4" component="div">
               {businessName}-{tag}
             </Typography>
-            <Button autoFocus color="inherit" onClick={close}>
-              save
-            </Button>
-          </Toolbar>
-        </AppBar>
-         
-        <Container>
-      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Manage Inventory Records</Typography>
-
-     
-          <Button
+            <Typography variant="h4" style={{ color: '#1565c0', marginTop: '20px' }}>
+          Manage Inventory Records
+        </Typography>
+            <Button
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
             startIcon={<Iconify icon="eva:plus-fill" />}
           >
-            Inventory history
+            View Inventory History
           </Button>
-     
-      </Stack>
+          </Toolbar>
+        </AppBar>
+         
+        <Container>
+ 
       <Scrollbar>
         <h2>Inventory Table</h2> 
       </Scrollbar>
