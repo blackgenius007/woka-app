@@ -12,6 +12,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
+import Stack from '@mui/material/Stack';
+import Iconify from 'src/components/iconify';
+import Scrollbar from 'src/components/scrollbar';
+import Container from '@mui/material/Container';
 import{getAllInventoryEachPoint} from 'src/Services/ProcureServices/inventorySlice'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -47,36 +51,25 @@ export default function InventoryDialog({open, close,employeeNumber, tag ,email,
             </Button>
           </Toolbar>
         </AppBar>
-        {/* <AppBar sx={{ position: 'relative' }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={close}
-              aria-label="close"
-            >
-              <CloseIcon />
-            </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Sound
-            </Typography>
-            <Button autoFocus color="inherit" onClick={close}>
-              save
-            </Button>
-          </Toolbar>
-        </AppBar> */}
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List>
+         
+        <Container>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Typography variant="h4">Manage Inventory Records</Typography>
+
+     
+          <Button
+            variant="contained"
+            style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
+            startIcon={<Iconify icon="eva:plus-fill" />}
+          >
+            Inventory history
+          </Button>
+     
+      </Stack>
+      <Scrollbar>
+        <h2>Inventory Table</h2> 
+      </Scrollbar>
+    </Container>
       </Dialog>
     </React.Fragment>
   );
