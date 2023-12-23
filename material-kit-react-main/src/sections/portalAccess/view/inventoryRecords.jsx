@@ -59,7 +59,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
           style={{
             color: '#1565c0',
             marginTop: '20px',
-            marginRight: '900px',
+            marginRight: '300px',
             fontFamily: 'cursive', // Use a curvy font family
             fontWeight: 'bold', // Make the font thicker
           }}
