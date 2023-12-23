@@ -479,6 +479,7 @@ console.log('Filtered DataAuth:', filteredCollectionPointDetails);
               email={ownerEmail}
                tag={tagName}
                employeeNumber={employeeNumber}
+               businessName={businessName}
             />
           </>
         ))}
