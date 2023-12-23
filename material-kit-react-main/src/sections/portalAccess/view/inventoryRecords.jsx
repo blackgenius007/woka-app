@@ -23,14 +23,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function InventoryDialog({open, close,employeeNumber, tag ,email,businessName}) {
+export default function InventoryDialog({open, close,employeeNumber, tagName ,email,businessName}) {
    // Redux dispatch
    const dispatch = useDispatch();
    // Fetch inventory on component load
   useEffect(() => {
     // Assuming getAllInventoryEachPoint is an async thunk
-    dispatch(getAllInventoryEachPoint({ email, tagName }));
-  }, [dispatch, email, tagName]);
+    dispatch(getAllInventoryEachPoint({ email, tagName  }));
+  }, [dispatch, email, tagName ]);
 
   // Accessing inventory data from the Redux store
   const inventoryData = useSelector((state) => state.inventory);

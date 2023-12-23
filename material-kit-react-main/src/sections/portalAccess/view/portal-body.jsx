@@ -477,7 +477,7 @@ console.log('Filtered DataAuth:', filteredCollectionPointDetails);
               open={inventoryOpen}
               close={handleInventoryClose}
               email={ownerEmail}
-               tag={tagName}
+              tagName={tagName}
                employeeNumber={employeeNumber}
                businessName={businessName}
             />
