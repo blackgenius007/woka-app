@@ -361,7 +361,7 @@ const InventoryTable = ({ email, tagName }) => {
         <Button variant="contained" style={{ backgroundColor: '#E97451' }}>
           suppliers contact
         </Button>
-        Button to toggle the sidebar
+      
         <Button variant="contained">Request for orders</Button>
         
          
