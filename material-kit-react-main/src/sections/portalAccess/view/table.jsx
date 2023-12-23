@@ -589,7 +589,7 @@ export default function MainPage() {
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
             startIcon={<Iconify icon="eva:plus-fill" />}
           >
-            Asset Analytics
+           New Item
           </Button>
         </Link>
       </Stack>
