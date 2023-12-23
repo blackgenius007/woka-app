@@ -18,10 +18,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function InventoryDialog({open, close, email}) {
+export default function InventoryDialog({open, close,employeeNumber, tagName,email}) {
  
 
- 
+ console.log('inventory:',employeeNumber,tagName,email)
 
  
 
