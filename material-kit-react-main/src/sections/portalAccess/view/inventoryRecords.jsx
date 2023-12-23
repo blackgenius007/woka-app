@@ -52,7 +52,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h4" component="div">
-              {businessName}-{tag}
+              {businessName}-{tagName}
             </Typography>
             <Typography
           variant="h4"
