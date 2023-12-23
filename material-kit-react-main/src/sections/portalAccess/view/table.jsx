@@ -139,7 +139,8 @@ const InventoryTable = ({ email, tagName }) => {
   const [minus, setMinus] = useState(0);
   const [rowInputValues, setRowInputValues] = useState({});
   const [open, setOpen] = useState(false);
-  const [exportMode, setExportMode] = useState(0);
+ 
+
   const [formPopoverOpen, setFormPopoverOpen] = useState(false);
 
   // Open new form Popover
