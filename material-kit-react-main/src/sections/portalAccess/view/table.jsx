@@ -9,8 +9,8 @@ import moment from 'moment';
 import{getAllInventoryEachPoint} from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
+import { fNumber } from 'src/utils/format-number'; 
  
-import accounting from 'accounting-js';
  
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
@@ -246,13 +246,7 @@ useEffect(() => {
 
   console.log('function for salary=>', totalRemunerationForAll);
 
-  // convert currency
-  const toMoney = (value) => {
-    return accounting.formatMoney(accounting.unformat(value), {
-      symbol: '',
-      precision: 2,
-    });
-  };
+ 
 
   // Function to handle 'add' input change for a specific row
   const handleAddInputChange = (rowId, value) => {
@@ -385,7 +379,7 @@ useEffect(() => {
           <td colSpan="8" style={{ textAlign: 'right' }}>
             <strong>After Tax Aggregate Salary for All Monthly Employees:</strong>
           </td>
-          <td style={{ textAlign: 'center' }}>{toMoney(totalRemunerationForAll.toFixed(2))}</td>
+          <td style={{ textAlign: 'center' }}>{fNumber(totalRemunerationForAll.toFixed(2))}</td>
         </tr>
       </label>
       <div style={futuristicStyles.tableContainer}>
@@ -482,16 +476,16 @@ useEffect(() => {
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    {toMoney(employeeFinancialData.monthlySalary)}
+                    {fNumber(employeeFinancialData.monthlySalary)}
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    {toMoney(row.allowance ? row.allowance : '0.00')}
+                    {fNumber(row.allowance ? row.allowance : '0.00')}
                   </td>
-                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.overtime)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.IOU)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.location)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.I)}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.overtime)}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.IOU)}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.location)}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.I)}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
                     <input
