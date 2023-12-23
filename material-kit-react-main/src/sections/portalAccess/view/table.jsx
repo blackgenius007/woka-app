@@ -575,6 +575,7 @@ export default function MainPage() {
   };
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   // Open new form Popover
   const handleFormPopoverOpen = (event) => {
