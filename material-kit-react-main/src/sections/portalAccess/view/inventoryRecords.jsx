@@ -1,5 +1,5 @@
 /* eslint-disable */
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import ListItemText from '@mui/material/ListItemText';
@@ -16,6 +16,7 @@ import Stack from '@mui/material/Stack';
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 import Container from '@mui/material/Container';
+import { useDispatch, useSelector } from 'react-redux';
 import{getAllInventoryEachPoint} from 'src/Services/ProcureServices/inventorySlice'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -23,11 +24,18 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function InventoryDialog({open, close,employeeNumber, tag ,email,businessName}) {
- 
+   // Redux dispatch
+   const dispatch = useDispatch();
+   // Fetch inventory on component load
+  useEffect(() => {
+    // Assuming getAllInventoryEachPoint is an async thunk
+    dispatch(getAllInventoryEachPoint({ email, tagName }));
+  }, [dispatch, email, tagName]);
 
- console.log('inventory:',employeeNumber,tag ,email)
+  // Accessing inventory data from the Redux store
+  const inventoryData = useSelector((state) => state.inventory);
 
- 
+ console.log(inventoryData)
 
   return (
     <React.Fragment>
