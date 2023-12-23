@@ -148,10 +148,10 @@ const InventoryTable = ({ email, tagName }) => {
 //     setAnchorEl(event.currentTarget);
 //   };
 
-  // Close new form Popover
-  const handleFormPopoverClose = () => {
-    setFormPopoverOpen(false);
-  };
+//   // Close new form Popover
+//   const handleFormPopoverClose = () => {
+//     setFormPopoverOpen(false);
+//   };
 
   let totalRemunerationForAll = 0;
   // Pagination state
