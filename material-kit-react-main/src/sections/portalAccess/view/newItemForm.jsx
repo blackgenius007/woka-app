@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import Button from '@mui/material';
-import TextField from '@mui/material';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 export default function NewInventoryForm() {
   const [inventory, setInventory] = useState({
@@ -12,10 +12,10 @@ export default function NewInventoryForm() {
     itemStatus: '',
   });
 
-//   function handleChange(e) {
-//     const { name, value } = e.target;
-//     setInventory((inventory) => ({ ...inventory, [name]: value }));
-//   }
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setInventory((inventory) => ({ ...inventory, [name]: value }));
+  }
 
 //   const SubmitHandle = (e) => {
 //     e.preventDefault();
@@ -61,7 +61,7 @@ export default function NewInventoryForm() {
           margin="normal"
           name="itemName"
           value={inventory.itemName}
-        //   onChange={handleChange}
+          onChange={handleChange}
           required
           fullWidth
           label="item name"
@@ -74,7 +74,7 @@ export default function NewInventoryForm() {
           margin="normal"
           name="description"
           value={inventory.description}
-        //   onChange={handleChange}
+          onChange={handleChange}
           required
           fullWidth
           label="description"
@@ -87,7 +87,7 @@ export default function NewInventoryForm() {
           margin="normal"
           name="price"
           value={inventory.price}
-        //   onChange={handleChange}
+          onChange={handleChange}
           required
           fullWidth
           label="selling price"
@@ -100,7 +100,7 @@ export default function NewInventoryForm() {
           margin="normal"
           name="quantity"
           value={inventory.quantity}
-        //   onChange={handleChange}
+          onChange={handleChange}
           required
           fullWidth
           label="quantity"
@@ -113,7 +113,7 @@ export default function NewInventoryForm() {
           margin="normal"
           name="itemStatus"
           value={inventory.itemStatus}
-        //   onChange={handleChange}
+          onChange={handleChange}
           required
           fullWidth
           label="condition of item"
