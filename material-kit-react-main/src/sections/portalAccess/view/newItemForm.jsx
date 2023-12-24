@@ -1,30 +1,15 @@
-/* eslint-disable */
-import React, { useState } from 'react';
-import { Grid, Button, TextField, Typography, MenuItem } from '@mui/material';
-import ItemStatus from './itemStatus';
+ /* eslint-disable */
+ import React, { useState } from 'react';
+import {
+  Button,
+  Popover,
+  Typography,
+  Grid,
+  TextField,
+  MenuItem,
+} from '@mui/material';
 
-const containerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center', // Center horizontally
-  padding: '16px',
-  overflowX: 'hidden',
-};
-
-const columnStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-  width: '100%', // Set column width to 100%
-  alignItems: 'center', // Center items vertically
-};
-
-const textFieldStyle = {
-  width: '100%', // Set a custom width
-};
-
-const NewItem = () => {
+const NewItemForm = () => {
   const [formData, setFormData] = useState({
     itemName: '',
     description: '',
@@ -52,54 +37,144 @@ const NewItem = () => {
   };
 
   return (
-    <div style={containerStyle}>
-      <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
-        NEW ITEM FORM
-      </Typography>
-      <br />
-      <form>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={4} style={columnStyle}>
-            <TextField
-              variant="outlined"
-              size="medium"
-              fullWidth
-              label="Item Name"
-              name="itemName"
-              value={formData.itemName}
-              onChange={handleInputChange}
-              style={textFieldStyle} // Apply custom width style
-            />
-            {/* ... (other TextField components) */}
-            <TextField
-              select
-              label="Item Status"
-              name="status"
-              value={formData.status}
-              onChange={handleItemStatusChange}
-              variant="outlined"
-              fullWidth
-              style={textFieldStyle} // Apply custom width style
-            >
-              {ItemStatus.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-        </Grid>
-        <Button
-          type="submit"
+    <Grid container spacing={2}>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          variant="outlined"
+          size="medium"
           fullWidth
-          variant="contained"
-          style={{ marginTop: '20px' }}
+          label="Item Name"
+          name="itemName"
+          value={formData.itemName}
+          onChange={handleInputChange}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          variant="outlined"
+          size="medium"
+          fullWidth
+          label="Description"
+          name="description"
+          value={formData.description}
+          onChange={handleInputChange}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          variant="outlined"
+          size="medium"
+          fullWidth
+          label="SKU Number"
+          name="SKU"
+          value={formData.SKU}
+          onChange={handleInputChange}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          variant="outlined"
+          size="medium"
+          fullWidth
+          label="Unit Price"
+          name="price"
+          value={formData.price}
+          onChange={handleInputChange}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          variant="outlined"
+          size="medium"
+          fullWidth
+          label="Number in Stock"
+          name="stock"
+          value={formData.stock}
+          onChange={handleInputChange}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          variant="outlined"
+          size="medium"
+          fullWidth
+          label="Category"
+          name="category"
+          value={formData.category}
+          onChange={handleInputChange}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          variant="outlined"
+          size="medium"
+          fullWidth
+          label="Supplier"
+          name="supplier"
+          value={formData.supplier}
+          onChange={handleInputChange}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          select
+          label="Item Status"
+          name="status"
+          value={formData.status}
+          onChange={handleItemStatusChange}
+          variant="outlined"
+          fullWidth
         >
-          Submit
-        </Button>
-      </form>
-    </div>
+          {['In Stock', 'Out of Stock'].map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
+      </Grid>
+    </Grid>
   );
 };
 
-export default NewItem;
+const PopoverFormExample = () => {
+  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+
+  const handleFormPopoverOpen = (event) => {
+    setFormPopoverOpen(true);
+  };
+
+  const handleFormPopoverClose = () => {
+    setFormPopoverOpen(false);
+  };
+
+  return (
+    <>
+      <Button onClick={handleFormPopoverOpen} variant="contained">
+        Open Form Popover
+      </Button>
+      <Popover
+        open={formPopoverOpen}
+        onClose={handleFormPopoverClose}
+        anchorReference="anchorPosition"
+        anchorPosition={{ top: 50, left: 50 }}
+      >
+        <div style={{ padding: '20px' }}>
+          <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
+            NEW ITEM FORM
+          </Typography>
+          <NewItemForm />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            style={{ marginTop: '20px' }}
+          >
+            Submit
+          </Button>
+        </div>
+      </Popover>
+    </>
+  );
+};
+
+export default NewItemForm;
