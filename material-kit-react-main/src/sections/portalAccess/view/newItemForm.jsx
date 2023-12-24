@@ -48,7 +48,7 @@ const NewItem = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div>
       <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
         NEW ITEM FORM
       </Typography>
