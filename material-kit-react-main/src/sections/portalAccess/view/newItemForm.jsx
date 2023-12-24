@@ -1,9 +1,7 @@
 /* eslint-disable */
-import React, { useState, useEffect, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
- import ItemStatus from './itemStatus';
+import React, { useState } from 'react';
 import { Grid, Button, TextField, Typography, MenuItem } from '@mui/material';
-  
+import ItemStatus from './itemStatus';
 
 const containerStyle = {
   display: 'flex',
@@ -19,6 +17,7 @@ const columnStyle = {
   flexDirection: 'column',
   gap: '8px',
   width: '100%', // Set column width to 100%
+  alignItems: 'center', // Center items vertically
 };
 
 const NewItem = () => {
@@ -93,8 +92,6 @@ const NewItem = () => {
               value={formData.price}
               onChange={handleInputChange}
             />
-          </Grid>
-          <Grid item xs={12} sm={4} style={columnStyle}>
             <TextField
               variant="outlined"
               size="small"
@@ -153,3 +150,4 @@ const NewItem = () => {
 };
 
 export default NewItem;
+
