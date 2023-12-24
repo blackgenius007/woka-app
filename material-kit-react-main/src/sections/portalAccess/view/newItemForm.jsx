@@ -26,7 +26,7 @@ export default function NewInventoryForm() {
           margin="normal"
           name="itemName"
           value={inventory.itemName}
-          onChange={handleChange}
+          onChange={handleChange('itemName')}
           required
           fullWidth
           label="item name"
@@ -34,12 +34,13 @@ export default function NewInventoryForm() {
           autoComplete="off"
           type="text"
         />
+        
         <TextField
           variant="outlined"
           margin="normal"
           name="description"
           value={inventory.description}
-          onChange={handleChange}
+          onChange={handleChange('description')}
           required
           fullWidth
           label="description"
@@ -52,7 +53,7 @@ export default function NewInventoryForm() {
           margin="normal"
           name="price"
           value={inventory.price}
-          onChange={handleChange}
+          onChange={handleChange('price')}
           required
           fullWidth
           label="selling price"
@@ -65,7 +66,7 @@ export default function NewInventoryForm() {
           margin="normal"
           name="quantity"
           value={inventory.quantity}
-          onChange={handleChange}
+          onChange={handleChange('quantity')}
           required
           fullWidth
           label="quantity"
@@ -78,7 +79,7 @@ export default function NewInventoryForm() {
           margin="normal"
           name="itemStatus"
           value={inventory.itemStatus}
-          onChange={handleChange}
+          onChange={handleChange('itemStatus')}
           required
           fullWidth
           label="condition of item"
