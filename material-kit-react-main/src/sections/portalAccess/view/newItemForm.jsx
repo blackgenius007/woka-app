@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import {
-  Button,
-  Popover,
-  Typography,
-  Grid,
-  TextField,
-  MenuItem,
-} from '@mui/material';
+  /* eslint-disable */
+import React, { useState, useEffect, Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+ import ItemStatus from './itemStatus';
+import { Grid, Button, TextField, Typography, MenuItem } from '@mui/material';
+// import { registerInmate } from '../InmateServices/inmateSlice';
+ 
 
-const NewItemForm = () => {
+const NewItem = () => {
   const [formData, setFormData] = useState({
     itemName: '',
     description: '',
@@ -36,144 +34,103 @@ const NewItemForm = () => {
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <TextField
-          variant="outlined"
-          size="medium"
+    <div style={{ padding: '20px', maxWidth: '300px' }}>
+      <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
+        NEW ITEM FORM
+      </Typography>
+      <br />
+      <form>
+      <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="Item Name"
+              name="itemName"
+              value={formData.itemName}
+              onChange={handleInputChange}
+            />
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="Description"
+              name="description"
+              value={formData.description}
+              onChange={handleInputChange}
+            />
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="SKU Number"
+              name="SKU"
+              value={formData.SKU}
+              onChange={handleInputChange}
+            />
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="Unit Price"
+              name="price"
+              value={formData.price}
+              onChange={handleInputChange}
+            />
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="Number in Stock"
+              name="stock"
+              value={formData.stock}
+              onChange={handleInputChange}
+            />
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="Category"
+              name="category"
+              value={formData.category}
+              onChange={handleInputChange}
+            />
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="Supplier"
+              name="supplier"
+              value={formData.supplier}
+              onChange={handleInputChange}
+            />
+            <TextField
+              select
+              label="Item Status"
+              name="status"
+              value={formData.status}
+              onChange={handleItemStatusChange}
+              variant="outlined"
+              fullWidth
+            >
+              {ItemStatus.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextField>
+        <Button
+          type="submit"
           fullWidth
-          label="Item Name"
-          name="itemName"
-          value={formData.itemName}
-          onChange={handleInputChange}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          variant="outlined"
-          size="medium"
-          fullWidth
-          label="Description"
-          name="description"
-          value={formData.description}
-          onChange={handleInputChange}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          variant="outlined"
-          size="medium"
-          fullWidth
-          label="SKU Number"
-          name="SKU"
-          value={formData.SKU}
-          onChange={handleInputChange}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          variant="outlined"
-          size="medium"
-          fullWidth
-          label="Unit Price"
-          name="price"
-          value={formData.price}
-          onChange={handleInputChange}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          variant="outlined"
-          size="medium"
-          fullWidth
-          label="Number in Stock"
-          name="stock"
-          value={formData.stock}
-          onChange={handleInputChange}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          variant="outlined"
-          size="medium"
-          fullWidth
-          label="Category"
-          name="category"
-          value={formData.category}
-          onChange={handleInputChange}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          variant="outlined"
-          size="medium"
-          fullWidth
-          label="Supplier"
-          name="supplier"
-          value={formData.supplier}
-          onChange={handleInputChange}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          select
-          label="Item Status"
-          name="status"
-          value={formData.status}
-          onChange={handleItemStatusChange}
-          variant="outlined"
-          fullWidth
+          variant="contained"
+          style={{ marginTop: '20px' }}
         >
-          {['In Stock', 'Out of Stock'].map((option) => (
-            <MenuItem key={option} value={option}>
-              {option}
-            </MenuItem>
-          ))}
-        </TextField>
-      </Grid>
-    </Grid>
+          Submit
+        </Button>
+      </form>
+    </div>
   );
 };
 
-const PopoverFormExample = () => {
-  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+export default NewItem;
 
-  const handleFormPopoverOpen = (event) => {
-    setFormPopoverOpen(true);
-  };
-
-  const handleFormPopoverClose = () => {
-    setFormPopoverOpen(false);
-  };
-
-  return (
-    <>
-      <Button onClick={handleFormPopoverOpen} variant="contained">
-        Open Form Popover
-      </Button>
-      <Popover
-        open={formPopoverOpen}
-        onClose={handleFormPopoverClose}
-        anchorReference="anchorPosition"
-        anchorPosition={{ top: 50, left: 50 }}
-      >
-        <div style={{ padding: '20px', maxWidth: '300px' }}>
-          <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
-            NEW ITEM FORM
-          </Typography>
-          <NewItemForm />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            style={{ marginTop: '20px' }}
-          >
-            Submit
-          </Button>
-        </div>
-      </Popover>
-    </>
-  );
-};
-
-export default PopoverFormExample;
+       
