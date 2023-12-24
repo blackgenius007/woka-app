@@ -1,14 +1,9 @@
 import React, { useState, Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import Button from '@mui/material ';
-import TextField from '@mui/material ';
- 
-  
- 
+import Button from '@mui/material';
+import TextField from '@mui/material';
 
 export default function NewInventoryForm({}) {
- 
-
   const [inventory, setInventory] = useState({
     itemName: '',
     description: '',
@@ -22,21 +17,21 @@ export default function NewInventoryForm({}) {
     setInventory((inventory) => ({ ...inventory, [name]: value }));
   }
 
-  const SubmitHandle = (e) => {
-    e.preventDefault();
+//   const SubmitHandle = (e) => {
+//     e.preventDefault();
 
-    if (inventory) {
-      axios.post(`/api/v1/inventory/create/${user._id}/${projectname}`, inventory).then(
-        (res) => {
-          alert('Submitted successfully!');
-          handleClose();
-        },
-        (err) => {
-          alert(message, err);
-        }
-      );
-    }
-  };
+//     if (inventory) {
+//       axios.post(`/api/v1/inventory/create/${user._id}/${projectname}`, inventory).then(
+//         (res) => {
+//           alert('Submitted successfully!');
+//           handleClose();
+//         },
+//         (err) => {
+//           alert(message, err);
+//         }
+//       );
+//     }
+//   };
   return (
     <>
       <Fragment>
@@ -136,7 +131,7 @@ export default function NewInventoryForm({}) {
           size="large"
         >
           Submit
-          {isLoading && <ButtonCircularProgress />}
+       
         </Button>
       </Fragment>
     </>
