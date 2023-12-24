@@ -34,7 +34,7 @@ export default function NewInventoryForm() {
 //   };
   return (
     <>
-      <Fragment>
+ 
         {/* <Popup
             trigger={
               <IconButton variant="info" color="primary" onClick={handleClickOpen}>
@@ -127,13 +127,13 @@ export default function NewInventoryForm() {
           fullWidth
           variant="contained"
           color="secondary"
-          disabled={isLoading}
+        //   disabled={isLoading}
           size="large"
         >
           Submit
        
         </Button>
-      </Fragment>
+   
     </>
   );
 }
