@@ -1,16 +1,10 @@
 /* eslint-disable */
 import React, { useState, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
- 
+ import ItemStatus from './itemStatus';
 import { Grid, Button, TextField, Typography, MenuItem } from '@mui/material';
 // import { registerInmate } from '../InmateServices/inmateSlice';
-// import Nationality from '../Inmate/dropdownOptions/nationality';
-// import Ethnicity from '../Inmate/dropdownOptions/ethnicity';
-// import Offence from '../Inmate/dropdownOptions/offenceCategories';
-// import Gender from '../Inmate/dropdownOptions/gender';
-// import YesNo from './dropdownOptions/yesNo';
-// import EyeColors from './dropdownOptions/eyeColor';
-// import HairColors from './dropdownOptions/hairColor';
+ 
 
 const containerStyle = {
   display: 'flex',
@@ -82,61 +76,13 @@ const NewItem = () => {
     }
   };
 
-//   const handleGenderChange = (event) => {
-//     setFormData({
-//       ...formData,
-//       gender: event.target.value,
-//     });
-//   };
-
-//   const handleEthnicityChange = (event) => {
-//     setFormData({
-//       ...formData,
-//       raceEthnicity: event.target.value,
-//     });
-//   };
-
-//   const handleNationalityChange = (event) => {
-//     setFormData({
-//       ...formData,
-//       nationality: event.target.value,
-//     });
-//   };
-
-//   const handleOffencesChange = (event) => {
-//     setFormData({
-//       ...formData,
-//       offence_category: event.target.value,
-//     });
-//   };
-
-//   const handleDistinguishingMarksChange = (event) => {
-//     setFormData({
-//       ...formData,
-//       distinguishingMarks: event.target.value,
-//     });
-//   };
-
-//   const handleDisabilitiesChange = (event) => {
-//     setFormData({
-//       ...formData,
-//       disabilities: event.target.value,
-//     });
-//   };
-
-//   const handleEyeColorChange = (event) => {
-//     setFormData({
-//       ...formData,
-//       eye_color: event.target.value,
-//     });
-//   };
-
-//   const handleHairColorChange = (event) => {
-//     setFormData({
-//       ...formData,
-//       hair_color: event.target.value,
-//     });
-//   };
+ 
+  const handleItemStatusChange = (event) => {
+    setFormData({
+      ...formData,
+      ItemStatus: event.target.value,
+    });
+  };
 
     // const { user } = useSelector((state) => state.auth);
  
@@ -156,7 +102,7 @@ const NewItem = () => {
   return (
     <div style={containerStyle}>
       <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
-        NEW INMATE BOOKING FORM
+        NEW ITEM FORM
       </Typography>
       <br/>
       <form  style={formStyle}>
@@ -166,316 +112,92 @@ const NewItem = () => {
               variant="outlined"
               size="small"
               fullWidth
-              label="Full Name"
-              name="inmate_name"
-              value={formData.inmate_name}
+              label="Item Name"
+              name="itemName"
+              value={formData.itemName}
               onChange={handleInputChange}
             />
-            <TextField
-              name="date_of_birth"
-              label="Birthday"
-              type="date"
+               <TextField
               variant="outlined"
+              size="small"
               fullWidth
-              value={formData.date_of_birth || ''} // Ensure value is not undefined
+              label="Description"
+              name="description"
+              value={formData.description}
               onChange={handleInputChange}
-              InputLabelProps={{ shrink: true }}
             />
-            {/* <TextField
-              select
-              label="Gender"
-              name="gender"
-              value={formData.gender}
-              onChange={handleGenderChange}
+             <TextField
               variant="outlined"
+              size="small"
               fullWidth
-            >
-              {Gender.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField> */}
-            {/* <TextField
-              select
-              label="Ethnicity"
-              name="raceEthnicity"
-              value={formData.raceEthnicity}
-              onChange={handleEthnicityChange}
-              variant="outlined"
-              fullWidth
-            >
-              {Ethnicity.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField> */}
-            {/* <TextField
-              select
-              label="Nationality"
-              name="nationality"
-              value={formData.nationality}
-              onChange={handleNationalityChange}
-              variant="outlined"
-              fullWidth
-            >
-              {Nationality.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField> */}
+              label="SKU Number"
+              name="SKU"
+              value={formData.SKU}
+              onChange={handleInputChange}
+            />
+          
+         
             <TextField
               variant="outlined"
               size="small"
               fullWidth
-              label="Home Address"
-              name="homeAddress"
-              value={formData.homeAddress}
+              label="Unit Price"
+              name="price"
+              value={formData.price }
               onChange={handleInputChange}
             />
 
-                <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Social Security Number"
-              name="socialSecurityNumber"
-              value={formData.socialSecurityNumber}
-              onChange={handleInputChange}
-            />
+            
           </Grid>
           <Grid item xs={12} sm={4} style={columnStyle}>
-            
           <TextField
               variant="outlined"
               size="small"
               fullWidth
-              label="Height"
-              name="height"
-              value={formData.height}
+              label="Number in Stock"
+              name="stock"
+              value={formData.stock}
+              onChange={handleInputChange}
+            />
+          <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="Category"
+              name="category"
+              value={formData.category}
               onChange={handleInputChange}
             />
             <TextField
               variant="outlined"
               size="small"
               fullWidth
-              label="Weight"
-              name="weight"
-              value={formData.weight}
+              label="Supplier"
+              name="supplier"
+              value={formData.supplier}
               onChange={handleInputChange}
             />
-  {/* <TextField
+  
+             
+  <TextField
               select
-              label="Eye color"
-              name="eye_color"
-              value={formData.eye_color}
-              onChange={ handleEyeColorChange }
+              label="Item Status"
+              name="status"
+              value={formData.status}
+              onChange={handleItemStatusChange}
               variant="outlined"
               fullWidth
             >
-              {EyeColors.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField> */}
-            {/* <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Eye color"
-              name="eye_color"
-              value={formData.eye_color}
-              onChange={handleInputChange}
-            /> */}
-
-{/* <TextField
-              select
-              label="Hair color"
-              name="hair_color"
-              value={formData.hair_color}
-              onChange={handleHairColorChange}
-              variant="outlined"
-              fullWidth
-            >
-              {HairColors.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField> */}
-
-            {/* <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Hair color"
-              name="hair_color"
-              value={formData.hair_color}
-              onChange={handleInputChange}
-            /> */}
-            {/* <TextField
-              select
-              label="Distinguishing Marks"
-              name="distinguishingMarks"
-              value={formData.distinguishingMarks}
-              onChange={handleDistinguishingMarksChange}
-              variant="outlined"
-              fullWidth
-            >
-              {YesNo.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField> */}
-
-            {/* <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label=" Distinguishing Marks"
-              name="distinguishingMarks"
-              value={formData.distinguishingMarks}
-              onChange={handleInputChange}
-            /> */}
-             {/* <TextField
-              select
-              label="Disabilities"
-              name="disabilities"
-              value={formData.disabilities}
-              onChange={handleDisabilitiesChange}
-              variant="outlined"
-              fullWidth
-            >
-              {YesNo.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField> */}
-            {/* <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Disabilities"
-              name="disabilities"
-              // value={formData.disabilities}
-              onChange={handleInputChange}
-            /> */}
-            <TextField
-              label="Booking Date and Time"
-              name="bookingDateTime"
-              value={formData.bookingDateTime}
-              onChange={handleInputChange}
-              variant="outlined"
-              fullWidth
-              InputLabelProps={{ shrink: true }}
-              type="datetime-local"
-            />
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Booking Number"
-              name="bookingNumber"
-              value={formData.bookingNumber}
-              onChange={handleInputChange}
-            />
-
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Booking Officer"
-              name="bookingOfficer"
-              value={formData.bookingOfficer}
-              onChange={handleInputChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={4} style={columnStyle}>
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Arresting agency"
-              name="arrestingAgency"
-              value={formData.arrestingAgency}
-              onChange={handleInputChange}
-            />
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Arresting Officer"
-              name="arrestingOfficer"
-              value={formData.arrestingOfficer}
-              onChange={handleInputChange}
-            />
-            {/* <TextField
-              select
-              label="Offence category"
-              name="offence_category"
-              value={formData.offence_category}
-              onChange={handleOffencesChange}
-              variant="outlined"
-              fullWidth
-            >
-              {Offence.map((option) => (
+              {ItemStatus.map((option) => (
                 <MenuItem key={option} value={option}>
                   {option}
                 </MenuItem>
               ))}
             </TextField>
-            <TextField
-              label="Arrest Date and Time"
-              name="arrestDate"
-              value={formData.arrestDate}
-              onChange={handleInputChange}
-              variant="outlined"
-              fullWidth
-              InputLabelProps={{ shrink: true }}
-              type="datetime-local"
-            />
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Arrest Location"
-              name="arrestLocation"
-              value={formData.arrestingLocation}
-              onChange={handleInputChange}
-            />
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Court or Jurisdiction Issuing the Arrest Warrant"
-              name="arrestJurisdiction"
-              value={formData.arrestJurisdiction}
-              onChange={handleInputChange}
-            /> */}
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Tag number for personal belongings"
-              name="personalItems"
-              value={formData.personalItems}
-              onChange={handleInputChange}
-            />
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Contact Information"
-              name="contactInformation"
-              value={formData.contactInformation}
-              onChange={handleInputChange}
-            />
+
+        
           </Grid>
+         
         </Grid>
         <Button
           type="submit"
