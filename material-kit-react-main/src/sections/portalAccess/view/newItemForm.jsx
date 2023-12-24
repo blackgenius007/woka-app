@@ -1,5 +1,4 @@
- /* eslint-disable */
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Popover,
@@ -38,7 +37,7 @@ const NewItemForm = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           variant="outlined"
           size="medium"
@@ -49,7 +48,7 @@ const NewItemForm = () => {
           onChange={handleInputChange}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           variant="outlined"
           size="medium"
@@ -60,7 +59,7 @@ const NewItemForm = () => {
           onChange={handleInputChange}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           variant="outlined"
           size="medium"
@@ -71,7 +70,7 @@ const NewItemForm = () => {
           onChange={handleInputChange}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           variant="outlined"
           size="medium"
@@ -82,7 +81,7 @@ const NewItemForm = () => {
           onChange={handleInputChange}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           variant="outlined"
           size="medium"
@@ -93,7 +92,7 @@ const NewItemForm = () => {
           onChange={handleInputChange}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           variant="outlined"
           size="medium"
@@ -104,7 +103,7 @@ const NewItemForm = () => {
           onChange={handleInputChange}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           variant="outlined"
           size="medium"
@@ -115,7 +114,7 @@ const NewItemForm = () => {
           onChange={handleInputChange}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
           select
           label="Item Status"
@@ -158,7 +157,7 @@ const PopoverFormExample = () => {
         anchorReference="anchorPosition"
         anchorPosition={{ top: 50, left: 50 }}
       >
-        <div style={{ padding: '20px' }}>
+        <div style={{ padding: '20px', maxWidth: '300px' }}>
           <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
             NEW ITEM FORM
           </Typography>
@@ -177,4 +176,4 @@ const PopoverFormExample = () => {
   );
 };
 
-export default NewItemForm;
+export default PopoverFormExample;
