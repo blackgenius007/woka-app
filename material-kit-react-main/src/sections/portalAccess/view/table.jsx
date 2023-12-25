@@ -216,7 +216,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = () => {
+const InventoryTable = ({ email, tagName }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dateOffset, setDateOffset] = useState(7);
