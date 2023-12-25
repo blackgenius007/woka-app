@@ -730,7 +730,7 @@ export default function MainPage() {
       
       </Stack>
       <Scrollbar>
-        <InventoryTable />
+        <InventoryTable handleFormPopoverOpen={handleFormPopoverOpen} />
       </Scrollbar>
       {/* <Popover
         open={formPopoverOpen}
