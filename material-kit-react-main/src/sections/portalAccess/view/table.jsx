@@ -118,8 +118,8 @@ const futuristicStyles = {
       },
       paginationText: {
         fontSize: '14px',
-        margin: '0 1rem',
-        color: '#fff',
+        margin: '0 10px',
+        color: '#333',
       },
       paginationButton: {
         backgroundColor: '#7393B3',
@@ -633,7 +633,7 @@ const InventoryTable = ({ email, tagName }) => {
         </table>
       </div>
       <br />
-      /* Pagination controls */
+    
 <div style={futuristicStyles.paginationContainer}>
   <IconButton
     onClick={() => setPage(Math.max(0, page - 1))}
