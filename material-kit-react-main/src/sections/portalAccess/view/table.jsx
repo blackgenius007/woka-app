@@ -228,6 +228,23 @@ const InventoryTable = ({ email, tagName }) => {
   const [open, setOpen] = useState(false);
   const [exportMode, setExportMode] = useState(0);
   
+  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  // Open new form Popover
+  const handleFormPopoverOpen = (event) => {
+    setFormPopoverOpen(true);
+    setAnchorEl(event.currentTarget);
+  };
+
+  // Close new form Popover
+  const handleFormPopoverClose = () => {
+    setFormPopoverOpen(false);
+  };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+  
 
   let totalRemunerationForAll = 0;
   // Pagination state
@@ -653,6 +670,19 @@ const InventoryTable = ({ email, tagName }) => {
     <ChevronRight />
   </IconButton>
 </div>
+<Popover
+        open={formPopoverOpen}
+        onClose={handleFormPopoverClose}
+        anchorReference="none"
+        anchorEl={null}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+       < NewItemForm/>
+      </Popover>
     </>
   );
 };
@@ -666,22 +696,22 @@ export default function MainPage() {
     // height: '75vh', // Set the height of the container to full viewport height
   };
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
+//   const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+//   const [anchorEl, setAnchorEl] = useState(null);
 
-  // Open new form Popover
-  const handleFormPopoverOpen = (event) => {
-    setFormPopoverOpen(true);
-    setAnchorEl(event.currentTarget);
-  };
+//   // Open new form Popover
+//   const handleFormPopoverOpen = (event) => {
+//     setFormPopoverOpen(true);
+//     setAnchorEl(event.currentTarget);
+//   };
 
-  // Close new form Popover
-  const handleFormPopoverClose = () => {
-    setFormPopoverOpen(false);
-  };
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+//   // Close new form Popover
+//   const handleFormPopoverClose = () => {
+//     setFormPopoverOpen(false);
+//   };
+//   const toggleSidebar = () => {
+//     setIsSidebarOpen(!isSidebarOpen);
+//   };
 
   return (
     <Container>
@@ -702,7 +732,7 @@ export default function MainPage() {
       <Scrollbar>
         <InventoryTable />
       </Scrollbar>
-      <Popover
+      {/* <Popover
         open={formPopoverOpen}
         onClose={handleFormPopoverClose}
         anchorReference="none"
@@ -714,7 +744,7 @@ export default function MainPage() {
         }}
       >
        < NewItemForm/>
-      </Popover>
+      </Popover> */}
     </Container>
   );
 }
