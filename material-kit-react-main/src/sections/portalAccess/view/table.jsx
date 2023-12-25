@@ -109,6 +109,28 @@ const futuristicStyles = {
         cursor: 'pointer',
         transition: 'color 0.3s ease-in-out',
       },
+      paginationContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '1rem',
+      },
+      paginationText: {
+        fontSize: '14px',
+        margin: '0 1rem',
+        color: '#fff',
+      },
+      paginationButton: {
+        backgroundColor: '#7393B3',
+        color: '#ffffff',
+        fontSize: '16px',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s ease-in-out',
+        '&:hover': {
+          backgroundColor: '#4F6B87',
+        },
+      },
 //   tableContainer: {
 //     background: '#222',
 //     borderRadius: '10px',
@@ -610,21 +632,26 @@ const InventoryTable = ({ email, tagName }) => {
         </table>
       </div>
       <br />
-      {/* Pagination controls */}
-      <div>
-        <button onClick={() => setPage(Math.max(0, page - 1))} disabled={page === 0}>
-          Previous
-        </button>
-        <span>
-          Page {page + 1} of {totalPages}
-        </span>
-        <button
-          onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
-          disabled={page === totalPages - 1}
-        >
-          Next
-        </button>
-      </div>
+      /* Pagination controls */
+<div style={futuristicStyles.paginationContainer}>
+  <IconButton
+    onClick={() => setPage(Math.max(0, page - 1))}
+    disabled={page === 0}
+    style={futuristicStyles.paginationButton}
+  >
+    <ChevronLeft />
+  </IconButton>
+  <span style={futuristicStyles.paginationText}>
+    Page {page + 1} of {totalPages}
+  </span>
+  <IconButton
+    onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
+    disabled={page === totalPages - 1}
+    style={futuristicStyles.paginationButton}
+  >
+    <ChevronRight />
+  </IconButton>
+</div>
     </>
   );
 };
