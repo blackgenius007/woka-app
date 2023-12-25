@@ -216,7 +216,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = ({ email, tagName }) => {
+const InventoryTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dateOffset, setDateOffset] = useState(7);
@@ -227,23 +227,6 @@ const InventoryTable = ({ email, tagName }) => {
   const [rowInputValues, setRowInputValues] = useState({});
   const [open, setOpen] = useState(false);
   const [exportMode, setExportMode] = useState(0);
-  
-  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  // Open new form Popover
-  const handleFormPopoverOpen = (event) => {
-    setFormPopoverOpen(true);
-    setAnchorEl(event.currentTarget);
-  };
-
-  // Close new form Popover
-  const handleFormPopoverClose = () => {
-    setFormPopoverOpen(false);
-  };
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
   
 
   let totalRemunerationForAll = 0;
@@ -670,24 +653,11 @@ const InventoryTable = ({ email, tagName }) => {
     <ChevronRight />
   </IconButton>
 </div>
-<Popover
-        open={formPopoverOpen}
-        onClose={handleFormPopoverClose}
-        anchorReference="none"
-        anchorEl={null}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-       < NewItemForm/>
-      </Popover>
     </>
   );
 };
 
-export default function MainPage() {
+export default function MainPage({ email, tagName }) {
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -696,22 +666,22 @@ export default function MainPage() {
     // height: '75vh', // Set the height of the container to full viewport height
   };
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-//   const [formPopoverOpen, setFormPopoverOpen] = useState(false);
-//   const [anchorEl, setAnchorEl] = useState(null);
+  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-//   // Open new form Popover
-//   const handleFormPopoverOpen = (event) => {
-//     setFormPopoverOpen(true);
-//     setAnchorEl(event.currentTarget);
-//   };
+  // Open new form Popover
+  const handleFormPopoverOpen = (event) => {
+    setFormPopoverOpen(true);
+    setAnchorEl(event.currentTarget);
+  };
 
-//   // Close new form Popover
-//   const handleFormPopoverClose = () => {
-//     setFormPopoverOpen(false);
-//   };
-//   const toggleSidebar = () => {
-//     setIsSidebarOpen(!isSidebarOpen);
-//   };
+  // Close new form Popover
+  const handleFormPopoverClose = () => {
+    setFormPopoverOpen(false);
+  };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <Container>
@@ -730,9 +700,9 @@ export default function MainPage() {
       
       </Stack>
       <Scrollbar>
-        <InventoryTable handleFormPopoverOpen={handleFormPopoverOpen} />
+        <InventoryTable />
       </Scrollbar>
-      {/* <Popover
+      <Popover
         open={formPopoverOpen}
         onClose={handleFormPopoverClose}
         anchorReference="none"
@@ -743,8 +713,8 @@ export default function MainPage() {
           alignItems: 'center',
         }}
       >
-       < NewItemForm/>
-      </Popover> */}
+       < NewItemForm email={email} tagName={tagName}/>
+      </Popover>
     </Container>
   );
 }
