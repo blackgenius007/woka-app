@@ -1,10 +1,12 @@
-  /* eslint-disable */
-import React, { useState, useEffect, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
- import ItemStatus from './itemStatus';
-import { Grid, Button, TextField, Typography, MenuItem } from '@mui/material';
-// import { registerInmate } from '../InmateServices/inmateSlice';
- 
+import React, { useState } from 'react';
+import {
+  Button,
+  Typography,
+  Grid,
+  TextField,
+  MenuItem,
+} from '@mui/material';
+import ItemStatus from './itemStatus';
 
 const NewItem = () => {
   const [formData, setFormData] = useState({
@@ -38,9 +40,10 @@ const NewItem = () => {
       <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
         NEW ITEM FORM
       </Typography>
-      <br />
       <form>
-      <TextField
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
               variant="outlined"
               size="small"
               fullWidth
@@ -48,7 +51,10 @@ const NewItem = () => {
               name="itemName"
               value={formData.itemName}
               onChange={handleInputChange}
+              style={{ marginTop: '10px' }}
             />
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               size="small"
@@ -57,7 +63,10 @@ const NewItem = () => {
               name="description"
               value={formData.description}
               onChange={handleInputChange}
+              style={{ marginTop: '10px' }}
             />
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               size="small"
@@ -66,7 +75,10 @@ const NewItem = () => {
               name="SKU"
               value={formData.SKU}
               onChange={handleInputChange}
+              style={{ marginTop: '10px' }}
             />
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               size="small"
@@ -75,7 +87,10 @@ const NewItem = () => {
               name="price"
               value={formData.price}
               onChange={handleInputChange}
+              style={{ marginTop: '10px' }}
             />
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               size="small"
@@ -84,7 +99,10 @@ const NewItem = () => {
               name="stock"
               value={formData.stock}
               onChange={handleInputChange}
+              style={{ marginTop: '10px' }}
             />
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               size="small"
@@ -93,7 +111,10 @@ const NewItem = () => {
               name="category"
               value={formData.category}
               onChange={handleInputChange}
+              style={{ marginTop: '10px' }}
             />
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               size="small"
@@ -102,7 +123,10 @@ const NewItem = () => {
               name="supplier"
               value={formData.supplier}
               onChange={handleInputChange}
+              style={{ marginTop: '10px' }}
             />
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               select
               label="Item Status"
@@ -111,6 +135,7 @@ const NewItem = () => {
               onChange={handleItemStatusChange}
               variant="outlined"
               fullWidth
+              style={{ marginTop: '10px' }}
             >
               {ItemStatus.map((option) => (
                 <MenuItem key={option} value={option}>
@@ -118,6 +143,8 @@ const NewItem = () => {
                 </MenuItem>
               ))}
             </TextField>
+          </Grid>
+        </Grid>
         <Button
           type="submit"
           fullWidth
