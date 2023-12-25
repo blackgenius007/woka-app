@@ -70,7 +70,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
             <Button
             variant="contained"
             style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
-            startIcon={<Iconify icon="eva:plus-fill" />}
+           
           >
             View Inventory History
           </Button>

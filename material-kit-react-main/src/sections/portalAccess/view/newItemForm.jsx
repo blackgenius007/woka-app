@@ -9,7 +9,8 @@ import {
 } from '@mui/material';
 import ItemStatus from './itemStatus';
 
-const NewItem = () => {
+const NewItem = ({email, tagName}) => {
+    console.log('new form:',email,tagName)
   const [formData, setFormData] = useState({
     itemName: '',
     description: '',
