@@ -45,59 +45,123 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 // Add futuristic styles here...
 const futuristicStyles = {
-  tableContainer: {
-    background: '#222',
-    borderRadius: '10px',
-    padding: '1rem',
-  },
-  table: {
-    color: '#fff',
-    // width: '100%',
-    // borderCollapse: 'collapse',
-    textAlign: 'left',
-    borderCollapse: 'separate', // Separate borders for cells
-    borderSpacing: '0', // No spacing between cells
-  },
-  tableHead: {
-    background: '#333',
-  },
-  tableHeadCell: {
-    padding: '0.5rem',
-    textAlign: 'center', // Align header cells to center
-  },
-  tableBodyRow: {
-    borderBottom: '1px solid #444',
-  },
-  tableBodyCell: {
-    // padding: '0.5rem',
-    // textAlign: 'center', // Align body cells to center
-    border: '1px solid #444', // Add border to each cell
-    padding: '0.5rem',
-    textAlign: 'center',
-  },
-  avatar: {
-    borderRadius: '50%',
-    width: '30px',
-    height: '30px',
-  },
-  link: {
-    background: 'none',
-    border: 'none',
-    color: '#00aaff',
-    cursor: 'pointer',
-    textDecoration: 'none',
-    fontSize: '14px',
-    fontFamily: 'inherit',
-    padding: 0,
-    margin: 0,
-  },
-  actionIcons: {
-    fontSize: '1.1rem',
-    color: '#fff',
-    marginRight: '0.5rem',
-    cursor: 'pointer',
-    transition: 'color 0.3s ease-in-out',
-  },
+    tableContainer: {
+        background: '#222',
+        borderRadius: '10px',
+        padding: '1rem',
+        overflowX: 'auto',
+      },
+      table: {
+        color: '#fff',
+        textAlign: 'left',
+        borderCollapse: 'collapse',
+        width: '100%',
+        borderRadius: '10px',
+        overflow: 'hidden',
+        boxShadow: '0 0 10px rgba(255, 255, 255, 0.1)', // 3D effect
+      },
+      tableHead: {
+        background: '#333',
+      },
+      tableHeadCell: {
+        padding: '0.5rem',
+        textAlign: 'center',
+        fontSize: '14px', // Adjusted font size
+      },
+      tableBodyRow: {
+        borderBottom: '1px solid #444',
+        borderRadius: '10px', // Slightly curvy edges
+      },
+      tableBodyCell: {
+        border: '1px solid #444',
+        padding: '0.5rem',
+        textAlign: 'center',
+        fontSize: '12px', // Adjusted font size
+      },
+      avatar: {
+        borderRadius: '50%',
+        width: '30px',
+        height: '30px',
+      },
+      button: {
+        backgroundColor: '#7393B3',
+        color: '#ffffff',
+        fontSize: '12px', // Adjusted font size
+        borderRadius: '5px',
+        margin: '0.5rem',
+        padding: '0.5rem 1rem',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s ease-in-out',
+        '&:hover': {
+          backgroundColor: '#4F6B87',
+        },
+      },
+      link: {
+        color: '#00aaff',
+        textDecoration: 'none',
+        fontSize: '14px',
+        fontFamily: 'inherit',
+      },
+      actionIcons: {
+        fontSize: '1.1rem',
+        color: '#fff',
+        marginRight: '0.5rem',
+        cursor: 'pointer',
+        transition: 'color 0.3s ease-in-out',
+      },
+//   tableContainer: {
+//     background: '#222',
+//     borderRadius: '10px',
+//     padding: '1rem',
+//   },
+//   table: {
+//     color: '#fff',
+//     // width: '100%',
+//     // borderCollapse: 'collapse',
+//     textAlign: 'left',
+//     borderCollapse: 'separate', // Separate borders for cells
+//     borderSpacing: '0', // No spacing between cells
+//   },
+//   tableHead: {
+//     background: '#333',
+//   },
+//   tableHeadCell: {
+//     padding: '0.5rem',
+//     textAlign: 'center', // Align header cells to center
+//   },
+//   tableBodyRow: {
+//     borderBottom: '1px solid #444',
+//   },
+//   tableBodyCell: {
+//     // padding: '0.5rem',
+//     // textAlign: 'center', // Align body cells to center
+//     border: '1px solid #444', // Add border to each cell
+//     padding: '0.5rem',
+//     textAlign: 'center',
+//   },
+//   avatar: {
+//     borderRadius: '50%',
+//     width: '30px',
+//     height: '30px',
+//   },
+//   link: {
+//     background: 'none',
+//     border: 'none',
+//     color: '#00aaff',
+//     cursor: 'pointer',
+//     textDecoration: 'none',
+//     fontSize: '14px',
+//     fontFamily: 'inherit',
+//     padding: 0,
+//     margin: 0,
+//   },
+//   actionIcons: {
+//     fontSize: '1.1rem',
+//     color: '#fff',
+//     marginRight: '0.5rem',
+//     cursor: 'pointer',
+//     transition: 'color 0.3s ease-in-out',
+//   },
 };
 
 function BootstrapDialogTitle(props) {
