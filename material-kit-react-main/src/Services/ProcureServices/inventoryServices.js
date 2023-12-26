@@ -116,7 +116,7 @@ const deleteInventory = async (id) => {
 
 const inventoryService = {
   addInventory,
-  getAllInventory,
+  // getAllInventory,
   getAllInventoryEachPoint,
   getOneInventory,
   createInventory,
