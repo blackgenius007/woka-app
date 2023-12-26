@@ -192,7 +192,7 @@ const NewItem = ({email, tagName,businessName}) => {
               ))}
             </TextField>
           </Grid>
-        </Grid>
+         
         <Button
         onClick={handleSubmit}
           type="submit"
