@@ -4,27 +4,7 @@ const mongoose = require('mongoose');
 
 //create Schema
 const InventorySchema = new mongoose.Schema({
-
-  name: {
-    type: String,
-    required: true
-  },
-businessName: {
-    type: String,
-    required: true
-  },
-  businessSector: {
-    type: String,
-    required: true
-  },
-  businessLocation: {
-    type: String,
-    required: true
-  },
-  businessMobile: {
-    type: Number,
-    required: true
-  },
+ 
   email: {
     type: String,
     required: true
@@ -38,7 +18,7 @@ businessName: {
     type: String,
     required: true
   },
-  projectName: {
+tagName: {
     type: String,
     required: true
   },
@@ -46,16 +26,24 @@ businessName: {
     type: Number,
     required: true
   },
-  quantity: {
+  stock: {
     type: Number,
     required: true
   },
   
-  // suppliers_email : {
-  //   type: String,
-  //   required: true
-  // },
-  itemStatus : {
+  suppliers  : {
+    type: String,
+    required: true
+  },
+  suppliers_email : {
+    type: String,
+    required: true
+  },
+  suppliers_number : {
+    type: String,
+    required: true
+  },
+  status : {
     type: String,
     required: true
   },
@@ -63,7 +51,7 @@ businessName: {
     type: Boolean,
     required: false
   },
-  itemCode : {
+  SKU : {
     type: String,
     required: false
   },

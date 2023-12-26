@@ -13,7 +13,9 @@ const {
    incomingStock,
    getStockBalance,
    quantityPerItem,
-   connectItem 
+   connectItem,
+   createInventoryPoolPoint,
+   getAllInventoryEachPoint  
 
    
   } = require('../controller/inventory');
@@ -28,9 +30,13 @@ const {
   .route('/all-inventory/:email')
   .get(getAllInventory )
 
+  router
+  .route('/inventory-point/:email/:tagName')
+  .get(getAllInventoryEachPoint)
+
    
   router
-  .route('/create/:id/:projectname')
+  .route('/create')
   .post(createInventoryPool)
  
 
