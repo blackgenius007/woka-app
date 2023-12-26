@@ -2,6 +2,7 @@ const path = require("path");
 const ErrorResponse = require("../utils/errorResponse.js");
 const asyncHandler = require("../middleware/async");
 const Inventory = require("../models/Inventory.js");
+const GenerateCode = require("../utils/generateCode.js");
 const Log = require("../models/Log.js");
 const User = require("../models/User");
 
