@@ -657,7 +657,7 @@ const InventoryTable = ({ email, tagName,businessName }) => {
   );
 };
 
-export default function MainPage({ email, tagName }) {
+export default function MainPage({ email, tagName,businessName }) {
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -713,7 +713,7 @@ export default function MainPage({ email, tagName }) {
           alignItems: 'center',
         }}
       >
-       < NewItemForm email={email} tagName={tagName} businessName={businessName}/>
+       < NewItemForm email={email} tagName={tagName} businessName={businessName} />
       </Popover>
     </Container>
   );
