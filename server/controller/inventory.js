@@ -34,7 +34,7 @@ exports.createInventoryPool = asyncHandler(async (req, res, next) => {
     supplier
   );
 
-  User.findOne({ email: email }, function (err, pool) {
+  User.findOne({ ownerEmail: email }, function (err, pool) {
     if (err) {
       console.log("err", err);
       res.status(500).send(err);
