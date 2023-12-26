@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addInventory } from 'path/to/inventorySlice';
+import { addInventory } from 'src/Services/ProcureServices/inventorySlice';
 
 import {
   Button,
