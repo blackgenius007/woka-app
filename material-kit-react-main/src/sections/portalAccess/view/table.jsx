@@ -216,7 +216,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = ({ email, tagName }) => {
+const InventoryTable = ({ email, tagName,businessName }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dateOffset, setDateOffset] = useState(7);
@@ -713,7 +713,7 @@ export default function MainPage({ email, tagName }) {
           alignItems: 'center',
         }}
       >
-       < NewItemForm email={email} tagName={tagName}/>
+       < NewItemForm email={email} tagName={tagName} businessName={businessName}/>
       </Popover>
     </Container>
   );

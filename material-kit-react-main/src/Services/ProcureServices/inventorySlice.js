@@ -1,4 +1,4 @@
- /* eslint-disable */
+/* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import inventoryService from './inventoryServices';
 
@@ -14,36 +14,42 @@ const initialState = {
   stockBalance: 0,
 };
 
+// Add the new action creator
+export const createInventory = createAsyncThunk('inventory/create', async (inventoryData, thunkAPI) => {
+  try {
+    return await inventoryService.createInventory(inventoryData);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
 // Retrieve all inventory
- 
-export const getAllInventory  = createAsyncThunk(
-    'inventory/getAll',
-    async (userEmail, thunkAPI) => {
-        console.log('slice-of-inventory',userEmail)
-      try {
-        return await inventoryService.getAllInventory(userEmail);
-      } catch (error) {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        return thunkAPI.rejectWithValue(message);
-      }
-    }
-  );
+
+export const getAllInventory = createAsyncThunk('inventory/getAll', async (userEmail, thunkAPI) => {
+  console.log('slice-of-inventory', userEmail);
+  try {
+    return await inventoryService.getAllInventory(userEmail);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
 export const getAllInventoryEachPoint = createAsyncThunk(
   'inventory/getAllEp',
-  async ({ email,tagName}, thunkAPI) => {
-    console.log('slice-of-inventory')
+  async ({ email, tagName }, thunkAPI) => {
+    console.log('slice-of-inventory');
     try {
-      return await inventoryService.getAllInventoryEachPoint(email,tagName);
+      return await inventoryService.getAllInventoryEachPoint(email, tagName);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -59,9 +65,7 @@ export const getTotalInventory = createAsyncThunk(
       return await inventoryService.getTotalInventory(email, projectname);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -70,22 +74,17 @@ export const getTotalInventory = createAsyncThunk(
 );
 
 // Retrieve one inventory item
-export const getOneInventory = createAsyncThunk(
-  'inventory/getOne',
-  async (id, thunkAPI) => {
-    try {
-      return await inventoryService.getOneInventory(id);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
+export const getOneInventory = createAsyncThunk('inventory/getOne', async (id, thunkAPI) => {
+  try {
+    return await inventoryService.getOneInventory(id);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
   }
-);
+});
 
 // Update an inventory item
 export const updateInventory = createAsyncThunk(
@@ -95,9 +94,7 @@ export const updateInventory = createAsyncThunk(
       return await inventoryService.updateInventory(id, newData);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -106,23 +103,18 @@ export const updateInventory = createAsyncThunk(
 );
 
 // Delete an inventory item
-export const deleteInventory = createAsyncThunk(
-  'inventory/delete',
-  async (id, thunkAPI) => {
-    try {
-      await inventoryService.deleteInventory(id);
-      return id;
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
+export const deleteInventory = createAsyncThunk('inventory/delete', async (id, thunkAPI) => {
+  try {
+    await inventoryService.deleteInventory(id);
+    return id;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
   }
-);
+});
 
 // Retrieve total cost of inventory
 export const getTotalCost = createAsyncThunk(
@@ -132,9 +124,7 @@ export const getTotalCost = createAsyncThunk(
       return await inventoryService.getTotalCost(email, projectname);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -150,9 +140,7 @@ export const outGoingStock = createAsyncThunk(
       return await inventoryService.outGoingStock(email, id, num, quantity, order);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -168,9 +156,7 @@ export const incomingStock = createAsyncThunk(
       return await inventoryService.incomingStock(email, id, num, quantity);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -186,9 +172,7 @@ export const getStockBalance = createAsyncThunk(
       return await inventoryService.getStockBalance(email, projectname);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -204,9 +188,7 @@ export const quantityPerItem = createAsyncThunk(
       return await inventoryService.quantityPerItem(email, projectname);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString();
       return thunkAPI.rejectWithValue(message);
@@ -215,22 +197,17 @@ export const quantityPerItem = createAsyncThunk(
 );
 
 // Connect item
-export const connectItem = createAsyncThunk(
-  'inventory/connectItem',
-  async (data, thunkAPI) => {
-    try {
-      return await inventoryService.connectItem(data);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
+export const connectItem = createAsyncThunk('inventory/connectItem', async (data, thunkAPI) => {
+  try {
+    return await inventoryService.connectItem(data);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
   }
-);
+});
 
 export const inventorySlice = createSlice({
   name: 'inventory',
@@ -245,7 +222,22 @@ export const inventorySlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(getAllInventory.pending, (state) => {
+      .addCase(createInventory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createInventory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        const newInventory = action.payload;
+        state.inventory.push(newInventory); // Assuming your inventory is an array
+      })
+      .addCase(createInventory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+
+      .addCase(getAllInventory.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getAllInventory.fulfilled, (state, action) => {
@@ -304,9 +296,7 @@ export const inventorySlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         const updatedInventory = action.payload;
-        const inventoryIndex = state.inventory.findIndex(
-          (item) => item.id === updatedInventory.id
-        );
+        const inventoryIndex = state.inventory.findIndex((item) => item.id === updatedInventory.id);
         if (inventoryIndex !== -1) {
           // Update the inventory item details
           state.inventory[inventoryIndex] = updatedInventory;
@@ -324,9 +314,7 @@ export const inventorySlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         const deletedInventoryId = action.payload;
-        state.inventory = state.inventory.filter(
-          (item) => item.id !== deletedInventoryId
-        );
+        state.inventory = state.inventory.filter((item) => item.id !== deletedInventoryId);
       })
       .addCase(deleteInventory.rejected, (state, action) => {
         state.isLoading = false;

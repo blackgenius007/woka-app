@@ -1,5 +1,8 @@
 /* eslint-disable */
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addInventory } from 'path/to/inventorySlice';
+
 import {
   Button,
   Typography,
@@ -9,18 +12,27 @@ import {
 } from '@mui/material';
 import ItemStatus from './itemStatus';
 
-const NewItem = ({email, tagName}) => {
-    console.log('new form:',email,tagName)
+const NewItem = ({email, tagName,businessName}) => {
+    const dispatch = useDispatch();
+    console.log('new form:',email,tagName,businessName)
+
+
+
   const [formData, setFormData] = useState({
+    email: email,
+    tagName: tagName,
     itemName: '',
     description: '',
-    SKU: '',
+    suppliers_email: '',
+    suppliers_number: '',
     price: '',
     stock: '',
     category: '',
     supplier: '',
     status: '',
   });
+   
+ 
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -36,11 +48,31 @@ const NewItem = ({email, tagName}) => {
       status: event.target.value,
     });
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
+    // Dispatch the addInventory action with the form data
+    dispatch(addInventory(formData));
+
+    // Optionally, you can reset the form after submission
+    setFormData({
+      email: email,
+      tagName: tagName,
+      itemName: '',
+      description: '',
+      suppliers_email: '',
+      suppliers_number: '',
+      price: '',
+      stock: '',
+      category: '',
+      supplier: '',
+      status: '',
+    });
+  };
   return (
     <div style={{ padding: '20px', maxWidth: '300px' }}>
       <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
-        NEW ITEM FORM
+        {tagName}-New Inventory Form
       </Typography>
       <form>
         <Grid container spacing={2}>
@@ -68,17 +100,7 @@ const NewItem = ({email, tagName}) => {
               style={{ marginTop: '10px' }}
             />
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="SKU Number"
-              name="SKU"
-              value={formData.SKU}
-              onChange={handleInputChange}
-              style={{ marginTop: '10px' }}
-            />
+      
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -121,13 +143,37 @@ const NewItem = ({email, tagName}) => {
               variant="outlined"
               size="small"
               fullWidth
-              label="Supplier"
+              label="Supplier Name"
               name="supplier"
               value={formData.supplier}
               onChange={handleInputChange}
               style={{ marginTop: '10px' }}
             />
           </Grid>
+              <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="Suppliers email"
+              name="suppliers_email"
+              value={formData.suppliers_email}
+              onChange={handleInputChange}
+              style={{ marginTop: '10px' }}
+            />
+            </Grid>
+            <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              label="Suppliers Number"
+              name="suppliers_number"
+              value={formData.suppliers_number}
+              onChange={handleInputChange}
+              style={{ marginTop: '10px' }}
+            />
+            </Grid>
           <Grid item xs={12}>
             <TextField
               select
@@ -148,6 +194,7 @@ const NewItem = ({email, tagName}) => {
           </Grid>
         </Grid>
         <Button
+        onClick={handleSubmit}
           type="submit"
           fullWidth
           variant="contained"

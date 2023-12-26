@@ -22,14 +22,6 @@ const API_URL_DELETE_INVENTORY = '/api/v1/inventory/delete';
 // Function to construct the base URL
 const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
 
-// Get all inventory items
-const getAllInventory = async (email) => {
-  console.log('retrievedInventory=>', email);
-  const response = await axios.get(constructURL(API_URL_ALL_INVENTORY + `/${email}`));
-  console.log('inventory retrieved =>', response);
-  return response.data;
-};
-
 const getAllInventoryEachPoint = async (email, tagName) => {
   console.log('inventory-services', email, tagName);
 
@@ -46,17 +38,20 @@ const getOneInventory = async (id) => {
 };
 
 // Create a new inventory item
-const createInventory = async (id, projectName, inventoryData) => {
-  const response = await axios.post(
-    constructURL(`${API_URL_CREATE_INVENTORY}/${id}/${projectName}`),
-    inventoryData
-  );
+const createInventory = async (inventoryData) => {
+  const response = await axios.post(constructURL(`${API_URL_CREATE_INVENTORY} `), inventoryData);
   return response.data;
 };
 
 // Get quantity per item
 const quantityPerItem = async (email, projectName) => {
   const response = await axios.get(constructURL(`${API_URL_PER_ITEM}/${email}/${projectName}`));
+  return response.data;
+};
+
+// Create a new inventory item
+const addInventory = async (email, tagName, inventoryData) => {
+  const response = await axios.post(constructURL(`${API_URL_CREATE_INVENTORY} `), inventoryData);
   return response.data;
 };
 
@@ -120,6 +115,7 @@ const deleteInventory = async (id) => {
 };
 
 const inventoryService = {
+  addInventory,
   getAllInventory,
   getAllInventoryEachPoint,
   getOneInventory,
