@@ -50,7 +50,7 @@ const NewItem = ({email, tagName,businessName}) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-
+console.log(formData)
     // Dispatch the addInventory action with the form data
     dispatch(createInventory(formData));
 
