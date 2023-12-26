@@ -40,8 +40,8 @@ exports.createInventoryPool = asyncHandler(async (req, res, next) => {
       res.status(500).send(err);
     } else {
       // Generate unique SKU number for new item
-      // const d = new Date();
-      // const year = d.getFullYear();
+      const d = new Date();
+      const year = d.getFullYear();
       // const { organizationName, ownerEmail } = pool;
       const SKU_number = `${itemName.slice(0, 3)}-${year
         .toString()
