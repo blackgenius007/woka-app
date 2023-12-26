@@ -38,8 +38,8 @@ const getOneInventory = async (id) => {
 };
 
 // Create a new inventory item
-const createInventory = async (inventoryData) => {
-  const response = await axios.post(constructURL(`${API_URL_CREATE_INVENTORY} `), inventoryData);
+const createInventory = async (formData) => {
+  const response = await axios.post(constructURL(`${API_URL_CREATE_INVENTORY} `), formData);
   return response.data;
 };
 

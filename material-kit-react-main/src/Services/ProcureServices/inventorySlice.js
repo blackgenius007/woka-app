@@ -15,9 +15,9 @@ const initialState = {
 };
 
 // Add the new action creator
-export const createInventory = createAsyncThunk('inventory/create', async (inventoryData, thunkAPI) => {
+export const createInventory = createAsyncThunk('inventory/create', async (formData, thunkAPI) => {
   try {
-    return await inventoryService.createInventory(inventoryData);
+    return await inventoryService.createInventory(formData);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||

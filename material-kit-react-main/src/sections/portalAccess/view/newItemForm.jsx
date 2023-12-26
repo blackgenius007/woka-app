@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addInventory } from 'src/Services/ProcureServices/inventorySlice';
+import {createInventory } from 'src/Services/ProcureServices/inventorySlice';
 
 import {
   Button,
@@ -52,7 +52,7 @@ const NewItem = ({email, tagName,businessName}) => {
     event.preventDefault();
 
     // Dispatch the addInventory action with the form data
-    dispatch(addInventory(formData));
+    dispatch(createInventory(formData));
 
     // Optionally, you can reset the form after submission
     setFormData({
