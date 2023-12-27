@@ -379,7 +379,7 @@ const InventoryTable = ({ email, tagName,businessName }) => {
       ></div>
       <br />
       <label>
-        <IconButton>
+        {/* <IconButton>
           <Popup
             trigger={
               <Link>
@@ -408,7 +408,7 @@ const InventoryTable = ({ email, tagName,businessName }) => {
           >
             Out of stock
           </Popup>
-        </IconButton>
+        </IconButton> */}
         {exportMode ? (
           <>
             {/* Cancel button with Clear icon */}

@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Swal from 'sweetalert2';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import {createInventory } from 'src/Services/ProcureServices/inventorySlice';
 
 import {
@@ -16,7 +17,7 @@ import ItemStatus from './itemStatus';
 const NewItem = ({email, tagName,businessName}) => {
     const dispatch = useDispatch();
     console.log('new form:',email,tagName,businessName)
-
+    const [alertOpen, setAlertOpen] = useState(false);
 
 
   const [formData, setFormData] = useState({
@@ -53,12 +54,11 @@ const NewItem = ({email, tagName,businessName}) => {
   // Submit items
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
-  
+
     try {
       // Dispatch the createInventory action with the form data
       const response = await dispatch(createInventory(formData));
-  
+
       // Optionally, you can reset the form after successful submission
       setFormData({
         email: email,
@@ -73,15 +73,11 @@ const NewItem = ({email, tagName,businessName}) => {
         supplier: '',
         status: '',
       });
-  
+
       // Check if the action was fulfilled
       if (response.meta.requestStatus === 'fulfilled') {
-        // Display a SweetAlert2 success alert
-        Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: 'Inventory item created successfully!',
-        });
+        // Display a Material-UI success alert
+        setAlertOpen(true);
       } else {
         // Handle the case where the action was rejected
         console.error('Error creating inventory item:', response.error);
@@ -91,8 +87,18 @@ const NewItem = ({email, tagName,businessName}) => {
       console.error('Unexpected error creating inventory item:', error);
     }
   };
+
   return (
     <div style={{ padding: '20px', maxWidth: '300px' }}>
+         {alertOpen && (
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Alert severity="success" onClose={handleAlertClose}>
+            <AlertTitle>Success</AlertTitle>
+            Inventory item created successfully!
+          </Alert>
+        </Stack>
+      )}
+
       <Typography variant="h5" component="h1" style={{ color: 'grey' }}>
         {tagName}-New Inventory Form
       </Typography>
