@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 import {createInventory } from 'src/Services/ProcureServices/inventorySlice';
 
 import {
@@ -48,26 +49,47 @@ const NewItem = ({email, tagName,businessName}) => {
       status: event.target.value,
     });
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-console.log(formData)
-    // Dispatch the addInventory action with the form data
-    dispatch(createInventory(formData));
 
-    // Optionally, you can reset the form after submission
-    setFormData({
-      email: email,
-      tagName: tagName,
-      itemName: '',
-      description: '',
-      suppliers_email: '',
-      suppliers_number: '',
-      price: '',
-      stock: '',
-      category: '',
-      supplier: '',
-      status: '',
-    });
+  // Submit items
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formData);
+  
+    try {
+      // Dispatch the createInventory action with the form data
+      const response = await dispatch(createInventory(formData));
+  
+      // Optionally, you can reset the form after successful submission
+      setFormData({
+        email: email,
+        tagName: tagName,
+        itemName: '',
+        description: '',
+        suppliers_email: '',
+        suppliers_number: '',
+        price: '',
+        stock: '',
+        category: '',
+        supplier: '',
+        status: '',
+      });
+  
+      // Check if the action was fulfilled
+      if (createInventory.fulfilled.match(response)) {
+        // Display a SweetAlert2 success alert
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Inventory item created successfully!',
+        });
+      } else {
+        // Handle the case where the action was rejected
+        console.error('Error creating inventory item:', response.error);
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('Unexpected error creating inventory item:', error);
+    }
   };
   return (
     <div style={{ padding: '20px', maxWidth: '300px' }}>
