@@ -6,9 +6,9 @@ const GenerateCode = require("../utils/generateCode.js");
 const Log = require("../models/Log.js");
 const User = require("../models/User");
 
-// @desc    Create pool
-//@routes   /api/v1/pool/
-//@acess    Private
+ // @desc    Create pool
+// @routes   /api/v1/pool/
+// @acess    Private
 exports.createInventoryPool = asyncHandler(async (req, res, next) => {
   const {
     email,
@@ -35,44 +35,42 @@ exports.createInventoryPool = asyncHandler(async (req, res, next) => {
     supplier
   );
 
-  User.findOne({ ownerEmail: email }, function (err, pool) {
-    if (err) {
-      console.log("err", err);
-      res.status(500).send(err);
-    } else {
-      // Generate unique SKU number for new item
-      const d = new Date();
-      const year = d.getFullYear();
-      // const { organizationName, ownerEmail } = pool;
-      const SKU_number = `${itemName.slice(0, 3)}-${year
-        .toString()
-        .slice(-2)}-${GenerateCode(4)}`;
-      const newInventory = new Inventory({
-        tagName: tagName,
-        itemName: itemName,
-        email: email,
-        description: description,
-        price: price,
-        stock: stock,
-        category: category,
-        supplier: supplier,
-        suppliers_email: suppliers_email,
-        suppliers_number: suppliers_number,
-        itemStatus: itemStatus,
-        SKU: SKU_number,
-      });
-      console.log(`pool before save ${newInventory}`);
-      newInventory.save(function (err, pool) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("add pool success");
-          res.send(pool);
-        }
-      });
-      console.log(newInventory);
+  try {
+    const pool = await User.findOne({ ownerEmail: email }).exec();
+
+    if (!pool) {
+      return res.status(404).json({ success: false, message: 'User not found' });
     }
-  });
+
+    // Generate unique SKU number for new item
+    const d = new Date();
+    const year = d.getFullYear();
+    const SKU_number = `${itemName.slice(0, 3)}-${year.toString().slice(-2)}-${GenerateCode(4)}`;
+
+    const newInventory = new Inventory({
+      tagName: tagName,
+      itemName: itemName,
+      email: email,
+      description: description,
+      price: price,
+      stock: stock,
+      category: category,
+      supplier: supplier,
+      suppliers_email: suppliers_email,
+      suppliers_number: suppliers_number,
+      itemStatus: itemStatus,
+      SKU: SKU_number,
+    });
+
+    console.log(`pool before save ${newInventory}`);
+    await newInventory.save();
+
+    console.log("add pool success");
+    res.status(201).json({ success: true, data: newInventory });
+  } catch (error) {
+    console.error("Error creating inventory pool:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
 });
 
 // @desc    Create pool
