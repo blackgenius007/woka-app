@@ -398,7 +398,44 @@ console.log('Filtered DataAuth:', filteredCollectionPointDetails);
                 horizontal: 'center',
               }}
             >
-              <div style={{ padding: '16px', minWidth: '200px' }}>
+
+<Box
+      sx={{
+        padding: '16px',
+        minWidth: '200px',
+        backgroundColor: '#f5f5f5', // Set your desired background color
+        borderRadius: '8px',
+        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', // Add a subtle box shadow
+      }}
+    >
+      <Typography variant="h6" gutterBottom sx={{ fontWeight: 'lighter', fontSize: '1.2rem' }}>
+        Enter your Data collector access code
+      </Typography>
+      <TextField
+        placeholder="Data Code"
+        value={dataCode}
+        onChange={handleInputChange}
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        InputProps={{
+          sx: {
+            // Apply styling to the input field
+            backgroundColor: 'white', // Set your desired background color
+            borderRadius: '4px', // Set your desired border radius
+          },
+        }}
+      />
+      <Button variant="contained" color="primary" onClick={handleSubmit} fullWidth>
+        Submit
+      </Button>
+      {dataMessage && (
+        <Typography variant="body2" sx={{ color: 'red', marginTop: '8px' }}>
+          {dataMessage}
+        </Typography>
+      )}
+    </Box>
+              {/* <div style={{ padding: '16px', minWidth: '200px' }}>
                 <Typography
                   variant="h6"
                   gutterBottom
@@ -415,7 +452,7 @@ console.log('Filtered DataAuth:', filteredCollectionPointDetails);
                     {dataMessage}
                   </Typography>
                 )}
-              </div>
+              </div> */}
             </Popover>
 
             {/* Additional data Popover */}
