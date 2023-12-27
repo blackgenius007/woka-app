@@ -39,7 +39,9 @@ exports.createInventoryPool = asyncHandler(async (req, res, next) => {
     const pool = await User.findOne({ ownerEmail: email }).exec();
 
     if (!pool) {
+      console.log('User not found' )
       return res.status(404).json({ success: false, message: 'User not found' });
+      
     }
 
     // Generate unique SKU number for new item
