@@ -75,7 +75,7 @@ const NewItem = ({email, tagName,businessName}) => {
       });
   
       // Check if the action was fulfilled
-      if (createInventory.fulfilled.match(response)) {
+      if (response.meta.requestStatus === 'fulfilled') {
         // Display a SweetAlert2 success alert
         Swal.fire({
           icon: 'success',
