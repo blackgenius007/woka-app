@@ -60,7 +60,7 @@ exports.createInventoryPool = asyncHandler(async (req, res, next) => {
       supplier: supplier,
       suppliers_email: suppliers_email,
       suppliers_number: suppliers_number,
-      itemStatus: itemStatus,
+      status: status,
       SKU: SKU_number,
     });
 

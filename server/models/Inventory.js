@@ -31,7 +31,7 @@ tagName: {
     required: true
   },
   
-  suppliers  : {
+  supplier   : {
     type: String,
     required: true
   },
