@@ -4,22 +4,15 @@ import { useDispatch } from 'react-redux';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
-import {createInventory } from 'src/Services/ProcureServices/inventorySlice';
+import { createInventory } from 'src/Services/ProcureServices/inventorySlice';
 
-import {
-  Button,
-  Typography,
-  Grid,
-  TextField,
-  MenuItem,
-} from '@mui/material';
+import { Button, Typography, Grid, TextField, MenuItem } from '@mui/material';
 import ItemStatus from './itemStatus';
 
-const NewItem = ({email, tagName,businessName}) => {
-    const dispatch = useDispatch();
-    console.log('new form:',email,tagName,businessName)
-    const [alertOpen, setAlertOpen] = useState(false);
-
+const NewItem = ({ email, tagName, businessName }) => {
+  const dispatch = useDispatch();
+  console.log('new form:', email, tagName, businessName);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     email: email,
@@ -34,8 +27,6 @@ const NewItem = ({email, tagName,businessName}) => {
     supplier: '',
     status: '',
   });
-   
- 
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -50,6 +41,9 @@ const NewItem = ({email, tagName,businessName}) => {
       ...formData,
       status: event.target.value,
     });
+  };
+  const handleAlertClose = () => {
+    setAlertOpen(false);
   };
 
   // Submit items
@@ -91,7 +85,7 @@ const NewItem = ({email, tagName,businessName}) => {
 
   return (
     <div style={{ padding: '20px', maxWidth: '300px' }}>
-         {alertOpen && (
+      {alertOpen && (
         <Stack spacing={2} sx={{ width: '100%' }}>
           <Alert severity="success" onClose={handleAlertClose}>
             <AlertTitle>Success</AlertTitle>
@@ -129,101 +123,100 @@ const NewItem = ({email, tagName,businessName}) => {
               style={{ marginTop: '10px' }}
             />
           </Grid>
-      
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Unit Price"
-              name="price"
-              value={formData.price}
-              onChange={handleInputChange}
-              style={{ marginTop: '10px' }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Number in Stock"
-              name="stock"
-              value={formData.stock}
-              onChange={handleInputChange}
-              style={{ marginTop: '10px' }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Category"
-              name="category"
-              value={formData.category}
-              onChange={handleInputChange}
-              style={{ marginTop: '10px' }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Supplier Name"
-              name="supplier"
-              value={formData.supplier}
-              onChange={handleInputChange}
-              style={{ marginTop: '10px' }}
-            />
-          </Grid>
-              <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Suppliers email"
-              name="suppliers_email"
-              value={formData.suppliers_email}
-              onChange={handleInputChange}
-              style={{ marginTop: '10px' }}
-            />
-            </Grid>
-            <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              size="small"
-              fullWidth
-              label="Suppliers Number"
-              name="suppliers_number"
-              value={formData.suppliers_number}
-              onChange={handleInputChange}
-              style={{ marginTop: '10px' }}
-            />
-            </Grid>
-          <Grid item xs={12}>
-            <TextField
-              select
-              label="Item Status"
-              name="status"
-              value={formData.status}
-              onChange={handleItemStatusChange}
-              variant="outlined"
-              fullWidth
-              style={{ marginTop: '10px' }}
-            >
-              {ItemStatus.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-         
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            label="Unit Price"
+            name="price"
+            value={formData.price}
+            onChange={handleInputChange}
+            style={{ marginTop: '10px' }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            label="Number in Stock"
+            name="stock"
+            value={formData.stock}
+            onChange={handleInputChange}
+            style={{ marginTop: '10px' }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            label="Category"
+            name="category"
+            value={formData.category}
+            onChange={handleInputChange}
+            style={{ marginTop: '10px' }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            label="Supplier Name"
+            name="supplier"
+            value={formData.supplier}
+            onChange={handleInputChange}
+            style={{ marginTop: '10px' }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            label="Suppliers email"
+            name="suppliers_email"
+            value={formData.suppliers_email}
+            onChange={handleInputChange}
+            style={{ marginTop: '10px' }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            label="Suppliers Number"
+            name="suppliers_number"
+            value={formData.suppliers_number}
+            onChange={handleInputChange}
+            style={{ marginTop: '10px' }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            select
+            label="Item Status"
+            name="status"
+            value={formData.status}
+            onChange={handleItemStatusChange}
+            variant="outlined"
+            fullWidth
+            style={{ marginTop: '10px' }}
+          >
+            {ItemStatus.map((option) => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+
         <Button
-        onClick={handleSubmit}
+          onClick={handleSubmit}
           type="submit"
           fullWidth
           variant="contained"
@@ -237,5 +230,3 @@ const NewItem = ({email, tagName,businessName}) => {
 };
 
 export default NewItem;
-
-       
