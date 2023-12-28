@@ -29,6 +29,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
    const dispatch = useDispatch();
    // Fetch inventory on component load
   useEffect(() => {
+    console.log('inventoryRecords props :' ,tagName ,email,businessName)
     // Assuming getAllInventoryEachPoint is an async thunk
     dispatch(getAllInventoryEachPoint({ email, tagName  }));
   }, [dispatch, email, tagName ]);
