@@ -250,19 +250,20 @@ export const inventorySlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      .addCase(getAllInventoryEachPoint.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.isLoading = false;
+        state.isError = null;
+      })
       .addCase(getAllInventoryEachPoint.pending, (state) => {
         state.isLoading = true;
-      })
-      .addCase(getAllInventoryEachPoint.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.employees = action.payload;
+        state.isError = null;
       })
       .addCase(getAllInventoryEachPoint.rejected, (state, action) => {
+        state.data = [];
         state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
+        state.isError = action.error.message;
+      }) 
       .addCase(getTotalInventory.pending, (state) => {
         state.isLoading = true;
       })
