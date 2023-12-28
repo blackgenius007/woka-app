@@ -25,12 +25,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function InventoryDialog({open, close,employeeNumber, tagName ,email,businessName}) {
- console.log(tagName ,email,businessName)
+ console.log('InventoryRecords,props from portalBody:',tagName ,email,businessName)
 
   // Accessing inventory data from the Redux store
   const inventoryData = useSelector((state) => state.inventory);
 
- console.log('INVENTORY=>',inventoryData)
+//  console.log('INVENTORY=>',inventoryData)
 
   return (
     <React.Fragment>

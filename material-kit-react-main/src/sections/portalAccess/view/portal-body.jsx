@@ -65,7 +65,7 @@ const EmployeePortal = () => {
   // Log the filteredDataAuth to the console
   console.log('Filtered DataAuth:', filteredCollectionPointDetails);
 
-  console.log(employees);
+  console.log('portal-body - employees redux state',employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
   const [employeeAccessData, setEmployeeAccessData] = useState([]);
@@ -92,7 +92,7 @@ const EmployeePortal = () => {
         IOU: firstEmployee.IOU,
         benefitInKind: firstEmployee.benefitInKind,
         businessName: firstEmployee.businessName,
-        ownerEmail: firstEmployee.designation.ownerEmail,
+        ownerEmail: firstEmployee.ownerEmail,
         // Add other properties as needed
       });
     }
