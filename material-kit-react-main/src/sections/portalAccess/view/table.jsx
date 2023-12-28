@@ -710,9 +710,9 @@ export default function MainPage({ email, tagName,businessName }) {
           </Button>
       
       </Stack>
-      {/* <Scrollbar>
-        <InventoryTable />
-      </Scrollbar> */}
+      <Scrollbar>
+        <InventoryTable email={email} businessName={businessName} tagName={tagName}/>
+      </Scrollbar>
       <Popover
         open={formPopoverOpen}
         onClose={handleFormPopoverClose}
