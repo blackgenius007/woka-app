@@ -159,7 +159,7 @@ exports.getAllInventoryEachPoint = asyncHandler(async (req, res, next) => {
 
     // Use $elemMatch to filter based on the tagName within collectionPointDetails
     const inventory = await Inventory.find({
-      ownerEmail: email,
+      email: email,
       "collectionPointDetails.tagName": tagName,
     }).exec();
 
