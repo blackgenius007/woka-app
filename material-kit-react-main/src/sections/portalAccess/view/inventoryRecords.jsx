@@ -69,7 +69,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
          <br/>
          <br/>
         
-        <Table email={email} tagName={tagName} businessName={businessName} />
+        <Table  tagName={tagName} businessName={businessName} />
     
       </Dialog>
     </React.Fragment>
