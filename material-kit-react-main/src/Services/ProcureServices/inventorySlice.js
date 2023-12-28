@@ -44,7 +44,7 @@ export const getAllInventory = createAsyncThunk('inventory/getAll', async (userE
 export const getAllInventoryEachPoint = createAsyncThunk(
   'inventory/getAllEp',
   async ({ email, tagName }, thunkAPI) => {
-    console.log('slice-of-inventory');
+    console.log('slice-of-inventory',email,tagName);
     try {
       return await inventoryService.getAllInventoryEachPoint(email, tagName);
     } catch (error) {
