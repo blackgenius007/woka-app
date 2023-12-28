@@ -236,7 +236,7 @@ const InventoryTable = ({ email, tagName,businessName }) => {
 
   useEffect(() => {
 
-    console.log(email, tagName)
+    console.log('table props:',email, tagName)
     // Assuming getAllInventoryEachPoint is an async thunk
     dispatch(getAllInventoryEachPoint({ email, tagName }));
   }, [dispatch, email, tagName]);
