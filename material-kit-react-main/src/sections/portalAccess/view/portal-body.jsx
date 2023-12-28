@@ -92,7 +92,7 @@ const EmployeePortal = () => {
         IOU: firstEmployee.IOU,
         benefitInKind: firstEmployee.benefitInKind,
         businessName: firstEmployee.businessName,
-        ownerEmail: firstEmployee.ownerEmail,
+        ownerEmail: firstEmployee.designation.ownerEmail,
         // Add other properties as needed
       });
     }
