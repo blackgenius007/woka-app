@@ -251,7 +251,7 @@ export const inventorySlice = createSlice({
         state.message = action.payload;
       })
       .addCase(getAllInventoryEachPoint.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.inventory = action.payload;
         state.isLoading = false;
         state.isError = null;
       })
@@ -260,7 +260,7 @@ export const inventorySlice = createSlice({
         state.isError = null;
       })
       .addCase(getAllInventoryEachPoint.rejected, (state, action) => {
-        state.data = [];
+        state.inventory = [];
         state.isLoading = false;
         state.isError = action.error.message;
       }) 
