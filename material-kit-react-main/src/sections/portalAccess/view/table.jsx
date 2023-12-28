@@ -217,6 +217,8 @@ BootstrapDialogTitle.propTypes = {
 };
 
 const InventoryTable = ({ email, tagName,businessName }) => {
+  console.log('table props:',email, tagName)
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dateOffset, setDateOffset] = useState(7);
@@ -236,7 +238,7 @@ const InventoryTable = ({ email, tagName,businessName }) => {
 
   useEffect(() => {
 
-    console.log('table props:',email, tagName)
+ 
     // Assuming getAllInventoryEachPoint is an async thunk
     dispatch(getAllInventoryEachPoint({ email, tagName }));
   }, [dispatch, email, tagName]);
