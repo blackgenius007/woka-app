@@ -25,15 +25,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function InventoryDialog({open, close,employeeNumber, tagName ,email,businessName}) {
-   // Redux dispatch
-  //  const dispatch = useDispatch();
-  //  // Fetch inventory on component load
-  // useEffect(() => {
-  //   console.log('inventoryRecords props :' ,tagName ,email,businessName)
-  //   // Assuming getAllInventoryEachPoint is an async thunk
-  //   dispatch(getAllInventoryEachPoint({ email, tagName  }));
-  // }, [dispatch, email, tagName ]);
-
+ 
 
 
   return (
