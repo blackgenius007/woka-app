@@ -217,7 +217,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 const InventoryTable = ({ email, tagName,businessName }) => {
-  console.log('table props:',email && email)
+  console.log('table props:',tagName,businessName )
   const { employees, isLoading } = useSelector((state) => state.employees);
 
   const navigate = useNavigate();
