@@ -147,20 +147,20 @@ exports.getAllInventory = asyncHandler(async (req, res, next) => {
   }
 });
 
+
 // @desc Get all inventory
 // @routes Get/api/v1/inventory
 // @acess Public
-
 exports.getAllInventoryEachPoint = asyncHandler(async (req, res, next) => {
   try {
     const { email, tagName } = req.params;
 
     console.log("Request Params =>", email, tagName);
 
-    // Use $elemMatch to filter based on the tagName within collectionPointDetails
+    // Find all documents where email and tagName match
     const inventory = await Inventory.find({
       email: email,
-      "collectionPointDetails.tagName": tagName,
+      tagName: tagName,
     }).exec();
 
     console.log("Found Inventory:", inventory);
@@ -171,6 +171,31 @@ exports.getAllInventoryEachPoint = asyncHandler(async (req, res, next) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+
+
+
+
+// exports.getAllInventoryEachPoint = asyncHandler(async (req, res, next) => {
+//   try {
+//     const { email, tagName } = req.params;
+
+//     console.log("Request Params =>", email, tagName);
+
+//     // Use $elemMatch to filter based on the tagName within collectionPointDetails
+//     const inventory = await Inventory.find({
+//       email: email,
+//       "collectionPointDetails.tagName": tagName,
+//     }).exec();
+
+//     console.log("Found Inventory:", inventory);
+
+//     res.json(inventory);
+//   } catch (error) {
+//     console.error("Error in getAllInventoryEachPoint:", error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
 
 // @desc Get Total Inventory
 //@routes Get/api/v1/inventory/total
