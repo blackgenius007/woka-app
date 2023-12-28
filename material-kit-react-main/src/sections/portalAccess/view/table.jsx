@@ -244,6 +244,12 @@ const InventoryTable = ({ email, tagName,businessName }) => {
   }, [dispatch, email, tagName]);
 
   const { attendance } = useSelector((state) => state.employees);
+  // Accessing inventory data from the Redux store
+  const inventoryData = useSelector((state) => state.inventory);
+
+ console.log('INVENTORY=>',inventoryData)
+
+
 
   // Function to trigger financial data calculation
   const calculateFinancialData = (employeeId, grossIncome, country) => {

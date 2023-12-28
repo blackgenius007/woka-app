@@ -48,27 +48,22 @@ const EmployeePortal = () => {
   // Access data point properties
   const dataAuth = useSelector((state) => state.employees.DataAuth);
   // Log dataAuth to the console to check its contents
-  console.log('DataAuth:', dataAuth,portalCode);
+  console.log('DataAuth:', dataAuth, portalCode);
 
- // Filter the collectionPointDetails array based on the employeeNumber (portalCode)
- const filteredCollectionPointDetails = dataAuth.reduce(
-  (acc, item) => [
-    ...acc,
-    ...item.collectionPointDetails.filter(
-      (detail) => detail.employeeNumber === portalCode
-    ),
-  ],
-  []
-);
+  // Filter the collectionPointDetails array based on the employeeNumber (portalCode)
+  const filteredCollectionPointDetails = dataAuth.reduce(
+    (acc, item) => [
+      ...acc,
+      ...item.collectionPointDetails.filter((detail) => detail.employeeNumber === portalCode),
+    ],
+    []
+  );
 
-// Destructure filteredCollectionPointDetails properties
-const { tagName, employeeNumber } = filteredCollectionPointDetails[0] || {};
+  // Destructure filteredCollectionPointDetails properties
+  const { tagName, employeeNumber } = filteredCollectionPointDetails[0] || {};
 
-// Log the filteredDataAuth to the console
-console.log('Filtered DataAuth:', filteredCollectionPointDetails);
-
-
-
+  // Log the filteredDataAuth to the console
+  console.log('Filtered DataAuth:', filteredCollectionPointDetails);
 
   console.log(employees);
   const [isEditing, setIsEditing] = useState(false);
@@ -398,44 +393,15 @@ console.log('Filtered DataAuth:', filteredCollectionPointDetails);
                 horizontal: 'center',
               }}
             >
-
-<Box
-      sx={{
-        padding: '16px',
-        minWidth: '200px',
-        backgroundColor: '#f5f5f5', // Set your desired background color
-        borderRadius: '8px',
-        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', // Add a subtle box shadow
-      }}
-    >
-      <Typography variant="h6" gutterBottom sx={{ fontWeight: 'lighter', fontSize: '1.2rem' }}>
-        Enter your Data collector access code
-      </Typography>
-      <TextField
-        placeholder="Data Code"
-        value={dataCode}
-        onChange={handleInputChange}
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        InputProps={{
-          sx: {
-            // Apply styling to the input field
-            backgroundColor: 'white', // Set your desired background color
-            borderRadius: '4px', // Set your desired border radius
-          },
-        }}
-      />
-      <Button variant="contained" color="primary" onClick={handleSubmit} fullWidth>
-        Submit
-      </Button>
-      {dataMessage && (
-        <Typography variant="body2" sx={{ color: 'red', marginTop: '8px' }}>
-          {dataMessage}
-        </Typography>
-      )}
-    </Box>
-              {/* <div style={{ padding: '16px', minWidth: '200px' }}>
+              <Box
+                sx={{
+                  padding: '16px',
+                  minWidth: '200px',
+                  backgroundColor: '#f5f5f5', // Set your desired background color
+                  borderRadius: '8px',
+                  boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', // Add a subtle box shadow
+                }}
+              >
                 <Typography
                   variant="h6"
                   gutterBottom
@@ -443,16 +409,30 @@ console.log('Filtered DataAuth:', filteredCollectionPointDetails);
                 >
                   Enter your Data collector access code
                 </Typography>
-                <input placeholder="Data Code" value={dataCode} onChange={handleInputChange} />
-                <Button variant="contained" color="primary" onClick={handleSubmit}>
+                <TextField
+                  placeholder="Data Code"
+                  value={dataCode}
+                  onChange={handleInputChange}
+                  variant="outlined"
+                  fullWidth
+                  margin="normal"
+                  InputProps={{
+                    sx: {
+                      // Apply styling to the input field
+                      backgroundColor: 'white', // Set your desired background color
+                      borderRadius: '4px', // Set your desired border radius
+                    },
+                  }}
+                />
+                <Button variant="contained" color="primary" onClick={handleSubmit} fullWidth>
                   Submit
                 </Button>
                 {dataMessage && (
-                  <Typography variant="body2" style={{ color: 'red', marginTop: '8px' }}>
+                  <Typography variant="body2" sx={{ color: 'red', marginTop: '8px' }}>
                     {dataMessage}
                   </Typography>
                 )}
-              </div> */}
+              </Box>
             </Popover>
 
             {/* Additional data Popover */}
@@ -515,8 +495,8 @@ console.log('Filtered DataAuth:', filteredCollectionPointDetails);
               close={handleInventoryClose}
               email={ownerEmail}
               tagName={tagName}
-               employeeNumber={employeeNumber}
-               businessName={businessName}
+              employeeNumber={employeeNumber}
+              businessName={businessName}
             />
           </>
         ))}
