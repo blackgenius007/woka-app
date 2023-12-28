@@ -153,8 +153,8 @@ exports.getAllInventory = asyncHandler(async (req, res, next) => {
 
 exports.getAllInventoryEachPoint = asyncHandler(async (req, res, next) => {
   try {
-    const email = req.params.email;
-    const tagName = req.params.tagName;
+    const{email,tagName}  = req.params ;
+  
     console.log("from inventory-frontend =>", email, tagName);
 
     // Use $elemMatch to filter based on the tagName within collectionPointDetails
