@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Dialog from '@mui/material/Dialog';
-import ChevronLeft  from '@mui/icons-material/ChevronLeft';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import DialogTitle from '@mui/material/DialogTitle';
 import { PersonOutline } from '@mui/icons-material';
@@ -46,145 +46,145 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 // Add futuristic styles here...
 const futuristicStyles = {
-    tableContainer: {
-        background: '#222',
-        borderRadius: '10px',
-        padding: '1rem',
-        overflowX: 'auto',
-      },
-      table: {
-        color: '#fff',
-        textAlign: 'left',
-        borderCollapse: 'collapse',
-        width: '100%',
-        borderRadius: '10px',
-        overflow: 'hidden',
-        boxShadow: '0 0 10px rgba(255, 255, 255, 0.1)', // 3D effect
-      },
-      tableHead: {
-        background: '#333',
-      },
-      tableHeadCell: {
-        padding: '0.5rem',
-        textAlign: 'center',
-        fontSize: '14px', // Adjusted font size
-      },
-      tableBodyRow: {
-        borderBottom: '1px solid #444',
-        borderRadius: '10px', // Slightly curvy edges
-      },
-      tableBodyCell: {
-        border: '1px solid #444',
-        padding: '0.5rem',
-        textAlign: 'center',
-        fontSize: '12px', // Adjusted font size
-      },
-      avatar: {
-        borderRadius: '50%',
-        width: '30px',
-        height: '30px',
-      },
-      button: {
-        backgroundColor: '#7393B3',
-        color: '#ffffff',
-        fontSize: '12px', // Adjusted font size
-        borderRadius: '5px',
-        margin: '0.5rem',
-        padding: '0.5rem 1rem',
-        cursor: 'pointer',
-        transition: 'background-color 0.3s ease-in-out',
-        '&:hover': {
-          backgroundColor: '#4F6B87',
-        },
-      },
-      link: {
-        color: '#00aaff',
-        textDecoration: 'none',
-        fontSize: '14px',
-        fontFamily: 'inherit',
-      },
-      actionIcons: {
-        fontSize: '1.1rem',
-        color: '#fff',
-        marginRight: '0.5rem',
-        cursor: 'pointer',
-        transition: 'color 0.3s ease-in-out',
-      },
-      paginationContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: '1rem',
-      },
-      paginationText: {
-        fontSize: '14px',
-        margin: '0 10px',
-        color: '#333',
-      },
-      paginationButton: {
-        backgroundColor: '#7393B3',
-        color: '#ffffff',
-        fontSize: '16px',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        transition: 'background-color 0.3s ease-in-out',
-        '&:hover': {
-          backgroundColor: '#4F6B87',
-        },
-      },
-//   tableContainer: {
-//     background: '#222',
-//     borderRadius: '10px',
-//     padding: '1rem',
-//   },
-//   table: {
-//     color: '#fff',
-//     // width: '100%',
-//     // borderCollapse: 'collapse',
-//     textAlign: 'left',
-//     borderCollapse: 'separate', // Separate borders for cells
-//     borderSpacing: '0', // No spacing between cells
-//   },
-//   tableHead: {
-//     background: '#333',
-//   },
-//   tableHeadCell: {
-//     padding: '0.5rem',
-//     textAlign: 'center', // Align header cells to center
-//   },
-//   tableBodyRow: {
-//     borderBottom: '1px solid #444',
-//   },
-//   tableBodyCell: {
-//     // padding: '0.5rem',
-//     // textAlign: 'center', // Align body cells to center
-//     border: '1px solid #444', // Add border to each cell
-//     padding: '0.5rem',
-//     textAlign: 'center',
-//   },
-//   avatar: {
-//     borderRadius: '50%',
-//     width: '30px',
-//     height: '30px',
-//   },
-//   link: {
-//     background: 'none',
-//     border: 'none',
-//     color: '#00aaff',
-//     cursor: 'pointer',
-//     textDecoration: 'none',
-//     fontSize: '14px',
-//     fontFamily: 'inherit',
-//     padding: 0,
-//     margin: 0,
-//   },
-//   actionIcons: {
-//     fontSize: '1.1rem',
-//     color: '#fff',
-//     marginRight: '0.5rem',
-//     cursor: 'pointer',
-//     transition: 'color 0.3s ease-in-out',
-//   },
+  tableContainer: {
+    background: '#222',
+    borderRadius: '10px',
+    padding: '1rem',
+    overflowX: 'auto',
+  },
+  table: {
+    color: '#fff',
+    textAlign: 'left',
+    borderCollapse: 'collapse',
+    width: '100%',
+    borderRadius: '10px',
+    overflow: 'hidden',
+    boxShadow: '0 0 10px rgba(255, 255, 255, 0.1)', // 3D effect
+  },
+  tableHead: {
+    background: '#333',
+  },
+  tableHeadCell: {
+    padding: '0.5rem',
+    textAlign: 'center',
+    fontSize: '14px', // Adjusted font size
+  },
+  tableBodyRow: {
+    borderBottom: '1px solid #444',
+    borderRadius: '10px', // Slightly curvy edges
+  },
+  tableBodyCell: {
+    border: '1px solid #444',
+    padding: '0.5rem',
+    textAlign: 'center',
+    fontSize: '12px', // Adjusted font size
+  },
+  avatar: {
+    borderRadius: '50%',
+    width: '30px',
+    height: '30px',
+  },
+  button: {
+    backgroundColor: '#7393B3',
+    color: '#ffffff',
+    fontSize: '12px', // Adjusted font size
+    borderRadius: '5px',
+    margin: '0.5rem',
+    padding: '0.5rem 1rem',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease-in-out',
+    '&:hover': {
+      backgroundColor: '#4F6B87',
+    },
+  },
+  link: {
+    color: '#00aaff',
+    textDecoration: 'none',
+    fontSize: '14px',
+    fontFamily: 'inherit',
+  },
+  actionIcons: {
+    fontSize: '1.1rem',
+    color: '#fff',
+    marginRight: '0.5rem',
+    cursor: 'pointer',
+    transition: 'color 0.3s ease-in-out',
+  },
+  paginationContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: '1rem',
+  },
+  paginationText: {
+    fontSize: '14px',
+    margin: '0 10px',
+    color: '#333',
+  },
+  paginationButton: {
+    backgroundColor: '#7393B3',
+    color: '#ffffff',
+    fontSize: '16px',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease-in-out',
+    '&:hover': {
+      backgroundColor: '#4F6B87',
+    },
+  },
+  //   tableContainer: {
+  //     background: '#222',
+  //     borderRadius: '10px',
+  //     padding: '1rem',
+  //   },
+  //   table: {
+  //     color: '#fff',
+  //     // width: '100%',
+  //     // borderCollapse: 'collapse',
+  //     textAlign: 'left',
+  //     borderCollapse: 'separate', // Separate borders for cells
+  //     borderSpacing: '0', // No spacing between cells
+  //   },
+  //   tableHead: {
+  //     background: '#333',
+  //   },
+  //   tableHeadCell: {
+  //     padding: '0.5rem',
+  //     textAlign: 'center', // Align header cells to center
+  //   },
+  //   tableBodyRow: {
+  //     borderBottom: '1px solid #444',
+  //   },
+  //   tableBodyCell: {
+  //     // padding: '0.5rem',
+  //     // textAlign: 'center', // Align body cells to center
+  //     border: '1px solid #444', // Add border to each cell
+  //     padding: '0.5rem',
+  //     textAlign: 'center',
+  //   },
+  //   avatar: {
+  //     borderRadius: '50%',
+  //     width: '30px',
+  //     height: '30px',
+  //   },
+  //   link: {
+  //     background: 'none',
+  //     border: 'none',
+  //     color: '#00aaff',
+  //     cursor: 'pointer',
+  //     textDecoration: 'none',
+  //     fontSize: '14px',
+  //     fontFamily: 'inherit',
+  //     padding: 0,
+  //     margin: 0,
+  //   },
+  //   actionIcons: {
+  //     fontSize: '1.1rem',
+  //     color: '#fff',
+  //     marginRight: '0.5rem',
+  //     cursor: 'pointer',
+  //     transition: 'color 0.3s ease-in-out',
+  //   },
 };
 
 function BootstrapDialogTitle(props) {
@@ -216,8 +216,8 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = ({ email, tagName,businessName }) => {
-  console.log('table props:',email,tagName,businessName )
+const InventoryTable = ({ email, tagName, businessName }) => {
+  console.log('table props:', email, tagName, businessName);
   const { employees, isLoading } = useSelector((state) => state.employees);
 
   const navigate = useNavigate();
@@ -230,7 +230,6 @@ const InventoryTable = ({ email, tagName,businessName }) => {
   const [rowInputValues, setRowInputValues] = useState({});
   const [open, setOpen] = useState(false);
   const [exportMode, setExportMode] = useState(0);
-  
 
   let totalRemunerationForAll = 0;
   // Pagination state
@@ -238,8 +237,6 @@ const InventoryTable = ({ email, tagName,businessName }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
-
- 
     // Assuming getAllInventoryEachPoint is an async thunk
     dispatch(getAllInventoryEachPoint({ email, tagName }));
   }, [dispatch, email, tagName]);
@@ -248,9 +245,7 @@ const InventoryTable = ({ email, tagName,businessName }) => {
   // Accessing inventory data from the Redux store
   const inventoryData = useSelector((state) => state.inventory);
 
- console.log('INVENTORY=>',inventoryData)
-
-
+  console.log('INVENTORY=>', inventoryData);
 
   // Function to trigger financial data calculation
   const calculateFinancialData = (employeeId, grossIncome, country) => {
@@ -293,14 +288,12 @@ const InventoryTable = ({ email, tagName,businessName }) => {
   };
 
   const filteredRows =
-    attendance &&
-    attendance
-      .filter((row) => row.paySchedule === 'Monthly') // Filter by paySchedule === 'weekly'
-      .filter((row) =>
-        Object.values(row).some((value) =>
-          String(value).toLowerCase().includes(searched.toLowerCase())
-        )
-      ); // Further filter by search term
+    inventoryData &&
+    inventoryData.filter((row) =>
+      Object.values(row).some((value) =>
+        String(value).toLowerCase().includes(searched.toLowerCase())
+      )
+    ); // Further filter by search term
 
   const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
   const startIndex = page * rowsPerPage;
@@ -309,39 +302,39 @@ const InventoryTable = ({ email, tagName,businessName }) => {
 
   // function to calculate total payout
 
-  filteredRows.map((row) => {
-    const { _id, designation } = row;
-    const { grossIncome, country } = designation;
-    const employeeFinancialData = financialData[_id];
+  // filteredRows.map((row) => {
+  //   const { _id, designation } = row;
+  //   const { grossIncome, country } = designation;
+  //   const employeeFinancialData = financialData[_id];
 
-    // Calculate financial data if not available
-    if (!employeeFinancialData) {
-      calculateFinancialData(_id, grossIncome, country);
-      return null; // Render nothing for now, will be updated on next render
-    }
-    console.log(employeeFinancialData);
-    // Calculate financial data if not available
-    if (!employeeFinancialData) {
-      calculateFinancialData(_id, grossIncome, country);
-      return null; // Render nothing for now, will be updated on next render
-    }
-    console.log(employeeFinancialData);
+  //   // Calculate financial data if not available
+  //   if (!employeeFinancialData) {
+  //     calculateFinancialData(_id, grossIncome, country);
+  //     return null; // Render nothing for now, will be updated on next render
+  //   }
+  //   console.log(employeeFinancialData);
+  //   // Calculate financial data if not available
+  //   if (!employeeFinancialData) {
+  //     calculateFinancialData(_id, grossIncome, country);
+  //     return null; // Render nothing for now, will be updated on next render
+  //   }
+  //   console.log(employeeFinancialData);
 
-    // Calculate Total Remuneration
-    const monthlyRate = employeeFinancialData.monthlySalary;
+  //   // Calculate Total Remuneration
+  //   const monthlyRate = employeeFinancialData.monthlySalary;
 
-    // Calculate net Remuneration
-    const netRemuneration =
-      monthlyRate +
-      parseFloat(row.overtime) +
-      parseFloat(row.allowance) -
-      parseFloat(row.IOU).toFixed(2);
+  //   // Calculate net Remuneration
+  //   const netRemuneration =
+  //     monthlyRate +
+  //     parseFloat(row.overtime) +
+  //     parseFloat(row.allowance) -
+  //     parseFloat(row.IOU).toFixed(2);
 
-    // Add the calculated remuneration to the total
-    totalRemunerationForAll += netRemuneration;
-  });
+  //   // Add the calculated remuneration to the total
+  //   totalRemunerationForAll += netRemuneration;
+  // });
 
-  console.log('function for salary=>', totalRemunerationForAll);
+  // console.log('function for salary=>', totalRemunerationForAll);
 
   // Function to handle 'add' input change for a specific row
   const handleAddInputChange = (rowId, value) => {
@@ -644,31 +637,31 @@ const InventoryTable = ({ email, tagName,businessName }) => {
         </table>
       </div>
       <br />
-    
-<div style={futuristicStyles.paginationContainer}>
-  <IconButton
-    onClick={() => setPage(Math.max(0, page - 1))}
-    disabled={page === 0}
-    style={futuristicStyles.paginationButton}
-  >
-    <ChevronLeft />
-  </IconButton>
-  <span style={futuristicStyles.paginationText}>
-    Page {page + 1} of {totalPages}
-  </span>
-  <IconButton
-    onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
-    disabled={page === totalPages - 1}
-    style={futuristicStyles.paginationButton}
-  >
-    <ChevronRight />
-  </IconButton>
-</div>
+
+      <div style={futuristicStyles.paginationContainer}>
+        <IconButton
+          onClick={() => setPage(Math.max(0, page - 1))}
+          disabled={page === 0}
+          style={futuristicStyles.paginationButton}
+        >
+          <ChevronLeft />
+        </IconButton>
+        <span style={futuristicStyles.paginationText}>
+          Page {page + 1} of {totalPages}
+        </span>
+        <IconButton
+          onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
+          disabled={page === totalPages - 1}
+          style={futuristicStyles.paginationButton}
+        >
+          <ChevronRight />
+        </IconButton>
+      </div>
     </>
   );
 };
 
-export default function MainPage({ email, tagName,businessName }) {
+export default function MainPage({ email, tagName, businessName }) {
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -699,19 +692,17 @@ export default function MainPage({ email, tagName,businessName }) {
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Inventory Management</Typography>
 
-        
-          <Button
+        <Button
           onClick={handleFormPopoverOpen}
-            variant="contained"
-            style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
-            startIcon={<Iconify icon="eva:plus-fill" />}
-          >
-            New Item
-          </Button>
-      
+          variant="contained"
+          style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
+          startIcon={<Iconify icon="eva:plus-fill" />}
+        >
+          New Item
+        </Button>
       </Stack>
       <Scrollbar>
-        <InventoryTable email={email} businessName={businessName} tagName={tagName}/>
+        <InventoryTable email={email} businessName={businessName} tagName={tagName} />
       </Scrollbar>
       <Popover
         open={formPopoverOpen}
@@ -724,7 +715,7 @@ export default function MainPage({ email, tagName,businessName }) {
           alignItems: 'center',
         }}
       >
-       < NewItemForm email={email} tagName={tagName} businessName={businessName} />
+        <NewItemForm email={email} tagName={tagName} businessName={businessName} />
       </Popover>
     </Container>
   );
