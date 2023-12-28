@@ -216,10 +216,9 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = ({  tagName,businessName }) => {
-
+const InventoryTable = ({ email, tagName,businessName }) => {
+  console.log('table props:',email && email)
   const { employees, isLoading } = useSelector((state) => state.employees);
-  console.log('table props:',tagName,businessName ,employees )
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
