@@ -235,6 +235,8 @@ const InventoryTable = ({ email, tagName,businessName }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
+
+    console.log(email, tagName)
     // Assuming getAllInventoryEachPoint is an async thunk
     dispatch(getAllInventoryEachPoint({ email, tagName }));
   }, [dispatch, email, tagName]);
