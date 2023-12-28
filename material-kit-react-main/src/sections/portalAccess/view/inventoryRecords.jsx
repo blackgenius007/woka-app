@@ -25,7 +25,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function InventoryDialog({open, close,employeeNumber, tagName ,email,businessName}) {
- 
+ console.log('inventoryRecords',businessName,tagName)
 
 
   return (
