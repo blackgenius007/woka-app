@@ -17,7 +17,7 @@ import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import Table from './table';
+import InventoryTable from './table';
 import{getAllInventoryEachPoint} from 'src/Services/ProcureServices/inventorySlice';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -73,7 +73,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
          <br/>
          <br/>
         
-        <Table email={email} tagName={tagName} businessName={businessName} />
+        <InventoryTable email={email} tagName={tagName} businessName={businessName} />
     
       </Dialog>
     </React.Fragment>
