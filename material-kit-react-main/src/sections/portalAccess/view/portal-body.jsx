@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TaxCalculator from 'src/sections/employeeDetail/view/taxCalculator';
 import { retrieveEmployeeById } from 'src/Services/HR-Services/employeeSlice';
 import Swal from 'sweetalert2';
+import LoaderBalls from 'src/utils/loaders'
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import InventoryRecords from './inventoryRecords';
 import {
@@ -44,6 +45,8 @@ const EmployeePortal = () => {
   const { employees, isLoading } = useSelector((state) => state.employees);
   //Access the portalCode from the Redux store
   const portalCode = useSelector((state) => state.auth.employeeCode.portalCode);
+  // portal Access lifeCycle
+  const authPortalAccessStatus = useSelector((state) => state.authPortalAccess.status);
   const { isError, message } = useSelector((state) => state.employees);
   // Access data point properties
   const dataAuth = useSelector((state) => state.employees.DataAuth);
@@ -178,7 +181,12 @@ const EmployeePortal = () => {
 
     fetchData();
   }, [dispatch, portalCode]);
-  console.log();
+
+ // Check the loading status and show a loader if it's still pending
+ if (authPortalAccessStatus === 'pending') {
+  return <LoaderBalls />;
+}
+
   useEffect(() => {
     // Check if there is an error and show a SweetAlert
     if (isError) {
@@ -493,7 +501,7 @@ const EmployeePortal = () => {
             <InventoryRecords
               open={inventoryOpen}
               close={handleInventoryClose}
-              email={ownerEmail}
+              // email={ownerEmail}
               tagName={tagName}
               employeeNumber={employeeNumber}
               businessName={businessName}
