@@ -153,9 +153,9 @@ exports.getAllInventory = asyncHandler(async (req, res, next) => {
 
 exports.getAllInventoryEachPoint = asyncHandler(async (req, res, next) => {
   try {
-    const{email,tagName}  = req.params ;
-  
-    console.log("from inventory-frontend =>", email, tagName);
+    const { email, tagName } = req.params;
+
+    console.log("Request Params =>", email, tagName);
 
     // Use $elemMatch to filter based on the tagName within collectionPointDetails
     const inventory = await Inventory.find({
@@ -163,9 +163,11 @@ exports.getAllInventoryEachPoint = asyncHandler(async (req, res, next) => {
       "collectionPointDetails.tagName": tagName,
     }).exec();
 
+    console.log("Found Inventory:", inventory);
+
     res.json(inventory);
   } catch (error) {
-    console.error(error);
+    console.error("Error in getAllInventoryEachPoint:", error);
     res.status(500).send("Internal Server Error");
   }
 });
