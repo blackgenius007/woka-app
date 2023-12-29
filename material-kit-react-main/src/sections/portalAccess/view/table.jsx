@@ -612,13 +612,30 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   onClick={() => handleAddChange(selectedUpdate, selectedQty)}
   style={{ color: '#26a69a' }}
 >
-<Icon icon="icon-park:add" color="white" width="32" height="32" rotate={3} />
+<Icon icon="ph:truck-thin" color="purple" width="32" height="32" />
 </IconButton>
         </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>
-          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
-          Delete
+        <input
+  type="number"
+  style={{
+    width: '50px',
+    padding: '5px',
+    border: 'none',
+    borderBottom: '1px solid #ddd',
+    background: '#333', // Darker background color
+    color: 'white',
+  }}
+  value={rowInputValues[selectedUpdate]?.add || ''}
+  onChange={(e) => handleAddInputChange(selectedUpdate, e.target.value)}
+/>
+<IconButton
+  onClick={() => handleAddChange(selectedUpdate, selectedQty)}
+  style={{ color: '#26a69a' }}
+>
+<Icon icon="game-icons:hand-truck" color="purple" width="32" height="32" />
+</IconButton>
         </MenuItem>
       </Popover>
     </>
