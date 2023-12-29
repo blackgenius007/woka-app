@@ -28,6 +28,7 @@ import { Typography, Chip, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
+import { Icon } from '@iconify/react';
 import CloseIcon from '@mui/icons-material/Close';
 import NewItemForm from './newItemForm';
 import PropTypes from 'prop-types';
@@ -611,20 +612,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   onClick={() => handleAddChange(selectedUpdate, selectedQty)}
   style={{ color: '#26a69a' }}
 >
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    class="icon icon-tabler icon-tabler-plus"
-    width="15"
-    height="15"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
-    stroke="#26a69a"
-    fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    +
-  </svg>
+<Icon icon="icon-park:add" color="white" width="32" height="32" rotate={3} />
 </IconButton>
         </MenuItem>
 
