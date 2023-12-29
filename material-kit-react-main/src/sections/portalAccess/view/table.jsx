@@ -237,19 +237,16 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  
-//function to open Popover
-const handleOpenMenu = (event,itemId) => {
-  setOpen(event.currentTarget);
-  setSelectedUpdate(itemId)
-};
-// function to close Popover
-const handleCloseMenu = () => {
-  setOpen(null);
-};
 
-
-
+  //function to open Popover
+  const handleOpenMenu = (event, itemId) => {
+    setOpen(event.currentTarget);
+    setSelectedUpdate(itemId);
+  };
+  // function to close Popover
+  const handleCloseMenu = () => {
+    setOpen(null);
+  };
 
   // function to fetch all inventory
   useEffect(() => {
@@ -388,7 +385,6 @@ const handleCloseMenu = () => {
       ></div>
       <br />
       <label>
-        
         {exportMode ? (
           <>
             {/* Cancel button with Clear icon */}
@@ -436,7 +432,6 @@ const handleCloseMenu = () => {
       <div style={futuristicStyles.tableContainer}>
         <table style={futuristicStyles.table}>
           <thead style={futuristicStyles.tableHead}>
-       
             <tr>
               <th style={futuristicStyles.tableHeadCell}>Item image</th>
               <th style={futuristicStyles.tableHeadCell}>Item</th>
@@ -453,7 +448,6 @@ const handleCloseMenu = () => {
           </thead>
           <tbody>
             {paginatedRows.map((row) => {
-            
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
                   {exportMode === 1 ? (
@@ -464,16 +458,10 @@ const handleCloseMenu = () => {
                     </td>
                   )}
 
-                  <td style={futuristicStyles.tableBodyCell}>
-                  
-                    
-                      {row.itemName}
-                    
-                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.itemName}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
                     <Link
-                       
                       style={{
                         color: '#ffff',
                         textDecoration: 'none',
@@ -484,30 +472,18 @@ const handleCloseMenu = () => {
                     </Link>
                   </td>
 
-                  <td style={futuristicStyles.tableBodyCell}>
-                    { row.category}
-                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.category}</td>
+
+                  <td style={futuristicStyles.tableBodyCell}>{row.description}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.tagName}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.stock}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.price)}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.updatedAt}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    {row.description}
-                  </td>
-                  <td style={futuristicStyles.tableBodyCell}>
-                    {row.tagName}
-                  </td>
-                  <td style={futuristicStyles.tableBodyCell}>
-                    {row.stock}
-                  </td>
-                  <td style={futuristicStyles.tableBodyCell}>
-                    {fNumber(row.price)}
-                  </td>
-                  <td style={futuristicStyles.tableBodyCell}>
-                    {row.updatedAt}
-                  </td>
-
-                  <td style={futuristicStyles.tableBodyCell}>
-                  <IconButton onClick={(event)=>handleOpenMenu(event,row._id)}>
-                        <Iconify icon="eva:more-vertical-fill" />
-                      </IconButton>
+                    <IconButton>
+                      <Iconify icon="eva:more-vertical-fill" />
+                    </IconButton>
                     {/* <input
                       type="number"
                       style={{
@@ -578,8 +554,6 @@ const handleCloseMenu = () => {
                 </tr>
               );
             })}
-
-            
           </tbody>
         </table>
       </div>
@@ -614,45 +588,44 @@ const handleCloseMenu = () => {
           sx: { width: 140 },
         }}
       >
-       
-        <MenuItem  >
+        <MenuItem>
           {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit */}
           <input
-                      type="number"
-                      style={{
-                        width: '50px',
-                        padding: '5px',
-                        border: 'none',
-                        borderBottom: '1px solid #ddd',
-                        background: 'transparent',
-                        color: 'white',
-                      }}
-                      value={rowInputValues[row._id]?.add || ''}
-                      onChange={(e) => handleAddInputChange(row._id, e.target.value)}
-                    />
-                    <IconButton
-                      onClick={() => handleAddChange(row._id, row.quantity)}
-                      style={{ color: '#26a69a' }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-plus"
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="#26a69a"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        +
-                      </svg>
-                    </IconButton>
+            type="number"
+            style={{
+              width: '50px',
+              padding: '5px',
+              border: 'none',
+              borderBottom: '1px solid #ddd',
+              background: 'transparent',
+              color: 'white',
+            }}
+            value={rowInputValues[row._id]?.add || ''}
+            onChange={(e) => handleAddInputChange(row._id, e.target.value)}
+          />
+          <IconButton
+            onClick={() => handleAddChange(row._id, row.quantity)}
+            style={{ color: '#26a69a' }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-plus"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#26a69a"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              +
+            </svg>
+          </IconButton>
         </MenuItem>
 
-        <MenuItem  sx={{ color: 'error.main' }}>
+        <MenuItem sx={{ color: 'error.main' }}>
           <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
           Delete
         </MenuItem>
@@ -718,6 +691,5 @@ export default function MainPage({ email, tagName, businessName }) {
         <NewItemForm email={email} tagName={tagName} businessName={businessName} />
       </Popover>
     </Container>
- 
   );
 }
