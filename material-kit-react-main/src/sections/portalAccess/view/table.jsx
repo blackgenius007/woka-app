@@ -505,7 +505,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                   <td style={futuristicStyles.tableBodyCell}>
 
                   
-                      <IconButton onClick={(event)=>handleOpenMenu(event,row._id)}>
+                      <IconButton>
                         <Iconify icon="eva:more-vertical-fill" />
                       </IconButton>
                    
