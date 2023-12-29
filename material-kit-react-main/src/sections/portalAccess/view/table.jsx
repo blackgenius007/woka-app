@@ -446,14 +446,11 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                     </td>
                   )}
 
-                  <td style={futuristicStyles.tableBodyRow}>
-                    <Link
-                 
-                      style={{ textDecoration: 'none', color: 'white' }}
-                    >
-                      {' '}
+                  <td style={futuristicStyles.tableBodyCell}>
+                  
+                    
                       {row.itemName}
-                    </Link>{' '}
+                    
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
@@ -514,7 +511,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                         height="15"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
-                        stroke="#26a69a"
+                        stroke="#fffff"
                         fill="none"
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -548,7 +545,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                         height="15"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
-                        stroke="#e57373"
+                        stroke="#fffff"
                         fill="none"
                         stroke-linecap="round"
                         stroke-linejoin="round"
