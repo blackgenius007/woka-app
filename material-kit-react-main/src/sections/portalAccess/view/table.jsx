@@ -605,14 +605,15 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     background: '#333', // Darker background color
     color: 'white',
   }}
-  value={rowInputValues[selectedUpdate]?.add || ''}
-  onChange={(e) => handleAddInputChange(selectedUpdate, e.target.value)}
+  value={rowInputValues[row._id]?.minus || ''}
+  onChange={(e) => handleMinusInputChange(row._id, e.target.value)}
 />
 <IconButton
   onClick={() => handleAddChange(selectedUpdate, selectedQty)}
   style={{ color: '#26a69a' }}
 >
-<Icon icon="ph:truck-thin" color="purple" width="32" height="32" />
+<Icon icon="game-icons:hand-truck" color="purple" width="32" height="32" />
+
 </IconButton>
         </MenuItem>
 
@@ -634,7 +635,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   onClick={() => handleAddChange(selectedUpdate, selectedQty)}
   style={{ color: '#26a69a' }}
 >
-<Icon icon="game-icons:hand-truck" color="purple" width="32" height="32" />
+<Icon icon="ph:truck-thin" color="purple" width="32" height="32" />
 </IconButton>
         </MenuItem>
       </Popover>
