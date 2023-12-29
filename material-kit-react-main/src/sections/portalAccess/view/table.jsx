@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Iconify from 'src/components/iconify';
 import TextField from '@mui/material/TextField';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
@@ -13,7 +14,7 @@ import { getAllInventoryEachPoint } from 'src/Services/ProcureServices/inventory
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
-
+import IconButton from '@mui/material/IconButton';
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -480,14 +481,20 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                     {row.stock}
                   </td>
                   <td style={futuristicStyles.tableBodyCell}>
-                    {row.price}
+                    {fNumber(row.price)}
                   </td>
                   <td style={futuristicStyles.tableBodyCell}>
                     {row.updatedAt}
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    <input
+
+                  
+                      <IconButton onClick={(event)=>handleOpenMenu(event,row._id)}>
+                        <Iconify icon="eva:more-vertical-fill" />
+                      </IconButton>
+                   
+                    {/* <input
                       type="number"
                       style={{
                         width: '50px',
@@ -511,7 +518,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                         height="15"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
-                        stroke="#fffff"
+                        stroke="#26a69a"
                         fill="none"
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -545,14 +552,14 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                         height="15"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
-                        stroke="#fffff"
+                        stroke="#e57373"
                         fill="none"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       >
                         -
                       </svg>
-                    </IconButton>
+                    </IconButton> */}
                   </td>
                 </tr>
               );
@@ -583,6 +590,27 @@ const InventoryTable = ({ email, tagName, businessName }) => {
           <ChevronRight />
         </IconButton>
       </div>
+      <Popover
+        open={!!open}
+        anchorEl={open}
+        onClose={handleCloseMenu}
+        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        PaperProps={{
+          sx: { width: 140 },
+        }}
+      >
+       
+        <MenuItem onClick={handleEdit}>
+          <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
+          Edit
+        </MenuItem>
+
+        <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
+          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
+          Delete
+        </MenuItem>
+      </Popover>
     </>
   );
 };
@@ -644,5 +672,6 @@ export default function MainPage({ email, tagName, businessName }) {
         <NewItemForm email={email} tagName={tagName} businessName={businessName} />
       </Popover>
     </Container>
+ 
   );
 }
