@@ -636,7 +636,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
             onClick={() => handleAddChange(selectedUpdate, selectedQTY)}
             style={{ color: '#26a69a' }}
           >
-            <Icon icon="ph:truck-thin" color="purple" width="32" height="32" />
+           <Icon icon="fluent-emoji-flat:delivery-truck" color="purple" width="32" height="32" />
       
           </IconButton>
         </MenuItem>
