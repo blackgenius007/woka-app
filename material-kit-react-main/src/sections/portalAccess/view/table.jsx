@@ -230,6 +230,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [rowInputValues, setRowInputValues] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedUpdate, setSelectedUpdate] = useState(null);
+  const [selectedQTY, setSelectedQTY] = useState(null);
   const [open, setOpen] = useState(false);
   // const [openAction, setOpenAction] = useState(false);
   const [exportMode, setExportMode] = useState(0);
@@ -238,10 +239,12 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+
   //function to open Popover
-  const handleOpenMenu = (event, itemId) => {
+  const handleOpenMenu = (event, itemId, itemquantity) => {
     setOpen(event.currentTarget);
     setSelectedUpdate(itemId);
+    setSelectedQTY(itemquantity)
   };
   // function to close Popover
   const handleCloseMenu = () => {
@@ -481,7 +484,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                   <td style={futuristicStyles.tableBodyCell}>{row.updatedAt}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    <IconButton>
+                    <IconButton onClick={(event) => handleOpenMenu(event, row._id,row.stock)}>
                       <Iconify icon="eva:more-vertical-fill" />
                     </IconButton>
                     {/* <input
@@ -601,11 +604,11 @@ const InventoryTable = ({ email, tagName, businessName }) => {
               background: 'transparent',
               color: 'white',
             }}
-            value={rowInputValues[row._id]?.add || ''}
-            onChange={(e) => handleAddInputChange(row._id, e.target.value)}
+            value={rowInputValues[selectedUpdate]?.add || ''}
+            onChange={(e) => handleAddInputChange(selectedUpdate, e.target.value)}
           />
           <IconButton
-            onClick={() => handleAddChange(row._id, row.quantity)}
+            onClick={() => handleAddChange(selectedUpdate,selectedQty )}
             style={{ color: '#26a69a' }}
           >
             <svg
