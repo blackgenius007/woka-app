@@ -2,20 +2,18 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Iconify from 'src/components/iconify';
-import { Icon } from '@iconify/react';
 import TextField from '@mui/material/TextField';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
+import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 import Container from '@mui/material/Container';
-import MenuItem from '@mui/material/MenuItem';
 import moment from 'moment';
 import { getAllInventoryEachPoint } from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
-import IconButton from '@mui/material/IconButton';
+
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -27,6 +25,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { PersonOutline } from '@mui/icons-material';
 import { Typography, Chip, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import NewItemForm from './newItemForm';
@@ -234,21 +233,6 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [openAction, setOpenAction] = useState(null);
-
-//function to open Popover
-  const handleOpenMenu = (event,employeeId) => {
-    setOpenAction(event.currentTarget);
-    // setSelectedUpdate(employeeId)
-  };
-// function to close Popover
-  const handleCloseMenu = () => {
-    setOpenAction(null);
-  };
-
-
-
-
   // function to fetch all inventory
   useEffect(() => {
     // Assuming getAllInventoryEachPoint is an async thunk
@@ -503,13 +487,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-
-                  
-                      <IconButton>
-                        <Iconify icon="eva:more-vertical-fill" />
-                      </IconButton>
-                   
-                    {/* <input
+                    <input
                       type="number"
                       style={{
                         width: '50px',
@@ -574,7 +552,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                       >
                         -
                       </svg>
-                    </IconButton> */}
+                    </IconButton>
                   </td>
                 </tr>
               );
@@ -616,39 +594,14 @@ const InventoryTable = ({ email, tagName, businessName }) => {
         }}
       >
        
-        <MenuItem >
-          {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} /> */}
-          <Icon icon="gridicons:add" color="white" width="32" height="32" rotate={3} />
-          <input
-                      type="number"
-                      style={{
-                        width: '50px',
-                        padding: '5px',
-                        border: 'none',
-                        borderBottom: '1px solid #ddd',
-                        background: 'transparent',
-                        color: 'white',
-                      }}
-                      value={rowInputValues[row._id]?.add || ''}
-                      onChange={(e) => handleAddInputChange(row._id, e.target.value)}
-                    />
+        <MenuItem onClick={handleEdit}>
+          <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
+          Edit
         </MenuItem>
 
         <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
-        <Icon icon="carbon:subtract-filled" color="white" />
-        <input
-                      type="number"
-                      style={{
-                        width: '50px',
-                        padding: '5px',
-                        border: 'none',
-                        borderBottom: '1px solid #ddd',
-                        background: 'transparent',
-                        color: 'white',
-                      }}
-                      value={rowInputValues[row._id]?.minus || ''}
-                      onChange={(e) => handleMinusInputChange(row._id, e.target.value)}
-                    />
+          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
+          Delete
         </MenuItem>
       </Popover>
     </>
