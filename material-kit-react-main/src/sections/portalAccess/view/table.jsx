@@ -615,7 +615,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
         }}
       >
        
-        <MenuItem onClick={handleEdit}>
+        <MenuItem >
           {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} /> */}
           <Icon icon="gridicons:add" color="white" width="32" height="32" rotate={3} />
           <input
