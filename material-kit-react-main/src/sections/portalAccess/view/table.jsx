@@ -480,7 +480,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                     {row.stock}
                   </td>
                   <td style={futuristicStyles.tableBodyCell}>
-                    {row.price}
+                    {fNumber(row.price)}
                   </td>
                   <td style={futuristicStyles.tableBodyCell}>
                     {row.updatedAt}
