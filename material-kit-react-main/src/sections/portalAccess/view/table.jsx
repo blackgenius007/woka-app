@@ -596,6 +596,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
           Edit */}
           <input
             type="number"
+            placeholder='Out'
             style={{
               width: '50px',
               padding: '5px',
@@ -612,15 +613,14 @@ const InventoryTable = ({ email, tagName, businessName }) => {
             style={{ color: '#26a69a' }}
           >
             <Icon icon="game-icons:hand-truck" color="purple" width="32" height="32" />
-            <span style={{ marginLeft: '5px', fontSize: '10px', color: 'grey' }}>
-              Re-stock item{' '}
-            </span>
+         
           </IconButton>
         </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>
           <input
             type="number"
+            placeholder='In'
             style={{
               width: '50px',
               padding: '5px',
@@ -637,9 +637,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
             style={{ color: '#26a69a' }}
           >
             <Icon icon="ph:truck-thin" color="purple" width="32" height="32" />
-            <span style={{ marginLeft: '5px', fontSize: '12px', color: 'grey' }}>
-              Outgoing item
-            </span>
+      
           </IconButton>
         </MenuItem>
       </Popover>
