@@ -480,7 +480,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                     {row.stock}
                   </td>
                   <td style={futuristicStyles.tableBodyCell}>
-                    {fNumber(row.price)}
+                    {row.price}
                   </td>
                   <td style={futuristicStyles.tableBodyCell}>
                     {row.updatedAt}
@@ -586,7 +586,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       <Popover
         open={!!open}
         anchorEl={open}
-        onClose={handleCloseMenu}
+        // onClose={handleCloseMenu}
         anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         PaperProps={{
@@ -594,12 +594,12 @@ const InventoryTable = ({ email, tagName, businessName }) => {
         }}
       >
        
-        <MenuItem onClick={handleEdit}>
+        <MenuItem  >
           <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit
         </MenuItem>
 
-        <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
+        <MenuItem  sx={{ color: 'error.main' }}>
           <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
           Delete
         </MenuItem>
