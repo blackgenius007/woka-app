@@ -452,7 +452,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                       style={{ textDecoration: 'none', color: 'white' }}
                     >
                       {' '}
-                      {itemName}
+                      {row.itemName}
                     </Link>{' '}
                   </td>
 
