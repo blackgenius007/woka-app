@@ -430,8 +430,8 @@ const InventoryTable = ({ email, tagName, businessName }) => {
               <th style={futuristicStyles.tableHeadCell}>Stock</th>
               <th style={futuristicStyles.tableHeadCell}>Unit Price</th>
               <th style={futuristicStyles.tableHeadCell}>Modified</th>
-              <th style={futuristicStyles.tableHeadCell}>Re-stock</th>
-              <th style={futuristicStyles.tableHeadCell}>Out-going</th>
+              <th style={futuristicStyles.tableHeadCell}>Re-stock/Outgoing</th>
+              {/* <th style={futuristicStyles.tableHeadCell}>Out-going</th> */}
             </tr>
           </thead>
           <tbody>
