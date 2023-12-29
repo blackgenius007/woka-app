@@ -218,7 +218,6 @@ BootstrapDialogTitle.propTypes = {
 
 const InventoryTable = ({ email, tagName, businessName }) => {
   console.log('table props:', email, tagName, businessName);
-  const { employees, isLoading } = useSelector((state) => state.employees);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -231,27 +230,18 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [open, setOpen] = useState(false);
   const [exportMode, setExportMode] = useState(0);
 
-  let totalRemunerationForAll = 0;
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
+  // function to fetch all inventory
   useEffect(() => {
     // Assuming getAllInventoryEachPoint is an async thunk
     dispatch(getAllInventoryEachPoint({ email, tagName }));
   }, [dispatch, email, tagName]);
 
-  const { attendance } = useSelector((state) => state.employees);
-  // Accessing inventory data from the Redux store
-  const inventoryData = useSelector((state) => state.inventory);
+  // Accessing the 'inventory' property from the Redux state
+  const { inventory, isLoading, isError } = useSelector((state) => state.inventory);
 
-  console.log('INVENTORY=>', inventoryData);
-
-  // Function to trigger financial data calculation
-  const calculateFinancialData = (employeeId, grossIncome, country) => {
-    console.log('front-calculateFinancialData:', employeeId, grossIncome, country);
-    dispatch(calculateTaxAsync({ employeeId, grossIncome, country }));
-  };
   // search function
   const requestSearch = (searchedVal) => {
     setSearched(searchedVal);
@@ -287,13 +277,10 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     }
   };
 
-  const filteredRows =
-    inventoryData &&
-    inventoryData.filter((row) =>
-      Object.values(row).some((value) =>
-        String(value).toLowerCase().includes(searched.toLowerCase())
-      )
-    ); // Further filter by search term
+  // Filter the inventory array based on the search term
+  const filteredRows = inventory.filter((row) =>
+    Object.values(row).some((value) => String(value).toLowerCase().includes(searched.toLowerCase()))
+  );
 
   const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
   const startIndex = page * rowsPerPage;
@@ -383,36 +370,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       ></div>
       <br />
       <label>
-        {/* <IconButton>
-          <Popup
-            trigger={
-              <Link>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-checkup-list"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#9e9e9e"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                  <rect x="9" y="3" width="6" height="4" rx="2" />
-                  <path d="M9 14h.01" />
-                  <path d="M9 17h.01" />
-                  <path d="M12 16l1 1l3 -3" />
-                </svg>
-              </Link>
-            }
-            position="bottom center"
-          >
-            Out of stock
-          </Popup>
-        </IconButton> */}
+        
         {exportMode ? (
           <>
             {/* Cancel button with Clear icon */}
@@ -460,15 +418,16 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       <div style={futuristicStyles.tableContainer}>
         <table style={futuristicStyles.table}>
           <thead style={futuristicStyles.tableHead}>
+       
             <tr>
               <th style={futuristicStyles.tableHeadCell}>Item image</th>
               <th style={futuristicStyles.tableHeadCell}>Item</th>
+              <th style={futuristicStyles.tableHeadCell}>SKU Number</th>
               <th style={futuristicStyles.tableHeadCell}>Category</th>
-              <th style={futuristicStyles.tableHeadCell}>Location</th>
               <th style={futuristicStyles.tableHeadCell}>Description</th>
-              <th style={futuristicStyles.tableHeadCell}>Supplier</th>
-              <th style={futuristicStyles.tableHeadCell}>Price</th>
-              <th style={futuristicStyles.tableHeadCell}>Quantity</th>
+              <th style={futuristicStyles.tableHeadCell}>Location</th>
+              <th style={futuristicStyles.tableHeadCell}>Stock</th>
+              <th style={futuristicStyles.tableHeadCell}>Unit Price</th>
               <th style={futuristicStyles.tableHeadCell}>Modified</th>
               <th style={futuristicStyles.tableHeadCell}>Re-stock</th>
               <th style={futuristicStyles.tableHeadCell}>Out-going</th>
@@ -476,42 +435,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
           </thead>
           <tbody>
             {paginatedRows.map((row) => {
-              console.log('in-map:', row);
-              const { _id, employeeName, designation } = row;
-              const { grossIncome, country } = designation;
-              const employeeFinancialData = financialData[_id];
-
-              // Calculate financial data if not available
-              if (!employeeFinancialData) {
-                calculateFinancialData(_id, grossIncome, country);
-                return null; // Render nothing for now, will be updated on next render
-              }
-              console.log(employeeFinancialData);
-              // Calculate financial data if not available
-              if (!employeeFinancialData) {
-                calculateFinancialData(_id, grossIncome, country);
-                return null; // Render nothing for now, will be updated on next render
-              }
-              console.log(employeeFinancialData);
-
-              // Calculate Total Remuneration
-              const monthlyRate = employeeFinancialData.monthlySalary;
-              const totalRemuneration = (
-                monthlyRate +
-                row.overtime +
-                row.allowance -
-                row.IOU
-              ).toFixed(2);
-
-              // Calculate net Remuneration
-              const netRemuneration =
-                monthlyRate +
-                parseFloat(row.overtime) +
-                parseFloat(row.allowance) -
-                parseFloat(row.IOU);
-              // Add the calculated remuneration to the total
-              totalRemunerationForAll += netRemuneration;
-              console.log('All:', totalRemunerationForAll);
+            
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
                   {exportMode === 1 ? (
@@ -524,33 +448,45 @@ const InventoryTable = ({ email, tagName, businessName }) => {
 
                   <td style={futuristicStyles.tableBodyRow}>
                     <Link
-                      to={`/employee-detail/${row._id}`}
+                 
                       style={{ textDecoration: 'none', color: 'white' }}
                     >
                       {' '}
-                      {employeeName}
+                      {itemName}
                     </Link>{' '}
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
                     <Link
-                      to={`/employee-detail/${row._id}`}
+                       
                       style={{
                         color: '#ffff',
                         textDecoration: 'none',
                         backgroundImage: 'none',
                       }}
                     >
-                      {row.designation.designation}
+                      {row.SKU}
                     </Link>
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    {fNumber(employeeFinancialData.monthlySalary)}
+                    { row.category}
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    {fNumber(row.allowance ? row.allowance : '0.00')}
+                    {row.description}
+                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>
+                    {row.tagName}
+                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>
+                    {row.stock}
+                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>
+                    {row.price}
+                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>
+                    {row.updatedAt}
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
@@ -625,14 +561,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
               );
             })}
 
-            <tr>
-              <td colSpan="8" style={{ textAlign: 'right' }}>
-                <strong>Total:</strong>
-              </td>
-              <td style={{ textAlign: 'center' }}>
-                {/* {toMoney(totalRemunerationForAll.toFixed(2)/2) } */}
-              </td>
-            </tr>
+            
           </tbody>
         </table>
       </div>
