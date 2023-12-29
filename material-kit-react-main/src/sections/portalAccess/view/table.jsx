@@ -25,7 +25,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { PersonOutline } from '@mui/icons-material';
 import { Typography, Chip, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import NewItemForm from './newItemForm';
