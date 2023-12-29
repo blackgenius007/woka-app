@@ -607,7 +607,7 @@ const handleCloseMenu = () => {
       <Popover
         open={!!open}
         anchorEl={open}
-        // onClose={handleCloseMenu}
+        onClose={handleCloseMenu}
         anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         PaperProps={{
@@ -616,8 +616,40 @@ const handleCloseMenu = () => {
       >
        
         <MenuItem  >
-          <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
-          Edit
+          {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
+          Edit */}
+          <input
+                      type="number"
+                      style={{
+                        width: '50px',
+                        padding: '5px',
+                        border: 'none',
+                        borderBottom: '1px solid #ddd',
+                        background: 'transparent',
+                        color: 'white',
+                      }}
+                      value={rowInputValues[row._id]?.add || ''}
+                      onChange={(e) => handleAddInputChange(row._id, e.target.value)}
+                    />
+                    <IconButton
+                      onClick={() => handleAddChange(row._id, row.quantity)}
+                      style={{ color: '#26a69a' }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-plus"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#26a69a"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        +
+                      </svg>
+                    </IconButton>
         </MenuItem>
 
         <MenuItem  sx={{ color: 'error.main' }}>
