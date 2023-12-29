@@ -240,12 +240,11 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-
   //function to open Popover
   const handleOpenMenu = (event, itemId, itemquantity) => {
     setOpen(event.currentTarget);
     setSelectedUpdate(itemId);
-    setSelectedQTY(itemquantity)
+    setSelectedQTY(itemquantity);
   };
   // function to close Popover
   const handleCloseMenu = () => {
@@ -485,7 +484,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                   <td style={futuristicStyles.tableBodyCell}>{row.updatedAt}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    <IconButton onClick={(event) => handleOpenMenu(event, row._id,row.stock)}>
+                    <IconButton onClick={(event) => handleOpenMenu(event, row._id, row.stock)}>
                       <Iconify icon="eva:more-vertical-fill" />
                     </IconButton>
                     {/* <input
@@ -596,47 +595,52 @@ const InventoryTable = ({ email, tagName, businessName }) => {
           {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit */}
           <input
-  type="number"
-  style={{
-    width: '50px',
-    padding: '5px',
-    border: 'none',
-    borderBottom: '1px solid #ddd',
-    background: '#333', // Darker background color
-    color: 'white',
-  }}
-  value={rowInputValues[selectedUpdate]?.minus || ''}
-  onChange={(e) => handleMinusInputChange(selectedUpdate, e.target.value)}
-/>
-<IconButton
-  onClick={() => handleAddChange(selectedUpdate, selectedQTY)}
-  style={{ color: '#26a69a' }}
->
-<Icon icon="game-icons:hand-truck" color="purple" width="32" height="32" />
-
-</IconButton>
+            type="number"
+            style={{
+              width: '50px',
+              padding: '5px',
+              border: 'none',
+              borderBottom: '1px solid #ddd',
+              background: '#333', // Darker background color
+              color: 'white',
+            }}
+            value={rowInputValues[selectedUpdate]?.minus || ''}
+            onChange={(e) => handleMinusInputChange(selectedUpdate, e.target.value)}
+          />
+          <IconButton
+            onClick={() => handleAddChange(selectedUpdate, selectedQTY)}
+            style={{ color: '#26a69a' }}
+          >
+            <Icon icon="game-icons:hand-truck" color="purple" width="32" height="32" />
+            <span style={{ marginLeft: '5px', fontSize: '10px', color: 'grey' }}>
+              Re-stock item{' '}
+            </span>
+          </IconButton>
         </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>
-        <input
-  type="number"
-  style={{
-    width: '50px',
-    padding: '5px',
-    border: 'none',
-    borderBottom: '1px solid #ddd',
-    background: '#333', // Darker background color
-    color: 'white',
-  }}
-  value={rowInputValues[selectedUpdate]?.add || ''}
-  onChange={(e) => handleAddInputChange(selectedUpdate, e.target.value)}
-/>
-<IconButton
-  onClick={() => handleAddChange(selectedUpdate, selectedQTY)}
-  style={{ color: '#26a69a' }}
->
-<Icon icon="ph:truck-thin" color="purple" width="32" height="32" />
-</IconButton>
+          <input
+            type="number"
+            style={{
+              width: '50px',
+              padding: '5px',
+              border: 'none',
+              borderBottom: '1px solid #ddd',
+              background: '#333', // Darker background color
+              color: 'white',
+            }}
+            value={rowInputValues[selectedUpdate]?.add || ''}
+            onChange={(e) => handleAddInputChange(selectedUpdate, e.target.value)}
+          />
+          <IconButton
+            onClick={() => handleAddChange(selectedUpdate, selectedQTY)}
+            style={{ color: '#26a69a' }}
+          >
+            <Icon icon="ph:truck-thin" color="purple" width="32" height="32" />
+            <span style={{ marginLeft: '5px', fontSize: '12px', color: 'grey' }}>
+              Outgoing item
+            </span>
+          </IconButton>
         </MenuItem>
       </Popover>
     </>
