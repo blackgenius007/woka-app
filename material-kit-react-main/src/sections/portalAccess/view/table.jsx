@@ -228,12 +228,29 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [input, setInput] = useState(0);
   const [minus, setMinus] = useState(0);
   const [rowInputValues, setRowInputValues] = useState({});
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedUpdate, setSelectedUpdate] = useState(null);
   const [open, setOpen] = useState(false);
+  // const [openAction, setOpenAction] = useState(false);
   const [exportMode, setExportMode] = useState(0);
 
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  
+//function to open Popover
+const handleOpenMenu = (event,itemId) => {
+  setOpen(event.currentTarget);
+  setSelectedUpdate(itemId)
+};
+// function to close Popover
+const handleCloseMenu = () => {
+  setOpen(null);
+};
+
+
+
+
   // function to fetch all inventory
   useEffect(() => {
     // Assuming getAllInventoryEachPoint is an async thunk
@@ -488,7 +505,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                  <IconButton >
+                  <IconButton onClick={(event)=>handleOpenMenu(event,row._id)}>
                         <Iconify icon="eva:more-vertical-fill" />
                       </IconButton>
                     {/* <input
