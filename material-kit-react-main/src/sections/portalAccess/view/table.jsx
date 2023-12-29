@@ -595,37 +595,37 @@ const InventoryTable = ({ email, tagName, businessName }) => {
           {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit */}
           <input
-            type="number"
-            style={{
-              width: '50px',
-              padding: '5px',
-              border: 'none',
-              borderBottom: '1px solid #ddd',
-              background: 'transparent',
-              color: 'white',
-            }}
-            value={rowInputValues[selectedUpdate]?.add || ''}
-            onChange={(e) => handleAddInputChange(selectedUpdate, e.target.value)}
-          />
-          <IconButton
-            onClick={() => handleAddChange(selectedUpdate,selectedQty )}
-            style={{ color: '#26a69a' }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-plus"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#26a69a"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              +
-            </svg>
-          </IconButton>
+  type="number"
+  style={{
+    width: '50px',
+    padding: '5px',
+    border: 'none',
+    borderBottom: '1px solid #ddd',
+    background: '#333', // Darker background color
+    color: 'white',
+  }}
+  value={rowInputValues[selectedUpdate]?.add || ''}
+  onChange={(e) => handleAddInputChange(selectedUpdate, e.target.value)}
+/>
+<IconButton
+  onClick={() => handleAddChange(selectedUpdate, selectedQty)}
+  style={{ color: '#26a69a' }}
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="icon icon-tabler icon-tabler-plus"
+    width="15"
+    height="15"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="#26a69a"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    +
+  </svg>
+</IconButton>
         </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>
