@@ -232,6 +232,21 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [openAction, setOpenAction] = useState(null);
+
+//function to open Popover
+  const handleOpenMenu = (event,employeeId) => {
+    setOpenAction(event.currentTarget);
+    // setSelectedUpdate(employeeId)
+  };
+// function to close Popover
+  const handleCloseMenu = () => {
+    setOpenAction(null);
+  };
+
+
+
+
   // function to fetch all inventory
   useEffect(() => {
     // Assuming getAllInventoryEachPoint is an async thunk
@@ -600,13 +615,38 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       >
        
         <MenuItem onClick={handleEdit}>
-          <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
-          Edit
+          {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} /> */}
+          <Icon icon="gridicons:add" color="white" width="32" height="32" rotate={3} />
+          <input
+                      type="number"
+                      style={{
+                        width: '50px',
+                        padding: '5px',
+                        border: 'none',
+                        borderBottom: '1px solid #ddd',
+                        background: 'transparent',
+                        color: 'white',
+                      }}
+                      value={rowInputValues[row._id]?.add || ''}
+                      onChange={(e) => handleAddInputChange(row._id, e.target.value)}
+                    />
         </MenuItem>
 
         <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
-          <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
-          Delete
+        <Icon icon="carbon:subtract-filled" color="white" />
+        <input
+                      type="number"
+                      style={{
+                        width: '50px',
+                        padding: '5px',
+                        border: 'none',
+                        borderBottom: '1px solid #ddd',
+                        background: 'transparent',
+                        color: 'white',
+                      }}
+                      value={rowInputValues[row._id]?.minus || ''}
+                      onChange={(e) => handleMinusInputChange(row._id, e.target.value)}
+                    />
         </MenuItem>
       </Popover>
     </>
