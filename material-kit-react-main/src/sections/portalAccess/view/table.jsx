@@ -488,7 +488,10 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                   </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    <input
+                  <IconButton >
+                        <Iconify icon="eva:more-vertical-fill" />
+                      </IconButton>
+                    {/* <input
                       type="number"
                       style={{
                         width: '50px',
@@ -553,7 +556,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                       >
                         -
                       </svg>
-                    </IconButton>
+                    </IconButton> */}
                   </td>
                 </tr>
               );
