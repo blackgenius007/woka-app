@@ -351,8 +351,10 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
     const { id, quantity, email, nums } = req.params;
     const dirSymbol = " &#8592;";
 
-    
-    console.log("num_mod----", nums);
+    // Validate that nums is a valid number
+    if (isNaN(nums)) {
+      throw new Error('Invalid nums value');
+    }
 
     // Update inventory item
     const inventory = await Inventory.findByIdAndUpdate(
@@ -360,18 +362,40 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
       { quantity: parseInt(nums) },
       { new: true }
     );
- 
+
+    console.log(inventory.name);
+
+    // Validate that inventory quantity is a valid number
+    if (isNaN(inventory.quantity)) {
+      throw new Error('Invalid inventory quantity value');
+    }
 
     // Create a new log entry
     const newLog = new Log({
       itemName: inventory.itemName,
       description: inventory.description,
       price: parseInt(inventory.price),
-      quantity: parseInt(inventory.quantity),
-      modified_quantity:parseInt(nums) ,
+      quantity: parseInt(inventory.quantity), // Use inventory quantity here
+      modified_quantity: parseInt(nums),
       email: email,
       dirSymbol: dirSymbol,
     });
+
+    // Validate that newLog quantity is a valid number
+    if (isNaN(newLog.quantity) || isNaN(newLog.modified_quantity)) {
+      throw new Error('Invalid quantity or modified_quantity value in newLog');
+    }
+
+    // Save the log entry
+    const log = await newLog.save();
+
+    console.log("add log success");
+    res.send(inventory);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send(error.message || "Internal Server Error");
+  }
+});
 
  
     // Save the log entry
