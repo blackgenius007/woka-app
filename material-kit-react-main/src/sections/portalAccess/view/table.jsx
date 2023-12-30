@@ -284,6 +284,9 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     console.log('=================', id, rowInputValues[id]?.add);
     var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
     console.log(nums);
+    // In stock Action
+    dispatch(incomingStock({ email, id, nums, quantity  }));
+   
   };
 
   const handleSubChange = (id, quantity) => {
@@ -296,6 +299,8 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       const order = prompt('Please enter destination of item, Ex : name of location,department,project,individual e.t.c');
 
       console.log(nums, order);
+       // Out stock Action
+    dispatch(outGoingStock({ email, id, nums, quantity, order }));
     }
   };
 
