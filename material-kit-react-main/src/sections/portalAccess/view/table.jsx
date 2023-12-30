@@ -242,11 +242,11 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   //function to open Popover
-  const handleOpenMenu = (event, itemId, itemquantity,SKU) => {
+  const handleOpenMenu = (event, itemId, itemquantity, SKU) => {
     setOpen(event.currentTarget);
     setSelectedUpdate(itemId);
     setSelectedQTY(itemquantity);
-    setSelectedSKU(SKU)
+    setSelectedSKU(SKU);
   };
   // function to close Popover
   const handleCloseMenu = () => {
@@ -486,7 +486,9 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                   <td style={futuristicStyles.tableBodyCell}>{row.updatedAt}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    <IconButton onClick={(event) => handleOpenMenu(event, row._id, row.stock,row.SKU)}>
+                    <IconButton
+                      onClick={(event) => handleOpenMenu(event, row._id, row.stock, row.SKU)}
+                    >
                       <Iconify icon="eva:more-vertical-fill" />
                     </IconButton>
                     {/* <input
@@ -593,14 +595,11 @@ const InventoryTable = ({ email, tagName, businessName }) => {
           sx: { width: 140 },
         }}
       >
-         <span style={{ marginLeft: '5px', fontSize: '12px', color: 'grey' }}>{selectedSKU}</span>
+        <span style={{ marginLeft: '5px', fontSize: '12px', color: 'grey' }}>{selectedSKU}</span>
         <MenuItem>
-          {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
-          Edit */}
-          selectedSKU
           <input
             type="number"
-            placeholder='Out'
+            placeholder="Out"
             style={{
               width: '50px',
               padding: '5px',
@@ -617,14 +616,13 @@ const InventoryTable = ({ email, tagName, businessName }) => {
             style={{ color: '#26a69a' }}
           >
             <Icon icon="game-icons:hand-truck" color="purple" width="32" height="32" />
-         
           </IconButton>
         </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>
           <input
             type="number"
-            placeholder='In'
+            placeholder="In"
             style={{
               width: '50px',
               padding: '5px',
@@ -640,8 +638,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
             onClick={() => handleAddChange(selectedUpdate, selectedQTY)}
             style={{ color: '#26a69a' }}
           >
-           <Icon icon="fluent-emoji-flat:delivery-truck" color="purple" width="32" height="32" />
-      
+            <Icon icon="fluent-emoji-flat:delivery-truck" color="purple" width="32" height="32" />
           </IconButton>
         </MenuItem>
       </Popover>
