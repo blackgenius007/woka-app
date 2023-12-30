@@ -595,7 +595,8 @@ const InventoryTable = ({ email, tagName, businessName }) => {
           sx: { width: 140 },
         }}
       >
-        <span style={{ marginLeft: '5px', fontSize: '12px', color: 'grey' }}>{selectedSKU}</span>
+        <span style={{ marginLeft: '15px', fontSize: '12px', color: 'grey' }}>{selectedSKU}</span>
+        <hr/>
         <MenuItem>
           <input
             type="number"
