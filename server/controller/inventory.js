@@ -344,48 +344,47 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
 //@routes   Get/add_product/:id/:num/:quantity
 //@acess    Private
 exports.incomingStock = asyncHandler(async (req, res, next) => {
-  console.log('incomingstock values :',req.params)
-  var id = req.params.id;
-  var quantity = req.params.quantity;
-  var email = req.params.email;
-  var dirSymbol = " &#8592;";
+  try {
+    console.log('incomingstock values:', req.params);
 
-  // console.log('id----', id);
-  var num_mod = req.params.num;
-  var modified_count = parseInt(quantity) - parseInt(num_mod);
-  console.log("num_mod----", num_mod);
-  Inventory.findByIdAndUpdate(
-    id,
-    { quantity: parseInt(num_mod) },
-    { new: true },
-    function (err, inventory) {
-      if (err) {
-        console.log("err", err);
-        res.status(500).send(err);
-      } else {
-        console.log(inventory.name);
+    // Destructure parameters
+    const { id, quantity, email, nums } = req.params;
+    const dirSymbol = " &#8592;";
 
-        const newLog = new Log({
-          itemName: inventory.itemName,
-          description: inventory.description,
-          price: parseInt(inventory.price),
-          quantity: parseInt(inventory.quantity),
-          modified_quantity: parseInt(modified_count),
-          email: req.params.email,
-          dirSymbol: dirSymbol,
-        });
+    // Calculate modified count
+    const modified_count = parseInt(quantity) - parseInt(nums);
 
-        newLog.save(function (err, Log) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("add log success");
-            res.send(inventory);
-          }
-        });
-      }
-    }
-  );
+    console.log("num_mod----", nums);
+
+    // Update inventory item
+    const inventory = await Inventory.findByIdAndUpdate(
+      id,
+      { quantity: parseInt(nums) },
+      { new: true }
+    );
+
+    console.log(inventory.name);
+
+    // Create a new log entry
+    const newLog = new Log({
+      itemName: inventory.itemName,
+      description: inventory.description,
+      price: parseInt(inventory.price),
+      quantity: parseInt(inventory.quantity),
+      modified_quantity: parseInt(modified_count),
+      email: email,
+      dirSymbol: dirSymbol,
+    });
+
+    // Save the log entry
+    const log = await newLog.save();
+
+    console.log("add log success");
+    res.send(inventory);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send(error.message || "Internal Server Error");
+  }
 });
 
 // @desc Get all Inventory < 0
