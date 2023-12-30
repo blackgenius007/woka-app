@@ -281,21 +281,40 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   };
 
   const handleAddChange = (id, quantity) => {
-    console.log('=================', id,add);
-    var nums = parseInt(quantity) + parseInt(add);
+    console.log('=================', id, rowInputValues[id]?.add);
+    var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
     console.log(nums);
   };
-
+  
   const handleSubChange = (id, quantity) => {
+    const { minus } = rowInputValues[id] || { minus: 0 };
+  
     if (parseInt(quantity) - parseInt(minus) < 0) {
       alert('The input value is too high.');
     } else {
       var nums = parseInt(quantity) - parseInt(minus);
       const order = prompt('Please enter destination of item');
-
+  
       console.log(nums, order);
     }
   };
+
+  // const handleAddChange = (id, quantity) => {
+  //   console.log('=================', id,add);
+  //   var nums = parseInt(quantity) + parseInt(add);
+  //   console.log(nums);
+  // };
+
+  // const handleSubChange = (id, quantity) => {
+  //   if (parseInt(quantity) - parseInt(minus) < 0) {
+  //     alert('The input value is too high.');
+  //   } else {
+  //     var nums = parseInt(quantity) - parseInt(minus);
+  //     const order = prompt('Please enter destination of item');
+
+  //     console.log(nums, order);
+  //   }
+  // };
 
   // Filter the inventory array based on the search term
   const filteredRows = inventory.filter((row) =>
