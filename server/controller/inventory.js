@@ -341,39 +341,26 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
 });
 
 // @desc instock Inventory
-//@routes   Get/add_product/:id/:num/:quantity
-//@acess    Private
+//@routes Get/add_product/:id/:num/:quantity
+//@acess Private
 exports.incomingStock = asyncHandler(async (req, res, next) => {
   try {
     console.log('incomingstock values:', req.params);
 
     // Destructure parameters
-    const { id, quantity, email, num } = req.params;
+    const { id, quantity, email, nums } = req.params;
     const dirSymbol = " &#8592;";
 
-    // Validate that quantity and num are valid numbers
-    if (isNaN(quantity) || isNaN(num)) {
-      throw new Error('Invalid quantity or num value');
-    }
-
-    // Calculate modified count
-    const modified_count = parseInt(quantity) - parseInt(num);
-
-    console.log("num_mod----", num);
+    
+    console.log("num_mod----", nums);
 
     // Update inventory item
     const inventory = await Inventory.findByIdAndUpdate(
       id,
-      { quantity: parseInt(num) },
+      { quantity: parseInt(nums) },
       { new: true }
     );
-
-    console.log(inventory.name);
-
-    // Validate that quantity and modified_count are valid numbers
-    if (isNaN(inventory.quantity) || isNaN(modified_count)) {
-      throw new Error('Invalid quantity or modified_count value');
-    }
+ 
 
     // Create a new log entry
     const newLog = new Log({
@@ -386,11 +373,7 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
       dirSymbol: dirSymbol,
     });
 
-    // Validate that modified_quantity is a valid number
-    if (isNaN(newLog.modified_quantity)) {
-      throw new Error('Invalid modified_quantity value');
-    }
-
+ 
     // Save the log entry
     const log = await newLog.save();
 

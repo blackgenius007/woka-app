@@ -57,7 +57,7 @@ const {
   .get( outGoingStock)
 
   router
-  .route('/instock/:email/:id/:num/:quantity')
+  .route('/instock/:email/:id/:nums/:quantity')
   .get( incomingStock)
 
   router
