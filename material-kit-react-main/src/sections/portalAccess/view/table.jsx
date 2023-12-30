@@ -231,6 +231,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [rowInputValues, setRowInputValues] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedUpdate, setSelectedUpdate] = useState(null);
+  const [selectedSKU, setSelectedSKU] = useState(null);
   const [selectedQTY, setSelectedQTY] = useState(null);
   const [open, setOpen] = useState(false);
   // const [openAction, setOpenAction] = useState(false);
@@ -241,10 +242,11 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   //function to open Popover
-  const handleOpenMenu = (event, itemId, itemquantity) => {
+  const handleOpenMenu = (event, itemId, itemquantity,SKU) => {
     setOpen(event.currentTarget);
     setSelectedUpdate(itemId);
     setSelectedQTY(itemquantity);
+    setSelectedSKU(SKU)
   };
   // function to close Popover
   const handleCloseMenu = () => {
@@ -484,7 +486,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                   <td style={futuristicStyles.tableBodyCell}>{row.updatedAt}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    <IconButton onClick={(event) => handleOpenMenu(event, row._id, row.stock)}>
+                    <IconButton onClick={(event) => handleOpenMenu(event, row._id, row.stock,row.SKU)}>
                       <Iconify icon="eva:more-vertical-fill" />
                     </IconButton>
                     {/* <input
@@ -592,8 +594,8 @@ const InventoryTable = ({ email, tagName, businessName }) => {
         }}
       >
         <MenuItem>
-          {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
-          Edit */}
+        <span style={{ marginLeft: '5px', fontSize: '12px', color: 'white' }}>{selectedSKU}</span>
+          
           <input
             type="number"
             placeholder='Out'
