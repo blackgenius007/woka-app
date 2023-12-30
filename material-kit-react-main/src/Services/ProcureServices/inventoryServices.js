@@ -70,7 +70,7 @@ const getTotalCost = async (email, projectName) => {
 };
 
 // Outgoing stock
-const outGoingStock = async (email, id, num, quantity, order) => {
+const outGoingStock = async (email, id, nums, quantity, order) => {
   const response = await axios.get(
     constructURL(`${API_URL_OUTGOING_STOCK}/${email}/${id}/${num}/${quantity}/${order}`)
   );
@@ -78,7 +78,7 @@ const outGoingStock = async (email, id, num, quantity, order) => {
 };
 
 // Incoming stock
-const incomingStock = async (email, id, num, quantity) => {
+const incomingStock = async (email, id, nums, quantity) => {
   const response = await axios.get(
     constructURL(`${API_URL_INCOMING_STOCK}/${email}/${id}/${num}/${quantity}`)
   );
