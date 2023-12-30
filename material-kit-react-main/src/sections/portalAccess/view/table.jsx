@@ -299,12 +299,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     }
   };
 
-  // const handleAddChange = (id, quantity) => {
-  //   console.log('=================', id,add);
-  //   var nums = parseInt(quantity) + parseInt(add);
-  //   console.log(nums);
-  // };
-
+ 
   // const handleSubChange = (id, quantity) => {
   //   if (parseInt(quantity) - parseInt(minus) < 0) {
   //     alert('The input value is too high.');
@@ -326,6 +321,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const endIndex = startIndex + rowsPerPage;
   const paginatedRows = filteredRows.slice(startIndex, endIndex);
 
+  // Function to handle 'add Item' input change for a specific row
   const handleAddInputChange = (rowId, value) => {
     // Ensure that the value is not undefined or null before updating the state
     if (value !== undefined && value !== null) {
@@ -340,14 +336,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     }
   };
 
-  // // Function to handle 'add Item' input change for a specific row
-  // const handleAddInputChange = (rowId, value) => {
-  //   // Create a copy of the current rowInputValues object
-  //   const updatedRowInputValues = { ...rowInputValues };
-  //   // Update the 'add' value for the specific row
-  //   updatedRowInputValues[rowId] = { ...updatedRowInputValues[rowId], add: value };
-  //   setRowInputValues(updatedRowInputValues);
-  // };
+ 
 
   // Function to handle 'minus Item' input change for a specific row
   const handleMinusInputChange = (rowId, value) => {
@@ -444,7 +433,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
               <th style={futuristicStyles.tableHeadCell}>Stock</th>
               <th style={futuristicStyles.tableHeadCell}>Unit Price</th>
               <th style={futuristicStyles.tableHeadCell}>Modified</th>
-              <th style={futuristicStyles.tableHeadCell}>Re-stock/Outgoing</th>
+              <th style={futuristicStyles.tableHeadCell}>Re-stock +/Outgoing -</th>
               {/* <th style={futuristicStyles.tableHeadCell}>Out-going</th> */}
             </tr>
           </thead>
@@ -544,7 +533,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
             onChange={(e) => handleMinusInputChange(selectedUpdate, e.target.value)}
           />
           <IconButton
-            onClick={() => handleAddChange(selectedUpdate, selectedQTY)}
+            onClick={() => handleSubChange(selectedUpdate, selectedQTY)}
             style={{ color: '#26a69a' }}
           >
             <Icon icon="game-icons:hand-truck" color="purple" width="32" height="32" />
