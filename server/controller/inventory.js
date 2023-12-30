@@ -346,7 +346,7 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
     console.log("incomingstock values:", req.params);
 
     // Destructure parameters
-    const { id, quantity, email, nums, tagName } = req.params;
+    const { id, quantity, email, nums } = req.params;
     const dirSymbol = " &#8592;";
 
     console.log("num_mod----", nums);
