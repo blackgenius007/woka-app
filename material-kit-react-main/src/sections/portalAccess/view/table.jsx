@@ -326,14 +326,28 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const endIndex = startIndex + rowsPerPage;
   const paginatedRows = filteredRows.slice(startIndex, endIndex);
 
-  // Function to handle 'add Item' input change for a specific row
   const handleAddInputChange = (rowId, value) => {
-    // Create a copy of the current rowInputValues object
-    const updatedRowInputValues = { ...rowInputValues };
-    // Update the 'add' value for the specific row
-    updatedRowInputValues[rowId] = { ...updatedRowInputValues[rowId], add: value };
-    setRowInputValues(updatedRowInputValues);
+    // Ensure that the value is not undefined or null before updating the state
+    if (value !== undefined && value !== null) {
+      // Create a copy of the current rowInputValues object
+      const updatedRowInputValues = { ...rowInputValues };
+  
+      // Update the 'add' value for the specific row
+      updatedRowInputValues[rowId] = { ...updatedRowInputValues[rowId], add: value };
+  
+      // Set the updated state
+      setRowInputValues(updatedRowInputValues);
+    }
   };
+
+  // // Function to handle 'add Item' input change for a specific row
+  // const handleAddInputChange = (rowId, value) => {
+  //   // Create a copy of the current rowInputValues object
+  //   const updatedRowInputValues = { ...rowInputValues };
+  //   // Update the 'add' value for the specific row
+  //   updatedRowInputValues[rowId] = { ...updatedRowInputValues[rowId], add: value };
+  //   setRowInputValues(updatedRowInputValues);
+  // };
 
   // Function to handle 'minus Item' input change for a specific row
   const handleMinusInputChange = (rowId, value) => {
