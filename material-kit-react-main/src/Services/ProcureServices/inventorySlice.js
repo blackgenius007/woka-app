@@ -152,9 +152,9 @@ export const outGoingStock = createAsyncThunk(
 // Incoming stock
 export const incomingStock = createAsyncThunk(
   'inventory/incomingStock',
-  async ({ email, id, num, quantity }, thunkAPI) => {
+  async ({ email, id, nums, quantity }, thunkAPI) => {
     try {
-      return await inventoryService.incomingStock(email, id, num, quantity);
+      return await inventoryService.incomingStock(email, id, nums, quantity);
     } catch (error) {
       const message =
         (error.response && error.response.data && error.response.data.message) ||
