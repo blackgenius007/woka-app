@@ -87,6 +87,15 @@ const incomingStock = async (email, id, nums, quantity) => {
   return response.data;
 };
 
+// // Incoming stock
+// const incomingStock = async (email, id, nums, quantity) => {
+//   console.log('stock-services :',email, id, nums, quantity )
+//   const response = await axios.get(
+//     constructURL(`${API_URL_INCOMING_STOCK}/${email}/${id}/${nums}/${quantity}`)
+//   );
+//   return response.data;
+// };
+
 // Get stock balance
 const getStockBalance = async (email, projectName) => {
   const response = await axios.get(
