@@ -531,7 +531,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
         <MenuItem>
           <input
             type="number"
-            placeholder="Out"
+            placeholder="Out -"
             style={{
               width: '50px',
               padding: '5px',
@@ -554,7 +554,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
         <MenuItem sx={{ color: 'error.main' }}>
           <input
             type="number"
-            placeholder="In"
+            placeholder="In +"
             style={{
               width: '50px',
               padding: '5px',
