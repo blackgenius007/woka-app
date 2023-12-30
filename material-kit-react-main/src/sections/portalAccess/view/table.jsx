@@ -285,31 +285,19 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
     console.log(nums);
   };
-  
+
   const handleSubChange = (id, quantity) => {
     const { minus } = rowInputValues[id] || { minus: 0 };
-  
+
     if (parseInt(quantity) - parseInt(minus) < 0) {
       alert('The input value is too high.');
     } else {
       var nums = parseInt(quantity) - parseInt(minus);
-      const order = prompt('Please enter destination of item');
-  
+      const order = prompt('Please enter destination of item, Ex : name of location,department,project,individual e.t.c');
+
       console.log(nums, order);
     }
   };
-
- 
-  // const handleSubChange = (id, quantity) => {
-  //   if (parseInt(quantity) - parseInt(minus) < 0) {
-  //     alert('The input value is too high.');
-  //   } else {
-  //     var nums = parseInt(quantity) - parseInt(minus);
-  //     const order = prompt('Please enter destination of item');
-
-  //     console.log(nums, order);
-  //   }
-  // };
 
   // Filter the inventory array based on the search term
   const filteredRows = inventory.filter((row) =>
@@ -327,16 +315,14 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     if (value !== undefined && value !== null) {
       // Create a copy of the current rowInputValues object
       const updatedRowInputValues = { ...rowInputValues };
-  
+
       // Update the 'add' value for the specific row
       updatedRowInputValues[rowId] = { ...updatedRowInputValues[rowId], add: value };
-  
+
       // Set the updated state
       setRowInputValues(updatedRowInputValues);
     }
   };
-
- 
 
   // Function to handle 'minus Item' input change for a specific row
   const handleMinusInputChange = (rowId, value) => {
