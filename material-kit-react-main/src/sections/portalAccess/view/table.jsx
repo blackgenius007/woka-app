@@ -281,7 +281,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   };
 
   const handleAddChange = (id, quantity) => {
-    console.log('=================', id);
+    console.log('=================', id,add);
     var nums = parseInt(quantity) + parseInt(add);
     console.log(nums);
   };
@@ -307,43 +307,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const endIndex = startIndex + rowsPerPage;
   const paginatedRows = filteredRows.slice(startIndex, endIndex);
 
-  // function to calculate total payout
-
-  // filteredRows.map((row) => {
-  //   const { _id, designation } = row;
-  //   const { grossIncome, country } = designation;
-  //   const employeeFinancialData = financialData[_id];
-
-  //   // Calculate financial data if not available
-  //   if (!employeeFinancialData) {
-  //     calculateFinancialData(_id, grossIncome, country);
-  //     return null; // Render nothing for now, will be updated on next render
-  //   }
-  //   console.log(employeeFinancialData);
-  //   // Calculate financial data if not available
-  //   if (!employeeFinancialData) {
-  //     calculateFinancialData(_id, grossIncome, country);
-  //     return null; // Render nothing for now, will be updated on next render
-  //   }
-  //   console.log(employeeFinancialData);
-
-  //   // Calculate Total Remuneration
-  //   const monthlyRate = employeeFinancialData.monthlySalary;
-
-  //   // Calculate net Remuneration
-  //   const netRemuneration =
-  //     monthlyRate +
-  //     parseFloat(row.overtime) +
-  //     parseFloat(row.allowance) -
-  //     parseFloat(row.IOU).toFixed(2);
-
-  //   // Add the calculated remuneration to the total
-  //   totalRemunerationForAll += netRemuneration;
-  // });
-
-  // console.log('function for salary=>', totalRemunerationForAll);
-
-  // Function to handle 'add' input change for a specific row
+  // Function to handle 'add Item' input change for a specific row
   const handleAddInputChange = (rowId, value) => {
     // Create a copy of the current rowInputValues object
     const updatedRowInputValues = { ...rowInputValues };
@@ -352,7 +316,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     setRowInputValues(updatedRowInputValues);
   };
 
-  // Function to handle 'minus' input change for a specific row
+  // Function to handle 'minus Item' input change for a specific row
   const handleMinusInputChange = (rowId, value) => {
     // Create a copy of the current rowInputValues object
     const updatedRowInputValues = { ...rowInputValues };
@@ -491,72 +455,6 @@ const InventoryTable = ({ email, tagName, businessName }) => {
                     >
                       <Iconify icon="eva:more-vertical-fill" />
                     </IconButton>
-                    {/* <input
-                      type="number"
-                      style={{
-                        width: '50px',
-                        padding: '5px',
-                        border: 'none',
-                        borderBottom: '1px solid #ddd',
-                        background: 'transparent',
-                        color: 'white',
-                      }}
-                      value={rowInputValues[row._id]?.add || ''}
-                      onChange={(e) => handleAddInputChange(row._id, e.target.value)}
-                    />
-                    <IconButton
-                      onClick={() => handleAddChange(row._id, row.quantity)}
-                      style={{ color: '#26a69a' }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-plus"
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="#26a69a"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        +
-                      </svg>
-                    </IconButton>
-                  </td>
-                  <td style={futuristicStyles.tableBodyCell}>
-                    <input
-                      type="number"
-                      style={{
-                        width: '50px',
-                        padding: '5px',
-                        border: 'none',
-                        borderBottom: '1px solid #ddd',
-                        background: 'transparent',
-                        color: 'white',
-                      }}
-                      value={rowInputValues[row._id]?.minus || ''}
-                      onChange={(e) => handleMinusInputChange(row._id, e.target.value)}
-                    />
-                    <IconButton
-                      onClick={() => handleSubChange(row._id, row.quantity)}
-                      style={{ color: '#e57373' }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-transfer-out"
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="#e57373"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        -
-                      </svg>
-                    </IconButton> */}
                   </td>
                 </tr>
               );
@@ -595,8 +493,8 @@ const InventoryTable = ({ email, tagName, businessName }) => {
           sx: { width: 140 },
         }}
       >
-        <span style={{ marginLeft: '15px', fontSize: '12px', color: 'grey' }}>{selectedSKU}</span>
-        <hr/>
+        <span style={{ marginLeft: '30px', fontSize: '12px', color: 'grey' }}>{selectedSKU}</span>
+        <hr />
         <MenuItem>
           <input
             type="number"
