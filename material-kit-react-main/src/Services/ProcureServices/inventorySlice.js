@@ -44,7 +44,7 @@ export const getAllInventory = createAsyncThunk('inventory/getAll', async (userE
 export const getAllInventoryEachPoint = createAsyncThunk(
   'inventory/getAllEp',
   async ({ email, tagName }, thunkAPI) => {
-    console.log('slice-of-inventory',email,tagName);
+    console.log('slice-of-inventory', email, tagName);
     try {
       return await inventoryService.getAllInventoryEachPoint(email, tagName);
     } catch (error) {
@@ -136,7 +136,7 @@ export const getTotalCost = createAsyncThunk(
 export const outGoingStock = createAsyncThunk(
   'inventory/outGoingStock',
   async ({ email, id, nums, quantity, order }, thunkAPI) => {
-    console.log(email, id, nums, quantity, order )
+    console.log(email, id, nums, quantity, order);
     try {
       return await inventoryService.outGoingStock(email, id, nums, quantity, order);
     } catch (error) {
@@ -169,7 +169,7 @@ export const incomingStock = createAsyncThunk(
 export const getStockBalance = createAsyncThunk(
   'inventory/getStockBalance',
   async ({ email, projectname }, thunkAPI) => {
-    console.log(email, id, nums, quantity  )
+    console.log(email, id, nums, quantity);
     try {
       return await inventoryService.getStockBalance(email, projectname);
     } catch (error) {
@@ -265,7 +265,7 @@ export const inventorySlice = createSlice({
         state.inventory = [];
         state.isLoading = false;
         state.isError = action.error.message;
-      }) 
+      })
       .addCase(getTotalInventory.pending, (state) => {
         state.isLoading = true;
       })

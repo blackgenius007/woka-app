@@ -10,7 +10,11 @@ import Scrollbar from 'src/components/scrollbar';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
 import moment from 'moment';
-import { getAllInventoryEachPoint,incomingStock,outGoingStock } from 'src/Services/ProcureServices/inventorySlice';
+import {
+  getAllInventoryEachPoint,
+  incomingStock,
+  outGoingStock,
+} from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
@@ -285,8 +289,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
     console.log(nums);
     // In stock Action
-    dispatch(incomingStock({ email, id, nums, quantity  }));
-   
+    dispatch(incomingStock({ email, id, nums, quantity }));
   };
 
   const handleSubChange = (id, quantity) => {
@@ -296,11 +299,13 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       alert('The input value is too high.');
     } else {
       var nums = parseInt(quantity) - parseInt(minus);
-      const order = prompt('Please enter destination of item, Ex : name of location,department,project,individual e.t.c');
+      const order = prompt(
+        'Please enter destination of item, Ex : name of location,department,project,individual e.t.c'
+      );
 
       console.log(nums, order);
-       // Out stock Action
-    dispatch(outGoingStock({ email, id, nums, quantity, order }));
+      // Out stock Action
+      dispatch(outGoingStock({ email, id, nums, quantity, order }));
     }
   };
 
