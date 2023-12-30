@@ -367,7 +367,7 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
       itemName: inventory.itemName,
       description: inventory.description,
       price: parseInt(inventory.price),
-      quantity: parseInt(inventory.quantity),
+      quantity: parseInt(inventory.stock),
       modified_quantity:parseInt(nums) ,
       email: email,
       dirSymbol: dirSymbol,
