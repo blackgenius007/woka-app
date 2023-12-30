@@ -10,7 +10,7 @@ import Scrollbar from 'src/components/scrollbar';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
 import moment from 'moment';
-import { getAllInventoryEachPoint } from 'src/Services/ProcureServices/inventorySlice';
+import { getAllInventoryEachPoint,incomingStock,outGoingStock } from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
