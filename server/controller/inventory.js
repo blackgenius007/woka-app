@@ -343,50 +343,24 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
 // @desc instock Inventory
 //@routes Get/add_product/:id/:num/:quantity
 //@acess Private
-exports.incomingStock =  asyncHandler(async (req, res, next) =>{
+exports.incomingStock = asyncHandler(async (req, res, next) => {
+  try {
+    console.log('incomingstock values:', req.params);
 
-  var id = req.params.id;
-	var quantity = req.params.quantity;
-	var email = req.params.email;
-  var dirSymbol =' &#8592;'
+    // Destructure parameters
+    const { id, quantity, email, nums } = req.params;
+    const dirSymbol = " &#8592;";
 
-	// console.log('id----', id);
-	var num_mod = req.params.nums;
-	var modified_count = parseInt(quantity)-parseInt(num_mod) ;
-	console.log('num_mod----', num_mod);
-	Inventory.findByIdAndUpdate(
-		id,
-		{ quantity: parseInt(num_mod) },       
-		{ new: true },
-		function (err, inventory) {
-			if (err) {
-				console.log('err', err);
-				res.status(500).send(err);
-			} else {
-				console.log(inventory.name);
+    
+    console.log("num_mod----", nums);
 
-				const newLog = new Log({
-					itemName: inventory.itemName,
-					description: inventory.description,
-					price: parseInt(inventory.price),
-					quantity: parseInt(inventory.quantity),
-					modified_quantity: parseInt(modified_count),
-					email: req.params.email,
-          dirSymbol : dirSymbol
-				});
-
-				newLog.save(function (err, Log) {
-					if (err) {
-						console.log(err);
-					} else {
-						console.log('add log success');
-						res.send(inventory);
-					}
-				});
-			}
-		}
-	);
-})
+    // Update inventory item
+    const inventory = await Inventory.findByIdAndUpdate(
+      id,
+      { quantity: parseInt(nums) },
+      { new: true }
+    );
+ 
 
     // Create a new log entry
     const newLog = new Log({
