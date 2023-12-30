@@ -9,6 +9,7 @@ const LogSchema = new mongoose.Schema({
   price : { type: Number, required: true },
   quantity : { type: Number, required: true },
   modified_quantity:{ type:Number, required:true},
+  tagName: String,
   supplier : String,
   taxable : Boolean,
   itemDest: String,

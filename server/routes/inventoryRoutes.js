@@ -53,11 +53,11 @@ const {
   .get(getTotalCost )
 
   router
-  .route('/outstock/:email/:id/:num/:quantity/:order')
+  .route('/outstock/:email/:id/:num/:quantity/:order/:tagName')
   .get( outGoingStock)
 
   router
-  .route('/instock/:email/:id/:nums/:quantity')
+  .route('/instock/:email/:id/:nums/:quantity/:tagName')
   .get( incomingStock)
 
   router

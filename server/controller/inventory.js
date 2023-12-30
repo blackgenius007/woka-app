@@ -6,7 +6,7 @@ const GenerateCode = require("../utils/generateCode.js");
 const Log = require("../models/Log.js");
 const User = require("../models/User");
 
- // @desc    Create pool
+// @desc    Create pool
 // @routes   /api/v1/pool/
 // @acess    Private
 exports.createInventoryPool = asyncHandler(async (req, res, next) => {
@@ -39,15 +39,18 @@ exports.createInventoryPool = asyncHandler(async (req, res, next) => {
     const pool = await User.findOne({ ownerEmail: email }).exec();
 
     if (!pool) {
-      console.log('User not found' )
-      return res.status(404).json({ success: false, message: 'User not found' });
-      
+      console.log("User not found");
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
 
     // Generate unique SKU number for new item
     const d = new Date();
     const year = d.getFullYear();
-    const SKU_number = `${itemName.slice(0, 3)}-${year.toString().slice(-2)}-${GenerateCode(4)}`;
+    const SKU_number = `${itemName.slice(0, 3)}-${year
+      .toString()
+      .slice(-2)}-${GenerateCode(4)}`;
 
     const newInventory = new Inventory({
       tagName: tagName,
@@ -147,7 +150,6 @@ exports.getAllInventory = asyncHandler(async (req, res, next) => {
   }
 });
 
-
 // @desc Get all inventory
 // @routes Get/api/v1/inventory
 // @acess Public
@@ -171,10 +173,6 @@ exports.getAllInventoryEachPoint = asyncHandler(async (req, res, next) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
-
-
-
 
 // exports.getAllInventoryEachPoint = asyncHandler(async (req, res, next) => {
 //   try {
@@ -345,22 +343,20 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
 //@acess Private
 exports.incomingStock = asyncHandler(async (req, res, next) => {
   try {
-    console.log('incomingstock values:', req.params);
+    console.log("incomingstock values:", req.params);
 
     // Destructure parameters
-    const { id, quantity, email, nums } = req.params;
+    const { id, quantity, email, nums, tagName } = req.params;
     const dirSymbol = " &#8592;";
 
-    
     console.log("num_mod----", nums);
 
     // Update inventory item
     const inventory = await Inventory.findByIdAndUpdate(
       id,
-      { quantity: parseInt(nums) },
+      { stock: parseInt(nums) },
       { new: true }
     );
- 
 
     // Create a new log entry
     const newLog = new Log({
@@ -368,12 +364,12 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
       description: inventory.description,
       price: parseInt(inventory.price),
       quantity: parseInt(inventory.stock),
-      modified_quantity:parseInt(nums) ,
+      tagName: inventory.tagName,
+      modified_quantity: parseInt(nums),
       email: email,
       dirSymbol: dirSymbol,
     });
 
- 
     // Save the log entry
     const log = await newLog.save();
 
