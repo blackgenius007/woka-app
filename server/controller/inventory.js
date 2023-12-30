@@ -364,10 +364,10 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
 
     // Create a new log entry
     const newLog = new Log({
-      itemName: inventory.itemName,
-      description: inventory.description,
-      price: parseInt(inventory.price),
-      quantity: parseInt(inventory.quantity),
+      itemName:  itemName,
+      description:  description,
+      price: parseInt( price),
+      quantity: parseInt( quantity),
       modified_quantity: parseInt(nums),
       email: email,
       dirSymbol: dirSymbol,
