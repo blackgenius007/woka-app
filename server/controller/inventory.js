@@ -348,22 +348,32 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
     console.log('incomingstock values:', req.params);
 
     // Destructure parameters
-    const { id, quantity, email, nums } = req.params;
+    const { id, quantity, email, num } = req.params;
     const dirSymbol = " &#8592;";
 
-    // Calculate modified count
-    const modified_count = parseInt(quantity) - parseInt(nums);
+    // Validate that quantity and num are valid numbers
+    if (isNaN(quantity) || isNaN(num)) {
+      throw new Error('Invalid quantity or num value');
+    }
 
-    console.log("num_mod----", nums);
+    // Calculate modified count
+    const modified_count = parseInt(quantity) - parseInt(num);
+
+    console.log("num_mod----", num);
 
     // Update inventory item
     const inventory = await Inventory.findByIdAndUpdate(
       id,
-      { quantity: parseInt(nums) },
+      { quantity: parseInt(num) },
       { new: true }
     );
 
     console.log(inventory.name);
+
+    // Validate that quantity and modified_count are valid numbers
+    if (isNaN(inventory.quantity) || isNaN(modified_count)) {
+      throw new Error('Invalid quantity or modified_count value');
+    }
 
     // Create a new log entry
     const newLog = new Log({
@@ -375,6 +385,11 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
       email: email,
       dirSymbol: dirSymbol,
     });
+
+    // Validate that modified_quantity is a valid number
+    if (isNaN(newLog.modified_quantity)) {
+      throw new Error('Invalid modified_quantity value');
+    }
 
     // Save the log entry
     const log = await newLog.save();
