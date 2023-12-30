@@ -342,7 +342,7 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
 
 // @desc instock Inventory
 //@routes Get/add_product/:id/:num/:quantity
-//@acess    Private
+//@acess Private
 exports.incomingStock = asyncHandler(async (req, res, next) => {
   try {
     console.log('incomingstock values:', req.params);
@@ -351,10 +351,8 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
     const { id, quantity, email, nums } = req.params;
     const dirSymbol = " &#8592;";
 
-    // Validate that nums is a valid number
-    if (isNaN(nums)) {
-      throw new Error('Invalid nums value');
-    }
+    
+    console.log("num_mod----", nums);
 
     // Update inventory item
     const inventory = await Inventory.findByIdAndUpdate(
@@ -362,40 +360,18 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
       { quantity: parseInt(nums) },
       { new: true }
     );
-
-    console.log(inventory.name);
-
-    // Validate that inventory quantity is a valid number
-    if (isNaN(inventory.quantity)) {
-      throw new Error('Invalid inventory quantity value');
-    }
+ 
 
     // Create a new log entry
     const newLog = new Log({
       itemName: inventory.itemName,
       description: inventory.description,
       price: parseInt(inventory.price),
-      quantity: parseInt(inventory.quantity), // Use inventory quantity here
-      modified_quantity: parseInt(nums),
+      quantity: parseInt(inventory.quantity),
+      modified_quantity:parseInt(nums) ,
       email: email,
       dirSymbol: dirSymbol,
     });
-
-    // Validate that newLog quantity is a valid number
-    if (isNaN(newLog.quantity) || isNaN(newLog.modified_quantity)) {
-      throw new Error('Invalid quantity or modified_quantity value in newLog');
-    }
-
-    // Save the log entry
-    const log = await newLog.save();
-
-    console.log("add log success");
-    res.send(inventory);
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).send(error.message || "Internal Server Error");
-  }
-});
 
  
     // Save the log entry
