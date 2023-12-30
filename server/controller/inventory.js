@@ -342,7 +342,7 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
 
 // @desc instock Inventory
 //@routes Get/add_product/:id/:num/:quantity
-//@acess Private
+//@acess    Private
 exports.incomingStock = asyncHandler(async (req, res, next) => {
   try {
     console.log('incomingstock values:', req.params);
@@ -364,11 +364,11 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
 
     // Create a new log entry
     const newLog = new Log({
-      itemName:  itemName,
-      description:  description,
-      price: parseInt( price),
-      quantity: parseInt( quantity),
-      modified_quantity: parseInt(nums),
+      itemName: inventory.itemName,
+      description: inventory.description,
+      price: parseInt(inventory.price),
+      quantity: parseInt(inventory.quantity),
+      modified_quantity:parseInt(nums) ,
       email: email,
       dirSymbol: dirSymbol,
     });
