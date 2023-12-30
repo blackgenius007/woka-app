@@ -593,9 +593,11 @@ const InventoryTable = ({ email, tagName, businessName }) => {
           sx: { width: 140 },
         }}
       >
+         <span style={{ marginLeft: '5px', fontSize: '12px', color: 'grey' }}>{selectedSKU}</span>
         <MenuItem>
-        <span style={{ marginLeft: '5px', fontSize: '12px', color: 'white' }}>{selectedSKU}</span>
-          
+          {/* <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
+          Edit */}
+          selectedSKU
           <input
             type="number"
             placeholder='Out'
