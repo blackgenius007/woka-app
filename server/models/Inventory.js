@@ -35,6 +35,10 @@ tagName: {
     type: String,
     required: true
   },
+  category : {
+    type: String,
+    required: true
+  },
   suppliers_email : {
     type: String,
     required: true

@@ -344,6 +344,7 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
 //@routes   Get/add_product/:id/:num/:quantity
 //@acess    Private
 exports.incomingStock = asyncHandler(async (req, res, next) => {
+  console.log('incomingstock values :',req.params)
   var id = req.params.id;
   var quantity = req.params.quantity;
   var email = req.params.email;
