@@ -294,21 +294,26 @@ const InventoryTable = ({ email, tagName, businessName }) => {
 
   const handleSubChange = (id, quantity) => {
     const { minus } = rowInputValues[id] || { minus: 0 };
-
+  
     if (parseInt(quantity) - parseInt(minus) < 0) {
       alert('The input value is too high.');
     } else {
       var nums = parseInt(quantity) - parseInt(minus);
       const order = prompt(
-        'Please enter destination of item, Ex : name of location,department,project,individual e.t.c'
+        'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
       );
-
-      console.log(nums, order);
-      // Out stock Action
-      dispatch(outGoingStock({ email, id, nums, quantity, order }));
+  
+      // Check if the user canceled the prompt or entered an empty string
+      if (order === null || order.trim() === '') {
+        console.log('User canceled the prompt or entered an empty string.');
+      } else {
+        console.log(nums, order);
+        // Out stock Action
+        dispatch(outGoingStock({ email, id, nums, quantity, order }));
+      }
     }
   };
-
+  
   // Filter the inventory array based on the search term
   const filteredRows = inventory.filter((row) =>
     Object.values(row).some((value) => String(value).toLowerCase().includes(searched.toLowerCase()))
