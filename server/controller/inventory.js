@@ -317,7 +317,7 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
       description: inventory.description,
       price: parseInt(inventory.price),
       quantity: parseInt(inventory.stock), // Use the correct property
-      modified_quantity: parseInt(modified_count),
+      modified_quantity: parseInt(nums),
       email: req.params.email,
       itemDest: order,
       dirSymbol: dirSymbol,
