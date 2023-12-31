@@ -301,43 +301,37 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
   const num_mod = req.params.num;
   var dirSymbol = " &#8594;";
 
-  const modified_count = parseInt(num_mod) - parseInt(quantity);
-  console.log("num_mod----", num_mod);
-  console.log(req.params.order);
+  try {
+    const modified_count = parseInt(num_mod) - parseInt(quantity);
+    console.log("num_mod----", num_mod);
+    console.log(req.params.order);
 
-  Inventory.findByIdAndUpdate(
-    id,
-    { quantity: parseInt(num_mod) },
-    { new: true },
-    function (err, inventory) {
-      if (err) {
-        console.log("err", err);
-        res.status(500).send(err);
-      } else {
-        // console.log(inventory.name);
+    const inventory = await Inventory.findByIdAndUpdate(
+      id,
+      { quantity: parseInt(num_mod) },
+      { new: true }
+    );
 
-        const newLog = new Log({
-          itemName: inventory.itemName,
-          description: inventory.description,
-          price: parseInt(inventory.price),
-          quantity: parseInt(inventory.stock),
-          modified_quantity: parseInt(modified_count),
-          email: req.params.email,
-          itemDest: order,
-          dirSymbol: dirSymbol,
-        });
-        console.info(newLog.get("itemDest"));
-        newLog.save(function (err, Log) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("add log success");
-            res.send(inventory);
-          }
-        });
-      }
-    }
-  );
+    const newLog = new Log({
+      itemName: inventory.itemName,
+      description: inventory.description,
+      price: parseInt(inventory.price),
+      quantity: parseInt(inventory.stock), // Use the correct property
+      modified_quantity: parseInt(modified_count),
+      email: req.params.email,
+      itemDest: order,
+      dirSymbol: dirSymbol,
+    });
+
+    console.info(newLog.get("itemDest"));
+
+    const savedLog = await newLog.save();
+    console.log("add log success");
+    res.send(inventory);
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).send(err.message || "Internal Server Error");
+  }
 });
 
 // @desc instock Inventory
