@@ -314,13 +314,13 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
         console.log("err", err);
         res.status(500).send(err);
       } else {
-        console.log(inventory.name);
+        // console.log(inventory.name);
 
         const newLog = new Log({
           itemName: inventory.itemName,
           description: inventory.description,
           price: parseInt(inventory.price),
-          quantity: parseInt(inventory.quantity),
+          quantity: parseInt(inventory.stock),
           modified_quantity: parseInt(modified_count),
           email: req.params.email,
           itemDest: order,
