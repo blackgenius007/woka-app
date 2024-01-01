@@ -33,6 +33,7 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
 import { Icon } from '@iconify/react';
+import Swal from 'sweetalert2';
 import CloseIcon from '@mui/icons-material/Close';
 import NewItemForm from './newItemForm';
 import PropTypes from 'prop-types';
@@ -138,59 +139,7 @@ const futuristicStyles = {
       backgroundColor: '#4F6B87',
     },
   },
-  //   tableContainer: {
-  //     background: '#222',
-  //     borderRadius: '10px',
-  //     padding: '1rem',
-  //   },
-  //   table: {
-  //     color: '#fff',
-  //     // width: '100%',
-  //     // borderCollapse: 'collapse',
-  //     textAlign: 'left',
-  //     borderCollapse: 'separate', // Separate borders for cells
-  //     borderSpacing: '0', // No spacing between cells
-  //   },
-  //   tableHead: {
-  //     background: '#333',
-  //   },
-  //   tableHeadCell: {
-  //     padding: '0.5rem',
-  //     textAlign: 'center', // Align header cells to center
-  //   },
-  //   tableBodyRow: {
-  //     borderBottom: '1px solid #444',
-  //   },
-  //   tableBodyCell: {
-  //     // padding: '0.5rem',
-  //     // textAlign: 'center', // Align body cells to center
-  //     border: '1px solid #444', // Add border to each cell
-  //     padding: '0.5rem',
-  //     textAlign: 'center',
-  //   },
-  //   avatar: {
-  //     borderRadius: '50%',
-  //     width: '30px',
-  //     height: '30px',
-  //   },
-  //   link: {
-  //     background: 'none',
-  //     border: 'none',
-  //     color: '#00aaff',
-  //     cursor: 'pointer',
-  //     textDecoration: 'none',
-  //     fontSize: '14px',
-  //     fontFamily: 'inherit',
-  //     padding: 0,
-  //     margin: 0,
-  //   },
-  //   actionIcons: {
-  //     fontSize: '1.1rem',
-  //     color: '#fff',
-  //     marginRight: '0.5rem',
-  //     cursor: 'pointer',
-  //     transition: 'color 0.3s ease-in-out',
-  //   },
+  
 };
 
 function BootstrapDialogTitle(props) {
@@ -238,7 +187,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [selectedSKU, setSelectedSKU] = useState(null);
   const [selectedQTY, setSelectedQTY] = useState(null);
   const [open, setOpen] = useState(false);
-  // const [openAction, setOpenAction] = useState(false);
+  const [renderKey, setRenderKey] = useState(0); // State to trigger re-render
   const [exportMode, setExportMode] = useState(0);
 
   // Pagination state
@@ -284,13 +233,33 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     setExportMode(1);
   };
 
-  const handleAddChange = (id, quantity) => {
-    console.log('=================', id, rowInputValues[id]?.add);
+  const handleAddChange = async () => {
     var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
-    console.log(nums);
-    // In stock Action
-    dispatch(incomingStock({ email, id, nums, quantity }));
+    const action = incomingStock({ email, id, nums, quantity });
+
+    // Dispatch the action and get the response
+    const response = await dispatch(action);
+    handleCloseMenu();
+    // Check if the request was fulfilled
+    if (response.meta.requestStatus === 'fulfilled') {
+      // Display SweetAlert2 alert upon fulfillment
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Item added successfuly!',
+      });
+
+      // Trigger a re-render by updating the state
+      setRenderKey((prevKey) => prevKey + 1);
+    }
   };
+  // const handleAddChange = (id, quantity) => {
+  //   console.log('=================', id, rowInputValues[id]?.add);
+  //   var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
+  //   console.log(nums);
+  //   // In stock Action
+  //   dispatch(incomingStock({ email, id, nums, quantity }));
+  // };
 
   const handleSubChange = (id, quantity) => {
     const { minus } = rowInputValues[id] || { minus: 0 };
