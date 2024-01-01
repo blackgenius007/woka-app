@@ -33,7 +33,7 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
 import { Icon } from '@iconify/react';
-import Swal from 'sweetalert2';
+
 import CloseIcon from '@mui/icons-material/Close';
 import NewItemForm from './newItemForm';
 import PropTypes from 'prop-types';
@@ -139,7 +139,6 @@ const futuristicStyles = {
       backgroundColor: '#4F6B87',
     },
   },
-  
 };
 
 function BootstrapDialogTitle(props) {
@@ -263,7 +262,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
 
   const handleSubChange = (id, quantity) => {
     const { minus } = rowInputValues[id] || { minus: 0 };
-  
+
     if (parseInt(quantity) - parseInt(minus) < 0) {
       alert('The input value is too high.');
     } else {
@@ -271,7 +270,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       const order = prompt(
         'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
       );
-  
+
       // Check if the user canceled the prompt or entered an empty string
       if (order === null || order.trim() === '') {
         console.log('User canceled the prompt or entered an empty string.');
@@ -282,7 +281,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       }
     }
   };
-  
+
   // Filter the inventory array based on the search term
   const filteredRows = inventory.filter((row) =>
     Object.values(row).some((value) => String(value).toLowerCase().includes(searched.toLowerCase()))
