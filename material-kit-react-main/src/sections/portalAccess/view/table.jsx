@@ -267,7 +267,10 @@ const useForceUpdate = () => {
 };
 
 const forceUpdate = useForceUpdate();
-
+const handleButtonClick = () => {
+  // Call the close function passed as a prop
+  close();
+};
 
 const handleAddChange = async (id, quantity) => {
   var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
@@ -278,8 +281,8 @@ const handleAddChange = async (id, quantity) => {
     // Trigger a re-render by updating the state
     setRenderKey((prevKey) => prevKey + 1);
    // Trigger a re-render
-   forceUpdate();
-   close();
+  //  forceUpdate();
+   handleButtonClick() 
   }
 };
 
