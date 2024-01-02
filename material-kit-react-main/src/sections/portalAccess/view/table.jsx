@@ -278,11 +278,7 @@ const handleAddChange = async (id, quantity) => {
   const response = await dispatch(incomingStock({email, id, nums, quantity }));
 
   if (response.meta.requestStatus === 'fulfilled') {
-    // Trigger a re-render by updating the state
-    setRenderKey((prevKey) => prevKey + 1);
-   // Trigger a re-render
-  //  forceUpdate();
-   handleButtonClick() 
+ 
   }
 };
 
