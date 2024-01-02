@@ -170,7 +170,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = ({ email, tagName, businessName }) => {
+const InventoryTable = ({ email, tagName, businessName,close }) => {
   console.log('table props:', email, tagName, businessName);
 
   const navigate = useNavigate();
@@ -279,7 +279,7 @@ const handleAddChange = async (id, quantity) => {
     setRenderKey((prevKey) => prevKey + 1);
    // Trigger a re-render
    forceUpdate();
-   handleCloseMenu();
+   close();
   }
 };
 
@@ -571,7 +571,7 @@ const handleAddChange = async (id, quantity) => {
   );
 };
 
-export default function MainPage({ email, tagName, businessName }) {
+export default function MainPage({ email, tagName,close,businessName }) {
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -612,7 +612,7 @@ export default function MainPage({ email, tagName, businessName }) {
         </Button>
       </Stack>
       <Scrollbar>
-        <InventoryTable email={email} businessName={businessName} tagName={tagName} />
+        <InventoryTable  email={email} businessName={businessName} tagName={tagName} />
       </Scrollbar>
       <Popover
         open={formPopoverOpen}
