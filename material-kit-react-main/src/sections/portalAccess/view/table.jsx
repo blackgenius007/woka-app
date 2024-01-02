@@ -33,7 +33,6 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
 import { Icon } from '@iconify/react';
-
 import CloseIcon from '@mui/icons-material/Close';
 import NewItemForm from './newItemForm';
 import PropTypes from 'prop-types';
@@ -139,6 +138,7 @@ const futuristicStyles = {
       backgroundColor: '#4F6B87',
     },
   },
+  
 };
 
 function BootstrapDialogTitle(props) {
@@ -186,7 +186,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [selectedSKU, setSelectedSKU] = useState(null);
   const [selectedQTY, setSelectedQTY] = useState(null);
   const [open, setOpen] = useState(false);
-  const [renderKey, setRenderKey] = useState(0); // State to trigger re-render
+  // const [openAction, setOpenAction] = useState(false);
   const [exportMode, setExportMode] = useState(0);
 
   // Pagination state
@@ -232,38 +232,17 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     setExportMode(1);
   };
 
-  const handleAddChange = async (id, selectedQTY) => {
-    
+  const handleAddChange = (id, quantity) => {
+    console.log('=================', id, rowInputValues[id]?.add);
     var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
-    const action = incomingStock({ email, id, nums, selectedQTY });
-
-    // Dispatch the action and get the response
-    const response = await dispatch(action);
-    handleCloseMenu();
-    // Check if the request was fulfilled
-    if (response.meta.requestStatus === 'fulfilled') {
-      // Display SweetAlert2 alert upon fulfillment
-      Swal.fire({
-        icon: 'success',
-        title: 'Success!',
-        text: 'Item added successfuly!',
-      });
-
-      // Trigger a re-render by updating the state
-      setRenderKey((prevKey) => prevKey + 1);
-    }
+    console.log(nums);
+    // In stock Action
+    dispatch(incomingStock({ email, id, nums, quantity }));
   };
-  // const handleAddChange = (id, quantity) => {
-  //   console.log('=================', id, rowInputValues[id]?.add);
-  //   var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
-  //   console.log(nums);
-  //   // In stock Action
-  //   dispatch(incomingStock({ email, id, nums, quantity }));
-  // };
 
   const handleSubChange = (id, quantity) => {
     const { minus } = rowInputValues[id] || { minus: 0 };
-
+  
     if (parseInt(quantity) - parseInt(minus) < 0) {
       alert('The input value is too high.');
     } else {
@@ -271,7 +250,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       const order = prompt(
         'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
       );
-
+  
       // Check if the user canceled the prompt or entered an empty string
       if (order === null || order.trim() === '') {
         console.log('User canceled the prompt or entered an empty string.');
@@ -282,7 +261,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
       }
     }
   };
-
+  
   // Filter the inventory array based on the search term
   const filteredRows = inventory.filter((row) =>
     Object.values(row).some((value) => String(value).toLowerCase().includes(searched.toLowerCase()))
