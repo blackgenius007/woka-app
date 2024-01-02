@@ -260,8 +260,9 @@ const InventoryTable = ({ email, tagName, businessName }) => {
 // };
 
 const handleAddChange = async (id, quantity) => {
+  var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
   // In stock Action
-  const response = await dispatch(incomingStock({ email, id,quantity }));
+  const response = await dispatch(incomingStock({email, id, nums, quantity }));
 
   if (response.meta.requestStatus === 'fulfilled') {
     // Trigger a re-render by updating the state
