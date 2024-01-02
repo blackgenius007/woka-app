@@ -77,6 +77,21 @@ const EmployeePortal = () => {
   const [dataMessage, setDataMessage] = useState('');
   const [inventoryOpen, setInventoryOpen] = useState(false);
 
+ // Load state from localStorage on component mount
+ useEffect(() => {
+  const storedInventoryOpen = localStorage.getItem('inventoryOpen');
+  if (storedInventoryOpen !== null) {
+    // Note: Use strict comparison (`!==`) to check against null
+    setInventoryOpen(storedInventoryOpen === 'true'); // Convert the stored string to a boolean
+  }
+}, []); // Empty dependency array means this effect runs once on mount
+
+// Update stored state whenever inventoryOpen changes
+useEffect(() => {
+  localStorage.setItem('inventoryOpen', inventoryOpen.toString()); // Store the boolean as a string
+}, [inventoryOpen]);
+
+
   //Destructure employees from redux
   useEffect(() => {
     // Assuming employees is an array
