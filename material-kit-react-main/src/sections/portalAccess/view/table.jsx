@@ -259,6 +259,16 @@ const InventoryTable = ({ email, tagName, businessName }) => {
 //   }
 // };
 
+// Custom hook for force update
+const useForceUpdate = () => {
+  const [, forceUpdate] = useState();
+
+  return () => forceUpdate((prevKey) => prevKey + 1);
+};
+
+const forceUpdate = useForceUpdate();
+
+
 const handleAddChange = async (id, quantity) => {
   var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
   // In stock Action
@@ -267,7 +277,9 @@ const handleAddChange = async (id, quantity) => {
   if (response.meta.requestStatus === 'fulfilled') {
     // Trigger a re-render by updating the state
     setRenderKey((prevKey) => prevKey + 1);
-    handleCloseMenu();
+   // Trigger a re-render
+   forceUpdate();
+   handleCloseMenu();
   }
 };
 
