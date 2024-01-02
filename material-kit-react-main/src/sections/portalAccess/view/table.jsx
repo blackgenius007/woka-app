@@ -265,9 +265,10 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     console.log(nums);
     // In stock Action
     dispatch(incomingStock({ email, id, nums, quantity }));
-    handleCloseMenu()
+ 
           // Trigger a re-render by updating the state
       setRenderKey((prevKey) => prevKey + 1);
+      handleCloseMenu()
   };
 
   const handleSubChange = (id, quantity) => {
