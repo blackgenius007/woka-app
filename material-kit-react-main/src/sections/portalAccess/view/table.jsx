@@ -261,7 +261,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
 
 const handleAddChange = async (id, quantity) => {
   // In stock Action
-  const response = await dispatch(incomingStock({ email, id, nums, quantity }));
+  const response = await dispatch(incomingStock({ email, id,quantity }));
 
   if (response.meta.requestStatus === 'fulfilled') {
     // Trigger a re-render by updating the state
