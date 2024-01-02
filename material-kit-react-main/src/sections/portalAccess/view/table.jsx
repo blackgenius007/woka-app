@@ -232,10 +232,10 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     setExportMode(1);
   };
 
-  const handleAddChange = async (id, quantity) => {
-    console.log('=================', id, rowInputValues[id]?.add);
+  const handleAddChange = async (id, selectedQTY) => {
+    
     var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
-    const action = incomingStock({ email, id, nums, quantity });
+    const action = incomingStock({ email, id, nums, selectedQTY });
 
     // Dispatch the action and get the response
     const response = await dispatch(action);
