@@ -188,7 +188,7 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const [open, setOpen] = useState(false);
   // const [openAction, setOpenAction] = useState(false);
   const [exportMode, setExportMode] = useState(0);
-
+  const [renderKey, setRenderKey] = useState(0);
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -265,6 +265,8 @@ const InventoryTable = ({ email, tagName, businessName }) => {
     console.log(nums);
     // In stock Action
     dispatch(incomingStock({ email, id, nums, quantity }));
+          // Trigger a re-render by updating the state
+      setRenderKey((prevKey) => prevKey + 1);
   };
 
   const handleSubChange = (id, quantity) => {
