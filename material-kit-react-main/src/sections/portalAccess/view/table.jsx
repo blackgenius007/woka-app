@@ -259,17 +259,21 @@ const InventoryTable = ({ email, tagName, businessName }) => {
 //   }
 // };
 
-  const handleAddChange = (id, quantity) => {
-    console.log('=================', id, rowInputValues[id]?.add);
-    var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
-    console.log(nums);
-    // In stock Action
-    dispatch(incomingStock({ email, id, nums, quantity }));
- 
-          // Trigger a re-render by updating the state
-      setRenderKey((prevKey) => prevKey + 1);
-      handleCloseMenu()
-  };
+const handleAddChange = (id, quantity) => {
+  console.log('=================', id, rowInputValues[id]?.add);
+  var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
+  console.log(nums);
+
+  // In stock Action
+  dispatch(incomingStock({ email, id, nums, quantity }));
+
+  // Use useEffect to ensure renderKey is updated after the state change
+  useEffect(() => {
+    // Trigger a re-render by updating the state
+    setRenderKey((prevKey) => prevKey + 1);
+    handleCloseMenu();
+  }, [nums]); // Include nums in the dependency array to run the effect when nums changes
+};
 
   const handleSubChange = (id, quantity) => {
     const { minus } = rowInputValues[id] || { minus: 0 };
