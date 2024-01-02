@@ -231,14 +231,41 @@ const InventoryTable = ({ email, tagName, businessName }) => {
   const ExportSheet = () => {
     setExportMode(1);
   };
-
-  const handleAddChange = (id, quantity) => {
+const handleAddChange = async (id, quantity) => {
+  try {
     console.log('=================', id, rowInputValues[id]?.add);
-    var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
+    const nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
     console.log(nums);
+
     // In stock Action
-    dispatch(incomingStock({ email, id, nums, quantity }));
-  };
+    const response = await dispatch(incomingStock({ email, id, nums, quantity }));
+
+    // Check if the request was fulfilled
+    if (response.meta?.requestStatus === 'fulfilled') {
+      // Display SweetAlert2 alert upon fulfillment
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Item added successfully!',
+      });
+
+      // Trigger a re-render by updating the state
+      setRenderKey((prevKey) => prevKey + 1);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    // Handle the error as needed
+    // You can show an error message or log it
+  }
+};
+
+  // const handleAddChange = (id, quantity) => {
+  //   console.log('=================', id, rowInputValues[id]?.add);
+  //   var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
+  //   console.log(nums);
+  //   // In stock Action
+  //   dispatch(incomingStock({ email, id, nums, quantity }));
+  // };
 
   const handleSubChange = (id, quantity) => {
     const { minus } = rowInputValues[id] || { minus: 0 };
