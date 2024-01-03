@@ -211,6 +211,8 @@ export const connectItem = createAsyncThunk('inventory/connectItem', async (data
   }
 });
 
+
+
 export const inventorySlice = createSlice({
   name: 'inventory',
   initialState,
@@ -220,6 +222,15 @@ export const inventorySlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = '';
+    },
+     // Add a new action creator to set inventory details
+     setInventoryDetail: (state, action) => {
+      const { ownerEmail, businessName, tagName, employeeNumber } = action.payload;
+      // Update your state with the new inventory details
+      state.ownerEmail = ownerEmail;
+      state.businessName = businessName;
+      state.tagName = tagName;
+      state.employeeNumber = employeeNumber;
     },
   },
   extraReducers: (builder) => {
@@ -405,5 +416,5 @@ export const inventorySlice = createSlice({
   },
 });
 
-export const { reset } = inventorySlice.actions;
+export const { reset,setInventoryDetail } = inventorySlice.actions;
 export default inventorySlice.reducer;

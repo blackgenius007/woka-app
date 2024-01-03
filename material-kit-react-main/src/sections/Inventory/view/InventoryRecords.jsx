@@ -14,6 +14,7 @@ import {
   getAllInventoryEachPoint,
   incomingStock,
   outGoingStock,
+  setInventoryDetail
 } from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
@@ -579,7 +580,11 @@ const handleAddChange = async (id, quantity) => {
   );
 };
 
-export default function MainPage({ email, tagName,close,businessName }) {
+export default function MainPage() {
+  // Use useSelector to access the relevant state values
+  const { ownerEmail, businessName, tagName, employeeNumber } = useSelector(
+    (state) => state.inventory
+  );
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -620,7 +625,7 @@ export default function MainPage({ email, tagName,close,businessName }) {
         </Button>
       </Stack>
       <Scrollbar>
-        <InventoryTable  email={email} businessName={businessName} tagName={tagName} />
+        <InventoryTable  email={ownerEmail} businessName={businessName} tagName={tagName} />
       </Scrollbar>
       <Popover
         open={formPopoverOpen}
