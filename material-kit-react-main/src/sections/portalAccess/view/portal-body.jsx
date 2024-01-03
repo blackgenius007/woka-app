@@ -497,14 +497,14 @@ const EmployeePortal = () => {
                 pensionFund={pensionFund}
               />
             </Popover>
-            <InventoryRecords
+            {/* <InventoryRecords
               open={inventoryOpen}
               close={handleInventoryClose}
               email={ownerEmail}
               tagName={tagName}
               employeeNumber={employeeNumber}
               businessName={businessName}
-            />
+            /> */}
           </>
         ))}
     </>
