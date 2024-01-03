@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { authPortalAccess } from 'src/Services/HR-Services/employeeSlice';
 import { authDataAccess } from 'src/Services/HR-Services/employeeSlice';
-import {setInventoryDetail} from 'src/Services/ProcureServices/inventorySlice';
 import { Link } from 'react-router-dom';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import EventIcon from '@mui/icons-material/Event';
@@ -34,13 +33,12 @@ import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useNavigate } from 'react-router-dom';
+
 import HomeIcon from '@mui/icons-material/Home';
 import StorageIcon from '@mui/icons-material/Storage';
 import DataIcon from '@mui/icons-material/DataUsage';
 
 const EmployeePortal = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   // Fetch employee
   const { employees, isLoading } = useSelector((state) => state.employees);
@@ -255,13 +253,10 @@ const EmployeePortal = () => {
   //calculate consolidated salary
   const cra = 200000 + (20 / 100) * grossIncome;
 
-  // Open inventory 
-  const handleInventoryOpen = (ownerEmail, businessName, tagName, employeeNumber) => {
-    console.log('inventory data :', ownerEmail, businessName, tagName, employeeNumber);
-    dispatch(setInventoryDetail({ ownerEmail, businessName, tagName, employeeNumber }));
-    navigate(`/inventory-records`);
+  // Open Inventory dialog
+  const handleInventoryOpen = () => {
+    setInventoryOpen(true);
   };
-  
 
   // Open Inventory dialog
   const handleInventoryClose = () => {
@@ -497,14 +492,14 @@ const EmployeePortal = () => {
                 pensionFund={pensionFund}
               />
             </Popover>
-            {/* <InventoryRecords
+            <InventoryRecords
               open={inventoryOpen}
               close={handleInventoryClose}
               email={ownerEmail}
               tagName={tagName}
               employeeNumber={employeeNumber}
               businessName={businessName}
-            /> */}
+            />
           </>
         ))}
     </>
