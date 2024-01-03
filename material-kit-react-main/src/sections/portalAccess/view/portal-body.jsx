@@ -259,7 +259,7 @@ const EmployeePortal = () => {
   const handleInventoryOpen = (ownerEmail, businessName, tagName, employeeNumber) => {
     console.log('inventory data :', ownerEmail, businessName, tagName, employeeNumber);
     dispatch(setInventoryDetail({ ownerEmail, businessName, tagName, employeeNumber }));
-    // navigate(`/inventory-records`);
+    navigate(`/inventory-records`);
   };
   
 
