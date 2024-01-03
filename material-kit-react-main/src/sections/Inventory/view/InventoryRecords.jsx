@@ -171,7 +171,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = ({ email, tagName, businessName,close }) => {
+const InventoryTable = ({ email, tagName, businessName,employeeNumber}) => {
   console.log('table props:', email, tagName, businessName);
 
   const navigate = useNavigate();
@@ -625,7 +625,7 @@ export default function MainPage() {
         </Button>
       </Stack>
       <Scrollbar>
-        <InventoryTable  email={ownerEmail} businessName={businessName} tagName={tagName} />
+        <InventoryTable  email={ownerEmail} businessName={businessName} tagName={tagName} employeeNumber={employeeNumber} />
       </Scrollbar>
       <Popover
         open={formPopoverOpen}
@@ -638,7 +638,7 @@ export default function MainPage() {
           alignItems: 'center',
         }}
       >
-        <NewItemForm email={email} tagName={tagName} businessName={businessName} />
+        <NewItemForm email={ownerEmail} tagName={tagName} businessName={businessName} />
       </Popover>
     </Container>
   );
