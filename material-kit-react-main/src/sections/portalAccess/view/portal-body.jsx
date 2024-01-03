@@ -34,12 +34,13 @@ import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import { useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import StorageIcon from '@mui/icons-material/Storage';
 import DataIcon from '@mui/icons-material/DataUsage';
 
 const EmployeePortal = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   // Fetch employee
   const { employees, isLoading } = useSelector((state) => state.employees);
