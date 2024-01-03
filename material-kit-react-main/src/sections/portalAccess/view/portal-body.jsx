@@ -255,17 +255,19 @@ const EmployeePortal = () => {
   //calculate consolidated salary
   const cra = 200000 + (20 / 100) * grossIncome;
 
+  // Open inventory 
+  const handleInventoryOpen = (ownerEmail, businessName, tagName, employeeNumber) => {
+    console.log('inventory data :', ownerEmail, businessName, tagName, employeeNumber);
+    dispatch(setInventoryDetail({ ownerEmail, businessName, tagName, employeeNumber }));
+    // navigate(`/inventory-records`);
   };
   
-   // Open Inventory dialog
-   const handleInventoryClose = () => {
+
+  // Open Inventory dialog
+  const handleInventoryClose = () => {
     setInventoryOpen(false);
-// Open inventory 
-const handleInventoryOpen = (ownerEmail, businessName, tagName, employeeNumber) => {
-  console.log('inventory data :', ownerEmail, businessName, tagName, employeeNumber);
-  dispatch(setInventoryDetail({ ownerEmail, businessName, tagName, employeeNumber }));
-  navigate(`/inventory-records`);
-};
+  };
+
   return (
     <>
       {employees &&
