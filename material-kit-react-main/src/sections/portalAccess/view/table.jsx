@@ -267,8 +267,7 @@ const handleAddChange = async (id, quantity) => {
   const response = await dispatch(incomingStock({ email, id, nums, quantity }));
 
   if (response.meta.requestStatus === 'fulfilled') {
-    // Close the Popover
-    handleCloseMenu();
+ 
 
     // Display a custom alert
     Swal.fire({
@@ -282,9 +281,10 @@ const handleAddChange = async (id, quantity) => {
       cancelButtonText: 'Cancel',
     }).then((result) => {
       if (result.isConfirmed) {
-        // Handle the case when the user clicks OK
+         // Close the Popover
+    handleCloseMenu();
       } else {
-        // Handle the case when the user clicks Cancel
+     console.log('error')
       }
     });
 
