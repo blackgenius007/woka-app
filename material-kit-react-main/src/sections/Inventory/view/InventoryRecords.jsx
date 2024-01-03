@@ -14,7 +14,7 @@ import {
   getAllInventoryEachPoint,
   incomingStock,
   outGoingStock,
-  setInventoryDetail
+   
 } from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
