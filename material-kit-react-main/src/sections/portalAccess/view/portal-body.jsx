@@ -65,7 +65,7 @@ const EmployeePortal = () => {
   // Log the filteredDataAuth to the console
   console.log('Filtered DataAuth:', filteredCollectionPointDetails);
 
-  console.log('portal-body - employees redux state',employees);
+  console.log('portal-body - employees redux state', employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
   const [employeeAccessData, setEmployeeAccessData] = useState([]);
@@ -76,9 +76,6 @@ const EmployeePortal = () => {
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
   const [inventoryOpen, setInventoryOpen] = useState(false);
-
- 
-
 
   //Destructure employees from redux
   useEffect(() => {
@@ -257,8 +254,8 @@ const EmployeePortal = () => {
   const cra = 200000 + (20 / 100) * grossIncome;
 
   // Open Inventory dialog
-  const handleInventoryOpen = () => {
-    setInventoryOpen(true);
+  const handleInventoryOpen = (ownerEmail, businessName, tagName, employeeNumber) => {
+  console.log('inventory data :',ownerEmail, businessName, tagName, employeeNumber)
   };
 
   // Open Inventory dialog
@@ -458,7 +455,9 @@ const EmployeePortal = () => {
                 </Typography>
 
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-                  <IconButton onClick={handleInventoryOpen}>
+                  <IconButton
+                    onClick={handleInventoryOpen(ownerEmail, businessName, tagName, employeeNumber)}
+                  >
                     <InventoryIcon />
                   </IconButton>
                   <Typography variant="body1">Inventory Records</Typography>
