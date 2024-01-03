@@ -20,14 +20,6 @@ function Feature() {
  
   };
 
-  // const SubmitHandle = (e) => {
-  //   e.preventDefault();
-
-  //   if (employeeCode) {
-  //     navigate(`/portal/${employeeCode}`);
-  //   }
-  // };
-
  
   return (
     <main
