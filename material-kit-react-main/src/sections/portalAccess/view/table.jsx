@@ -267,8 +267,6 @@ const handleAddChange = async (id, quantity) => {
   const response = await dispatch(incomingStock({ email, id, nums, quantity }));
 
   if (response.meta.requestStatus === 'fulfilled') {
- 
-
     // Display a custom alert
     Swal.fire({
       icon: 'success',

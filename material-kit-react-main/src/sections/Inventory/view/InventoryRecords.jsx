@@ -1,39 +1,40 @@
-/* eslint-disable */
+ /* eslint-disable */
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
-import RightSidebar from './RightSidebar';
-import { RiFileExcel2Fill } from 'react-icons/ri';
+import Popover from '@mui/material/Popover';
+import Stack from '@mui/material/Stack';
+import Iconify from 'src/components/iconify';
+import Scrollbar from 'src/components/scrollbar';
+import Container from '@mui/material/Container';
+import MenuItem from '@mui/material/MenuItem';
 import moment from 'moment';
-import excelIconSvg from '../../../../assets/svg/excel-1516.svg';
+import {
+  getAllInventoryEachPoint,
+  incomingStock,
+  outGoingStock,
+} from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
-import {
-  calculateTaxAsync,
-  addAllowance,
-  allowanceReset,
-  addOvertime,
-  addIOU,
-  overtimeReset,
-} from '../../../Services/AccountServices/financialSlice';
-import accounting from 'accounting-js';
-import { retrieveAllAttendance } from 'src/Services/HR-Services/employeeSlice';
+import { fNumber } from 'src/utils/format-number';
+
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Dialog from '@mui/material/Dialog';
-
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 import DialogTitle from '@mui/material/DialogTitle';
 import { PersonOutline } from '@mui/icons-material';
 import { Typography, Chip, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { InputAdornment } from '@mui/material';
+import { Icon } from '@iconify/react';
 import CloseIcon from '@mui/icons-material/Close';
-import { IconContext } from 'react-icons';
-
+import NewItemForm from './newItemForm';
 import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import { Popup } from 'semantic-ui-react';
@@ -55,47 +56,58 @@ const futuristicStyles = {
     background: '#222',
     borderRadius: '10px',
     padding: '1rem',
+    overflowX: 'auto',
   },
   table: {
     color: '#fff',
-    // width: '100%',
-    // borderCollapse: 'collapse',
     textAlign: 'left',
-    borderCollapse: 'separate', // Separate borders for cells
-    borderSpacing: '0', // No spacing between cells
+    borderCollapse: 'collapse',
+    width: '100%',
+    borderRadius: '10px',
+    overflow: 'hidden',
+    boxShadow: '0 0 10px rgba(255, 255, 255, 0.1)', // 3D effect
   },
   tableHead: {
     background: '#333',
   },
   tableHeadCell: {
     padding: '0.5rem',
-    textAlign: 'center', // Align header cells to center
+    textAlign: 'center',
+    fontSize: '14px', // Adjusted font size
   },
   tableBodyRow: {
     borderBottom: '1px solid #444',
+    borderRadius: '10px', // Slightly curvy edges
   },
   tableBodyCell: {
-    // padding: '0.5rem',
-    // textAlign: 'center', // Align body cells to center
-    border: '1px solid #444', // Add border to each cell
+    border: '1px solid #444',
     padding: '0.5rem',
     textAlign: 'center',
+    fontSize: '12px', // Adjusted font size
   },
   avatar: {
     borderRadius: '50%',
     width: '30px',
     height: '30px',
   },
-  link: {
-    background: 'none',
-    border: 'none',
-    color: '#00aaff',
+  button: {
+    backgroundColor: '#7393B3',
+    color: '#ffffff',
+    fontSize: '12px', // Adjusted font size
+    borderRadius: '5px',
+    margin: '0.5rem',
+    padding: '0.5rem 1rem',
     cursor: 'pointer',
+    transition: 'background-color 0.3s ease-in-out',
+    '&:hover': {
+      backgroundColor: '#4F6B87',
+    },
+  },
+  link: {
+    color: '#00aaff',
     textDecoration: 'none',
     fontSize: '14px',
     fontFamily: 'inherit',
-    padding: 0,
-    margin: 0,
   },
   actionIcons: {
     fontSize: '1.1rem',
@@ -104,6 +116,29 @@ const futuristicStyles = {
     cursor: 'pointer',
     transition: 'color 0.3s ease-in-out',
   },
+  paginationContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: '1rem',
+  },
+  paginationText: {
+    fontSize: '14px',
+    margin: '0 10px',
+    color: '#333',
+  },
+  paginationButton: {
+    backgroundColor: '#7393B3',
+    color: '#ffffff',
+    fontSize: '16px',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease-in-out',
+    '&:hover': {
+      backgroundColor: '#4F6B87',
+    },
+  },
+  
 };
 
 function BootstrapDialogTitle(props) {
@@ -135,7 +170,9 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = ({ drawer }) => {
+const InventoryTable = ({ email, tagName, businessName,close }) => {
+  console.log('table props:', email, tagName, businessName);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dateOffset, setDateOffset] = useState(7);
@@ -144,35 +181,39 @@ const InventoryTable = ({ drawer }) => {
   const [input, setInput] = useState(0);
   const [minus, setMinus] = useState(0);
   const [rowInputValues, setRowInputValues] = useState({});
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedUpdate, setSelectedUpdate] = useState(null);
+  const [selectedSKU, setSelectedSKU] = useState(null);
+  const [selectedQTY, setSelectedQTY] = useState(null);
   const [open, setOpen] = useState(false);
+  // const [openAction, setOpenAction] = useState(false);
   const [exportMode, setExportMode] = useState(0);
-  let totalRemunerationForAll = 0;
+  const [renderKey, setRenderKey] = useState(0);
   // Pagination state
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  //user details
-  const { role, email, ownerEmail } = useSelector((state) => state.auth.user.data);
-  // user role
-  const userEmail = role === 'owner' || role === 'admin' ? ownerEmail : email;
-  console.log(userEmail);
-
-  //fetch attendance details
-  useEffect(() => {
-    dispatch(retrieveAllAttendance({ userEmail, dateOffset }));
-  }, [dispatch, userEmail, dateOffset]);
-
-  // Retrieve attendance data from employeeSlice
-  const { attendance } = useSelector((state) => state.employees);
-  // Retrieve financial data from financialSlice
-  const financialData = useSelector((state) => state.financial);
-  console.log(attendance, financialData);
-
-  // Function to trigger financial data calculation
-  const calculateFinancialData = (employeeId, grossIncome, country) => {
-    console.log('front-calculateFinancialData:', employeeId, grossIncome, country);
-    dispatch(calculateTaxAsync({ employeeId, grossIncome, country }));
+  //function to open Popover
+  const handleOpenMenu = (event, itemId, itemquantity, SKU) => {
+    setOpen(event.currentTarget);
+    setSelectedUpdate(itemId);
+    setSelectedQTY(itemquantity);
+    setSelectedSKU(SKU);
   };
+  // function to close Popover
+  const handleCloseMenu = () => {
+    setOpen(null);
+  };
+
+  // function to fetch all inventory
+  useEffect(() => {
+    // Assuming getAllInventoryEachPoint is an async thunk
+    dispatch(getAllInventoryEachPoint({ email, tagName }));
+  }, [dispatch, email, tagName]);
+
+  // Accessing the 'inventory' property from the Redux state
+  const { inventory, isLoading, isError } = useSelector((state) => state.inventory);
+
   // search function
   const requestSearch = (searchedVal) => {
     setSearched(searchedVal);
@@ -190,93 +231,126 @@ const InventoryTable = ({ drawer }) => {
   const ExportSheet = () => {
     setExportMode(1);
   };
+// const handleAddChange = async (id, quantity) => {
+//   try {
+//     console.log('=================', id, rowInputValues[id]?.add);
+//     const nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
+//     console.log(nums);
 
-  const handleAddChange = (id, quantity) => {
-    console.log('=================', id);
-    var nums = parseInt(quantity) + parseInt(add);
-    console.log(nums);
-  };
+//     // In stock Action
+//     const response = await dispatch(incomingStock({ email, id, nums, quantity }));
+
+//     // Check if the request was fulfilled
+//     if (response.meta?.requestStatus === 'fulfilled') {
+//       // Display SweetAlert2 alert upon fulfillment
+//       Swal.fire({
+//         icon: 'success',
+//         title: 'Success!',
+//         text: 'Item added successfully!',
+//       });
+
+//       // Trigger a re-render by updating the state
+//       setRenderKey((prevKey) => prevKey + 1);
+//     }
+//   } catch (error) {
+//     console.error('Error:', error);
+//     // Handle the error as needed
+//     // You can show an error message or log it
+//   }
+// };
+
+ 
+
+const handleAddChange = async (id, quantity) => {
+  var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
+  // In stock Action
+  const response = await dispatch(incomingStock({ email, id, nums, quantity }));
+
+  if (response.meta.requestStatus === 'fulfilled') {
+    // Display a custom alert
+    Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      text: 'Items added successfully. Click Cancel and reopen to view changes.',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+         // Close the Popover
+    handleCloseMenu();
+      } else {
+     console.log('error')
+      }
+    });
+
+    // Trigger a re-render by updating the state
+    setRenderKey((prevKey) => prevKey + 1);
+  }
+};
+
+  // const handleAddChange = (id, quantity) => {
+  //   console.log('=================', id, rowInputValues[id]?.add);
+  //   var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
+  //   console.log(nums);
+  //   // In stock Action
+  //   dispatch(incomingStock({ email, id, nums, quantity }));
+ 
+  //         // Trigger a re-render by updating the state
+  //     setRenderKey((prevKey) => prevKey + 1);
+  //     handleCloseMenu()
+  // };
 
   const handleSubChange = (id, quantity) => {
+    const { minus } = rowInputValues[id] || { minus: 0 };
+  
     if (parseInt(quantity) - parseInt(minus) < 0) {
       alert('The input value is too high.');
     } else {
       var nums = parseInt(quantity) - parseInt(minus);
-      const order = prompt('Please enter destination of item');
-
-      console.log(nums, order);
+      const order = prompt(
+        'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
+      );
+  
+      // Check if the user canceled the prompt or entered an empty string
+      if (order === null || order.trim() === '') {
+        console.log('User canceled the prompt or entered an empty string.');
+      } else {
+        console.log(nums, order);
+        // Out stock Action
+        dispatch(outGoingStock({ email, id, nums, quantity, order }));
+      }
     }
   };
-
-  const filteredRows =
-    attendance &&
-    attendance
-      .filter((row) => row.paySchedule === 'Monthly') // Filter by paySchedule === 'weekly'
-      .filter((row) =>
-        Object.values(row).some((value) =>
-          String(value).toLowerCase().includes(searched.toLowerCase())
-        )
-      ); // Further filter by search term
+  
+  // Filter the inventory array based on the search term
+  const filteredRows = inventory.filter((row) =>
+    Object.values(row).some((value) => String(value).toLowerCase().includes(searched.toLowerCase()))
+  );
 
   const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
   const startIndex = page * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
   const paginatedRows = filteredRows.slice(startIndex, endIndex);
 
-  // function to calculate total payout
-
-  filteredRows.map((row) => {
-    const { _id, designation } = row;
-    const { grossIncome, country } = designation;
-    const employeeFinancialData = financialData[_id];
-
-    // Calculate financial data if not available
-    if (!employeeFinancialData) {
-      calculateFinancialData(_id, grossIncome, country);
-      return null; // Render nothing for now, will be updated on next render
-    }
-    console.log(employeeFinancialData);
-    // Calculate financial data if not available
-    if (!employeeFinancialData) {
-      calculateFinancialData(_id, grossIncome, country);
-      return null; // Render nothing for now, will be updated on next render
-    }
-    console.log(employeeFinancialData);
-
-    // Calculate Total Remuneration
-    const monthlyRate = employeeFinancialData.monthlySalary;
-
-    // Calculate net Remuneration
-    const netRemuneration =
-      monthlyRate +
-      parseFloat(row.overtime) +
-      parseFloat(row.allowance) -
-      parseFloat(row.IOU).toFixed(2);
-
-    // Add the calculated remuneration to the total
-    totalRemunerationForAll += netRemuneration;
-  });
-
-  console.log('function for salary=>', totalRemunerationForAll);
-
-  // convert currency
-  const toMoney = (value) => {
-    return accounting.formatMoney(accounting.unformat(value), {
-      symbol: '',
-      precision: 2,
-    });
-  };
-
-  // Function to handle 'add' input change for a specific row
+  // Function to handle 'add Item' input change for a specific row
   const handleAddInputChange = (rowId, value) => {
-    // Create a copy of the current rowInputValues object
-    const updatedRowInputValues = { ...rowInputValues };
-    // Update the 'add' value for the specific row
-    updatedRowInputValues[rowId] = { ...updatedRowInputValues[rowId], add: value };
-    setRowInputValues(updatedRowInputValues);
+    // Ensure that the value is not undefined or null before updating the state
+    if (value !== undefined && value !== null) {
+      // Create a copy of the current rowInputValues object
+      const updatedRowInputValues = { ...rowInputValues };
+
+      // Update the 'add' value for the specific row
+      updatedRowInputValues[rowId] = { ...updatedRowInputValues[rowId], add: value };
+
+      // Set the updated state
+      setRowInputValues(updatedRowInputValues);
+    }
   };
 
-  // Function to handle 'minus' input change for a specific row
+  // Function to handle 'minus Item' input change for a specific row
   const handleMinusInputChange = (rowId, value) => {
     // Create a copy of the current rowInputValues object
     const updatedRowInputValues = { ...rowInputValues };
@@ -311,87 +385,9 @@ const InventoryTable = ({ drawer }) => {
           alignItems: 'center',
           justifyContent: 'center',
         }}
-      >
-        <TextField
-          value={searched}
-          onChange={(e) => requestSearch(e.target.value)}
-          label="Search database"
-          variant="outlined"
-          size="small"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                {searched && (
-                  <IconButton onClick={() => requestSearch('')}>
-                    <Clear />
-                  </IconButton>
-                )}
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
+      ></div>
       <br />
       <label>
-        <IconButton></IconButton>
-        <IconButton>
-          <Popup
-            trigger={
-              <Link>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-history"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#9e9e9e"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <polyline points="12 8 12 12 14 14" />
-                  <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" />
-                </svg>
-              </Link>
-            }
-            position="bottom center"
-          >
-            Inventory history
-          </Popup>
-        </IconButton>
-        <IconButton>
-          <Popup
-            trigger={
-              <Link>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-checkup-list"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#9e9e9e"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                  <rect x="9" y="3" width="6" height="4" rx="2" />
-                  <path d="M9 14h.01" />
-                  <path d="M9 17h.01" />
-                  <path d="M12 16l1 1l3 -3" />
-                </svg>
-              </Link>
-            }
-            position="bottom center"
-          >
-            Out of stock
-          </Popup>
-        </IconButton>
-
         {exportMode ? (
           <>
             {/* Cancel button with Clear icon */}
@@ -412,20 +408,29 @@ const InventoryTable = ({ drawer }) => {
             Convert to Exportable version
           </Button>
         )}
-        <Button variant="contained" onClick={drawer} style={{ backgroundColor: '#E97451' }}>
-          Wages Calculator
+        <Button variant="contained" style={{ backgroundColor: '#E97451' }}>
+          suppliers contact
         </Button>
-        {/* Button to toggle the sidebar */}
-        <Button variant="contained" onClick={drawer}>
-          How it works
-        </Button>
-        {/* Render totalRemunerationForAll in a separate table row */}
-        <tr>
-          <td colSpan="8" style={{ textAlign: 'right' }}>
-            <strong>After Tax Aggregate Salary for All Monthly Employees:</strong>
-          </td>
-          <td style={{ textAlign: 'center' }}>{toMoney(totalRemunerationForAll.toFixed(2))}</td>
-        </tr>
+
+        <Button variant="contained">Request for orders</Button>
+        <TextField
+          value={searched}
+          onChange={(e) => requestSearch(e.target.value)}
+          label="Search database"
+          variant="outlined"
+          size="small"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                {searched && (
+                  <IconButton onClick={() => requestSearch('')}>
+                    <Clear />
+                  </IconButton>
+                )}
+              </InputAdornment>
+            ),
+          }}
+        />
       </label>
       <div style={futuristicStyles.tableContainer}>
         <table style={futuristicStyles.table}>
@@ -433,60 +438,19 @@ const InventoryTable = ({ drawer }) => {
             <tr>
               <th style={futuristicStyles.tableHeadCell}>Item image</th>
               <th style={futuristicStyles.tableHeadCell}>Item</th>
+              <th style={futuristicStyles.tableHeadCell}>SKU Number</th>
               <th style={futuristicStyles.tableHeadCell}>Category</th>
-              <th style={futuristicStyles.tableHeadCell}>Location</th>
               <th style={futuristicStyles.tableHeadCell}>Description</th>
-              <th style={futuristicStyles.tableHeadCell}>Supplier</th>
-              <th style={futuristicStyles.tableHeadCell}>Price</th>
-              <th style={futuristicStyles.tableHeadCell}>Quantity</th>
+              <th style={futuristicStyles.tableHeadCell}>Location</th>
+              <th style={futuristicStyles.tableHeadCell}>Stock</th>
+              <th style={futuristicStyles.tableHeadCell}>Unit Price</th>
               <th style={futuristicStyles.tableHeadCell}>Modified</th>
-              <th style={futuristicStyles.tableHeadCell}>Re-stock</th>
-              <th style={futuristicStyles.tableHeadCell}>Out-going</th>
-              {/* <th style={futuristicStyles.tableHeadCell}>Loan Expiry date</th>
-            <th style={futuristicStyles.tableHeadCell}>Total Salary</th>
-            <th style={futuristicStyles.tableHeadCell}>Bank name</th>
-            <th style={futuristicStyles.tableHeadCell}>Bank code</th>
-            <th style={futuristicStyles.tableHeadCell}>Account Number</th> */}
+              <th style={futuristicStyles.tableHeadCell}>Re-stock +/Outgoing -</th>
+              {/* <th style={futuristicStyles.tableHeadCell}>Out-going</th> */}
             </tr>
           </thead>
           <tbody>
             {paginatedRows.map((row) => {
-              console.log('in-map:', row);
-              const { _id, employeeName, designation } = row;
-              const { grossIncome, country } = designation;
-              const employeeFinancialData = financialData[_id];
-
-              // Calculate financial data if not available
-              if (!employeeFinancialData) {
-                calculateFinancialData(_id, grossIncome, country);
-                return null; // Render nothing for now, will be updated on next render
-              }
-              console.log(employeeFinancialData);
-              // Calculate financial data if not available
-              if (!employeeFinancialData) {
-                calculateFinancialData(_id, grossIncome, country);
-                return null; // Render nothing for now, will be updated on next render
-              }
-              console.log(employeeFinancialData);
-
-              // Calculate Total Remuneration
-              const monthlyRate = employeeFinancialData.monthlySalary;
-              const totalRemuneration = (
-                monthlyRate +
-                row.overtime +
-                row.allowance -
-                row.IOU
-              ).toFixed(2);
-
-              // Calculate net Remuneration
-              const netRemuneration =
-                monthlyRate +
-                parseFloat(row.overtime) +
-                parseFloat(row.allowance) -
-                parseFloat(row.IOU);
-              // Add the calculated remuneration to the total
-              totalRemunerationForAll += netRemuneration;
-              console.log('All:', totalRemunerationForAll);
               return (
                 <tr key={row.id} style={futuristicStyles.tableBodyRow}>
                   {exportMode === 1 ? (
@@ -497,145 +461,125 @@ const InventoryTable = ({ drawer }) => {
                     </td>
                   )}
 
-                  <td style={futuristicStyles.tableBodyRow}>
-                    <Link
-                      to={`/employee-detail/${row._id}`}
-                      style={{ textDecoration: 'none', color: 'white' }}
-                    >
-                      {' '}
-                      {employeeName}
-                    </Link>{' '}
-                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.itemName}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
                     <Link
-                      to={`/employee-detail/${row._id}`}
                       style={{
                         color: '#ffff',
                         textDecoration: 'none',
                         backgroundImage: 'none',
                       }}
                     >
-                      {row.designation.designation}
+                      {row.SKU}
                     </Link>
                   </td>
 
-                  <td style={futuristicStyles.tableBodyCell}>
-                    {toMoney(employeeFinancialData.monthlySalary)}
-                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.category}</td>
+
+                  <td style={futuristicStyles.tableBodyCell}>{row.description}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.tagName}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.stock}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.price)}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.updatedAt}</td>
 
                   <td style={futuristicStyles.tableBodyCell}>
-                    {toMoney(row.allowance ? row.allowance : '0.00')}
-                  </td>
-                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.overtime)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.IOU)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.location)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{toMoney(row.I)}</td>
-
-                  <td style={futuristicStyles.tableBodyCell}>
-                    <input
-                      type="number"
-                      style={{
-                        width: '50px',
-                        padding: '5px',
-                        border: 'none',
-                        borderBottom: '1px solid #ddd',
-                        background: 'transparent',
-                        color: 'white',
-                      }}
-                      value={rowInputValues[row._id]?.add || ''}
-                      onChange={(e) => handleAddInputChange(row._id, e.target.value)}
-                    />
                     <IconButton
-                      onClick={() => handleAddChange(row._id, row.quantity)}
-                      style={{ color: '#26a69a' }}
+                      onClick={(event) => handleOpenMenu(event, row._id, row.stock, row.SKU)}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-plus"
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="#26a69a"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        +
-                      </svg>
-                    </IconButton>
-                  </td>
-                  <td style={futuristicStyles.tableBodyCell}>
-                    <input
-                      type="number"
-                      style={{
-                        width: '50px',
-                        padding: '5px',
-                        border: 'none',
-                        borderBottom: '1px solid #ddd',
-                        background: 'transparent',
-                        color: 'white',
-                      }}
-                      value={rowInputValues[row._id]?.minus || ''}
-                      onChange={(e) => handleMinusInputChange(row._id, e.target.value)}
-                    />
-                    <IconButton
-                      onClick={() => handleSubChange(row._id, row.quantity)}
-                      style={{ color: '#e57373' }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-transfer-out"
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="#e57373"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        -
-                      </svg>
+                      <Iconify icon="eva:more-vertical-fill" />
                     </IconButton>
                   </td>
                 </tr>
               );
             })}
-
-            <tr>
-              <td colSpan="8" style={{ textAlign: 'right' }}>
-                <strong>Total:</strong>
-              </td>
-              <td style={{ textAlign: 'center' }}>
-                {/* {toMoney(totalRemunerationForAll.toFixed(2)/2) } */}
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
       <br />
-      {/* Pagination controls */}
-      <div>
-        <button onClick={() => setPage(Math.max(0, page - 1))} disabled={page === 0}>
-          Previous
-        </button>
-        <span>
+
+      <div style={futuristicStyles.paginationContainer}>
+        <IconButton
+          onClick={() => setPage(Math.max(0, page - 1))}
+          disabled={page === 0}
+          style={futuristicStyles.paginationButton}
+        >
+          <ChevronLeft />
+        </IconButton>
+        <span style={futuristicStyles.paginationText}>
           Page {page + 1} of {totalPages}
         </span>
-        <button
+        <IconButton
           onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
           disabled={page === totalPages - 1}
+          style={futuristicStyles.paginationButton}
         >
-          Next
-        </button>
+          <ChevronRight />
+        </IconButton>
       </div>
+      <Popover
+        open={!!open}
+        anchorEl={open}
+        onClose={handleCloseMenu}
+        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        PaperProps={{
+          sx: { width: 140 },
+        }}
+      >
+        <span style={{ marginLeft: '30px', fontSize: '12px', color: 'grey' }}>{selectedSKU}</span>
+        <hr />
+        <MenuItem>
+          <input
+            type="number"
+            placeholder="Out -"
+            style={{
+              width: '50px',
+              padding: '5px',
+              border: 'none',
+              borderBottom: '1px solid #ddd',
+              background: '#333', // Darker background color
+              color: 'white',
+            }}
+            value={rowInputValues[selectedUpdate]?.minus || ''}
+            onChange={(e) => handleMinusInputChange(selectedUpdate, e.target.value)}
+          />
+          <IconButton
+            onClick={() => handleSubChange(selectedUpdate, selectedQTY)}
+            style={{ color: '#26a69a' }}
+          >
+            <Icon icon="game-icons:hand-truck" color="purple" width="32" height="32" />
+          </IconButton>
+        </MenuItem>
+
+        <MenuItem sx={{ color: 'error.main' }}>
+          <input
+            type="number"
+            placeholder="In +"
+            style={{
+              width: '50px',
+              padding: '5px',
+              border: 'none',
+              borderBottom: '1px solid #ddd',
+              background: '#333', // Darker background color
+              color: 'white',
+            }}
+            value={rowInputValues[selectedUpdate]?.add || ''}
+            onChange={(e) => handleAddInputChange(selectedUpdate, e.target.value)}
+          />
+          <IconButton
+            onClick={() => handleAddChange(selectedUpdate, selectedQTY)}
+            style={{ color: '#26a69a' }}
+          >
+            <Icon icon="fluent-emoji-flat:delivery-truck" color="purple" width="32" height="32" />
+          </IconButton>
+        </MenuItem>
+      </Popover>
     </>
   );
 };
 
-export default function MainPage() {
+export default function MainPage({ email, tagName,close,businessName }) {
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -644,90 +588,53 @@ export default function MainPage() {
     // height: '75vh', // Set the height of the container to full viewport height
   };
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [formPopoverOpen, setFormPopoverOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  // Open new form Popover
+  const handleFormPopoverOpen = (event) => {
+    setFormPopoverOpen(true);
+    setAnchorEl(event.currentTarget);
+  };
+
+  // Close new form Popover
+  const handleFormPopoverClose = () => {
+    setFormPopoverOpen(false);
+  };
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    <div style={containerStyle}>
-      <h1 style={{ color: '#6082B6' }}>Inventory Sheet</h1>
+    <Container>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Typography variant="h4">Inventory Management</Typography>
 
-      <InventoryTable drawer={toggleSidebar} />
-      {/* Right Sidebar */}
-      <RightSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
-    </div>
+        <Button
+          onClick={handleFormPopoverOpen}
+          variant="contained"
+          style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
+          startIcon={<Iconify icon="eva:plus-fill" />}
+        >
+          New Item
+        </Button>
+      </Stack>
+      <Scrollbar>
+        <InventoryTable  email={email} businessName={businessName} tagName={tagName} />
+      </Scrollbar>
+      <Popover
+        open={formPopoverOpen}
+        onClose={handleFormPopoverClose}
+        anchorReference="none"
+        anchorEl={null}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <NewItemForm email={email} tagName={tagName} businessName={businessName} />
+      </Popover>
+    </Container>
   );
 }
-
-// import React, { useState } from 'react';
-
-// const InventoryTable = () => {
-//   const initialItems = [
-//     { id: 1, name: 'Item A', quantity: 10 },
-//     { id: 2, name: 'Item B', quantity: 5 },
-//     { id: 3, name: 'Item C', quantity: 15 },
-//   ];
-
-//   const [items, setItems] = useState(initialItems);
-
-//   const handleChange = (itemId, newQuantity) => {
-//     const updatedItems = items.map((item) =>
-//       item.id === itemId ? { ...item, quantity: newQuantity } : item
-//     );
-//     setItems(updatedItems);
-//     console.log(updatedItems);
-
-//     // Simulate API call to backend
-//     setTimeout(() => {
-//       updateBackend(itemId, newQuantity);
-//     }, 500);
-//   };
-
-//   const updateBackend = (itemId, newQuantity) => {
-//     // Simulated API call
-//     console.log(`Sending data to backend: Item ${itemId} - New Quantity: ${newQuantity}`);
-//   };
-
-//   return (
-//     <div>
-//       <h2>Inventory Table</h2>
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Item Name</th>
-//             <th>Current Quantity</th>
-//             <th>Quantity</th>
-//             <th>Actions</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {items.map((item) => (
-//             <tr key={item.id}>
-//               <td>{item.name}</td>
-//               <td>{item.quantity}</td>
-//               <td>
-//                 <input
-//                   type="number"
-//                   value={item.quantity}
-//                   onChange={(e) =>
-//                     handleChange(item.id, parseInt(e.target.value, 10))
-//                   }
-//                 />
-//               </td>
-//               <td>
-//                 <button onClick={() => handleChange(item.id, item.quantity + 1)}>
-//                   +
-//                 </button>
-//                 <button onClick={() => handleChange(item.id, item.quantity - 1)}>
-//                   -
-//                 </button>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-
-// export default InventoryTable;
