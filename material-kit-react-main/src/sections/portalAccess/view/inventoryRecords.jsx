@@ -29,7 +29,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
 
   // Accessing inventory data from the Redux store
   const inventoryData = useSelector((state) => state.inventory);
- 
+  const [renderKey, setRenderKey] = useState(0);
 
 //  console.log('INVENTORY=>',inventoryData)
 
@@ -74,7 +74,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
          <br/>
          <br/>
         
-        <InventoryTable close={close} email={email} tagName={tagName} businessName={businessName} />
+        <InventoryTable   email={email} tagName={tagName} businessName={businessName} />
     
       </Dialog>
     </React.Fragment>

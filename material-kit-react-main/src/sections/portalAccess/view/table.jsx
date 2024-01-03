@@ -259,26 +259,37 @@ const InventoryTable = ({ email, tagName, businessName,close }) => {
 //   }
 // };
 
-// Custom hook for force update
-const useForceUpdate = () => {
-  const [, forceUpdate] = useState();
-
-  return () => forceUpdate((prevKey) => prevKey + 1);
-};
-
-const forceUpdate = useForceUpdate();
-const handleButtonClick = () => {
-  // Call the close function passed as a prop
-  close();
-};
+ 
 
 const handleAddChange = async (id, quantity) => {
   var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
   // In stock Action
-  const response = await dispatch(incomingStock({email, id, nums, quantity }));
+  const response = await dispatch(incomingStock({ email, id, nums, quantity }));
 
   if (response.meta.requestStatus === 'fulfilled') {
- 
+    // Close the Popover
+    handleCloseMenu();
+
+    // Display a custom alert
+    Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      text: 'Items added successfully. Click Cancel and reopen to view changes.',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Handle the case when the user clicks OK
+      } else {
+        // Handle the case when the user clicks Cancel
+      }
+    });
+
+    // Trigger a re-render by updating the state
+    setRenderKey((prevKey) => prevKey + 1);
   }
 };
 
