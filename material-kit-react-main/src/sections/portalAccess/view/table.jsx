@@ -250,7 +250,7 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
       var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
       // In stock Action
       const response = await dispatch(incomingStock({ email, id, nums, quantity }));
-  
+
       // Check if the action was fulfilled
       if (response.meta.requestStatus === 'fulfilled') {
         // Display a Material-UI success alert
@@ -266,7 +266,6 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
       // Optionally, display an error alert or take other actions
     }
   };
-  
 
   // const handleAddChange = (id, quantity) => {
   //   console.log('=================', id, rowInputValues[id]?.add);
@@ -410,14 +409,14 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
         />
       </label>
       <div style={futuristicStyles.tableContainer}>
-      {alertOpen && (
-        <Stack spacing={2} sx={{ width: '100%' }}>
-          <Alert severity="success" onClose={handleAlertClose}>
-            <AlertTitle>Success</AlertTitle>
-            Item database updated successfully, click close and reopen to view changes
-          </Alert>
-        </Stack>
-      )}
+        {alertOpen && (
+          <Stack spacing={2} sx={{ width: '100%' }}>
+            <Alert severity="success" onClose={handleCloseClick}>
+              <AlertTitle>Success</AlertTitle>
+              Item database updated successfully, click close and reopen to view changes
+            </Alert>
+          </Stack>
+        )}
 
         <table style={futuristicStyles.table}>
           <thead style={futuristicStyles.tableHead}>
