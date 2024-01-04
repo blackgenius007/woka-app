@@ -240,19 +240,31 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
     // Call the reOpen prop to reopen the inventory
     close();
   };
+  const handleAlertClose = () => {
+    setAlertOpen(false);
+  };
   const handleAddChange = async (id, quantity) => {
-    var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
-    // In stock Action
-    const response = await dispatch(incomingStock({ email, id, nums, quantity }));
-
-    if (response.meta.requestStatus === 'fulfilled') {
-      // Display a Material-UI success alert
-      // setAlertOpen(true);
-      handleCloseClick()
-      handleReOpenClick();
-      handleCloseMenu();
+    try {
+      var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
+      // In stock Action
+      const response = await dispatch(incomingStock({ email, id, nums, quantity }));
+  
+      // Check if the action was fulfilled
+      if (response.meta.requestStatus === 'fulfilled') {
+        // Display a Material-UI success alert
+        setAlertOpen(true);
+      } else {
+        // Handle the case where the action was rejected
+        console.error('Error creating inventory item:', response.error);
+        // Optionally, display an error alert or take other actions
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('Unexpected error creating inventory item:', error);
+      // Optionally, display an error alert or take other actions
     }
   };
+  
 
   // const handleAddChange = (id, quantity) => {
   //   console.log('=================', id, rowInputValues[id]?.add);
@@ -396,6 +408,15 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
         />
       </label>
       <div style={futuristicStyles.tableContainer}>
+      {alertOpen && (
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Alert severity="success" onClose={handleAlertClose}>
+            <AlertTitle>Success</AlertTitle>
+            Item database updated successfully, click close and reopen to view changes
+          </Alert>
+        </Stack>
+      )}
+
         <table style={futuristicStyles.table}>
           <thead style={futuristicStyles.tableHead}>
             <tr>
