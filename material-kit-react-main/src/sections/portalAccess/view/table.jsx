@@ -258,7 +258,6 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
         handleCloseMenu();
         // Display a Material-UI success alert
         setAlertOpen(true);
-
       } else {
         // Handle the case where the action was rejected
         console.error('Error creating inventory item:', response.error);
@@ -270,11 +269,11 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
       // Optionally, display an error alert or take other actions
     }
   };
- 
+
   const handleSubChange = async (id, quantity) => {
     try {
       const { minus } = rowInputValues[id] || { minus: 0 };
-  
+
       if (parseInt(quantity) - parseInt(minus) < 0) {
         alert('The input value is too high.');
       } else {
@@ -282,21 +281,20 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
         const order = prompt(
           'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
         );
-  
+
         // Check if the user canceled the prompt or entered an empty string
         if (order === null || order.trim() === '') {
           console.log('User canceled the prompt or entered an empty string.');
         } else {
           // Out stock Action
           const response = await dispatch(outGoingStock({ email, id, nums, quantity, order }));
-  
+
           // Check if the action was fulfilled
           if (response.meta.requestStatus === 'fulfilled') {
-           
             // Display a Material-UI success alert
             setAlertOpen(true);
-             // Close Re-stock +/Outgoing - Popover
-             handleCloseMenu();
+            // Close Re-stock +/Outgoing - Popover
+            handleCloseMenu();
           } else {
             // Handle the case where the action was rejected
             console.error('Error creating inventory item:', response.error);
@@ -310,7 +308,6 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
       // Optionally, display an error alert or take other actions
     }
   };
-  
 
   // const handleSubChange = (id, quantity) => {
   //   const { minus } = rowInputValues[id] || { minus: 0 };
@@ -446,7 +443,8 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
           <Stack spacing={2} sx={{ width: '100%' }}>
             <Alert severity="success" onClose={handleAlertClose}>
               <AlertTitle>Success</AlertTitle>
-              {selectedItem} quantity updated successfully, close this page and reopen to view changes
+              The {selectedItem} quantity has been successfully updated. Please close this page and
+              reopen it to see the changes.
             </Alert>
           </Stack>
         )}
@@ -499,11 +497,15 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
                   <td style={futuristicStyles.tableBodyCell}>{row.tagName}</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.stock}</td>
                   <td style={futuristicStyles.tableBodyCell}>{fNumber(row.price)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{row.updatedAt}</td>
+                  <td style={futuristicStyles.tableBodyCell}>
+                    {moment(row.updatedAt).format('h:mm a D MMMM YYYY')}
+                  </td>
 
                   <td style={futuristicStyles.tableBodyCell}>
                     <IconButton
-                      onClick={(event) => handleOpenMenu(event, row._id, row.stock, row.SKU,row.itemName)}
+                      onClick={(event) =>
+                        handleOpenMenu(event, row._id, row.stock, row.SKU, row.itemName)
+                      }
                     >
                       <Iconify icon="eva:more-vertical-fill" />
                     </IconButton>
