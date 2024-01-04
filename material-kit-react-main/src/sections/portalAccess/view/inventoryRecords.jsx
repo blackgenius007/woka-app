@@ -60,8 +60,10 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
             </Typography>
         
             <Button
+          
             variant="contained"
-            style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
+            style={{ backgroundColor: '#0096FF', color: 'white' }}
+            onClick={handleInventoryHistoryOpen} 
            
           >
             View Inventory History
