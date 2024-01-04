@@ -75,7 +75,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
         <InventoryHistory
               open={inventoryOpen}
               close={handleInventoryHistoryClose}
-              email={ownerEmail}
+              email={email}
               tagName={tagName}
               employeeNumber={employeeNumber}
               businessName={businessName}
