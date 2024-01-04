@@ -47,7 +47,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h4" component="div">
-            Inventory History on {tagName}
+            {tagName}-Inventory History-{moment().format('h:mm a D MMMM YYYY')}
             </Typography>
           </Toolbar>
         </AppBar>
