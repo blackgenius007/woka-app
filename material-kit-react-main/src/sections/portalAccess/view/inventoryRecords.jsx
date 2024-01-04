@@ -19,6 +19,7 @@ import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import InventoryTable from './table';
 import{getAllInventoryEachPoint} from 'src/Services/ProcureServices/inventorySlice';
+import InventoryHistory from './inventoryHistory';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
