@@ -254,8 +254,11 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
 
       // Check if the action was fulfilled
       if (response.meta.requestStatus === 'fulfilled') {
+        //Close Re-stock +/Outgoing - Popover
+        handleCloseMenu();
         // Display a Material-UI success alert
         setAlertOpen(true);
+
       } else {
         // Handle the case where the action was rejected
         console.error('Error creating inventory item:', response.error);
@@ -267,40 +270,68 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
       // Optionally, display an error alert or take other actions
     }
   };
-
-  // const handleAddChange = (id, quantity) => {
-  //   console.log('=================', id, rowInputValues[id]?.add);
-  //   var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
-  //   console.log(nums);
-  //   // In stock Action
-  //   dispatch(incomingStock({ email, id, nums, quantity }));
-
-  //         // Trigger a re-render by updating the state
-  //     setRenderKey((prevKey) => prevKey + 1);
-  //     handleCloseMenu()
-  // };
-
-  const handleSubChange = (id, quantity) => {
-    const { minus } = rowInputValues[id] || { minus: 0 };
-
-    if (parseInt(quantity) - parseInt(minus) < 0) {
-      alert('The input value is too high.');
-    } else {
-      var nums = parseInt(quantity) - parseInt(minus);
-      const order = prompt(
-        'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
-      );
-
-      // Check if the user canceled the prompt or entered an empty string
-      if (order === null || order.trim() === '') {
-        console.log('User canceled the prompt or entered an empty string.');
+ 
+  const handleSubChange = async (id, quantity) => {
+    try {
+      const { minus } = rowInputValues[id] || { minus: 0 };
+  
+      if (parseInt(quantity) - parseInt(minus) < 0) {
+        alert('The input value is too high.');
       } else {
-        console.log(nums, order);
-        // Out stock Action
-        dispatch(outGoingStock({ email, id, nums, quantity, order }));
+        var nums = parseInt(quantity) - parseInt(minus);
+        const order = prompt(
+          'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
+        );
+  
+        // Check if the user canceled the prompt or entered an empty string
+        if (order === null || order.trim() === '') {
+          console.log('User canceled the prompt or entered an empty string.');
+        } else {
+          // Out stock Action
+          const response = await dispatch(outGoingStock({ email, id, nums, quantity, order }));
+  
+          // Check if the action was fulfilled
+          if (response.meta.requestStatus === 'fulfilled') {
+            // Close Re-stock +/Outgoing - Popover
+            handleCloseMenu();
+            // Display a Material-UI success alert
+            setAlertOpen(true);
+          } else {
+            // Handle the case where the action was rejected
+            console.error('Error creating inventory item:', response.error);
+            // Optionally, display an error alert or take other actions
+          }
+        }
       }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('Unexpected error creating inventory item:', error);
+      // Optionally, display an error alert or take other actions
     }
   };
+  
+
+  // const handleSubChange = (id, quantity) => {
+  //   const { minus } = rowInputValues[id] || { minus: 0 };
+
+  //   if (parseInt(quantity) - parseInt(minus) < 0) {
+  //     alert('The input value is too high.');
+  //   } else {
+  //     var nums = parseInt(quantity) - parseInt(minus);
+  //     const order = prompt(
+  //       'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
+  //     );
+
+  //     // Check if the user canceled the prompt or entered an empty string
+  //     if (order === null || order.trim() === '') {
+  //       console.log('User canceled the prompt or entered an empty string.');
+  //     } else {
+  //       console.log(nums, order);
+  //       // Out stock Action
+  //       dispatch(outGoingStock({ email, id, nums, quantity, order }));
+  //     }
+  //   }
+  // };
 
   // Filter the inventory array based on the search term
   const filteredRows = inventory.filter((row) =>
