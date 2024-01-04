@@ -236,7 +236,10 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
     // Call the reOpen prop to reopen the inventory
     reOpen();
   };
-
+  const handleCloseClick = () => {
+    // Call the reOpen prop to reopen the inventory
+    close();
+  };
   const handleAddChange = async (id, quantity) => {
     var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
     // In stock Action
@@ -245,6 +248,7 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
     if (response.meta.requestStatus === 'fulfilled') {
       // Display a Material-UI success alert
       // setAlertOpen(true);
+      handleCloseClick()
       handleReOpenClick();
       handleCloseMenu();
     }
