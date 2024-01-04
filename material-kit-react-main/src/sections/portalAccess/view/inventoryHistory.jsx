@@ -18,7 +18,7 @@ import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import InventoryTable from './table';
+import InventoryHistoryTable from './table-inventory-History';
 import{getAllInventoryEachPoint} from 'src/Services/ProcureServices/inventorySlice';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -55,7 +55,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
          <br/>
          <br/>
         
-  rest...
+  <InventoryHistoryTable / >
     
       </Dialog>
     </React.Fragment>
