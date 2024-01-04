@@ -196,11 +196,12 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   //function to open Popover
-  const handleOpenMenu = (event, itemId, itemquantity, SKU) => {
+  const handleOpenMenu = (event, itemId, itemquantity, SKU, Item) => {
     setOpen(event.currentTarget);
     setSelectedUpdate(itemId);
     setSelectedQTY(itemquantity);
     setSelectedSKU(SKU);
+    setSelectedItem(Item);
   };
   // function to close Popover
   const handleCloseMenu = () => {
@@ -411,9 +412,9 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
       <div style={futuristicStyles.tableContainer}>
         {alertOpen && (
           <Stack spacing={2} sx={{ width: '100%' }}>
-            <Alert severity="success" onClose={handleCloseClick}>
+            <Alert severity="success" onClose={handleAlertClose}>
               <AlertTitle>Success</AlertTitle>
-              Item database updated successfully, click close and reopen to view changes
+              {selectedItem} quantity updated successfully, close this page and reopen to view changes
             </Alert>
           </Stack>
         )}
@@ -470,7 +471,7 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
 
                   <td style={futuristicStyles.tableBodyCell}>
                     <IconButton
-                      onClick={(event) => handleOpenMenu(event, row._id, row.stock, row.SKU)}
+                      onClick={(event) => handleOpenMenu(event, row._id, row.stock, row.SKU,row.itemName)}
                     >
                       <Iconify icon="eva:more-vertical-fill" />
                     </IconButton>
