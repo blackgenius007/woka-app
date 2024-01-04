@@ -30,7 +30,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
   // Accessing inventory data from the Redux store
   const inventoryData = useSelector((state) => state.inventory);
  
-    // Open Inventory History dialog
+     
     const handleInventoryHistoryOpen = () => {
       setHistoryOpen(true);
     };
