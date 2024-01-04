@@ -297,6 +297,7 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
   const quantity = req.params.quantity;
   const order = req.params.order;
   const num_mod = req.params.nums;
+  const email = req.params.email;
   var dirSymbol = " &#8594;";
 
   try {
