@@ -26,19 +26,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function InventoryDialog({open, close,employeeNumber, tagName,reOpen ,email,businessName}) {
  console.log('InventoryRecords,props from portalBody:',tagName ,email,businessName)
- const [inventoryOpen, setInventoryOpen] = useState(false);
+
   // Accessing inventory data from the Redux store
   const inventoryData = useSelector((state) => state.inventory);
  
-    // Open Inventory History dialog
-    const handleInventoryHistoryOpen = () => {
-      setHistoryOpen(true);
-    };
-  
-    // Close Inventory History dialog
-    const handleInventoryHistoryClose = () => {
-      setHistoryOpen(false);
-    };
+ 
 
   return (
     <React.Fragment>
@@ -55,30 +47,14 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h4" component="div">
-              {businessName}-{tagName}
+            Inventory History on {tagName}
             </Typography>
-        
-            <Button
-            variant="contained"
-            style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
-           
-          >
-            View Inventory History
-          </Button>
           </Toolbar>
         </AppBar>
          <br/>
          <br/>
         
-        <InventoryTable reOpen={reOpen}  email={email} tagName={tagName} businessName={businessName} />
-        <InventoryHistory
-              open={inventoryOpen}
-              close={handleInventoryHistoryClose}
-              email={ownerEmail}
-              tagName={tagName}
-              employeeNumber={employeeNumber}
-              businessName={businessName}
-            />
+  rest...
     
       </Dialog>
     </React.Fragment>
