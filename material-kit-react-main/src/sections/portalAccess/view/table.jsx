@@ -138,7 +138,6 @@ const futuristicStyles = {
       backgroundColor: '#4F6B87',
     },
   },
-  
 };
 
 function BootstrapDialogTitle(props) {
@@ -170,7 +169,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const InventoryTable = ({ email, tagName, businessName,close }) => {
+const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
   console.log('table props:', email, tagName, businessName);
 
   const navigate = useNavigate();
@@ -186,6 +185,7 @@ const InventoryTable = ({ email, tagName, businessName,close }) => {
   const [selectedSKU, setSelectedSKU] = useState(null);
   const [selectedQTY, setSelectedQTY] = useState(null);
   const [open, setOpen] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
   // const [openAction, setOpenAction] = useState(false);
   const [exportMode, setExportMode] = useState(0);
   const [renderKey, setRenderKey] = useState(0);
@@ -231,65 +231,24 @@ const InventoryTable = ({ email, tagName, businessName,close }) => {
   const ExportSheet = () => {
     setExportMode(1);
   };
-// const handleAddChange = async (id, quantity) => {
-//   try {
-//     console.log('=================', id, rowInputValues[id]?.add);
-//     const nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
-//     console.log(nums);
 
-//     // In stock Action
-//     const response = await dispatch(incomingStock({ email, id, nums, quantity }));
+  const handleReOpenClick = () => {
+    // Call the reOpen prop to reopen the inventory
+    reOpen();
+  };
 
-//     // Check if the request was fulfilled
-//     if (response.meta?.requestStatus === 'fulfilled') {
-//       // Display SweetAlert2 alert upon fulfillment
-//       Swal.fire({
-//         icon: 'success',
-//         title: 'Success!',
-//         text: 'Item added successfully!',
-//       });
+  const handleAddChange = async (id, quantity) => {
+    var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
+    // In stock Action
+    const response = await dispatch(incomingStock({ email, id, nums, quantity }));
 
-//       // Trigger a re-render by updating the state
-//       setRenderKey((prevKey) => prevKey + 1);
-//     }
-//   } catch (error) {
-//     console.error('Error:', error);
-//     // Handle the error as needed
-//     // You can show an error message or log it
-//   }
-// };
-
- 
-
-const handleAddChange = async (id, quantity) => {
-  var nums = parseInt(quantity) + parseInt(rowInputValues[id]?.add || 0);
-  // In stock Action
-  const response = await dispatch(incomingStock({ email, id, nums, quantity }));
-
-  if (response.meta.requestStatus === 'fulfilled') {
-    // Display a custom alert
-    Swal.fire({
-      icon: 'success',
-      title: 'Success!',
-      text: 'Items added successfully. Click Cancel and reopen to view changes.',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancel',
-    }).then((result) => {
-      if (result.isConfirmed) {
-         // Close the Popover
-    handleCloseMenu();
-      } else {
-     console.log('error')
-      }
-    });
-
-    // Trigger a re-render by updating the state
-    setRenderKey((prevKey) => prevKey + 1);
-  }
-};
+    if (response.meta.requestStatus === 'fulfilled') {
+      // Display a Material-UI success alert
+      // setAlertOpen(true);
+      handleReOpenClick();
+      handleCloseMenu();
+    }
+  };
 
   // const handleAddChange = (id, quantity) => {
   //   console.log('=================', id, rowInputValues[id]?.add);
@@ -297,7 +256,7 @@ const handleAddChange = async (id, quantity) => {
   //   console.log(nums);
   //   // In stock Action
   //   dispatch(incomingStock({ email, id, nums, quantity }));
- 
+
   //         // Trigger a re-render by updating the state
   //     setRenderKey((prevKey) => prevKey + 1);
   //     handleCloseMenu()
@@ -305,7 +264,7 @@ const handleAddChange = async (id, quantity) => {
 
   const handleSubChange = (id, quantity) => {
     const { minus } = rowInputValues[id] || { minus: 0 };
-  
+
     if (parseInt(quantity) - parseInt(minus) < 0) {
       alert('The input value is too high.');
     } else {
@@ -313,7 +272,7 @@ const handleAddChange = async (id, quantity) => {
       const order = prompt(
         'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
       );
-  
+
       // Check if the user canceled the prompt or entered an empty string
       if (order === null || order.trim() === '') {
         console.log('User canceled the prompt or entered an empty string.');
@@ -324,7 +283,7 @@ const handleAddChange = async (id, quantity) => {
       }
     }
   };
-  
+
   // Filter the inventory array based on the search term
   const filteredRows = inventory.filter((row) =>
     Object.values(row).some((value) => String(value).toLowerCase().includes(searched.toLowerCase()))
@@ -579,7 +538,7 @@ const handleAddChange = async (id, quantity) => {
   );
 };
 
-export default function MainPage({ email, tagName,close,businessName }) {
+export default function MainPage({ email, tagName, close, businessName, reOpen }) {
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -620,7 +579,7 @@ export default function MainPage({ email, tagName,close,businessName }) {
         </Button>
       </Stack>
       <Scrollbar>
-        <InventoryTable  email={email} businessName={businessName} tagName={tagName} />
+        <InventoryTable email={email} businessName={businessName} tagName={tagName} />
       </Scrollbar>
       <Popover
         open={formPopoverOpen}

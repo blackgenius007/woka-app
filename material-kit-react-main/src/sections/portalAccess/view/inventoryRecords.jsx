@@ -24,7 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function InventoryDialog({open, close,employeeNumber, tagName ,email,businessName}) {
+export default function InventoryDialog({open, close,employeeNumber, tagName,reOpen ,email,businessName}) {
  console.log('InventoryRecords,props from portalBody:',tagName ,email,businessName)
 
   // Accessing inventory data from the Redux store
@@ -63,7 +63,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName ,em
          <br/>
          <br/>
         
-        <InventoryTable   email={email} tagName={tagName} businessName={businessName} />
+        <InventoryTable reOpen={reOpen}  email={email} tagName={tagName} businessName={businessName} />
     
       </Dialog>
     </React.Fragment>

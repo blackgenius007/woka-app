@@ -28,7 +28,10 @@ import {
   Paper,
   TextField,
   Popover,
+  Alert,
+  AlertTitle
 } from '@mui/material';
+ 
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
@@ -76,6 +79,8 @@ const EmployeePortal = () => {
   const [dataCode, setDataCode] = useState('');
   const [dataMessage, setDataMessage] = useState('');
   const [inventoryOpen, setInventoryOpen] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+
 
  
 
@@ -495,6 +500,7 @@ const EmployeePortal = () => {
             </Popover>
             <InventoryRecords
               open={inventoryOpen}
+              reOpen={handleInventoryOpen}
               close={handleInventoryClose}
               email={ownerEmail}
               tagName={tagName}
