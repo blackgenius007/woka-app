@@ -292,10 +292,11 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
   
           // Check if the action was fulfilled
           if (response.meta.requestStatus === 'fulfilled') {
-            // Close Re-stock +/Outgoing - Popover
-            handleCloseMenu();
+           
             // Display a Material-UI success alert
             setAlertOpen(true);
+             // Close Re-stock +/Outgoing - Popover
+             handleCloseMenu();
           } else {
             // Handle the case where the action was rejected
             console.error('Error creating inventory item:', response.error);
