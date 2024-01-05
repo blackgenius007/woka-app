@@ -168,7 +168,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) => {
- 
+ console.log('log table:',email, tagName)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -399,6 +399,7 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
 };
 
 export default function MainPage({ email, tagName, close, businessName, reOpen }) {
+  console.log('log table-1:',email, tagName)
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
