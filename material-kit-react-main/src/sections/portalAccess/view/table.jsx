@@ -595,6 +595,7 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
           </IconButton>
         </MenuItem>
       </Popover>
+      
     </>
   );
 };
@@ -638,6 +639,14 @@ export default function MainPage({ email, tagName, close, businessName, reOpen }
         >
           New Item
         </Button>
+        <Button
+          // onClick={handleFormPopoverOpen}
+          variant="contained"
+          style={{ backgroundColor: '#0096FF', color: 'white' }} 
+           
+        >
+          Inventory logs
+        </Button>
       </Stack>
       <Scrollbar>
         <InventoryTable email={email} businessName={businessName} tagName={tagName} />
@@ -655,6 +664,7 @@ export default function MainPage({ email, tagName, close, businessName, reOpen }
       >
         <NewItemForm email={email} tagName={tagName} businessName={businessName} />
       </Popover>
+       
     </Container>
   );
 }

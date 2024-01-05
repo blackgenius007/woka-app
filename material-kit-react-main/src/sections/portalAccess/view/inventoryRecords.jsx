@@ -74,14 +74,14 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
          <br/>
         
         <InventoryTable reOpen={reOpen}  email={email} tagName={tagName} businessName={businessName} />
-        <InventoryHistory
+        {/* <InventoryHistory
               open={historyOpen}
               close={handleInventoryHistoryClose}
               email={email}
               tagName={tagName}
               employeeNumber={employeeNumber}
               businessName={businessName}
-            />
+            /> */}
     
       </Dialog>
     </React.Fragment>
