@@ -41,12 +41,14 @@ export const logSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(logInventoryActivity.pending, (state) => {
+    .addCase(logInventoryActivity.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(logInventoryActivity.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        // Update the inventoryLog state with the payload received
+        state.inventoryLog = action.payload;
         // Handle fulfillment if needed
         console.log('Log Inventory Activity Fulfilled:', action.payload);
       })
