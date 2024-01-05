@@ -48,25 +48,26 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-// Add futuristic styles here...
+ // Add futuristic styles here...
 const futuristicStyles = {
   tableContainer: {
-    background: '#222',
+    background: '#fff', // White background
     borderRadius: '10px',
     padding: '1rem',
     overflowX: 'auto',
+    color: '#000', // Black text
   },
   table: {
-    color: '#fff',
+    color: '#000', // Black text
     textAlign: 'left',
     borderCollapse: 'collapse',
     width: '100%',
     borderRadius: '10px',
     overflow: 'hidden',
-    boxShadow: '0 0 10px rgba(255, 255, 255, 0.1)', // 3D effect
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', // 3D effect with black shadow
   },
   tableHead: {
-    background: '#333',
+    background: '#eee', // Light gray background for the table header
   },
   tableHeadCell: {
     padding: '0.5rem',
@@ -74,11 +75,11 @@ const futuristicStyles = {
     fontSize: '14px', // Adjusted font size
   },
   tableBodyRow: {
-    borderBottom: '1px solid #444',
+    borderBottom: '1px solid #ddd', // Light gray border
     borderRadius: '10px', // Slightly curvy edges
   },
   tableBodyCell: {
-    border: '1px solid #444',
+    border: '1px solid #ddd', // Light gray border
     padding: '0.5rem',
     textAlign: 'center',
     fontSize: '12px', // Adjusted font size
@@ -109,7 +110,7 @@ const futuristicStyles = {
   },
   actionIcons: {
     fontSize: '1.1rem',
-    color: '#fff',
+    color: '#000', // Black color
     marginRight: '0.5rem',
     cursor: 'pointer',
     transition: 'color 0.3s ease-in-out',
@@ -123,7 +124,7 @@ const futuristicStyles = {
   paginationText: {
     fontSize: '14px',
     margin: '0 10px',
-    color: '#333',
+    color: '#000', // Black text
   },
   paginationButton: {
     backgroundColor: '#7393B3',
