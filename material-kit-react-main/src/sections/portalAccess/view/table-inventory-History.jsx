@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import moment from 'moment';
-import {logInventoryActivity} from 'src/Services/ProcureServices/inventorySlice';
+import {logInventoryActivity} from 'src/Services/LogsServices/logSlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
@@ -210,8 +210,15 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
     dispatch(logInventoryActivity({ email, tagName }));
   }, [dispatch, email, tagName]);
 
-  // Accessing the 'inventory' property from the Redux state
-  const { inventory, isLoading, isError } = useSelector((state) => state.inventory);
+ // Define the custom selector inside the component
+ const {
+  inventoryLog,
+  isLoading,
+  isSuccess,
+  isError,
+  message
+} = useSelector((state) => state.inventoryLog);
+  
 
   // search function
   const requestSearch = (searchedVal) => {
@@ -235,7 +242,7 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
  
 
   // Filter the inventory array based on the search term
-  const filteredRows = inventory.filter((row) =>
+  const filteredRows = inventoryLog.filter((row) =>
     Object.values(row).some((value) => String(value).toLowerCase().includes(searched.toLowerCase()))
   );
 
