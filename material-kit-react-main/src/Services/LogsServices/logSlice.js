@@ -10,28 +10,23 @@ const initialState = {
   message: '',
 };
 
+// Retrieve total inventory count
 export const logInventoryActivity = createAsyncThunk(
-  'inventory/logActivity',
-  async ({ email, tagName }, thunkAPI) => {
-    console.log('Log Inventory Activity:', email, tagName);
-    try {
-      // Log the activity using your inventoryService or any other appropriate service
-      const result = await logService.logInventoryActivity(email, tagName);
-
-      // Log the result for debugging (you can remove this in production)
-      console.log('Log Inventory Activity Result:', result);
-
-      // Return the result if needed
-      return result;
-    } catch (error) {
-      const message =
-        (error.response && error.response.data && error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
+    
+    'inventoryLog/logActivity',
+    async ({  email, tagName }, thunkAPI) => {
+      try {
+        return await logService.logInventoryActivity(email, tagName);
+      } catch (error) {
+        const message =
+          (error.response && error.response.data && error.response.data.message) ||
+          error.message ||
+          error.toString();
+        return thunkAPI.rejectWithValue(message);
+      }
     }
-  }
-);
+  );
+ 
 
 export const logSlice = createSlice({
   name: 'inventoryLog',
