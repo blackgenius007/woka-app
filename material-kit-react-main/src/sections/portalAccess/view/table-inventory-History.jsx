@@ -325,13 +325,13 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
             <tr>
               <th style={futuristicStyles.tableHeadCell}>Item image</th>
               <th style={futuristicStyles.tableHeadCell}>Item</th>
-              <th style={futuristicStyles.tableHeadCell}>SKU Number</th>
-              <th style={futuristicStyles.tableHeadCell}>Category</th>
+              <th style={futuristicStyles.tableHeadCell}>SKU Number</th> 
               <th style={futuristicStyles.tableHeadCell}>Description</th>
               <th style={futuristicStyles.tableHeadCell}>Location</th>
               <th style={futuristicStyles.tableHeadCell}>Stock</th>
-              <th style={futuristicStyles.tableHeadCell}>Unit Price</th>
-              <th style={futuristicStyles.tableHeadCell}>Modified</th>
+              <th style={futuristicStyles.tableHeadCell}>Item movement</th>
+              <th style={futuristicStyles.tableHeadCell}>Destination</th>
+              <th style={futuristicStyles.tableHeadCell}>Transaction_time</th>
               
               {/* <th style={futuristicStyles.tableHeadCell}>Out-going</th> */}
             </tr>
@@ -362,15 +362,12 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
                     </Link>
                   </td>
 
-                  <td style={futuristicStyles.tableBodyCell}>{row.category}</td>
-
+               
                   <td style={futuristicStyles.tableBodyCell}>{row.description}</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.tagName}</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.stock}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{fNumber(row.price)}</td>
-                  <td style={futuristicStyles.tableBodyCell}>
-                    {moment(row.updatedAt).format('h:mm a D MMMM YYYY')}
-                  </td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.itemDest}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{moment(row.updatedAt).format('h:mm a D MMMM YYYY')}</td>
 
                    
                 </tr>

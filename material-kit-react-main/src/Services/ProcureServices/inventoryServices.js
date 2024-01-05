@@ -18,6 +18,7 @@ const API_URL_STOCK_BALANCE = '/api/v1/inventory/stockbalance';
 const API_URL_UPDATE_INVENTORY = '/api/v1/inventory/update';
 const API_URL_CONNECT_ITEM = '/api/v1/inventory/connect';
 const API_URL_DELETE_INVENTORY = '/api/v1/inventory/delete';
+const API_URL_LOG_INVENTORY='/api/v1/inventory/logs';
 
 // Function to construct the base URL
 const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
@@ -34,6 +35,12 @@ const getAllInventoryEachPoint = async (email, tagName) => {
 // Get one inventory item by ID
 const getOneInventory = async (id) => {
   const response = await axios.get(constructURL(`${API_URL_ONE_INVENTORY}/${id}`));
+  return response.data;
+};
+
+// Log inventory activity
+const logInventoryActivity = async (email, tagName) => {
+  const response = await axios.get(constructURL(`${API_URL_LOG_INVENTORY}/${email}/${tagName}`));
   return response.data;
 };
 
@@ -71,7 +78,7 @@ const getTotalCost = async (email, projectName) => {
 
 // Outgoing stock
 const outGoingStock = async (email, id, nums, quantity, order) => {
-  console.log('stock-services :',email, id, nums, quantity, order)
+  console.log('stock-services :', email, id, nums, quantity, order);
   const response = await axios.get(
     constructURL(`${API_URL_OUTGOING_STOCK}/${email}/${id}/${nums}/${quantity}/${order}`)
   );
@@ -80,21 +87,12 @@ const outGoingStock = async (email, id, nums, quantity, order) => {
 
 // Incoming stock
 const incomingStock = async (email, id, nums, quantity) => {
-  console.log('stock-services :',email, id, nums, quantity )
+  console.log('stock-services :', email, id, nums, quantity);
   const response = await axios.get(
     constructURL(`${API_URL_INCOMING_STOCK}/${email}/${id}/${nums}/${quantity}`)
   );
   return response.data;
 };
-
-// // Incoming stock
-// const incomingStock = async (email, id, nums, quantity) => {
-//   console.log('stock-services :',email, id, nums, quantity )
-//   const response = await axios.get(
-//     constructURL(`${API_URL_INCOMING_STOCK}/${email}/${id}/${nums}/${quantity}`)
-//   );
-//   return response.data;
-// };
 
 // Get stock balance
 const getStockBalance = async (email, projectName) => {
@@ -129,6 +127,7 @@ const inventoryService = {
   addInventory,
   // getAllInventory,
   getAllInventoryEachPoint,
+  logInventoryActivity,
   getOneInventory,
   createInventory,
   quantityPerItem,
