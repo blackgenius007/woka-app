@@ -15,7 +15,8 @@ const {
    quantityPerItem,
    connectItem,
    createInventoryPoolPoint,
-   getAllInventoryEachPoint  
+   getAllInventoryEachPoint,
+   getAllLog 
 
    
   } = require('../controller/inventory');
@@ -75,6 +76,11 @@ const {
   router
   .route('/delete/:id')
   .delete(deleteInventory )
+
+  router
+  .route('/logs/:email/:tagName')
+  .get(getAllLog);
+
 
   
   

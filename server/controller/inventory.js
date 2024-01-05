@@ -453,3 +453,27 @@ exports.connectItem = asyncHandler(async (req, res, next) => {
     }
   });
 });
+ 
+ // @desc    Get all inventory Log
+// @routes   Get/api/v1/inventory
+// @acess    Public
+exports.getAllLog = asyncHandler(async (req, res, next) => {
+  try {
+      const {email,tagName} = req.params 
+      
+
+      let query = { email: email };
+
+      if (tagName) {
+          query.tagName = tagName;
+      }
+
+      // mongoose find
+      const logs = await Log.find(query).sort({ updatedAt: -1 }).exec();
+
+      res.json(logs);
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+  }
+});
