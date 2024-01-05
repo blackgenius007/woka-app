@@ -128,7 +128,7 @@ const inventoryService = {
   addInventory,
   // getAllInventory,
   getAllInventoryEachPoint,
-  logInventoryActivity,
+  // logInventoryActivity,
   getOneInventory,
   createInventory,
   quantityPerItem,
