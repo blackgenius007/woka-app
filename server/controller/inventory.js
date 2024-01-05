@@ -460,7 +460,7 @@ exports.connectItem = asyncHandler(async (req, res, next) => {
 exports.getAllLog = asyncHandler(async (req, res, next) => {
   try {
       const {email,tagName} = req.params 
-      
+      console.log('log query ID:',email,tagName)
 
       let query = { email: email };
 
