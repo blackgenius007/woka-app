@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import inventoryService from './inventoryServices';
+import logService from './logServices';
 
 const initialState = {
   inventoryLog: [],
@@ -16,7 +16,7 @@ export const logInventoryActivity = createAsyncThunk(
     console.log('Log Inventory Activity:', email, tagName);
     try {
       // Log the activity using your inventoryService or any other appropriate service
-      const result = await inventoryService.logInventoryActivity(email, tagName);
+      const result = await logService.logInventoryActivity(email, tagName);
 
       // Log the result for debugging (you can remove this in production)
       console.log('Log Inventory Activity Result:', result);
@@ -33,7 +33,7 @@ export const logInventoryActivity = createAsyncThunk(
   }
 );
 
-export const inventorySlice = createSlice({
+export const logSlice = createSlice({
   name: 'inventoryLog',
   initialState,
   reducers: {
@@ -64,5 +64,5 @@ export const inventorySlice = createSlice({
   },
 });
 
-export const { reset } = inventorySlice.actions;
-export default inventorySlice.reducer;
+export const { reset } = logSlice.actions;
+export default logSlice.reducer;
