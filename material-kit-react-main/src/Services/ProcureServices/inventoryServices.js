@@ -40,6 +40,7 @@ const getOneInventory = async (id) => {
 
 // Log inventory activity
 const logInventoryActivity = async (email, tagName) => {
+  console.log('logs:',email, tagName)
   const response = await axios.get(constructURL(`${API_URL_LOG_INVENTORY}/${email}/${tagName}`));
   return response.data;
 };

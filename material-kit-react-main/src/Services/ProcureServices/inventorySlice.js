@@ -60,6 +60,7 @@ export const getAllInventoryEachPoint = createAsyncThunk(
 export const logInventoryActivity = createAsyncThunk(
   'inventory/logActivity',
   async ({ email, tagName }, thunkAPI) => {
+    console.log('logs:',email, tagName)
     try {
       // Log the activity using your inventoryService or any other appropriate service
       const result = await inventoryService.logInventoryActivity(email, tagName);
