@@ -18,7 +18,7 @@ const API_URL_STOCK_BALANCE = '/api/v1/inventory/stockbalance';
 const API_URL_UPDATE_INVENTORY = '/api/v1/inventory/update';
 const API_URL_CONNECT_ITEM = '/api/v1/inventory/connect';
 const API_URL_DELETE_INVENTORY = '/api/v1/inventory/delete';
-const API_URL_LOG_INVENTORY='/api/v1/inventory/logs';
+// const API_URL_LOG_INVENTORY='/api/v1/inventory/logs';
 
 // Function to construct the base URL
 const constructURL = (endpoint) => `${BASE_URL}${endpoint}`;
@@ -39,11 +39,11 @@ const getOneInventory = async (id) => {
 };
 
 // Log inventory activity
-const logInventoryActivity = async (email, tagName) => {
-  console.log('logs:',email, tagName)
-  const response = await axios.get(constructURL(`${API_URL_LOG_INVENTORY}/${email}/${tagName}`));
-  return response.data;
-};
+// const logInventoryActivity = async (email, tagName) => {
+//   console.log('logs:',email, tagName)
+//   const response = await axios.get(constructURL(`${API_URL_LOG_INVENTORY}/${email}/${tagName}`));
+//   return response.data;
+// };
 
 // Create a new inventory item
 const createInventory = async (formData) => {

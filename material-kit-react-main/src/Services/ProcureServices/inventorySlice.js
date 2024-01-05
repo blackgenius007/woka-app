@@ -57,25 +57,25 @@ export const getAllInventoryEachPoint = createAsyncThunk(
   }
 );
 
-export const logInventoryActivity = createAsyncThunk(
-  'inventory/logActivity',
-  async ({ email, tagName }, thunkAPI) => {
-    console.log('logs:',email, tagName)
-    try {
-      // Log the activity using your inventoryService or any other appropriate service
-      const result = await inventoryService.logInventoryActivity(email, tagName);
+// export const logInventoryActivity = createAsyncThunk(
+//   'inventory/logActivity',
+//   async ({ email, tagName }, thunkAPI) => {
+//     console.log('logs:',email, tagName)
+//     try {
+//       // Log the activity using your inventoryService or any other appropriate service
+//       const result = await inventoryService.logInventoryActivity(email, tagName);
 
-      // Return the result if needed
-      return result;
-    } catch (error) {
-      const message =
-        (error.response && error.response.data && error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+//       // Return the result if needed
+//       return result;
+//     } catch (error) {
+//       const message =
+//         (error.response && error.response.data && error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 
 // Retrieve total inventory count
@@ -298,19 +298,19 @@ export const inventorySlice = createSlice({
         state.isLoading = false;
         state.isError = action.error.message;
       })
-      .addCase(logInventoryActivity.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(logInventoryActivity.fulfilled, (state) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        // Handle fulfillment if needed
-      })
-      .addCase(logInventoryActivity.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
+      // .addCase(logInventoryActivity.pending, (state) => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(logInventoryActivity.fulfilled, (state) => {
+      //   state.isLoading = false;
+      //   state.isSuccess = true;
+      //   // Handle fulfillment if needed
+      // })
+      // .addCase(logInventoryActivity.rejected, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isError = true;
+      //   state.message = action.payload;
+      // })
       .addCase(getTotalInventory.pending, (state) => {
         state.isLoading = true;
       })

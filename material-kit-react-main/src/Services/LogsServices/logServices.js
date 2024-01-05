@@ -17,8 +17,8 @@ const logInventoryActivity = async (email, tagName) => {
   return response.data;
 };
 
-const inventoryService = {
+const logService = {
   logInventoryActivity,
 };
 
-export default inventoryService;
+export default logService;
