@@ -357,11 +357,12 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
                       {row.SKU}
                     </Link>
                   </td>
-
+                 
                
                   <td style={futuristicStyles.tableBodyCell}>{row.description}</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.tagName}</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.stock}</td>
+                  <td style={futuristicStyles.tableBodyCell}>{row.dirSymbol}</td>
                   <td style={futuristicStyles.tableBodyCell}>{row.itemDest}</td>
                   <td style={futuristicStyles.tableBodyCell}>{moment(row.updatedAt).format('h:mm a D MMMM YYYY')}</td>
 
