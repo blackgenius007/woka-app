@@ -20,7 +20,7 @@ import {
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
-import InventoryHistory from './table-inventory-History'
+import InventoryHistory from './inventoryHistory';
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
