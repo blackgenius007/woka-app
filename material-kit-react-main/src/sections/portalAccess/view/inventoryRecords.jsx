@@ -27,19 +27,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function InventoryDialog({open, close,employeeNumber, tagName,reOpen ,email,businessName}) {
  console.log('InventoryRecords,props from portalBody:',tagName ,email,businessName)
- const [historyOpen, setHistoryOpen] = useState(false);
+ 
   // Accessing inventory data from the Redux store
   const inventoryData = useSelector((state) => state.inventory);
  
      
-    const handleInventoryHistoryOpen = () => {
-      setHistoryOpen(true);
-    };
-  
-    // Close Inventory History dialog
-    const handleInventoryHistoryClose = () => {
-      setHistoryOpen(false);
-    };
+ 
 
   return (
     <React.Fragment>
@@ -64,7 +57,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
               <img
                 src="https://res.cloudinary.com/youseful-apps/image/upload/v1702375182/workfily_yql2vp.png"
                 alt=""
-                style={{ height: '80px' }}
+                style={{ height: '50px' }}
               />
             </a>
           </div>
@@ -74,14 +67,7 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
          <br/>
         
         <InventoryTable reOpen={reOpen}  email={email} tagName={tagName} businessName={businessName} />
-        {/* <InventoryHistory
-              open={historyOpen}
-              close={handleInventoryHistoryClose}
-              email={email}
-              tagName={tagName}
-              employeeNumber={employeeNumber}
-              businessName={businessName}
-            /> */}
+       
     
       </Dialog>
     </React.Fragment>

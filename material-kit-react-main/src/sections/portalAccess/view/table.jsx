@@ -20,7 +20,7 @@ import {
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
-
+import InventoryHistory from './table-inventory-History'
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -188,6 +188,7 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
   const [selectedQTY, setSelectedQTY] = useState(null);
   const [open, setOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
   // const [openAction, setOpenAction] = useState(false);
   const [exportMode, setExportMode] = useState(0);
   const [renderKey, setRenderKey] = useState(0);
@@ -309,27 +310,7 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
     }
   };
 
-  // const handleSubChange = (id, quantity) => {
-  //   const { minus } = rowInputValues[id] || { minus: 0 };
-
-  //   if (parseInt(quantity) - parseInt(minus) < 0) {
-  //     alert('The input value is too high.');
-  //   } else {
-  //     var nums = parseInt(quantity) - parseInt(minus);
-  //     const order = prompt(
-  //       'Please enter destination of item, Ex: name of location, department, project, individual, etc.'
-  //     );
-
-  //     // Check if the user canceled the prompt or entered an empty string
-  //     if (order === null || order.trim() === '') {
-  //       console.log('User canceled the prompt or entered an empty string.');
-  //     } else {
-  //       console.log(nums, order);
-  //       // Out stock Action
-  //       dispatch(outGoingStock({ email, id, nums, quantity, order }));
-  //     }
-  //   }
-  // };
+   
 
   // Filter the inventory array based on the search term
   const filteredRows = inventory.filter((row) =>
@@ -382,6 +363,15 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
     filename: 'Salary',
     sheet: 'Users',
   });
+  // open Inventory History dialog
+  const handleInventoryHistoryOpen = () => {
+    setHistoryOpen(true);
+  };
+
+  // Close Inventory History dialog
+  const handleInventoryHistoryClose = () => {
+    setHistoryOpen(false);
+  };
 
   return (
     <>
@@ -418,7 +408,7 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
           suppliers contact
         </Button>
 
-        <Button variant="contained">Inventory logs </Button>
+        <Button onClick={handleInventoryHistoryOpen } variant="contained">Inventory logs </Button>
         <TextField
           value={searched}
           onChange={(e) => requestSearch(e.target.value)}
@@ -595,7 +585,14 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
           </IconButton>
         </MenuItem>
       </Popover>
-      
+       <InventoryHistory
+              open={historyOpen}
+              close={handleInventoryHistoryClose}
+              email={email}
+              tagName={tagName}
+              employeeNumber={employeeNumber}
+              businessName={businessName}
+            /> 
     </>
   );
 };
