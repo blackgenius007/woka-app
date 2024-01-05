@@ -12,11 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import moment from 'moment';
-import {
-  getAllInventoryEachPoint,
-  incomingStock,
-  outGoingStock,
-} from 'src/Services/ProcureServices/inventorySlice';
+import {logInventoryActivity} from 'src/Services/ProcureServices/inventorySlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
@@ -172,7 +168,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) => {
-  console.log('table props:', email, tagName, businessName);
+ 
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -211,7 +207,7 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
   // function to fetch all inventory
   useEffect(() => {
     // Assuming getAllInventoryEachPoint is an async thunk
-    dispatch(getAllInventoryEachPoint({ email, tagName }));
+    dispatch(logInventoryActivity({ email, tagName }));
   }, [dispatch, email, tagName]);
 
   // Accessing the 'inventory' property from the Redux state
