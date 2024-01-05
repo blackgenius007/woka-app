@@ -418,7 +418,7 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
           suppliers contact
         </Button>
 
-        <Button variant="contained">Request for orders</Button>
+        <Button variant="contained">Inventory logs </Button>
         <TextField
           value={searched}
           onChange={(e) => requestSearch(e.target.value)}
@@ -638,14 +638,6 @@ export default function MainPage({ email, tagName, close, businessName, reOpen }
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
           New Item
-        </Button>
-        <Button
-          // onClick={handleFormPopoverOpen}
-          variant="contained"
-          style={{ backgroundColor: '#0096FF', color: 'white' }} 
-           
-        >
-          Inventory logs
         </Button>
       </Stack>
       <Scrollbar>

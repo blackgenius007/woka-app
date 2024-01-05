@@ -59,15 +59,15 @@ export default function InventoryDialog({open, close,employeeNumber, tagName,reO
               {businessName}-{tagName}
             </Typography>
         
-            <Button
-          
-            variant="contained"
-            style={{ backgroundColor: '#0096FF', color: 'white' }}
-            onClick={handleInventoryHistoryOpen} 
-           
-          >
-            View Inventory History
-          </Button>
+            <div className=" .logo">
+            <a href="#">
+              <img
+                src="https://res.cloudinary.com/youseful-apps/image/upload/v1702375182/workfily_yql2vp.png"
+                alt=""
+                style={{ height: '80px' }}
+              />
+            </a>
+          </div>
           </Toolbar>
         </AppBar>
          <br/>
