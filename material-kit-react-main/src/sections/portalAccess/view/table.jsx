@@ -590,7 +590,7 @@ const InventoryTable = ({ email, tagName, businessName, close, reOpen }) => {
               close={handleInventoryHistoryClose}
               email={email}
               tagName={tagName}
-              employeeNumber={employeeNumber}
+             
               businessName={businessName}
             /> 
     </>
