@@ -384,14 +384,12 @@ const getTableBodyCellStyle = () => {
     <>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
          
-        <Button
-          onClick={handleFormPopoverOpen}
-          variant="contained"
-          style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
-          startIcon={<Iconify icon="eva:plus-fill" />}
-        >
-          New Item
-        </Button>
+      <Button 
+    onClick={toggleDesign}>
+        {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
+  {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
+ 
+</Button>
       </Stack>
       <div
         style={{
@@ -422,12 +420,7 @@ const getTableBodyCellStyle = () => {
             Convert to Exportable version
           </Button>
         )}
-    <Button 
-    onClick={toggleDesign}>
-        {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
-  {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
- 
-</Button>
+
         <TextField
           value={searched}
           onChange={(e) => requestSearch(e.target.value)}
