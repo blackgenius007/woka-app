@@ -295,11 +295,10 @@ const getTableBodyCellStyle = () => {
   }
 };
 
-  const toggleDesign = () => {
-    seFuturisticStylesOne((prev) => !prev);
-  };
-
-
+const toggleDesign = () => {
+  console.log('Toggle Design');
+  seFuturisticStylesOne((prev) => !prev);
+};
 
   //function to open Popover
   const handleOpenMenu = (event, itemId, itemquantity, SKU, Item) => {
@@ -382,15 +381,8 @@ const getTableBodyCellStyle = () => {
 
   return (
     <>
-      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+     
          
-          <Button 
-    onClick={toggleDesign}>
-        {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
-  {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
- 
-</Button>
-      </Stack>
       <div
         style={{
           display: 'flex',
@@ -439,6 +431,12 @@ const getTableBodyCellStyle = () => {
             ),
           }}
         />
+         <Button 
+    onClick={toggleDesign}>
+        {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
+  {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
+ 
+</Button>
       </label>
       <div style={futuristicStylesOne ? futuristicStylesSetOne.tableContainer : futuristicStylesSetTwo.tableContainer}>
       <table style={futuristicStylesOne ? futuristicStylesSetOne.table : futuristicStylesSetTwo.table}>
