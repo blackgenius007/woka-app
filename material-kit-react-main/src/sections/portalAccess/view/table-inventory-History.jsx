@@ -455,7 +455,7 @@ const getTableBodyCellStyle = () => {
           <tbody>
             {paginatedRows.map((row) => {
               return (
-                 <tr key={index} style={futuristicStylesOne ? futuristicStylesSetOne.tableBodyRow : futuristicStylesSetTwo.tableBodyRow}>
+                 <tr key={row.id} style={futuristicStylesOne ? futuristicStylesSetOne.tableBodyRow : futuristicStylesSetTwo.tableBodyRow}>
                   {exportMode === 1 ? (
                     ''
                   ) : (
