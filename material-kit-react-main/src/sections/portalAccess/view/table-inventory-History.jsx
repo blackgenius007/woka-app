@@ -382,15 +382,7 @@ const getTableBodyCellStyle = () => {
 
   return (
     <>
-      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-         
-      <Button 
-    onClick={toggleDesign}>
-        {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
-  {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
- 
-</Button>
-      </Stack>
+      
       <div
         style={{
           display: 'flex',
@@ -553,7 +545,15 @@ export default function MainPage({ email, tagName, close, businessName, reOpen }
 
   return (
     <Container>
- 
+ <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+         
+         <Button 
+       onClick={toggleDesign}>
+           {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
+     {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
+    
+   </Button>
+         </Stack>
       <Scrollbar>
         <InventoryHistoryTable email={email} businessName={businessName} tagName={tagName} />
       </Scrollbar>
