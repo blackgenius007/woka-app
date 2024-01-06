@@ -491,21 +491,21 @@ const getTableBodyCellStyle = () => {
       </div>
       <br />
 
-      <div style={futuristicStyles.paginationContainer}>
+      <div style={futuristicStylesSetOne.paginationContainer}>
         <IconButton
           onClick={() => setPage(Math.max(0, page - 1))}
           disabled={page === 0}
-          style={futuristicStyles.paginationButton}
+          style={futuristicStylesSetOne.paginationButton}
         >
           <ChevronLeft />
         </IconButton>
-        <span style={futuristicStyles.paginationText}>
+        <span style={futuristicStylesSetOne.paginationText}>
           Page {page + 1} of {totalPages}
         </span>
         <IconButton
           onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
           disabled={page === totalPages - 1}
-          style={futuristicStyles.paginationButton}
+          style={futuristicStylesSetOne.paginationButton}
         >
           <ChevronRight />
         </IconButton>
