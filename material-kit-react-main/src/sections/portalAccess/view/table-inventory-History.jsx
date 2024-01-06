@@ -16,8 +16,7 @@ import {logInventoryActivity} from 'src/Services/LogsServices/logSlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+ 
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -411,7 +410,11 @@ const getTableBodyCellStyle = () => {
             Convert to Exportable version
           </Button>
         )}
-    
+    <Button 
+    onClick={toggleDesign}>
+  {usePreviousDesign ? <Brightness4Icon /> : <Brightness7Icon />}
+  {usePreviousDesign ? ' Dark Mode' : ' Light Mode'}
+</Button>
         <TextField
           value={searched}
           onChange={(e) => requestSearch(e.target.value)}
