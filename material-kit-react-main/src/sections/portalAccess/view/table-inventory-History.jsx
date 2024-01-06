@@ -412,8 +412,8 @@ const getTableBodyCellStyle = () => {
         )}
     <Button 
     onClick={toggleDesign}>
-  {usePreviousDesign ? <Brightness4Icon /> : <Brightness7Icon />}
-  {usePreviousDesign ? ' Dark Mode' : ' Light Mode'}
+  {futuristicStylesSetOne ? <Brightness4Icon /> : <Brightness7Icon />}
+  {futuristicStylesSetOne ? ' Dark Mode' : ' Light Mode'}
 </Button>
         <TextField
           value={searched}
