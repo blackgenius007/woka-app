@@ -447,7 +447,7 @@ const toggleDesign = () => {
         }}
         onClick={toggleMode}
       >
-        {isDayMode ? <Brightness4Icon /> : <Brightness7Icon />}
+        {futuristicStylesSetOne ? <Brightness4Icon /> : <Brightness7Icon />}
       </Button>
       <Button
         style={{
