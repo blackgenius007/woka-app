@@ -82,7 +82,7 @@ const  futuristicStylesSetOne = {
     border: '1px solid #444',
     padding: '0.5rem',
     textAlign: 'center',
-    fontSize: '12px', // Adjusted font size
+    fontSize: '13px', // Adjusted font size
   },
   avatar: {
     borderRadius: '50%',
@@ -173,7 +173,7 @@ const  futuristicStylesSetOne = {
     border: '1px solid #ddd', // Light gray border
     padding: '0.5rem',
     textAlign: 'center',
-    fontSize: '12px', // Adjusted font size
+    fontSize: '13px', // Adjusted font size
   },
   avatar: {
     borderRadius: '50%',
@@ -382,6 +382,17 @@ const getTableBodyCellStyle = () => {
 
   return (
     <>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+         
+        <Button
+          onClick={handleFormPopoverOpen}
+          variant="contained"
+          style={{ backgroundColor: '#0096FF', color: 'white' }} // Set background color to blue and text color to white
+          startIcon={<Iconify icon="eva:plus-fill" />}
+        >
+          New Item
+        </Button>
+      </Stack>
       <div
         style={{
           display: 'flex',
