@@ -382,7 +382,15 @@ const getTableBodyCellStyle = () => {
 
   return (
     <>
-      
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+         
+          <Button 
+    onClick={toggleDesign}>
+        {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
+  {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
+ 
+</Button>
+      </Stack>
       <div
         style={{
           display: 'flex',
@@ -431,15 +439,6 @@ const getTableBodyCellStyle = () => {
             ),
           }}
         />
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-         
-         <Button 
-   onClick={toggleDesign}>
-       {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
- {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
-
-</Button>
-     </Stack>
       </label>
       <div style={futuristicStylesOne ? futuristicStylesSetOne.tableContainer : futuristicStylesSetTwo.tableContainer}>
       <table style={futuristicStylesOne ? futuristicStylesSetOne.table : futuristicStylesSetTwo.table}>
