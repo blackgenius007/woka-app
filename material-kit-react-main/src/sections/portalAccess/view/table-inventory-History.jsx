@@ -431,9 +431,15 @@ const toggleDesign = () => {
             ),
           }}
         />
-         <Button 
+         {/* <Button 
     onClick={toggleDesign}>
         {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
+  {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
+ 
+</Button> */}
+         <Button 
+    onClick={toggleDesign}>
+        {futuristicStylesSetOne ? 'Bright'   : 'not dark' }
   {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
  
 </Button>
