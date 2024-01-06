@@ -457,7 +457,7 @@ const toggleDesign = () => {
         }}
         onClick={toggleMode}
       >
-        {isDayMode ? 'Night Mode' : 'Day Mode'}
+        {futuristicStylesSetOne? 'Night Mode' : 'Day Mode'}
       </Button>
     </div>
       </label>
