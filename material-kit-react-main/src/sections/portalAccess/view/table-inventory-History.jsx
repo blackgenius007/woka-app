@@ -285,6 +285,7 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
 
 
   const [futuristicStylesOne, seFuturisticStylesOne ] = useState(false);
+  
 
 // Table style switch
 const getTableBodyCellStyle = () => {
@@ -440,8 +441,8 @@ const toggleDesign = () => {
            <div style={{ display: 'flex' }}>
       <Button
         style={{
-          backgroundColor: isDayMode ? '#fff' : '#000',
-          color: isDayMode ? '#000' : '#fff',
+          backgroundColor: futuristicStylesSetOne? '#fff' : '#000',
+          color: futuristicStylesSetOne ? '#000' : '#fff',
           border: 'none',
           marginRight: '0.5rem',
         }}
@@ -451,8 +452,8 @@ const toggleDesign = () => {
       </Button>
       <Button
         style={{
-          backgroundColor: isDayMode ? '#fff' : '#000',
-          color: isDayMode ? '#000' : '#fff',
+          backgroundColor: futuristicStylesSetOne ? '#fff' : '#000',
+          color: futuristicStylesSetOne ? '#000' : '#fff',
           border: 'none',
         }}
         onClick={toggleMode}
