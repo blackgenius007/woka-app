@@ -437,12 +437,29 @@ const toggleDesign = () => {
   {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
  
 </Button> */}
-         <Button 
-    onClick={toggleDesign}>
-        {futuristicStylesSetOne ? 'Bright'   : 'not dark' }
-  {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
- 
-</Button>
+           <div style={{ display: 'flex' }}>
+      <Button
+        style={{
+          backgroundColor: isDayMode ? '#fff' : '#000',
+          color: isDayMode ? '#000' : '#fff',
+          border: 'none',
+          marginRight: '0.5rem',
+        }}
+        onClick={toggleMode}
+      >
+        {isDayMode ? <Brightness4Icon /> : <Brightness7Icon />}
+      </Button>
+      <Button
+        style={{
+          backgroundColor: isDayMode ? '#fff' : '#000',
+          color: isDayMode ? '#000' : '#fff',
+          border: 'none',
+        }}
+        onClick={toggleMode}
+      >
+        {isDayMode ? 'Night Mode' : 'Day Mode'}
+      </Button>
+    </div>
       </label>
       <div style={futuristicStylesOne ? futuristicStylesSetOne.tableContainer : futuristicStylesSetTwo.tableContainer}>
       <table style={futuristicStylesOne ? futuristicStylesSetOne.table : futuristicStylesSetTwo.table}>
