@@ -431,6 +431,15 @@ const getTableBodyCellStyle = () => {
             ),
           }}
         />
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+         
+         <Button 
+   onClick={toggleDesign}>
+       {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
+ {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
+
+</Button>
+     </Stack>
       </label>
       <div style={futuristicStylesOne ? futuristicStylesSetOne.tableContainer : futuristicStylesSetTwo.tableContainer}>
       <table style={futuristicStylesOne ? futuristicStylesSetOne.table : futuristicStylesSetTwo.table}>
@@ -545,15 +554,7 @@ export default function MainPage({ email, tagName, close, businessName, reOpen }
 
   return (
     <Container>
- <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-         
-         <Button 
-       onClick={toggleDesign}>
-           {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
-     {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
-    
-   </Button>
-         </Stack>
+ 
       <Scrollbar>
         <InventoryHistoryTable email={email} businessName={businessName} tagName={tagName} />
       </Scrollbar>
