@@ -16,7 +16,8 @@ import {logInventoryActivity} from 'src/Services/LogsServices/logSlice';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import Swal from 'sweetalert2';
 import { fNumber } from 'src/utils/format-number';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { Clear, FileCopy } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -48,8 +49,98 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
+// Add futuristic styles here...
+const  futuristicStylesSetOne = {
+  tableContainer: {
+    background: '#222',
+    borderRadius: '10px',
+    padding: '1rem',
+    overflowX: 'auto',
+  },
+  table: {
+    color: '#fff',
+    textAlign: 'left',
+    borderCollapse: 'collapse',
+    width: '100%',
+    borderRadius: '10px',
+    overflow: 'hidden',
+    boxShadow: '0 0 10px rgba(255, 255, 255, 0.1)', // 3D effect
+  },
+  tableHead: {
+    background: '#333',
+  },
+  tableHeadCell: {
+    padding: '0.5rem',
+    textAlign: 'center',
+    fontSize: '14px', // Adjusted font size
+  },
+  tableBodyRow: {
+    borderBottom: '1px solid #444',
+    borderRadius: '10px', // Slightly curvy edges
+  },
+  tableBodyCell: {
+    border: '1px solid #444',
+    padding: '0.5rem',
+    textAlign: 'center',
+    fontSize: '12px', // Adjusted font size
+  },
+  avatar: {
+    borderRadius: '50%',
+    width: '30px',
+    height: '30px',
+  },
+  button: {
+    backgroundColor: '#7393B3',
+    color: '#ffffff',
+    fontSize: '12px', // Adjusted font size
+    borderRadius: '5px',
+    margin: '0.5rem',
+    padding: '0.5rem 1rem',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease-in-out',
+    '&:hover': {
+      backgroundColor: '#4F6B87',
+    },
+  },
+  link: {
+    color: '#00aaff',
+    textDecoration: 'none',
+    fontSize: '14px',
+    fontFamily: 'inherit',
+  },
+  actionIcons: {
+    fontSize: '1.1rem',
+    color: '#fff',
+    marginRight: '0.5rem',
+    cursor: 'pointer',
+    transition: 'color 0.3s ease-in-out',
+  },
+  paginationContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: '1rem',
+  },
+  paginationText: {
+    fontSize: '14px',
+    margin: '0 10px',
+    color: '#333',
+  },
+  paginationButton: {
+    backgroundColor: '#7393B3',
+    color: '#ffffff',
+    fontSize: '16px',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease-in-out',
+    '&:hover': {
+      backgroundColor: '#4F6B87',
+    },
+  },
+};
+
  // Add futuristic styles here...
-const futuristicStyles = {
+ const futuristicStylesSetTwo = {
   tableContainer: {
     background: '#fff', // White background
     borderRadius: '10px',
@@ -192,6 +283,24 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+
+  const [futuristicStylesOne, seFuturisticStylesOne ] = useState(false);
+
+// Table style switch
+const getTableBodyCellStyle = () => {
+  if (futuristicStylesOne) {
+    return futuristicStylesSetOne.tableBodyCell;
+  } else {
+    return futuristicStylesSetTwo.tableBodyCell;
+  }
+};
+
+  const toggleDesign = () => {
+    seFuturisticStylesOne((prev) => !prev);
+  };
+
+
+
   //function to open Popover
   const handleOpenMenu = (event, itemId, itemquantity, SKU, Item) => {
     setOpen(event.currentTarget);
@@ -322,20 +431,19 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
           }}
         />
       </label>
-      <div style={futuristicStyles.tableContainer}>
-    
-        <table style={futuristicStyles.table}>
-          <thead style={futuristicStyles.tableHead}>
-            <tr>
-              <th style={futuristicStyles.tableHeadCell}>Item image</th>
-              <th style={futuristicStyles.tableHeadCell}>Item</th>
-              <th style={futuristicStyles.tableHeadCell}>SKU Number</th> 
-              <th style={futuristicStyles.tableHeadCell}>Description</th>
-              <th style={futuristicStyles.tableHeadCell}>Location</th>
-              <th style={futuristicStyles.tableHeadCell}>Stock</th>
-              <th style={futuristicStyles.tableHeadCell}>Item movement</th>
-              <th style={futuristicStyles.tableHeadCell}>Destination</th>
-              <th style={futuristicStyles.tableHeadCell}>Transaction_time</th>
+      <div style={futuristicStylesOne ? futuristicStylesSetOne.tableContainer : futuristicStylesSetTwo.tableContainer}>
+      <table style={futuristicStylesOne ? futuristicStylesSetOne.table : futuristicStylesSetTwo.table}>
+        <thead style={futuristicStylesOne ? futuristicStylesSetOne.tableHead : futuristicStylesSetTwo.tableHead}> 
+        < tr>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Item image</th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Item</th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>SKU Number</th> 
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Description</th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Location</th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Stock</th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Item movement</th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Destination</th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Transaction_time</th>
               
               {/* <th style={futuristicStyles.tableHeadCell}>Out-going</th> */}
             </tr>
@@ -343,18 +451,18 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
           <tbody>
             {paginatedRows.map((row) => {
               return (
-                <tr key={row.id} style={futuristicStyles.tableBodyRow}>
+                 <tr key={index} style={futuristicStylesOne ? futuristicStylesSetOne.tableBodyRow : futuristicStylesSetTwo.tableBodyRow}>
                   {exportMode === 1 ? (
                     ''
                   ) : (
-                    <td style={futuristicStyles.tableBodyCell}>
-                      <img src={row.imagePath} alt="" style={futuristicStyles.avatar} />
+                    <td style={getTableBodyCellStyle()}>
+                      <img src={row.imagePath} alt="" style={futuristicStylesSetOne.avatar} />
                     </td>
                   )}
 
-                  <td style={futuristicStyles.tableBodyCell}>{row.itemName}</td>
+                  <td style={getTableBodyCellStyle()}>{row.itemName}</td>
 
-                  <td style={futuristicStyles.tableBodyCell}>
+                  <td style={getTableBodyCellStyle()}>
                     <Link
                       style={{
                         color: '#ffff',
@@ -367,12 +475,12 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
                   </td>
                  
                
-                  <td style={futuristicStyles.tableBodyCell}>{row.description}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{row.tagName}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{row.stock}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{row.dirSymbol}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{row.itemDest}</td>
-                  <td style={futuristicStyles.tableBodyCell}>{moment(row.updatedAt).format('h:mm a D MMMM YYYY')}</td>
+                  <td style={getTableBodyCellStyle()}>{row.description}</td>
+                  <td style={getTableBodyCellStyle()}>{row.tagName}</td>
+                  <td style={getTableBodyCellStyle()}>{row.stock}</td>
+                  <td style={getTableBodyCellStyle()}>{row.dirSymbol}</td>
+                  <td style={getTableBodyCellStyle()}>{row.itemDest}</td>
+                  <td style={getTableBodyCellStyle()}>{moment(row.updatedAt).format('h:mm a D MMMM YYYY')}</td>
 
                    
                 </tr>
