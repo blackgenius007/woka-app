@@ -296,7 +296,7 @@ const getTableBodyCellStyle = () => {
 };
 
   const toggleDesign = () => {
-    seFuturisticStylesOne((prev) => !prev);
+    seFuturisticStylesOne(!futuristicStylesOne);
   };
 
 
@@ -434,8 +434,9 @@ const getTableBodyCellStyle = () => {
         />
          <Button 
     onClick={toggleDesign}>
-        {futuristicStylesSetOne ? <Brightness7Icon /> : ''  }
-  {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
+        {/* {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />} */}
+        {futuristicStylesOne ? 'Dark' : 'Light'}
+  {/* {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'} */}
  
 </Button>
       </label>
