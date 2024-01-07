@@ -15,3 +15,4 @@
 20231110	05:01:46	870b0dec-8234-44ae-94ae-d9e8ce712f89	undefined: EREFUSED	querySrv	_mongodb._tcp.fily001.z3j2h.mongodb.net
 20231211	05:44:48	dd509efa-9937-48c9-a9ee-d1c1450bed61	undefined: ECONNREFUSED	querySrv	_mongodb._tcp.fily001.z3j2h.mongodb.net
 20231231	15:57:44	65ab323d-b71e-4863-8fcb-fda1fce4b2c2	undefined: EREFUSED	querySrv	_mongodb._tcp.fily001.z3j2h.mongodb.net
+20240107	17:34:58	609afb6b-ca33-407f-915f-a63e4c065c25	undefined: ETIMEOUT	querySrv	_mongodb._tcp.fily001.z3j2h.mongodb.net
