@@ -285,7 +285,6 @@ const InventoryHistoryTable = ({ email, tagName, businessName, close, reOpen }) 
 
 
   const [futuristicStylesOne, seFuturisticStylesOne ] = useState(false);
-  
 
 // Table style switch
 const getTableBodyCellStyle = () => {
@@ -296,10 +295,11 @@ const getTableBodyCellStyle = () => {
   }
 };
 
-const toggleDesign = () => {
-  console.log('Toggle Design');
-  seFuturisticStylesOne((prev) => !prev);
-};
+  const toggleDesign = () => {
+    seFuturisticStylesOne((prev) => !prev);
+  };
+
+
 
   //function to open Popover
   const handleOpenMenu = (event, itemId, itemquantity, SKU, Item) => {
@@ -432,35 +432,12 @@ const toggleDesign = () => {
             ),
           }}
         />
-         {/* <Button 
+         <Button 
     onClick={toggleDesign}>
-        {futuristicStylesSetOne ? <Brightness7Icon /> : <Brightness4Icon />}
+        {futuristicStylesSetOne ? <Brightness7Icon /> : ''  }
   {futuristicStylesSetOne ? ' Light Mode' : ' Dark Mode'}
  
-</Button> */}
-           <div style={{ display: 'flex' }}>
-      <Button
-        style={{
-          backgroundColor: futuristicStylesSetOne? '#fff' : '#000',
-          color: futuristicStylesSetOne ? '#000' : '#fff',
-          border: 'none',
-          marginRight: '0.5rem',
-        }}
-        onClick={toggleMode}
-      >
-        {futuristicStylesSetOne ? <Brightness4Icon /> : <Brightness7Icon />}
-      </Button>
-      <Button
-        style={{
-          backgroundColor: futuristicStylesSetOne ? '#fff' : '#000',
-          color: futuristicStylesSetOne ? '#000' : '#fff',
-          border: 'none',
-        }}
-        onClick={toggleMode}
-      >
-        {futuristicStylesSetOne? 'Night Mode' : 'Day Mode'}
-      </Button>
-    </div>
+</Button>
       </label>
       <div style={futuristicStylesOne ? futuristicStylesSetOne.tableContainer : futuristicStylesSetTwo.tableContainer}>
       <table style={futuristicStylesOne ? futuristicStylesSetOne.table : futuristicStylesSetTwo.table}>
