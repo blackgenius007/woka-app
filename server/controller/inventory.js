@@ -298,7 +298,7 @@ exports.outGoingStock = asyncHandler(async (req, res, next) => {
   const order = req.params.order;
   const num_mod = req.params.nums;
   const email = req.params.email;
-  var dirSymbol = " &#8594;";
+  var dirSymbol = "&#8594;";
 
   try {
     const modified_count = parseInt(num_mod) - parseInt(quantity);
@@ -346,7 +346,7 @@ exports.incomingStock = asyncHandler(async (req, res, next) => {
     // Destructure parameters
     const { id, quantity, email, nums, tagName } = req.params;
     const modified_count = parseInt(nums) - parseInt(quantity);
-    const dirSymbol = " &#8592;";
+    const dirSymbol = "&#8592;";
 
     console.log("num_mod----", nums);
 
