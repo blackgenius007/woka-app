@@ -445,13 +445,12 @@ const getTableBodyCellStyle = () => {
         < tr>
         <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Item image</th>
         <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Item</th>
-        {/* <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>SKU Number</th>  */}
         <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Description</th>
-        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Location</th>
-        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>On-hand stock </th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Opening stock </th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Item Location</th>
         <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Item movement</th>
-        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>in-transit stock</th>
-        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Destination</th>
+         <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Destination</th>
+        <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>In/Out stock</th>
         <th style={futuristicStylesOne ? futuristicStylesSetOne.tableHeadCell : futuristicStylesSetTwo.tableHeadCell}>Transaction_time</th>
               
               {/* <th style={futuristicStyles.tableHeadCell}>Out-going</th> */}
@@ -485,11 +484,11 @@ const getTableBodyCellStyle = () => {
                  
                
                   <td style={getTableBodyCellStyle()}>{row.description}</td>
-                  <td style={getTableBodyCellStyle()}>{row.tagName}</td>
                   <td style={getTableBodyCellStyle()}>{row.quantity}</td>
-                  <td style={getTableBodyCellStyle()}>{row.itemDest===" &#8594;"  ? <Icon icon="carbon:direction-right-02" color="#ff5733" width="50" rotate={2} hFlip={true} />:<Icon icon="carbon:direction-right-02" color="#ff5733" width="50" hFlip={true} />}</td>
-                  <td style={getTableBodyCellStyle()}>{row.transit_stock}</td>
+                  <td style={getTableBodyCellStyle()}>{row.tagName}</td>
+                  <td style={getTableBodyCellStyle()}>{row.itemDest==="&#8594;" ? <Icon icon="carbon:direction-right-02" color="#ff5733" width="50" rotate={2} hFlip={true} />:<Icon icon="carbon:direction-right-02" color="#ff5733" width="50" hFlip={true} />}</td>
                   <td style={getTableBodyCellStyle()}>{row.itemDest}</td>
+                  <td style={getTableBodyCellStyle()}>{row.transit_stock}</td>
                   <td style={getTableBodyCellStyle()}>{moment(row.updatedAt).format('h:mm a D MMMM YYYY')}</td>
 
                    
