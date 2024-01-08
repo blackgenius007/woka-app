@@ -285,9 +285,11 @@ const EmployeePortal = React.memo(() => {
               <AppBar position="static" color="transparent" elevation={0} sx={{ mb: -2 }}>
                 <Toolbar>
                   <Avatar variant="rounded" sx={{ backgroundColor: 'white', marginRight: '8px' }}>
-                    <IconButton color="primary" onClick={handleHomeClick}>
-                      <HomeIcon />
-                    </IconButton>
+                  <Link to="/">
+      <IconButton color="primary">
+        <HomeIcon />
+      </IconButton>
+    </Link>
                   </Avatar>
                   <Avatar
                     alt=""
