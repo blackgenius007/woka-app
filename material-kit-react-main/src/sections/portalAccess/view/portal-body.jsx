@@ -45,6 +45,7 @@ import DataIcon from '@mui/icons-material/DataUsage';
 const EmployeePortal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [shouldRender, setShouldRender] = useState(true);
   // Fetch employee
   const { employees, isLoading } = useSelector((state) => state.employees);
   //Access the portalCode from the Redux store
@@ -83,17 +84,30 @@ const EmployeePortal = () => {
   const [inventoryOpen, setInventoryOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
 
-  const handleHomeClick = () => {
-    // Navigate to the home page when the IconButton is clicked
-    navigate('/');
+  const handleHomeClick = async () => {
+    // Set shouldRender to false to prevent further renders
+    setShouldRender(false);
+
+    // Simulate an asynchronous operation (e.g., API call)
+    try {
+      // Your asynchronous operation here
+      await someAsyncOperation();
+      
+      // Only navigate if the component is still mounted
+      if (isMounted.current) {
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Async operation failed:', error);
+    }
   };
-// useEffect to handle cleanup when the component is unmounted
-useEffect(() => {
-  return () => {
-    // Optional: Perform cleanup actions if needed
-    console.log('Component unmounted');
-  };
-}, []);
+
+  useEffect(() => {
+    return () => {
+      // Set the component as unmounted when it is unmounted
+      isMounted.current = false;
+    };
+  }, []);
   //Destructure employees from redux
   useEffect(() => {
     // Assuming employees is an array
