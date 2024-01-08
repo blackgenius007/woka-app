@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
+import { utils, writeFile } from 'xlsx';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
 import Iconify from 'src/components/iconify';
@@ -373,12 +374,36 @@ const getTableBodyCellStyle = () => {
 
   const tableRef = useRef(null);
 
-  // excel download function
-  const { onDownload } = useDownloadExcel({
-    currentTableRef: tableRef.current,
-    filename: 'Salary',
-    sheet: 'Users',
-  });
+  // // excel download function
+  // const { onDownload } = useDownloadExcel({
+  //   currentTableRef: tableRef.current,
+  //   filename: 'Salary',
+  //   sheet: 'Users',
+  // });
+  // Export to excel
+  const exportData = () => {
+    // Access the table element using the ref
+    const table = tableRef.current;
+
+    // Get the visible rows from the table
+    const visibleRows = Array.from(table.getElementsByTagName('tbody')[0].children);
+
+    // Extract data from visible rows
+    const dataToExport = visibleRows.map((row) => {
+      const cells = Array.from(row.cells).map((cell) => cell.textContent);
+      return cells;
+    });
+
+    // Define the header row - replace this with your actual header names
+    const headerRow = ['Item', 'Description', 'Opening stock ', 'Item Location', 'Destination','In/Out stock','Transaction time'];
+
+    // Create a new workbook and sheet
+    let wb = utils.book_new(),
+      ws = utils.aoa_to_sheet([headerRow].concat(dataToExport)); // Assuming headerRow contains the header names
+
+    utils.book_append_sheet(wb, ws, 'items');
+    writeFile(wb, 'items.xlsx');
+  };
 
   return (
     <>
@@ -439,6 +464,7 @@ const getTableBodyCellStyle = () => {
  
 </Button>
       </label>
+      
       <div style={futuristicStylesOne ? futuristicStylesSetOne.tableContainer : futuristicStylesSetTwo.tableContainer}>
       <table style={futuristicStylesOne ? futuristicStylesSetOne.table : futuristicStylesSetTwo.table}>
         <thead style={futuristicStylesOne ? futuristicStylesSetOne.tableHead : futuristicStylesSetTwo.tableHead}> 
@@ -469,20 +495,6 @@ const getTableBodyCellStyle = () => {
                   )}
 
                   <td style={getTableBodyCellStyle()}>{row.itemName}</td>
-
-                  {/* <td style={getTableBodyCellStyle()}>
-                    <Link
-                      style={{
-                        color: '#ffff',
-                        textDecoration: 'none',
-                        backgroundImage: 'none',
-                      }}
-                    >
-                      {row.SKU}
-                    </Link>
-                  </td> */}
-                 
-               
                   <td style={getTableBodyCellStyle()}>{row.description}</td>
                   <td style={getTableBodyCellStyle()}>{row.quantity}</td>
                   <td style={getTableBodyCellStyle()}>{row.tagName}</td>
@@ -493,8 +505,7 @@ const getTableBodyCellStyle = () => {
     <Icon icon="carbon:direction-right-02" color="#ff5733" width="50" hFlip={true} />
     
   )}
-   {/* Add debugging information */}
-   {console.log('row.dirSymbol', row.dirSymbol)}
+   
 </td>
                   <td style={getTableBodyCellStyle()}>{row.itemDest}</td>
                   <td style={getTableBodyCellStyle()}>{row.transit_stock}</td>

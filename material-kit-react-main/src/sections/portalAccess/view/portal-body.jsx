@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { authPortalAccess } from 'src/Services/HR-Services/employeeSlice';
 import { authDataAccess } from 'src/Services/HR-Services/employeeSlice';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import EventIcon from '@mui/icons-material/Event';
 import EditIcon from '@mui/icons-material/Edit';
@@ -29,9 +30,9 @@ import {
   TextField,
   Popover,
   Alert,
-  AlertTitle
+  AlertTitle,
 } from '@mui/material';
- 
+
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
@@ -43,6 +44,7 @@ import DataIcon from '@mui/icons-material/DataUsage';
 
 const EmployeePortal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // Fetch employee
   const { employees, isLoading } = useSelector((state) => state.employees);
   //Access the portalCode from the Redux store
@@ -68,7 +70,7 @@ const EmployeePortal = () => {
   // Log the filteredDataAuth to the console
   console.log('Filtered DataAuth:', filteredCollectionPointDetails);
 
-  console.log('portal-body - employees redux state',employees);
+  console.log('portal-body - employees redux state', employees);
   const [isEditing, setIsEditing] = useState(false);
   const [employeeData, setEmployeeData] = useState(null);
   const [employeeAccessData, setEmployeeAccessData] = useState([]);
@@ -81,9 +83,10 @@ const EmployeePortal = () => {
   const [inventoryOpen, setInventoryOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
 
-
- 
-
+  const handleHomeClick = () => {
+    // Navigate to the home page when the IconButton is clicked
+    navigate('/');
+  };
 
   //Destructure employees from redux
   useEffect(() => {
@@ -281,7 +284,7 @@ const EmployeePortal = () => {
               <AppBar position="static" color="transparent" elevation={0} sx={{ mb: -2 }}>
                 <Toolbar>
                   <Avatar variant="rounded" sx={{ backgroundColor: 'white', marginRight: '8px' }}>
-                    <IconButton color="primary">
+                    <IconButton color="primary" onClick={handleHomeClick}>
                       <HomeIcon />
                     </IconButton>
                   </Avatar>
