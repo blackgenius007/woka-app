@@ -84,7 +84,11 @@ const EmployeePortal = React.memo(() => {
   const [inventoryOpen, setInventoryOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
 
- 
+  const handleHomeClick = () => {
+    // Navigate to the home page when the IconButton is clicked
+    navigate('/');
+  };
+
   //Destructure employees from redux
   useEffect(() => {
     // Assuming employees is an array
