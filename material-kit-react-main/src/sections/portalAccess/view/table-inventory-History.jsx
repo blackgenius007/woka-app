@@ -491,7 +491,10 @@ const getTableBodyCellStyle = () => {
     <Icon icon="carbon:direction-right-02" color="#ff5733" width="50" rotate={2} hFlip={true} />
   ) : (
     <Icon icon="carbon:direction-right-02" color="#ff5733" width="50" hFlip={true} />
+    
   )}
+   {/* Add debugging information */}
+   {console.log('row.dirSymbol', row.dirSymbol)}
 </td>
                   <td style={getTableBodyCellStyle()}>{row.itemDest}</td>
                   <td style={getTableBodyCellStyle()}>{row.transit_stock}</td>
