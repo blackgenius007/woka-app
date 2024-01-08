@@ -487,11 +487,12 @@ const getTableBodyCellStyle = () => {
                   <td style={getTableBodyCellStyle()}>{row.quantity}</td>
                   <td style={getTableBodyCellStyle()}>{row.tagName}</td>
                   <td style={getTableBodyCellStyle()}>
-  {row.itemDest === 'right' ? (
+                  {row.itemDest === 'right' ?  'OUT' :  'IN'}
+  {/* {row.itemDest === 'right' ? (
     <Icon icon="carbon:direction-right-02" color="#ff5733" width="50" rotate={2} hFlip={true} />
   ) : (
     <Icon icon="carbon:direction-right-02" color="#ff5733" width="50" hFlip={true} />
-  )}
+  )} */}
 </td>
                   {/* <td style={getTableBodyCellStyle()}>{row.itemDest}</td> */}
                   <td style={getTableBodyCellStyle()}>{row.transit_stock}</td>
