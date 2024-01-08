@@ -42,7 +42,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import StorageIcon from '@mui/icons-material/Storage';
 import DataIcon from '@mui/icons-material/DataUsage';
 
-const EmployeePortal = () => {
+const EmployeePortal = React.memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [shouldRender, setShouldRender] = useState(true);
@@ -511,6 +511,6 @@ const EmployeePortal = () => {
         ))}
     </>
   );
-};
+});
 
 export default EmployeePortal;
