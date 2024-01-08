@@ -87,7 +87,13 @@ const EmployeePortal = () => {
     // Navigate to the home page when the IconButton is clicked
     navigate('/');
   };
-
+// useEffect to handle cleanup when the component is unmounted
+useEffect(() => {
+  return () => {
+    // Optional: Perform cleanup actions if needed
+    console.log('Component unmounted');
+  };
+}, []);
   //Destructure employees from redux
   useEffect(() => {
     // Assuming employees is an array
