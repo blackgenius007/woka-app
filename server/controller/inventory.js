@@ -293,6 +293,7 @@ exports.getTotalCost = asyncHandler(async (req, res, next) => {
 //@routes   Get/add_product/:id/:num/:quantity/:order
 //@acess    Private
 exports.outGoingStock = asyncHandler(async (req, res, next) => {
+  // properties
   const id = req.params.id;
   const quantity = req.params.quantity;
   const order = req.params.order;
