@@ -84,30 +84,7 @@ const EmployeePortal = () => {
   const [inventoryOpen, setInventoryOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
 
-  const handleHomeClick = async () => {
-    // Set shouldRender to false to prevent further renders
-    setShouldRender(false);
-
-    // Simulate an asynchronous operation (e.g., API call)
-    try {
-      // Your asynchronous operation here
-      await someAsyncOperation();
-      
-      // Only navigate if the component is still mounted
-      if (isMounted.current) {
-        navigate('/');
-      }
-    } catch (error) {
-      console.error('Async operation failed:', error);
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      // Set the component as unmounted when it is unmounted
-      isMounted.current = false;
-    };
-  }, []);
+ 
   //Destructure employees from redux
   useEffect(() => {
     // Assuming employees is an array
