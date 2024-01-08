@@ -487,7 +487,15 @@ const getTableBodyCellStyle = () => {
                   <td style={getTableBodyCellStyle()}>{row.quantity}</td>
                   <td style={getTableBodyCellStyle()}>{row.tagName}</td>
                   <td style={getTableBodyCellStyle()}>
-                  {row.itemDest === 'right' ?  'OUT' :  'IN'}
+                  <td style={getTableBodyCellStyle()}>
+  {row.itemDest === 'right' ? (
+    'OUT'
+  ) : (
+    'IN'
+  )}
+  {/* Add debugging information */}
+  {console.log('row.itemDest:', row.itemDest)}
+</td>
   {/* {row.itemDest === 'right' ? (
     <Icon icon="carbon:direction-right-02" color="#ff5733" width="50" rotate={2} hFlip={true} />
   ) : (
